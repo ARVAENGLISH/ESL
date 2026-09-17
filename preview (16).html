@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ARVA ENGLISH - Soils & Earthquakes</title>
+
+<style>
+:root {
+    --orange: #ff751f;
+    --pink: #ff2d55;
+    --purple: #7c3aed;
+    --green: #16a34a;
+    --blue: #2563eb;
+    --red: #dc2626;
+    --yellow: #feffd2;
+    --indigo: #4f46e5;
+    --dark: #171717;
+    --white: #ffffff;
+    --light: #fffaf5;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Montserrat, Arial, sans-serif;
+    background: var(--light);
+    color: var(--dark);
+    line-height: 1.6;
+}
+
+/* HEADER */
+
+header {
+    background: linear-gradient(135deg, var(--orange), var(--pink));
+    color: white;
+    padding: 45px 7vw;
+}
+
+.brand {
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+header h1 {
+    font-size: clamp(40px, 7vw, 76px);
+    line-height: .95;
+    margin: 15px 0 10px;
+}
+
+.subtitle {
+    font-size: 19px;
+    font-weight: 600;
+}
+
+/* PROGRESS */
+
+.progress-container {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: white;
+    padding: 10px 7vw;
+    box-shadow: 0 2px 10px rgba(0,0,0,.1);
+}
+
+.progress-label {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #eeeeee;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--orange), var(--pink));
+    transition: .4s;
+}
+
+/* MAIN */
+
+.container {
+    max-width: 1050px;
+    margin: auto;
+    padding: 35px 22px 80px;
+}
+
+.section {
+    background: white;
+    border-radius: 24px;
+    padding: 30px;
+    margin: 25px 0;
+    box-shadow: 0 8px 25px rgba(0,0,0,.06);
+}
+
+.section h2 {
+    margin-top: 0;
+    color: var(--indigo);
+    font-size: 28px;
+}
+
+/* OBJECTIVES */
+
+.objectives {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 15px;
+}
+
+.objective {
+    background: var(--yellow);
+    padding: 20px;
+    border-radius: 16px;
+    font-weight: 600;
+}
+
+/* CONTEXT */
+
+.context {
+    background: #fff3e8;
+    border-left: 7px solid var(--orange);
+    padding: 23px;
+    border-radius: 15px;
+}
+
+/* QUESTIONS */
+
+.questions {
+    display: grid;
+    gap: 15px;
+}
+
+.question {
+    background: #f6f5ff;
+    padding: 20px;
+    border-radius: 16px;
+    font-size: 18px;
+    font-weight: 650;
+}
+
+/* VOCABULARY */
+
+.vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(190px,1fr));
+    gap: 13px;
+}
+
+.vocab-button {
+    border: none;
+    background: #111;
+    color: white;
+    padding: 18px;
+    border-radius: 16px;
+    text-align: left;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.vocab-button:hover {
+    transform: translateY(-3px);
+    background: var(--indigo);
+}
+
+.vocab-button strong {
+    display: block;
+    font-size: 19px;
+}
+
+.vocab-button span {
+    display: block;
+    margin-top: 5px;
+    color: #dddddd;
+}
+
+/* LOOK */
+
+.look {
+    background: #fafafa;
+    padding: 25px;
+    border-radius: 18px;
+    font-size: 17px;
+}
+
+.vocab-highlight {
+    color: var(--orange);
+    font-weight: 800;
+}
+
+/* GRAMMAR */
+
+.grammar-box {
+    padding: 23px;
+    border-radius: 18px;
+    margin: 18px 0;
+    border-left: 8px solid;
+}
+
+.purple {
+    border-color: var(--purple);
+    background: #f4efff;
+}
+
+.orange {
+    border-color: var(--orange);
+    background: #fff1e8;
+}
+
+.green {
+    border-color: var(--green);
+    background: #effcf3;
+}
+
+.blue {
+    border-color: var(--blue);
+    background: #eef5ff;
+}
+
+.red {
+    border-color: var(--red);
+    background: #fff0f0;
+}
+
+.grammar-box h3 {
+    margin-top: 0;
+}
+
+.example {
+    background: white;
+    padding: 13px 16px;
+    border-radius: 12px;
+    font-size: 19px;
+    font-weight: 650;
+    margin: 10px 0;
+}
+
+.correct-text {
+    color: var(--green);
+    font-weight: 700;
+}
+
+.wrong-text {
+    color: var(--red);
+    font-weight: 700;
+}
+
+/* FORMULA */
+
+.formula {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    font-weight: 800;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.formula span {
+    color: white;
+    padding: 10px 15px;
+    border-radius: 12px;
+}
+
+.problem {
+    background: var(--purple);
+}
+
+.cause {
+    background: var(--orange);
+}
+
+.result {
+    background: var(--blue);
+}
+
+.action {
+    background: var(--red);
+}
+
+/* PRACTICE */
+
+.exercise {
+    border: 2px solid #eeeeee;
+    border-radius: 18px;
+    padding: 23px;
+    margin: 20px 0;
+}
+
+.exercise h3 {
+    margin-top: 0;
+    color: var(--indigo);
+}
+
+.options {
+    display: grid;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.option {
+    border: 2px solid #dddddd;
+    background: white;
+    padding: 12px 16px;
+    border-radius: 11px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 16px;
+    transition: .2s;
+}
+
+.option:hover {
+    border-color: var(--indigo);
+}
+
+.option.correct {
+    background: #e9f9ee;
+    border-color: var(--green);
+}
+
+.option.wrong {
+    background: #fff0f0;
+    border-color: var(--red);
+}
+
+.feedback {
+    min-height: 25px;
+    margin-top: 12px;
+    font-weight: 700;
+}
+
+.check-button {
+    margin-top: 14px;
+    border: none;
+    background: var(--indigo);
+    color: white;
+    padding: 11px 19px;
+    border-radius: 10px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.check-button:hover {
+    opacity: .9;
+}
+
+.blank {
+    border: none;
+    border-bottom: 3px solid var(--indigo);
+    background: #fafafa;
+    font-size: 17px;
+    padding: 5px;
+    width: 200px;
+    outline: none;
+}
+
+.smallblank {
+    width: 100px;
+}
+
+/* SPEAKING */
+
+.speaking {
+    background: #111;
+    color: white;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.speaking h2 {
+    color: white;
+}
+
+.speaking li {
+    margin: 14px 0;
+    font-size: 18px;
+}
+
+/* FINAL */
+
+.final {
+    text-align: center;
+    background: linear-gradient(135deg,#fff3e8,#ffeaf0);
+}
+
+.finish-button {
+    border: none;
+    background: var(--pink);
+    color: white;
+    padding: 16px 28px;
+    border-radius: 14px;
+    font-size: 18px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.finish-button:hover {
+    transform: scale(1.03);
+}
+
+.circle {
+    display: none;
+    width: 130px;
+    height: 130px;
+    border: 10px solid var(--pink);
+    border-radius: 50%;
+    margin: 20px auto;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 900;
+}
+
+.celebration {
+    font-size: 32px;
+    margin-top: 15px;
+}
+
+/* MOBILE */
+
+@media(max-width:650px) {
+
+    .section {
+        padding: 22px 17px;
+    }
+
+    .formula {
+        font-size: 14px;
+    }
+
+    .blank {
+        width: 150px;
+    }
+
+    .smallblank {
+        width: 85px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="brand">ARVA ENGLISH</div>
+
+    <h1>
+        SOILS &<br>
+        EARTHQUAKES
+    </h1>
+
+    <div class="subtitle">
+        Engineering English — A2
+    </div>
+
+</header>
+
+
+<div class="progress-container">
+
+    <div class="progress-label">
+        Class Progress
+    </div>
+
+    <div class="progress-bar">
+        <div class="progress-fill" id="progress"></div>
+    </div>
+
+</div>
+
+
+<main class="container">
+
+
+<!-- 1 OBJECTIVE -->
+
+<section class="section">
+
+<h2>1. OBJECTIVE</h2>
+
+<div class="objectives">
+
+<div class="objective">
+Describe soil conditions.
+</div>
+
+<div class="objective">
+Talk about earthquake damage.
+</div>
+
+<div class="objective">
+Explain problems and delays on a construction project.
+</div>
+
+<div class="objective">
+Explain why a problem is happening and describe the next action.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- 2 CONTEXT -->
+
+<section class="section">
+
+<h2>2. CONTEXT</h2>
+
+<div class="context">
+
+Imagine you are working on a construction project in Colombia.
+
+<br><br>
+
+After an earthquake, engineers need to inspect different buildings and construction sites. Some buildings have cracks or other damage. In some areas, the ground is soft, and this can affect the stability of a building.
+
+<br><br>
+
+Engineers need to understand what happened before construction can continue.
+
+</div>
+
+</section>
+
+
+<!-- 3 WARM UP -->
+
+<section class="section">
+
+<h2>3. WARM-UP QUESTIONS</h2>
+
+<div class="questions">
+
+<div class="question">
+1. What can happen to a building during an earthquake?
+</div>
+
+<div class="question">
+2. How can a person identify if their house is safe to live in after an earthquake?
+</div>
+
+<div class="question">
+3. Can buildings collapsing during an earthquake be prevented?
+</div>
+
+</div>
+
+</section>
+
+
+<!-- 4 VOCABULARY -->
+
+<section class="section">
+
+<h2>4. VOCABULARY</h2>
+
+<p>
+Click a word to hear the pronunciation and see the Spanish translation.
+</p>
+
+<div class="vocab-grid">
+
+<button class="vocab-button" onclick="speak('soil')">
+<strong>soil</strong>
+<span>suelo</span>
+</button>
+
+<button class="vocab-button" onclick="speak('ground')">
+<strong>ground</strong>
+<span>terreno / suelo</span>
+</button>
+
+<button class="vocab-button" onclick="speak('clay')">
+<strong>clay</strong>
+<span>arcilla</span>
+</button>
+
+<button class="vocab-button" onclick="speak('sand')">
+<strong>sand</strong>
+<span>arena</span>
+</button>
+
+<button class="vocab-button" onclick="speak('rock')">
+<strong>rock</strong>
+<span>roca</span>
+</button>
+
+<button class="vocab-button" onclick="speak('soft')">
+<strong>soft</strong>
+<span>blando</span>
+</button>
+
+<button class="vocab-button" onclick="speak('hard')">
+<strong>hard</strong>
+<span>duro</span>
+</button>
+
+<button class="vocab-button" onclick="speak('foundation')">
+<strong>foundation</strong>
+<span>cimentación</span>
+</button>
+
+<button class="vocab-button" onclick="speak('earthquake')">
+<strong>earthquake</strong>
+<span>sismo / terremoto</span>
+</button>
+
+<button class="vocab-button" onclick="speak('crack')">
+<strong>crack</strong>
+<span>grieta</span>
+</button>
+
+<button class="vocab-button" onclick="speak('damage')">
+<strong>damage</strong>
+<span>daño</span>
+</button>
+
+<button class="vocab-button" onclick="speak('stability')">
+<strong>stability</strong>
+<span>estabilidad</span>
+</button>
+
+</div>
+
+</section>
+
+
+<!-- 5 VOCABULARY CHECK -->
+
+<section class="section">
+
+<h2>5. VOCABULARY CHECK</h2>
+
+
+<div class="exercise">
+
+<h3>1.</h3>
+
+<p>
+This material is soft, sticky and usually wet.
+</p>
+
+<div class="options">
+
+<button class="option" onclick="multipleChoice(this,false)">
+A. Rock
+</button>
+
+<button class="option" onclick="multipleChoice(this,true)">
+B. Clay
+</button>
+
+<button class="option" onclick="multipleChoice(this,false)">
+C. Sand
+</button>
+
+</div>
+
+<div class="feedback"></div>
+
+</div>
+
+
+<div class="exercise">
+
+<h3>2.</h3>
+
+<p>
+There is a large opening in the wall after the earthquake.
+</p>
+
+<div class="options">
+
+<button class="option" onclick="multipleChoice(this,true)">
+A. Crack
+</button>
+
+<button class="option" onclick="multipleChoice(this,false)">
+B. Stability
+</button>
+
+<button class="option" onclick="multipleChoice(this,false)">
+C. Ground
+</button>
+
+</div>
+
+<div class="feedback"></div>
+
+</div>
+
+
+<div class="exercise">
+
+<h3>3.</h3>
+
+<p>
+Engineers need to check the strong base of the building before construction.
+</p>
+
+<div class="options">
+
+<button class="option" onclick="multipleChoice(this,true)">
+A. Foundation
+</button>
+
+<button class="option" onclick="multipleChoice(this,false)">
+B. Soil
+</button>
+
+<button class="option" onclick="multipleChoice(this,false)">
+C. Damage
+</button>
+
+</div>
+
+<div class="feedback"></div>
+
+</div>
+
+
+<div class="exercise">
+
+<h3>4.</h3>
+
+<p>
+The building is safe and does not move easily.
+</p>
+
+<div class="options">
+
+<button class="option" onclick="multipleChoice(this,false)">
+A. Soft
+</button>
+
+<button class="option" onclick="multipleChoice(this,true)">
+B. Stability
+</button>
+
+<button class="option" onclick="multipleChoice(this,false)">
+C. Sand
+</button>
+
+</div>
+
+<div class="feedback"></div>
+
+</div>
+
+
+<div class="exercise">
+
+<h3>5.</h3>
+
+<p>
+These are small pieces of rock. They are common near beaches and rivers.
+</p>
+
+<div class="options">
+
+<button class="option" onclick="multipleChoice(this,false)">
+A. Clay
+</button>
+
+<button class="option" onclick="multipleChoice(this,false)">
+B. Rock
+</button>
+
+<button class="option" onclick="multipleChoice(this,true)">
+C. Sand
+</button>
+
+</div>
+
+<div class="feedback"></div>
+
+</div>
+
+
+<div class="exercise">
+
+<h3>6.</h3>
+
+<p>
+This type of ground may move more during an earthquake.
+</p>
+
+<div class="options">
+
+<button class="option" onclick="multipleChoice(this,true)">
+A. Soft
+</button>
+
+<button class="option" onclick="multipleChoice(this,false)">
+B. Hard
+</button>
+
+<button class="option" onclick="multipleChoice(this,false)">
+C. Rock
+</button>
+
+</div>
+
+<div class="feedback"></div>
+
+</div>
+
+
+<div class="exercise">
+
+<h3>7.</h3>
+
+<p>
+There is a strong movement of the Earth's surface.
+</p>
+
+<div class="options">
+
+<button class="option" onclick="multipleChoice(this,false)">
+A. Crack
+</button>
+
+<button class="option" onclick="multipleChoice(this,true)">
+B. Earthquake
+</button>
+
+<button class="option" onclick="multipleChoice(this,false)">
+C. Foundation
+</button>
+
+</div>
+
+<div class="feedback"></div>
+
+</div>
+
+
+<div class="exercise">
+
+<h3>8.</h3>
+
+<p>
+The walls and windows are broken after the earthquake.
+</p>
+
+<div class="options">
+
+<button class="option" onclick="multipleChoice(this,true)">
+A. Damage
+</button>
+
+<button class="option" onclick="multipleChoice(this,false)">
+B. Stability
+</button>
+
+<button class="option" onclick="multipleChoice(this,false)">
+C. Soil
+</button>
+
+</div>
+
+<div class="feedback"></div>
+
+</div>
+
+</section>
+
+
+<!-- 6 LOOK -->
+
+<section class="section">
+
+<h2>
+6. LOOK — SO NOW WHAT? AFTER THE EARTHQUAKE
+</h2>
+
+<div class="look">
+
+In August 2026, a strong earthquake hit Colombia. Engineers and authorities had to inspect buildings and construction sites after the event.
+
+<br><br>
+
+After an earthquake, engineers need to check for
+
+<span class="vocab-highlight">cracks</span>,
+
+<span class="vocab-highlight">damage</span>,
+
+and structural problems. They also need to check the
+
+<span class="vocab-highlight">foundation</span>
+
+and the
+
+<span class="vocab-highlight">ground</span>
+
+under the building.
+
+<br><br>
+
+But why do some buildings have serious damage while others do not?
+
+<br><br>
+
+One important factor is the type of
+
+<span class="vocab-highlight">soil</span>.
+
+Some buildings are on
+
+<span class="vocab-highlight">soft</span>
+
+ground, while others are on harder ground.
+
+The soil can include
+
+<span class="vocab-highlight">clay</span>,
+
+<span class="vocab-highlight">sand</span>,
+
+or
+
+<span class="vocab-highlight">rock</span>,
+
+and these conditions can affect the stability of a building.
+
+<br><br>
+
+If engineers find serious problems, construction may need to stop. A project can be delayed because engineers need more information about the soil or the structure.
+
+<br><br>
+
+Workers may have to wait while engineers do more tests and inspect the building.
+
+<br><br>
+
+After an earthquake, the next step is not always to continue construction.
+
+First, engineers need to understand the
+
+<b>problem</b>,
+
+the
+
+<b>cause</b>,
+
+and the possible
+
+<b>result</b>.
+
+Then they can decide what action to take.
+
+</div>
+
+</section>
+
+
+<!-- 7 DISCOVERY -->
+
+<section class="section">
+
+<h2>7. DISCOVERY</h2>
+
+
+<div class="grammar-box purple">
+
+<h3>🟣 Problem</h3>
+
+<p>
+<b>There is</b> a problem with the soil.
+</p>
+
+<p>
+<b>There are</b> cracks in the wall.
+</p>
+
+</div>
+
+
+<div class="grammar-box orange">
+
+<h3>🟠 Cause</h3>
+
+<p>
+The project is delayed <b>because</b> the soil is soft.
+</p>
+
+</div>
+
+
+<div class="grammar-box green">
+
+<h3>🟢 Cause</h3>
+
+<p>
+The project is delayed <b>because of</b> the soft soil.
+</p>
+
+</div>
+
+
+<div class="grammar-box blue">
+
+<h3>🔵 Result</h3>
+
+<p>
+The ground is unstable, <b>so</b> engineers need to inspect the site.
+</p>
+
+</div>
+
+
+<div class="grammar-box red">
+
+<h3>🔴 Action</h3>
+
+<p>
+Engineers <b>need to</b> do more tests.
+</p>
+
+</div>
+
+
+<div class="formula">
+
+<span class="problem">PROBLEM</span>
+→
+<span class="cause">CAUSE</span>
+→
+<span class="result">RESULT</span>
+→
+<span class="action">ACTION</span>
+
+</div>
+
+</section>
+
+
+<!-- 8 GRAMMAR -->
+
+<section class="section">
+
+<h2>8. GRAMMAR</h2>
+
+
+<div class="grammar-box purple">
+
+<h3>🟣 THERE IS / THERE ARE</h3>
+
+<p>
+<b>There is + singular</b>
+</p>
+
+<div class="example">
+There is a problem with the soil.
+</div>
+
+<p>
+<b>There are + plural</b>
+</p>
+
+<div class="example">
+There are cracks in the wall.
+</div>
+
+</div>
+
+
+<div class="grammar-box orange">
+
+<h3>🟠 BECAUSE</h3>
+
+<p>
+Use <b>because + subject + verb</b>.
+</p>
+
+<div class="example">
+The project is delayed <b>because the soil is soft.</b>
+</div>
+
+</div>
+
+
+<div class="grammar-box green">
+
+<h3>🟢 BECAUSE OF</h3>
+
+<p>
+Use <b>because of + noun / noun phrase</b>.
+</p>
+
+<div class="example">
+The project is delayed <b>because of the soft soil.</b>
+</div>
+
+<p class="wrong-text">
+❌ because of the soil is soft
+</p>
+
+<p class="correct-text">
+✅ because the soil is soft
+</p>
+
+<p class="correct-text">
+✅ because of the soft soil
+</p>
+
+</div>
+
+
+<div class="grammar-box blue">
+
+<h3>🔵 SO</h3>
+
+<p>
+Use <b>so</b> to explain a result or consequence.
+</p>
+
+<div class="example">
+The soil is soft, <b>so</b> the project is delayed.
+</div>
+
+</div>
+
+
+<div class="grammar-box red">
+
+<h3>🔴 NEED TO</h3>
+
+<p>
+Use <b>need to + base verb</b> to talk about a necessary action.
+</p>
+
+<div class="example">
+Engineers <b>need to check</b> the foundation.
+</div>
+
+<div class="example">
+We <b>need to do</b> more soil tests.
+</div>
+
+<p class="wrong-text">
+❌ need to checking
+</p>
+
+<p class="wrong-text">
+❌ need to checked
+</p>
+
+<p class="correct-text">
+✅ need to check
+</p>
+
+</div>
+
+
+<div class="formula">
+
+<span class="problem">PROBLEM</span>
+→
+<span class="cause">CAUSE</span>
+→
+<span class="result">RESULT</span>
+→
+<span class="action">ACTION</span>
+
+</div>
+
+
+<div class="example">
+
+There are cracks in the foundation <b>because of</b> the earthquake.
+
+<br>
+
+<b>So</b>, construction must stop.
+
+<br>
+
+Engineers <b>need to</b> inspect the building.
+
+</div>
+
+</section>
+
+
+<!-- 9 PRACTICE -->
+
+<section class="section">
+
+<h2>9. PRACTICE</h2>
+
+
+<!-- EXERCISE 1 -->
+
+<div class="exercise">
+
+<h3>1.</h3>
+
+<p>
+There ___ several cracks in the foundation.
+</p>
+
+<div class="options">
+
+<button class="option"
+onclick="multipleChoice(this,false)">
+A. is
+</button>
+
+<button class="option"
+onclick="multipleChoice(this,true)">
+B. are
+</button>
+
+<button class="option"
+onclick="multipleChoice(this,false)">
+C. am
+</button>
+
+</div>
+
+<div class="feedback"></div>
+
+</div>
+
+
+<!-- EXERCISE 2 -->
+
+<div class="exercise">
+
+<h3>2.</h3>
+
+<p>
+The construction is delayed ___ the soft soil.
+</p>
+
+<div class="options">
+
+<button class="option"
+onclick="multipleChoice(this,false)">
+A. because
+</button>
+
+<button class="option"
+onclick="multipleChoice(this,true)">
+B. because of
+</button>
+
+<button class="option"
+onclick="multipleChoice(this,false)">
+C. so
+</button>
+
+</div>
+
+<div class="feedback"></div>
+
+</div>
+
+
+<!-- EXERCISE 3 -->
+
+<div class="exercise">
+
+<h3>3.</h3>
+
+<p>
+The engineers stopped the work
+<input class="blank" id="answer3">
+they found serious damage.
+</p>
+
+<button class="check-button"
+onclick="checkBlank('answer3','because',this)">
+Check
+</button>
+
+<div class="feedback"></div>
+
+</div>
+
+
+<!-- EXERCISE 4 -->
+
+<div class="exercise">
+
+<h3>4.</h3>
+
+<p>
+The project is delayed
+<input class="blank" id="answer4">
+the earthquake damage.
+</p>
+
+<button class="check-button"
+onclick="checkBlank('answer4','because of',this)">
+Check
+</button>
+
+<div class="feedback"></div>
+
+</div>
+
+
+<!-- EXERCISE 5 -->
+
+<div class="exercise">
+
+<h3>5.</h3>
+
+<p>
+The ground is unstable, ___ the engineers need to inspect the site.
+</p>
+
+<div class="options">
+
+<button class="option"
+onclick="multipleChoice(this,false)">
+A. because
+</button>
+
+<button class="option"
+onclick="multipleChoice(this,true)">
+B. so
+</button>
+
+<button class="option"
+onclick="multipleChoice(this,false)">
+C. because of
+</button>
+
+</div>
+
+<div class="feedback"></div>
+
+</div>
+
+
+<!-- EXERCISE 6 -->
+
+<div class="exercise">
+
+<h3>6.</h3>
+
+<p>
+Choose the correct sentence:
+</p>
+
+<div class="options">
+
+<button class="option"
+onclick="multipleChoice(this,false)">
+A. Engineers need checking the foundation.
+</button>
+
+<button class="option"
+onclick="multipleChoice(this,true)">
+B. Engineers need to check the foundation.
+</button>
+
+<button class="option"
+onclick="multipleChoice(this,false)">
+C. Engineers need checked the foundation.
+</button>
+
+</div>
+
+<div class="feedback"></div>
+
+</div>
+
+
+<!-- EXERCISE 7 -->
+
+<div class="exercise">
+
+<h3>7.</h3>
+
+<p>
+
+There
+<input class="blank smallblank" id="answer7a">
+a problem with the soil.
+
+<br><br>
+
+The soil is very soft,
+<input class="blank smallblank" id="answer7b">
+the project is delayed.
+
+<br><br>
+
+Engineers
+<input class="blank smallblank" id="answer7c">
+<input class="blank smallblank" id="answer7d">
+do more tests.
+
+</p>
+
+<button class="check-button"
+onclick="checkSeven(this)">
+Check
+</button>
+
+<div class="feedback"></div>
+
+</div>
+
+
+<!-- EXERCISE 8 -->
+
+<div class="exercise">
+
+<h3>8.</h3>
+
+<p>
+
+There are cracks in the foundation
+<input class="blank" id="answer8a">
+the earthquake.
+
+<br><br>
+
+<input class="blank smallblank" id="answer8b">,
+construction must stop.
+
+<br><br>
+
+Engineers
+<input class="blank" id="answer8c">
+inspect the building.
+
+</p>
+
+<button class="check-button"
+onclick="checkEight(this)">
+Check
+</button>
+
+<div class="feedback"></div>
+
+</div>
+
+</section>
+
+
+<!-- 10 YOUR TURN -->
+
+<section class="section speaking">
+
+<h2>
+10. YOUR TURN TO SPEAK
+</h2>
+
+<p>
+<b>Think about your current project.</b>
+</p>
+
+<ul>
+
+<li>
+What is the project? Explain it briefly.
+</li>
+
+<li>
+Is there a problem that is delaying the project?
+</li>
+
+<li>
+What is the problem?
+</li>
+
+<li>
+Why is it happening?
+</li>
+
+<li>
+What is the next step?
+</li>
+
+</ul>
+
+<p>
+Try to use:
+</p>
+
+<p style="font-size:22px;font-weight:800;">
+
+There is / There are
+→
+because / because of
+→
+so
+→
+need to
+
+</p>
+
+</section>
+
+
+<!-- FINAL -->
+
+<section class="section final">
+
+<h2>
+CLASS COMPLETE!
+</h2>
+
+<p>
+Problem → Cause → Result → Action
+</p>
+
+<div
+class="circle"
+id="completionCircle">
+100%
+</div>
+
+<button
+class="finish-button"
+onclick="finishClass()">
+
+FINISH CLASS 🎉
+
+</button>
+
+<div
+class="celebration"
+id="celebration">
+</div>
+
+</section>
+
+
+</main>
+
+
+<script>
+
+/* =========================
+   VOCABULARY AUDIO
+========================= */
+
+function speak(word) {
+
+    if (!("speechSynthesis" in window)) {
+        alert("Audio is not supported in this browser.");
+        return;
+    }
+
+    speechSynthesis.cancel();
+
+    const speech =
+        new SpeechSynthesisUtterance(word);
+
+    speech.lang = "en-US";
+    speech.rate = 0.8;
+
+    speechSynthesis.speak(speech);
+}
+
+
+/* =========================
+   MULTIPLE CHOICE
+========================= */
+
+function multipleChoice(button, correct) {
+
+    const exercise =
+        button.closest(".exercise");
+
+    const buttons =
+        exercise.querySelectorAll(".option");
+
+    const feedback =
+        exercise.querySelector(".feedback");
+
+    buttons.forEach(btn => {
+
+        btn.classList.remove("correct");
+        btn.classList.remove("wrong");
+
+    });
+
+    if (correct) {
+
+        button.classList.add("correct");
+
+        feedback.innerHTML =
+            "✅ Correct! Great job.";
+
+        feedback.style.color =
+            "#16a34a";
+
+    } else {
+
+        button.classList.add("wrong");
+
+        feedback.innerHTML =
+            "❌ Not quite. Try again.";
+
+        feedback.style.color =
+            "#dc2626";
+
+    }
+
+    updateProgress();
+}
+
+
+/* =========================
+   FILL IN THE BLANK
+========================= */
+
+function checkBlank(id, expected, button) {
+
+    const input =
+        document.getElementById(id);
+
+    const exercise =
+        button.closest(".exercise");
+
+    const feedback =
+        exercise.querySelector(".feedback");
+
+    const answer =
+        input.value.trim().toLowerCase();
+
+    if (answer === expected.toLowerCase()) {
+
+        feedback.innerHTML =
+            "✅ Correct!";
+
+        feedback.style.color =
+            "#16a34a";
+
+        input.style.borderColor =
+            "#16a34a";
+
+    } else {
+
+        feedback.innerHTML =
+            "❌ Try again.";
+
+        feedback.style.color =
+            "#dc2626";
+
+        input.style.borderColor =
+            "#dc2626";
+    }
+
+    updateProgress();
+}
+
+
+/* =========================
+   PRACTICE 7
+========================= */
+
+function checkSeven(button) {
+
+    const a =
+        document.getElementById("answer7a")
+        .value.trim().toLowerCase();
+
+    const b =
+        document.getElementById("answer7b")
+        .value.trim().toLowerCase();
+
+    const c =
+        document.getElementById("answer7c")
+        .value.trim().toLowerCase();
+
+    const d =
+        document.getElementById("answer7d")
+        .value.trim().toLowerCase();
+
+    const feedback =
+        button.closest(".exercise")
+        .querySelector(".feedback");
+
+    if (
+        a === "is" &&
+        b === "so" &&
+        c === "need" &&
+        d === "to"
+    ) {
+
+        feedback.innerHTML =
+            "✅ Correct! You completed the full engineering explanation.";
+
+        feedback.style.color =
+            "#16a34a";
+
+    } else {
+
+        feedback.innerHTML =
+            "❌ Try again. Think about: is / so / need / to.";
+
+        feedback.style.color =
+            "#dc2626";
+    }
+
+    updateProgress();
+}
+
+
+/* =========================
+   PRACTICE 8
+========================= */
+
+function checkEight(button) {
+
+    const a =
+        document.getElementById("answer8a")
+        .value.trim().toLowerCase();
+
+    const b =
+        document.getElementById("answer8b")
+        .value.trim().toLowerCase();
+
+    const c =
+        document.getElementById("answer8c")
+        .value.trim().toLowerCase();
+
+    const feedback =
+        button.closest(".exercise")
+        .querySelector(".feedback");
+
+    if (
+        a === "because of" &&
+        b === "so" &&
+        c === "need to"
+    ) {
+
+        feedback.innerHTML =
+            "✅ Correct! Problem → Cause → Result → Action.";
+
+        feedback.style.color =
+            "#16a34a";
+
+    } else {
+
+        feedback.innerHTML =
+            "❌ Try again. Think about: because of / so / need to.";
+
+        feedback.style.color =
+            "#dc2626";
+    }
+
+    updateProgress();
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+function updateProgress() {
+
+    const feedbacks =
+        document.querySelectorAll(".feedback");
+
+    let completed = 0;
+
+    feedbacks.forEach(feedback => {
+
+        if (
+            feedback.innerText.includes("Correct")
+        ) {
+            completed++;
+        }
+
+    });
+
+    if (feedbacks.length === 0) return;
+
+    const percentage =
+        Math.min(
+            100,
+            Math.round(
+                completed /
+                feedbacks.length *
+                100
+            )
+        );
+
+    document.getElementById(
+        "progress"
+    ).style.width =
+        percentage + "%";
+}
+
+
+/* =========================
+   FINISH CLASS
+========================= */
+
+function finishClass() {
+
+    document.getElementById(
+        "completionCircle"
+    ).style.display =
+        "flex";
+
+    document.getElementById(
+        "celebration"
+    ).innerHTML =
+        "🎉 🏗️ 🌎 🎉";
+
+    document.getElementById(
+        "progress"
+    ).style.width =
+        "100%";
+
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth"
+    });
+}
+
+</script>
+
+</body>
+</html>
