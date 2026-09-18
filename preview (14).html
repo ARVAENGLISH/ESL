@@ -1,0 +1,2314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADULTING 101 — ARVA ENGLISH</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --pink:#ff2d55;
+  --orange:#ff751f;
+  --blue:#4f46e5;
+  --yellow:#feffd2;
+  --dark:#171717;
+  --gray:#f4f4f4;
+  --white:#ffffff;
+  --green:#168a55;
+  --red:#d92d20;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Montserrat,Arial,sans-serif;
+  background:#f7f7f8;
+  color:var(--dark);
+}
+
+header{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:50px 20px;
+  background:linear-gradient(135deg,#fff 0%,#feffd2 100%);
+}
+
+.hero{
+  max-width:950px;
+}
+
+.brand{
+  font-size:18px;
+  font-weight:800;
+  letter-spacing:3px;
+  color:var(--orange);
+  margin-bottom:25px;
+}
+
+h1{
+  font-size:clamp(54px,10vw,110px);
+  line-height:.9;
+  margin:0 0 28px;
+  font-weight:800;
+  letter-spacing:-5px;
+}
+
+.subtitle{
+  font-size:22px;
+  line-height:1.5;
+  max-width:760px;
+  margin:auto;
+}
+
+.objective{
+  margin-top:35px;
+  background:#fff;
+  border-radius:22px;
+  padding:24px;
+  box-shadow:0 12px 35px #00000010;
+}
+
+.objective strong{
+  color:var(--blue);
+}
+
+main{
+  max-width:1100px;
+  margin:auto;
+  padding:45px 18px 80px;
+}
+
+section{
+  background:#fff;
+  border-radius:28px;
+  padding:36px;
+  margin-bottom:28px;
+  box-shadow:0 8px 30px #0000000a;
+}
+
+.section-label{
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:2px;
+  color:var(--orange);
+  margin-bottom:8px;
+}
+
+h2{
+  font-size:32px;
+  margin:0 0 22px;
+}
+
+h3{
+  margin-top:28px;
+}
+
+p,li{
+  font-size:16px;
+  line-height:1.75;
+}
+
+.context{
+  font-size:18px;
+  line-height:1.9;
+}
+
+/* HOVER TRANSLATIONS */
+
+.hoverword{
+  position:relative;
+  color:var(--orange);
+  font-weight:800;
+  cursor:help;
+  border-bottom:2px dotted var(--orange);
+}
+
+.hoverword span{
+  visibility:hidden;
+  opacity:0;
+  position:absolute;
+  bottom:135%;
+  left:50%;
+  transform:translateX(-50%);
+  background:#171717;
+  color:#fff;
+  padding:8px 12px;
+  border-radius:9px;
+  font-size:12px;
+  white-space:nowrap;
+  z-index:5;
+  transition:.2s;
+}
+
+.hoverword:hover span{
+  visibility:visible;
+  opacity:1;
+}
+
+.grammar-highlight{
+  color:var(--blue);
+  font-weight:800;
+}
+
+/* WARM UP */
+
+.warmup{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.card{
+  background:#fafafa;
+  border:1px solid #eee;
+  border-radius:18px;
+  padding:20px;
+}
+
+.card label{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  margin-top:15px;
+  font-size:13px;
+  font-weight:600;
+}
+
+input[type=checkbox]{
+  accent-color:var(--pink);
+  width:18px;
+  height:18px;
+}
+
+/* VOCAB */
+
+.vocab-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.vocab{
+  border:0;
+  background:#fff3ed;
+  border-radius:16px;
+  padding:18px;
+  text-align:left;
+  cursor:pointer;
+  font-family:inherit;
+  font-weight:800;
+  font-size:15px;
+  color:var(--dark);
+  transition:.2s;
+  border-left:5px solid var(--orange);
+}
+
+.vocab:hover{
+  transform:translateY(-2px);
+  box-shadow:0 7px 18px #00000010;
+}
+
+.vocab small{
+  display:block;
+  color:#777;
+  font-weight:500;
+  margin-top:7px;
+}
+
+.vocab .translation{
+  display:none;
+  color:var(--blue);
+  font-weight:700;
+  margin-top:8px;
+}
+
+.vocab.open .translation{
+  display:block;
+}
+
+.audio-note{
+  font-size:13px;
+  color:#666;
+  margin-bottom:16px;
+}
+
+/* DISCOVERY */
+
+.discovery-q{
+  border:1px solid #eee;
+  border-radius:17px;
+  padding:20px;
+  margin:15px 0;
+}
+
+.options{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:12px;
+}
+
+.opt{
+  border:1px solid #ddd;
+  background:#fff;
+  border-radius:10px;
+  padding:9px 13px;
+  cursor:pointer;
+  font-family:inherit;
+}
+
+.opt:hover{
+  border-color:var(--blue);
+}
+
+.discovery-result{
+  margin-top:10px;
+  font-weight:700;
+  min-height:20px;
+}
+
+.correct{
+  color:var(--green);
+}
+
+.incorrect{
+  color:var(--red);
+}
+
+/* TABLES */
+
+.compare,
+.grammar-table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:8px;
+  margin-top:15px;
+}
+
+.compare th,
+.compare td,
+.grammar-table th,
+.grammar-table td{
+  padding:16px;
+  border-radius:12px;
+  text-align:left;
+  vertical-align:top;
+}
+
+.compare th:nth-child(1),
+.compare td:nth-child(1){
+  background:#f4f4f4;
+}
+
+.compare th:nth-child(2),
+.compare td:nth-child(2){
+  background:#ffe8ef;
+}
+
+.compare th:nth-child(3),
+.compare td:nth-child(3){
+  background:#e8e9ff;
+}
+
+.grammar-table th:nth-child(1),
+.grammar-table td:nth-child(1){
+  background:#ffe8ef;
+}
+
+.grammar-table th:nth-child(2),
+.grammar-table td:nth-child(2){
+  background:#e8e9ff;
+}
+
+.grammar-table th:nth-child(3),
+.grammar-table td:nth-child(3){
+  background:#fff0e7;
+}
+
+.grammar-table th{
+  font-size:18px;
+}
+
+.formula{
+  font-weight:800;
+  color:var(--blue);
+  line-height:1.7;
+}
+
+/* PRACTICE */
+
+.practice-card{
+  border:1px solid #eee;
+  border-radius:18px;
+  padding:22px;
+  margin:16px 0;
+}
+
+.practice-card h4{
+  margin:0 0 12px;
+}
+
+.choices{
+  display:grid;
+  gap:9px;
+}
+
+.choice{
+  padding:12px 14px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  background:#fff;
+  text-align:left;
+  font-family:inherit;
+  cursor:pointer;
+}
+
+.choice:hover{
+  border-color:var(--blue);
+}
+
+.choice:disabled{
+  cursor:default;
+  opacity:.8;
+}
+
+.feedback{
+  margin-top:12px;
+  font-weight:700;
+  min-height:24px;
+}
+
+.fill{
+  width:100%;
+  padding:12px;
+  border:1px solid #ccc;
+  border-radius:10px;
+  font-family:inherit;
+  font-size:15px;
+}
+
+.checkbtn{
+  margin-top:10px;
+  background:var(--blue);
+  color:#fff;
+  border:0;
+  border-radius:10px;
+  padding:11px 16px;
+  font-family:inherit;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* SPEAKING */
+
+.speaking-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+
+.speak-topic{
+  border:0;
+  border-radius:20px;
+  padding:25px;
+  text-align:left;
+  cursor:pointer;
+  font-family:inherit;
+  min-height:155px;
+  transition:.2s;
+}
+
+.speak-topic:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 25px #00000012;
+}
+
+.speak-topic:nth-child(1){
+  background:#fff0e7;
+}
+
+.speak-topic:nth-child(2){
+  background:#ffe8ef;
+}
+
+.speak-topic:nth-child(3){
+  background:#e8e9ff;
+}
+
+.speak-topic:nth-child(4){
+  background:#feffd2;
+}
+
+.speak-topic h3{
+  margin:0 0 8px;
+}
+
+.speak-topic p{
+  margin:0;
+  color:#555;
+}
+
+.speak-content{
+  display:none;
+  margin-top:20px;
+  border:2px solid var(--dark);
+  border-radius:20px;
+  padding:25px;
+}
+
+.speak-content.active{
+  display:block;
+}
+
+/* FINISH */
+
+.finish{
+  text-align:center;
+  background:var(--dark);
+  color:#fff;
+}
+
+.circle{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  border:8px solid var(--orange);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:20px auto;
+  font-size:24px;
+  font-weight:800;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+  .warmup,
+  .vocab-grid,
+  .speaking-grid{
+    grid-template-columns:1fr;
+  }
+
+  .grammar-table,
+  .compare{
+    font-size:13px;
+  }
+
+  .grammar-table th,
+  .grammar-table td{
+    padding:12px;
+  }
+
+  h1{
+    letter-spacing:-3px;
+  }
+
+  section{
+    padding:25px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="hero">
+
+<div class="brand">
+ARVA ENGLISH
+</div>
+
+<h1>
+ADULTING 101
+</h1>
+
+<p class="subtitle">
+Responsibilities, choices, money, freedom — and the life we imagined we'd have.
+</p>
+
+<div class="objective">
+
+<strong>GOAL</strong>
+
+<br>
+
+Talk about responsibilities, choices, and everyday adult life using hypothetical situations with <em>if</em>.
+
+</div>
+
+</div>
+
+</header>
+
+
+<main>
+
+<!-- WARM UP -->
+
+<section>
+
+<div class="section-label">
+WARM-UP
+</div>
+
+<h2>
+Let's talk about adulting 💬
+</h2>
+
+<p>
+Discuss each question with your teacher. Check the box when you finish talking about it.
+</p>
+
+<div class="warmup">
+
+<div class="card">
+
+<b>1.</b>
+
+When you were a child, did you sometimes dream about being an adult? What was your idea of adulthood back then?
+
+<label>
+<input type="checkbox">
+Finished
+</label>
+
+</div>
+
+
+<div class="card">
+
+<b>2.</b>
+
+What is your favorite part of being an adult, and what's your least favorite one?
+
+<label>
+<input type="checkbox">
+Finished
+</label>
+
+</div>
+
+
+<div class="card">
+
+<b>3.</b>
+
+What is something your parents did for you that you appreciate more now as an adult?
+
+<label>
+<input type="checkbox">
+Finished
+</label>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CONTEXT -->
+
+<section>
+
+<div class="section-label">
+CONTEXT
+</div>
+
+<h2>
+The new child-free generation
+</h2>
+
+<p class="context">
+
+The new child-free generation is made up mostly of millennials who have decided to postpone having children—or even give up on the possibility
+
+<span class="hoverword">
+altogether
+<span>por completo / en total</span>
+</span>.
+
+But why?
+
+Easy: adulting is not what we
+
+<span class="hoverword">
+pictured
+<span>imaginamos / nos imaginamos</span>
+</span>
+
+in our heads when we were children.
+
+As we
+
+<span class="hoverword">
+grow older
+<span>hacernos mayores / crecer</span>
+</span>,
+
+understanding what our parents had to
+
+<span class="hoverword">
+go through
+<span>pasar por / atravesar</span>
+</span>
+
+to
+
+<span class="hoverword">
+raise
+<span>criar</span>
+</span>
+
+us has made us rethink what we want for our own lives, especially when it comes to money, time, freedom, and responsibility.
+
+</p>
+
+</section>
+
+
+<!-- VOCABULARY -->
+
+<section>
+
+<div class="section-label">
+VOCABULARY
+</div>
+
+<h2>
+Adulting vocabulary 🔊
+</h2>
+
+<p class="audio-note">
+Click a word to hear the pronunciation in American English and reveal the Spanish translation.
+</p>
+
+<div class="vocab-grid">
+
+<button class="vocab" onclick="toggleVocab(this,'expenses')">
+expenses
+<small>Click to listen</small>
+<span class="translation">gastos</span>
+</button>
+
+<button class="vocab" onclick="toggleVocab(this,'bills')">
+bills
+<small>Click to listen</small>
+<span class="translation">facturas</span>
+</button>
+
+<button class="vocab" onclick="toggleVocab(this,'debts')">
+debts
+<small>Click to listen</small>
+<span class="translation">deudas</span>
+</button>
+
+<button class="vocab" onclick="toggleVocab(this,'afford')">
+afford
+<small>Click to listen</small>
+<span class="translation">poder pagar / tener suficiente dinero para</span>
+</button>
+
+<button class="vocab" onclick="toggleVocab(this,'freedom')">
+freedom
+<small>Click to listen</small>
+<span class="translation">libertad</span>
+</button>
+
+<button class="vocab" onclick="toggleVocab(this,'support someone')">
+support someone
+<small>Click to listen</small>
+<span class="translation">apoyar / mantener económicamente a alguien</span>
+</button>
+
+<button class="vocab" onclick="toggleVocab(this,'utilities')">
+utilities
+<small>Click to listen</small>
+<span class="translation">servicios públicos</span>
+</button>
+
+<button class="vocab" onclick="toggleVocab(this,'due dates')">
+due dates
+<small>Click to listen</small>
+<span class="translation">fechas límite de pago</span>
+</button>
+
+<button class="vocab" onclick="toggleVocab(this,'file taxes')">
+file taxes
+<small>Click to listen</small>
+<span class="translation">declarar impuestos</span>
+</button>
+
+<button class="vocab" onclick="toggleVocab(this,'raise a child')">
+raise a child
+<small>Click to listen</small>
+<span class="translation">criar a un hijo</span>
+</button>
+
+<button class="vocab" onclick="toggleVocab(this,'deal with')">
+deal with
+<small>Click to listen</small>
+<span class="translation">lidiar con / encargarse de</span>
+</button>
+
+<button class="vocab" onclick="toggleVocab(this,'insurance')">
+insurance
+<small>Click to listen</small>
+<span class="translation">seguro</span>
+</button>
+
+</div>
+
+</section>
+
+
+<!-- LOOK -->
+
+<section>
+
+<div class="section-label">
+LOOK
+</div>
+
+<h2>
+Am I Really Ready for the Life I Want?
+</h2>
+
+<p>
+I honestly never thought being an adult would feel like this.
+</p>
+
+<p>
+I have a full-time job in marketing, I pay my own
+<span class="hoverword">
+bills
+<span>facturas</span>
+</span>,
+
+I cover my monthly
+<span class="hoverword">
+expenses
+<span>gastos</span>
+</span>,
+
+and I am constantly trying to make enough money to stay afloat.
+
+But somehow, it still doesn't feel like enough.
+</p>
+
+<p>
+I have student
+<span class="hoverword">
+debts
+<span>deudas</span>
+</span>
+from university, and those payments aren't going anywhere.
+
+Every month, I look at my bank account and think,
+
+<em>
+How am I supposed to
+<span class="hoverword">
+afford
+<span>poder pagar / tener suficiente dinero para</span>
+</span>
+the life I want when I'm still paying for the education that was supposed to help me build it?
+</em>
+</p>
+
+<p>
+So, I work.
+</p>
+
+<p>
+And then I work some more.
+</p>
+
+<p>
+During the week, I work my marketing job.
+
+On weekends, I work as a nanny.
+
+And whenever I have some extra time, I do DoorDash.
+
+Yes, I have three different sources of income, and I'm still worried about money.
+</p>
+
+<p>
+Sometimes I dream about having more
+<span class="hoverword">
+freedom
+<span>libertad</span>
+</span>.
+
+I want to wake up on a Saturday and not immediately think about work,
+<span class="hoverword">
+due dates
+<span>fechas límite de pago</span>
+</span>,
+
+<span class="hoverword">
+bills
+<span>facturas</span>
+</span>,
+
+or how much money I need to make that week.
+</p>
+
+<p>
+But the hardest part isn't even the money.
+</p>
+
+<p>
+It's the future.
+</p>
+
+<p>
+I want to be a mother.
+
+I really do.
+
+I would love to stay home with my child for a couple of years.
+
+I want to be there for the first steps, the first words, the sick days, the random Tuesday afternoons.
+
+I want to
+<span class="hoverword">
+raise a child
+<span>criar a un hijo</span>
+</span>
+without feeling like I'm missing everything because I'm working all the time.
+</p>
+
+<p class="grammar-highlight">
+If I didn't have to work so much, I could spend more time thinking about the kind of mother I want to be.
+</p>
+
+<p>
+And then there is my boyfriend.
+</p>
+
+<p>
+He's honestly a great guy.
+
+He's kind, responsible, and supportive.
+
+But he grew up in a completely different financial situation.
+
+His parents had two incomes.
+
+They were able to save money, plan for retirement, and build a financial safety net for their children.
+</p>
+
+<p>
+My parents didn't have that luxury.
+</p>
+
+<p>
+I still want to
+<span class="hoverword">
+support my mom
+<span>apoyar / mantener económicamente a mi mamá</span>
+</span>.
+
+I still have my student
+<span class="hoverword">
+debts
+<span>deudas</span>
+</span>.
+
+And if I have a child one day, I want to be able to contribute to our family.
+</p>
+
+<p>
+That's why, whenever my boyfriend and I talk about our future, I can't help but wonder if I'm going to become a burden.
+</p>
+
+<p class="grammar-highlight">
+If I hadn't taken out so many student loans, I would have more money to build the life we talk about.
+</p>
+
+<p>
+And that thought hurts.
+</p>
+
+<p>
+Because I don't want him to have to pay my debts,
+<span class="hoverword">
+support our family
+<span>apoyar económicamente a nuestra familia</span>
+</span>,
+
+help me
+<span class="hoverword">
+support my mom
+<span>apoyar / mantener económicamente a mi mamá</span>
+</span>,
+
+and
+<span class="hoverword">
+raise a child
+<span>criar a un hijo</span>
+</span>
+all on one income.
+</p>
+
+<p>
+I know relationships aren't spreadsheets.
+
+I know love isn't about splitting every expense exactly 50/50.
+</p>
+
+<p>
+But money matters.
+</p>
+
+<p>
+If I became a stay-at-home mom for a couple of years, he would have to carry a much bigger financial responsibility.
+
+And honestly, I don't know if that's fair.
+</p>
+
+<p class="grammar-highlight">
+If I didn't have to pay my student debts, I would be able to consider staying home with our future child.
+</p>
+
+<p>
+Instead, I keep working.
+
+I keep taking extra jobs.
+
+I keep trying to
+<span class="hoverword">
+deal with
+<span>lidiar con / encargarse de</span>
+</span>
+everything at once.
+</p>
+
+<p>
+And some days, I wonder whether this is just what adulthood is supposed to be.
+</p>
+
+<p>
+You're supposed to work hard.
+
+Pay your
+<span class="hoverword">
+bills
+<span>facturas</span>
+</span>.
+
+<span class="hoverword">
+File taxes
+<span>declarar impuestos</span>
+</span>.
+
+Have
+<span class="hoverword">
+insurance
+<span>seguro</span>
+</span>.
+
+Pay your
+<span class="hoverword">
+utilities
+<span>servicios públicos</span>
+</span>.
+
+Save for retirement.
+
+Pay your
+<span class="hoverword">
+debts
+<span>deudas</span>
+</span>.
+
+And somehow still have enough money, energy, and time left to actually enjoy your life.
+</p>
+
+<p>
+But what happens when you're doing everything you're supposed to do and you're still drowning?
+</p>
+
+<p>
+I don't want to spend my entire twenties and thirties working just to catch up financially.
+</p>
+
+<p>
+I want a family.
+</p>
+
+<p>
+I want a home.
+</p>
+
+<p>
+I want
+<span class="hoverword">
+freedom
+<span>libertad</span>
+</span>.
+</p>
+
+<p>
+And I want to feel like I can build those things without making someone else pay the price for the choices I made in my twenties.
+</p>
+
+<p>
+So, what should I do?
+</p>
+
+<p>
+Do I keep working three jobs until my
+<span class="hoverword">
+debts
+<span>deudas</span>
+</span>
+are gone?
+</p>
+
+<p>
+Do I give up on the idea of being a stay-at-home mom?
+</p>
+
+<p>
+Or do I accept that building a life with someone means sharing the financial responsibilities, even when one person brings more money into the relationship?
+</p>
+
+<p>
+I honestly don't know.
+</p>
+
+<p>
+I just know that adulthood is nothing like I pictured it when I was a kid.
+</p>
+
+</section>
+
+
+<!-- DISCOVERY -->
+
+<section>
+
+<div class="section-label">
+DISCOVERY
+</div>
+
+<h2>
+Let's figure it out 🔎
+</h2>
+
+<p>
+Look back at the blue sentences in the text.
+
+Don't worry about the grammar rules yet.
+
+Let's figure them out together.
+</p>
+
+
+<div class="discovery-q">
+
+<b>1.</b>
+
+“If I didn't have to work so much, I could spend more time thinking about the kind of mother I want to be.”
+
+<p>
+What is she talking about?
+</p>
+
+<div class="options">
+
+<button class="opt" onclick="discover(this,'no')">
+A. A situation that is true now
+</button>
+
+<button class="opt" onclick="discover(this,'yes')">
+B. An imaginary situation in the present
+</button>
+
+<button class="opt" onclick="discover(this,'no')">
+C. A situation that happened in the past
+</button>
+
+</div>
+
+<div class="discovery-result"></div>
+
+</div>
+
+
+<div class="discovery-q">
+
+<b>2.</b>
+
+Complete:
+
+“If + ______ + ______, I could + ______”
+
+<p>
+What do you notice about the verb after <em>if</em>?
+</p>
+
+<div class="options">
+
+<button class="opt" onclick="discover(this,'yes')">
+past
+</button>
+
+<button class="opt" onclick="discover(this,'no')">
+present
+</button>
+
+<button class="opt" onclick="discover(this,'no')">
+future
+</button>
+
+</div>
+
+<div class="discovery-result"></div>
+
+</div>
+
+
+<div class="discovery-q">
+
+<b>3.</b>
+
+“If I hadn't taken out so many student loans, I would have more money to build the life we talk about.”
+
+<p>
+Did she actually take out the student loans?
+</p>
+
+<div class="options">
+
+<button class="opt" onclick="discover(this,'yes')">
+Yes
+</button>
+
+<button class="opt" onclick="discover(this,'no')">
+No
+</button>
+
+</div>
+
+<p>
+Is she imagining a different situation now?
+</p>
+
+<div class="options">
+
+<button class="opt" onclick="discover(this,'yes')">
+Yes
+</button>
+
+<button class="opt" onclick="discover(this,'no')">
+No
+</button>
+
+</div>
+
+<div class="discovery-result"></div>
+
+</div>
+
+
+<div class="discovery-q">
+
+<b>4.</b>
+
+“If I hadn't taken out...” / “I would have...”
+
+<p>
+Which part refers to the past action?
+</p>
+
+<div class="options">
+
+<button class="opt" onclick="discover(this,'yes')">
+If I hadn't taken out...
+</button>
+
+<button class="opt" onclick="discover(this,'no')">
+I would have more money...
+</button>
+
+</div>
+
+<div class="discovery-result"></div>
+
+</div>
+
+
+<div class="discovery-q">
+
+<b>5.</b>
+
+“If I didn't have to pay my student debts, I would be able to consider staying home with our future child.”
+
+<p>
+What is she imagining?
+</p>
+
+<div class="options">
+
+<button class="opt" onclick="discover(this,'yes')">
+She has student debts, but she imagines what life would be like without them.
+</button>
+
+<button class="opt" onclick="discover(this,'no')">
+She doesn't have student debts.
+</button>
+
+</div>
+
+<p>
+What does “would be able to” mean?
+</p>
+
+<div class="options">
+
+<button class="opt" onclick="discover(this,'yes')">
+possibility / capacity to do something
+</button>
+
+<button class="opt" onclick="discover(this,'no')">
+definitely does it
+</button>
+
+<button class="opt" onclick="discover(this,'no')">
+did it in the past
+</button>
+
+</div>
+
+<div class="discovery-result"></div>
+
+</div>
+
+
+<div class="discovery-q">
+
+<b>6. Compare</b>
+
+<table class="compare">
+
+<tr>
+<th>Sentence</th>
+<th>When is the situation?</th>
+<th>What is she imagining?</th>
+</tr>
+
+<tr>
+<td>
+If I didn't have to..., I could...
+</td>
+
+<td>
+Now
+</td>
+
+<td>
+A different present situation
+</td>
+</tr>
+
+<tr>
+<td>
+If I hadn't..., I would have...
+</td>
+
+<td>
+Past action → now
+</td>
+
+<td>
+A different present because of a past decision
+</td>
+</tr>
+
+<tr>
+<td>
+If I didn't have to..., I would be able to...
+</td>
+
+<td>
+Now
+</td>
+
+<td>
+A different present + ability/opportunity
+</td>
+</tr>
+
+</table>
+
+</div>
+
+
+<div class="discovery-q">
+
+<b>7. Discover the patterns</b>
+
+<p>
+<b>A.</b>
+If + <strong>didn't have to</strong> + verb, I could + verb
+</p>
+
+<p>
+<b>B.</b>
+If + <strong>hadn't + past participle</strong>, I would have + noun
+</p>
+
+<p>
+<b>C.</b>
+If + <strong>didn't have to</strong> + verb, I would be able to + verb
+</p>
+
+</div>
+
+</section>
+
+
+<!-- GRAMMAR -->
+
+<section>
+
+<div class="section-label">
+GRAMMAR
+</div>
+
+<h2>
+The three structures
+</h2>
+
+<table class="grammar-table">
+
+<tr>
+
+<th>
+🩷 PRESENT — POSSIBILITY
+</th>
+
+<th>
+💙 PAST → PRESENT
+</th>
+
+<th>
+🧡 PRESENT — ABILITY
+</th>
+
+</tr>
+
+
+<tr>
+
+<td>
+
+<b>WHEN TO USE</b>
+
+<p>
+Use it to imagine a different situation <b>now</b> and a possible result.
+</p>
+
+</td>
+
+
+<td>
+
+<b>WHEN TO USE</b>
+
+<p>
+Use it to imagine how your life <b>now would be different because of a different past action</b>.
+</p>
+
+</td>
+
+
+<td>
+
+<b>WHEN TO USE</b>
+
+<p>
+Use it to imagine a different situation <b>now</b> and what you would have the ability or opportunity to do.
+</p>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+
+<b>FORMULA</b>
+
+<p class="formula">
+If + subject + didn't have to + verb,
+subject + could + verb
+</p>
+
+</td>
+
+
+<td>
+
+<b>FORMULA</b>
+
+<p class="formula">
+If + subject + hadn't + past participle,
+subject + would have + noun
+</p>
+
+</td>
+
+
+<td>
+
+<b>FORMULA</b>
+
+<p class="formula">
+If + subject + didn't have to + verb,
+subject + would be able to + verb
+</p>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+
+<b>EXAMPLE</b>
+
+<p>
+If I didn't have to work so much, I could spend more time with my family.
+</p>
+
+</td>
+
+
+<td>
+
+<b>EXAMPLE</b>
+
+<p>
+If I hadn't taken out so many student loans, I would have more money now.
+</p>
+
+</td>
+
+
+<td>
+
+<b>EXAMPLE</b>
+
+<p>
+If I didn't have to pay my student debts, I would be able to stay home with my future child.
+</p>
+
+</td>
+
+</tr>
+
+</table>
+
+</section>
+
+
+<!-- PRACTICE -->
+
+<section>
+
+<div class="section-label">
+PRACTICE
+</div>
+
+<h2>
+Let's practice 🧠
+</h2>
+
+
+<h3>
+Part 1 — Multiple Choice
+</h3>
+
+<div id="mc"></div>
+
+
+<h3>
+Part 2 — Fill in the Blank
+</h3>
+
+<p>
+Complete each sentence with <b>didn't</b> or <b>hadn't</b>.
+</p>
+
+<div id="fill"></div>
+
+
+<h3>
+Part 3 — Organize the Sentence
+</h3>
+
+<p>
+Put the words in the correct order.
+</p>
+
+<div id="org"></div>
+
+</section>
+
+
+<!-- YOUR TURN -->
+
+<section>
+
+<div class="section-label">
+YOUR TURN TO SPEAK
+</div>
+
+<h2>
+Choose your topic 🗣️
+</h2>
+
+<p>
+Choose <b>ONE</b> topic. Click to open it and discuss it with your teacher.
+</p>
+
+
+<div class="speaking-grid">
+
+<button class="speak-topic" onclick="openSpeak('money')">
+
+<h3>
+💰 MONEY
+</h3>
+
+<p>
+ADULTING & MONEY
+</p>
+
+</button>
+
+
+<button class="speak-topic" onclick="openSpeak('work')">
+
+<h3>
+💼 WORK
+</h3>
+
+<p>
+THE WORK-LIFE BALANCE
+</p>
+
+</button>
+
+
+<button class="speak-topic" onclick="openSpeak('past')">
+
+<h3>
+🎓 PAST DECISIONS
+</h3>
+
+<p>
+IF I COULD GO BACK...
+</p>
+
+</button>
+
+
+<button class="speak-topic" onclick="openSpeak('future')">
+
+<h3>
+👶 FUTURE
+</h3>
+
+<p>
+MY IDEAL ADULT LIFE
+</p>
+
+</button>
+
+</div>
+
+
+<div id="money" class="speak-content">
+
+<h3>
+💰 ADULTING & MONEY
+</h3>
+
+<p>
+Imagine you suddenly had fewer financial responsibilities.
+</p>
+
+<ul>
+
+<li>
+What would you do differently?
+</li>
+
+<li>
+What would you spend your money on?
+</li>
+
+<li>
+What would you stop worrying about?
+</li>
+
+</ul>
+
+<b>
+Try to use:
+</b>
+
+“If I didn't have to..., I could...”
+
+</div>
+
+
+<div id="work" class="speak-content">
+
+<h3>
+💼 THE WORK-LIFE BALANCE
+</h3>
+
+<p>
+Imagine you didn't have to work as much as you do now.
+</p>
+
+<ul>
+
+<li>
+How would your daily life change?
+</li>
+
+<li>
+What would you do with your free time?
+</li>
+
+<li>
+Would you work less or change careers?
+</li>
+
+</ul>
+
+<b>
+Try to use:
+</b>
+
+“If I didn't have to..., I would be able to...”
+
+</div>
+
+
+<div id="past" class="speak-content">
+
+<h3>
+🎓 IF I COULD GO BACK...
+</h3>
+
+<p>
+Think about an important decision you made in the past.
+</p>
+
+<ul>
+
+<li>
+What would your life be like now if you had made a different decision?
+</li>
+
+<li>
+What would you have more or less of today?
+</li>
+
+<li>
+Would you change that decision?
+</li>
+
+</ul>
+
+<b>
+Try to use:
+</b>
+
+“If I hadn't..., I would have...”
+
+</div>
+
+
+<div id="future" class="speak-content">
+
+<h3>
+👶 MY IDEAL ADULT LIFE
+</h3>
+
+<p>
+Imagine your ideal life in 5–10 years.
+</p>
+
+<ul>
+
+<li>
+Where would you live?
+</li>
+
+<li>
+Would you have children?
+</li>
+
+<li>
+What would your work and finances look like?
+</li>
+
+<li>
+What responsibilities would you want to have?
+</li>
+
+</ul>
+
+<b>
+Use at least two hypothetical sentences from today's class.
+</b>
+
+</div>
+
+</section>
+
+
+<!-- FINISH -->
+
+<section class="finish">
+
+<div class="section-label" style="color:#ff751f">
+FINISH
+</div>
+
+<h2>
+You survived ADULTING 101 🎉
+</h2>
+
+<div class="circle">
+100%
+</div>
+
+<p>
+Great job! You talked about responsibilities, choices, money, and hypothetical situations.
+</p>
+
+<p>
+🎉 💸 🏠 ☕
+</p>
+
+</section>
+
+</main>
+
+
+<script>
+
+/* =========================
+   VOCABULARY AUDIO
+========================= */
+
+function speak(text){
+
+  if("speechSynthesis" in window){
+
+    speechSynthesis.cancel();
+
+    const utterance =
+      new SpeechSynthesisUtterance(text);
+
+    utterance.lang = "en-US";
+    utterance.rate = 0.88;
+
+    speechSynthesis.speak(utterance);
+
+  }
+
+}
+
+
+function toggleVocab(button,text){
+
+  speak(text);
+
+  button.classList.toggle("open");
+
+}
+
+
+/* =========================
+   DISCOVERY
+========================= */
+
+function discover(button,result){
+
+  const box =
+    button.parentElement.parentElement.querySelector(
+      ".discovery-result"
+    );
+
+  if(result === "yes"){
+
+    box.textContent = "✓ Correct!";
+    box.className =
+      "discovery-result correct";
+
+  }else{
+
+    box.textContent = "Try again.";
+    box.className =
+      "discovery-result incorrect";
+
+  }
+
+}
+
+
+/* =========================
+   PRACTICE DATA
+========================= */
+
+const mc = [
+
+{
+q:"If I didn't have to work so much, I ______ more time with my family.",
+o:[
+"could spend",
+"would have spent",
+"had spent"
+],
+a:0
+},
+
+{
+q:"If she didn't have so many expenses, she ______ more money every month.",
+o:[
+"could save",
+"would have saved",
+"had saved"
+],
+a:0
+},
+
+{
+q:"If I hadn't taken out so many student loans, I ______ more money now.",
+o:[
+"would have",
+"could have spent",
+"had"
+],
+a:0
+},
+
+{
+q:"If he didn't have to pay so many bills, he ______ a house.",
+o:[
+"would be able to afford",
+"would have afforded",
+"had afforded"
+],
+a:0
+},
+
+{
+q:"If they hadn't moved to such an expensive city, they ______ less financial stress now.",
+o:[
+"would have",
+"could have had",
+"had"
+],
+a:0
+}
+
+];
+
+
+const fills = [
+
+[
+"If I ______ have to work on weekends, I could spend more time with my friends.",
+"didn't"
+],
+
+[
+"If she ______ taken out so many loans, she would have more money now.",
+"hadn't"
+],
+
+[
+"If he ______ have so many debts, he would be able to save more money.",
+"didn't"
+],
+
+[
+"If we ______ bought such an expensive car, we would have more money for our house.",
+"hadn't"
+],
+
+[
+"If I ______ have to pay all these bills, I could travel more often.",
+"didn't"
+]
+
+];
+
+
+const organize = [
+
+[
+"work / didn't / I / have / to / so / much / could / more / I / sleep",
+"If I didn't have to work so much, I could sleep more."
+],
+
+[
+"hadn't / I / taken / out / student / so / many / loans / would / I / have / more / money",
+"If I hadn't taken out so many student loans, I would have more money."
+],
+
+[
+"didn't / she / have / to / pay / so / many / bills / would / she / be / able / to / save / more",
+"If she didn't have to pay so many bills, she would be able to save more."
+],
+
+[
+"hadn't / they / moved / to / Bogotá / would / they / have / more / money / now",
+"If they hadn't moved to Bogotá, they would have more money now."
+],
+
+[
+"didn't / he / have / to / work / weekends / could / he / spend / more / time / with / his / family",
+"If he didn't have to work weekends, he could spend more time with his family."
+]
+
+];
+
+
+/* =========================
+   MULTIPLE CHOICE
+========================= */
+
+function renderMC(){
+
+  const container =
+    document.getElementById("mc");
+
+  mc.forEach((item,index)=>{
+
+    const card =
+      document.createElement("div");
+
+    card.className =
+      "practice-card";
+
+    card.innerHTML = `
+
+      <h4>
+        ${index + 1}. ${item.q}
+      </h4>
+
+      <div class="choices">
+
+        ${item.o.map((option,i)=>`
+
+          <button
+            class="choice"
+            onclick="answerMC(this,${index},${i})">
+
+            ${String.fromCharCode(65+i)}. ${option}
+
+          </button>
+
+        `).join("")}
+
+      </div>
+
+      <div class="feedback"></div>
+
+    `;
+
+    container.appendChild(card);
+
+  });
+
+}
+
+
+function answerMC(button,index,choice){
+
+  const card =
+    button.closest(".practice-card");
+
+  const feedback =
+    card.querySelector(".feedback");
+
+  card.querySelectorAll(".choice")
+      .forEach(btn => btn.disabled = true);
+
+  if(choice === mc[index].a){
+
+    feedback.textContent =
+      "✓ Correct!";
+
+    feedback.className =
+      "feedback correct";
+
+  }else{
+
+    feedback.textContent =
+      "✗ Incorrect. Correct answer: " +
+      mc[index].o[mc[index].a];
+
+    feedback.className =
+      "feedback incorrect";
+
+  }
+
+}
+
+
+/* =========================
+   FILL IN THE BLANK
+========================= */
+
+function renderFill(){
+
+  const container =
+    document.getElementById("fill");
+
+  fills.forEach((item,index)=>{
+
+    const card =
+      document.createElement("div");
+
+    card.className =
+      "practice-card";
+
+    card.innerHTML = `
+
+      <h4>
+        ${index + 6}. ${item[0]}
+      </h4>
+
+      <input
+        class="fill"
+        type="text"
+        autocomplete="off"
+        placeholder="Type your answer">
+
+      <br>
+
+      <button
+        class="checkbtn"
+        onclick="checkFill(this,${index})">
+
+        Check
+
+      </button>
+
+      <div class="feedback"></div>
+
+    `;
+
+    container.appendChild(card);
+
+  });
+
+}
+
+
+function checkFill(button,index){
+
+  const card =
+    button.closest(".practice-card");
+
+  const input =
+    card.querySelector("input");
+
+  const feedback =
+    card.querySelector(".feedback");
+
+  const answer =
+    input.value.trim().toLowerCase();
+
+  if(answer === fills[index][1]){
+
+    feedback.textContent =
+      "✓ Correct!";
+
+    feedback.className =
+      "feedback correct";
+
+  }else{
+
+    feedback.textContent =
+      "✗ Incorrect. Correct answer: " +
+      fills[index][1];
+
+    feedback.className =
+      "feedback incorrect";
+
+  }
+
+}
+
+
+/* =========================
+   ORGANIZE
+========================= */
+
+function normalize(text){
+
+  return text
+    .toLowerCase()
+    .replace(/[.,!?]/g,"")
+    .replace(/\s+/g," ")
+    .trim();
+
+}
+
+
+function renderOrganize(){
+
+  const container =
+    document.getElementById("org");
+
+  organize.forEach((item,index)=>{
+
+    const card =
+      document.createElement("div");
+
+    card.className =
+      "practice-card";
+
+    card.innerHTML = `
+
+      <h4>
+        ${index + 11}.
+      </h4>
+
+      <p>
+        <code>${item[0]}</code>
+      </p>
+
+      <input
+        class="fill"
+        type="text"
+        placeholder="Type the complete sentence">
+
+      <br>
+
+      <button
+        class="checkbtn"
+        onclick="checkOrganize(this,${index})">
+
+        Check
+
+      </button>
+
+      <div class="feedback"></div>
+
+    `;
+
+    container.appendChild(card);
+
+  });
+
+}
+
+
+function checkOrganize(button,index){
+
+  const card =
+    button.closest(".practice-card");
+
+  const input =
+    card.querySelector("input");
+
+  const feedback =
+    card.querySelector(".feedback");
+
+  if(
+    normalize(input.value) ===
+    normalize(organize[index][1])
+  ){
+
+    feedback.textContent =
+      "✓ Correct!";
+
+    feedback.className =
+      "feedback correct";
+
+  }else{
+
+    feedback.textContent =
+      "✗ Not quite. Correct answer: " +
+      organize[index][1];
+
+    feedback.className =
+      "feedback incorrect";
+
+  }
+
+}
+
+
+/* =========================
+   SPEAKING
+========================= */
+
+function openSpeak(id){
+
+  document
+    .querySelectorAll(".speak-content")
+    .forEach(element =>
+      element.classList.remove("active")
+    );
+
+  const selected =
+    document.getElementById(id);
+
+  selected.classList.add("active");
+
+  selected.scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+  });
+
+}
+
+
+/* =========================
+   INITIALIZE
+========================= */
+
+renderMC();
+renderFill();
+renderOrganize();
+
+</script>
+
+</body>
+</html>
