@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Loneliness Epidemic - ARVA English</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #feffd2;
+    color: #222;
+}
+
+.container {
+    width: min(1100px, 94%);
+    margin: auto;
+}
+
+.slide {
+    min-height: 100vh;
+    padding: 55px 20px 70px;
+    display: none;
+}
+
+.slide.active {
+    display: block;
+}
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #ff751f;
+    color: white;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 7vw, 78px);
+    line-height: 1;
+    margin: 15px 0;
+    font-weight: 800;
+}
+
+.hero h2 {
+    font-size: clamp(18px, 3vw, 28px);
+    font-weight: 500;
+}
+
+.logo {
+    display: inline-block;
+    background: #4f46e5;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+h2.section-title {
+    font-size: clamp(32px, 5vw, 52px);
+    color: #4f46e5;
+    margin-top: 0;
+}
+
+h3 {
+    color: #ff2d55;
+}
+
+.goal-box {
+    background: white;
+    border-left: 8px solid #ff2d55;
+    border-radius: 18px;
+    padding: 25px;
+    font-size: 20px;
+    line-height: 1.7;
+    box-shadow: 0 8px 25px rgba(0,0,0,.08);
+}
+
+.question-card {
+    background: white;
+    padding: 22px;
+    margin: 15px 0;
+    border-radius: 15px;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+}
+
+.vocab-card {
+    background: white;
+    border-radius: 18px;
+    padding: 20px;
+    min-height: 145px;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: .2s;
+}
+
+.vocab-card:hover {
+    border-color: #ff751f;
+    transform: translateY(-2px);
+}
+
+.vocab-word {
+    font-weight: 800;
+    font-size: 19px;
+    color: #ff751f;
+}
+
+.translation {
+    display: none;
+    margin-top: 12px;
+    padding: 10px;
+    background: #e8e7ff;
+    border-radius: 10px;
+    color: #4f46e5;
+    font-weight: 600;
+}
+
+.vocab-card.show .translation {
+    display: block;
+}
+
+.audio {
+    display: inline-block;
+    margin-top: 12px;
+    background: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 13px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.tip {
+    background: #fff;
+    border-radius: 18px;
+    padding: 20px;
+    margin: 25px 0;
+}
+
+.compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.compare div {
+    background: white;
+    padding: 22px;
+    border-radius: 18px;
+}
+
+.video-box {
+    text-align: center;
+    background: white;
+    padding: 35px;
+    border-radius: 22px;
+}
+
+.video-button {
+    display: inline-block;
+    text-decoration: none;
+    background: #ff2d55;
+    color: white;
+    padding: 18px 28px;
+    border-radius: 35px;
+    font-weight: 800;
+    font-size: 18px;
+}
+
+.notice {
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    margin: 15px 0;
+    line-height: 1.8;
+}
+
+.language-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.language-table th,
+.language-table td {
+    padding: 18px;
+    border: 1px solid #ddd;
+    vertical-align: top;
+    line-height: 1.5;
+}
+
+.language-table th {
+    background: #4f46e5;
+    color: white;
+}
+
+.formula {
+    color: #4f46e5;
+    font-weight: 700;
+}
+
+.example {
+    color: #ff751f;
+    font-weight: 700;
+}
+
+.exercise {
+    background: white;
+    padding: 23px;
+    margin: 18px 0;
+    border-radius: 18px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 75px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    padding: 12px;
+    font-family: inherit;
+    font-size: 16px;
+    resize: vertical;
+}
+
+button.check {
+    margin-top: 10px;
+    background: #4f46e5;
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.feedback {
+    margin-top: 10px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.correct {
+    color: #16803c;
+}
+
+.incorrect {
+    color: #d9234a;
+}
+
+.role {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    margin: 20px 0;
+    border-top: 7px solid #ff751f;
+}
+
+.role h3 {
+    margin-top: 0;
+}
+
+.checklist {
+    background: #e8e7ff;
+    padding: 22px;
+    border-radius: 18px;
+    line-height: 1.9;
+}
+
+.nav {
+    position: fixed;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 20;
+}
+
+.nav button {
+    border: none;
+    background: #4f46e5;
+    color: white;
+    border-radius: 25px;
+    padding: 12px 22px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 6px;
+    background: #ff2d55;
+    width: 0;
+    z-index: 30;
+}
+
+.final {
+    text-align: center;
+    background: #ff751f;
+    color: white;
+}
+
+.final h2 {
+    font-size: 55px;
+}
+
+@media(max-width:700px) {
+    .compare {
+        grid-template-columns: 1fr;
+    }
+
+    .language-table {
+        font-size: 14px;
+    }
+
+    .language-table th,
+    .language-table td {
+        padding: 10px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="progress" id="progress"></div>
+
+<!-- 1 TITLE -->
+<section class="slide hero active">
+    <div>
+        <div class="logo">ARVA ENGLISH</div>
+        <h1>THE LONELINESS<br>EPIDEMIC</h1>
+        <h2>Are we more connected than ever… but lonelier than ever?</h2>
+    </div>
+</section>
+
+<!-- 2 GOAL -->
+<section class="slide">
+<div class="container">
+    <h2 class="section-title">🎯 CLASS GOAL</h2>
+
+    <div class="goal-box">
+        By the end of the class, students will be able to discuss loneliness
+        and social connection while choosing and using the appropriate past
+        and perfect tenses to talk about past events, experiences, changes,
+        and hypothetical situations.
+    </div>
+</div>
+</section>
+
+<!-- 3 WARM UP -->
+<section class="slide">
+<div class="container">
+    <h2 class="section-title">🔥 WARM UP</h2>
+
+    <div class="question-card">
+        <strong>1.</strong> Do you think people are lonelier today than they were in the past? Why?
+    </div>
+
+    <div class="question-card">
+        <strong>2.</strong> What's the difference between being alone and feeling lonely?
+    </div>
+
+    <div class="question-card">
+        <strong>3.</strong> Can social media make people feel more connected and more lonely at the same time?
+    </div>
+
+    <div class="question-card">
+        <strong>4.</strong> Why do you think it can be difficult for adults to make new friends?
+    </div>
+
+    <div class="question-card">
+        <strong>5.</strong> When do you personally feel most connected to other people?
+    </div>
+</div>
+</section>
+
+<!-- 4 VOCABULARY -->
+<section class="slide">
+<div class="container">
+    <h2 class="section-title">🟠 VOCABULARY</h2>
+
+    <p><strong>Click the card</strong> to reveal the Spanish translation.
+    Use 🔊 to listen.</p>
+
+    <div class="vocab-grid">
+
+        <div class="vocab-card" onclick="toggleTranslation(this)">
+            <div class="vocab-word">solitude</div>
+            <button class="audio" onclick="speak(event,'solitude')">🔊 Listen</button>
+            <div class="translation">soledad / estar a solas</div>
+            <p>the state of being alone, usually by choice</p>
+        </div>
+
+        <div class="vocab-card" onclick="toggleTranslation(this)">
+            <div class="vocab-word">isolation</div>
+            <button class="audio" onclick="speak(event,'isolation')">🔊 Listen</button>
+            <div class="translation">aislamiento</div>
+            <p>the state of being separated from other people</p>
+        </div>
+
+        <div class="vocab-card" onclick="toggleTranslation(this)">
+            <div class="vocab-word">involuntarily</div>
+            <button class="audio" onclick="speak(event,'involuntarily')">🔊 Listen</button>
+            <div class="translation">involuntariamente / sin querer</div>
+            <p>without choosing or wanting something</p>
+        </div>
+
+        <div class="vocab-card" onclick="toggleTranslation(this)">
+            <div class="vocab-word">meaningful activities</div>
+            <button class="audio" onclick="speak(event,'meaningful activities')">🔊 Listen</button>
+            <div class="translation">actividades significativas</div>
+            <p>activities that have importance or value to you</p>
+        </div>
+
+        <div class="vocab-card" onclick="toggleTranslation(this)">
+            <div class="vocab-word">emotional stability</div>
+            <button class="audio" onclick="speak(event,'emotional stability')">🔊 Listen</button>
+            <div class="translation">estabilidad emocional</div>
+            <p>the ability to remain emotionally balanced</p>
+        </div>
+
+        <div class="vocab-card" onclick="toggleTranslation(this)">
+            <div class="vocab-word">sense of identity</div>
+            <button class="audio" onclick="speak(event,'sense of identity')">🔊 Listen</button>
+            <div class="translation">sentido de identidad</div>
+            <p>your understanding of who you are</p>
+        </div>
+
+        <div class="vocab-card" onclick="toggleTranslation(this)">
+            <div class="vocab-word">impulses</div>
+            <button class="audio" onclick="speak(event,'impulses')">🔊 Listen</button>
+            <div class="translation">impulsos</div>
+            <p>sudden strong desires to do something</p>
+        </div>
+
+        <div class="vocab-card" onclick="toggleTranslation(this)">
+            <div class="vocab-word">cope with</div>
+            <button class="audio" onclick="speak(event,'cope with')">🔊 Listen</button>
+            <div class="translation">lidiar con / afrontar</div>
+            <p>to deal with a difficult situation</p>
+        </div>
+
+        <div class="vocab-card" onclick="toggleTranslation(this)">
+            <div class="vocab-word">prolonged</div>
+            <button class="audio" onclick="speak(event,'prolonged')">🔊 Listen</button>
+            <div class="translation">prolongado</div>
+            <p>continuing for a long time</p>
+        </div>
+
+        <div class="vocab-card" onclick="toggleTranslation(this)">
+            <div class="vocab-word">solitary confinement</div>
+            <button class="audio" onclick="speak(event,'solitary confinement')">🔊 Listen</button>
+            <div class="translation">confinamiento solitario</div>
+            <p>keeping a prisoner alone in a cell</p>
+        </div>
+
+        <div class="vocab-card" onclick="toggleTranslation(this)">
+            <div class="vocab-word">exacerbate</div>
+            <button class="audio" onclick="speak(event,'exacerbate')">🔊 Listen</button>
+            <div class="translation">agravar / empeorar</div>
+            <p>to make a problem or situation worse</p>
+        </div>
+
+        <div class="vocab-card" onclick="toggleTranslation(this)">
+            <div class="vocab-word">drift apart</div>
+            <button class="audio" onclick="speak(event,'drift apart')">🔊 Listen</button>
+            <div class="translation">distanciarse / alejarse</div>
+            <p>to gradually become less close to someone</p>
+        </div>
+
+    </div>
+
+    <div class="tip">
+        <h3>💡 SOLITUDE ≠ ISOLATION</h3>
+        <p><strong>Solitude</strong> → being alone can be positive or intentional.</p>
+        <p><strong>Isolation</strong> → being separated from others, often unwanted or harmful.</p>
+    </div>
+</div>
+</section>
+
+<!-- 5 VOCAB CHECK -->
+<section class="slide">
+<div class="container">
+    <h2 class="section-title">✅ VOCAB CHECK</h2>
+    <p>Choose the best answer.</p>
+
+    <div class="exercise">
+        <strong>1. If you <em>drift apart</em> from a friend, you...</strong>
+        <p>
+            <label><input type="radio" name="v1" value="a"> A. become closer to them</label><br>
+            <label><input type="radio" name="v1" value="b"> B. gradually become less close</label><br>
+            <label><input type="radio" name="v1" value="c"> C. stop talking to everyone</label>
+        </p>
+        <button class="check" onclick="checkRadio('v1','b','fb1','Perfect! Drift apart means gradually become less close.','Not quite. Try again.')">Check</button>
+        <div id="fb1" class="feedback"></div>
+    </div>
+
+    <div class="exercise">
+        <strong>2. If something is <em>prolonged</em>, it...</strong>
+        <p>
+            <label><input type="radio" name="v2" value="a"> A. happens suddenly</label><br>
+            <label><input type="radio" name="v2" value="b"> B. continues for a long time</label><br>
+            <label><input type="radio" name="v2" value="c"> C. happens only once</label>
+        </p>
+        <button class="check" onclick="checkRadio('v2','b','fb2','Perfect! Prolonged means continuing for a long time.','Not quite. Try again.')">Check</button>
+        <div id="fb2" class="feedback"></div>
+    </div>
+
+    <div class="exercise">
+        <strong>3. If you <em>cope with</em> a difficult situation, you...</strong>
+        <p>
+            <label><input type="radio" name="v3" value="a"> A. avoid it completely</label><br>
+            <label><input type="radio" name="v3" value="b"> B. learn how to deal with it</label><br>
+            <label><input type="radio" name="v3" value="c"> C. make it worse</label>
+        </p>
+        <button class="check" onclick="checkRadio('v3','b','fb3','Perfect! Cope with means deal with a difficult situation.','Not quite. Try again.')">Check</button>
+        <div id="fb3" class="feedback"></div>
+    </div>
+
+    <div class="exercise">
+        <strong>4. Which situation is more likely to describe <em>solitude</em>?</strong>
+        <p>
+            <label><input type="radio" name="v4" value="a"> A. Choosing to spend an afternoon alone to relax</label><br>
+            <label><input type="radio" name="v4" value="b"> B. Being forced to stay away from everyone</label><br>
+            <label><input type="radio" name="v4" value="c"> C. Being unable to communicate with anyone</label>
+        </p>
+        <button class="check" onclick="checkRadio('v4','a','fb4','Perfect! Solitude is often intentional or chosen.','Not quite. Think about the difference between solitude and isolation.')">Check</button>
+        <div id="fb4" class="feedback"></div>
+    </div>
+
+    <div class="exercise">
+        <strong>5. If something <em>exacerbates</em> a problem, it...</strong>
+        <p>
+            <label><input type="radio" name="v5" value="a"> A. makes it worse</label><br>
+            <label><input type="radio" name="v5" value="b"> B. solves it</label><br>
+            <label><input type="radio" name="v5" value="c"> C. hides it</label>
+        </p>
+        <button class="check" onclick="checkRadio('v5','a','fb5','Perfect! Exacerbate means make something worse.','Not quite. Try again.')">Check</button>
+        <div id="fb5" class="feedback"></div>
+    </div>
+</div>
+</section>
+
+<!-- 6 LOOK VIDEO -->
+<section class="slide">
+<div class="container">
+    <h2 class="section-title">👀 LOOK</h2>
+
+    <div class="video-box">
+        <h3>What happens to your brain without any social contact?</h3>
+
+        <p>
+            Watch the video and focus on the main ideas.
+            Don't try to understand every word.
+        </p>
+
+        <a class="video-button"
+           href="https://www.youtube.com/watch?v=USW8yf4L-R4"
+           target="_blank">
+            ▶️ WATCH ON YOUTUBE
+        </a>
+
+        <div class="tip">
+            <strong>While you watch, pay attention to:</strong>
+            <p>• the effects of prolonged isolation</p>
+            <p>• changes in the brain and behavior</p>
+            <p>• the importance of social interaction</p>
+            <p>• solitary confinement</p>
+            <p>• how the speaker describes events and situations in time</p>
+        </div>
+    </div>
+
+    <div class="notice">
+        <h3>📝 AFTER WATCHING</h3>
+        <ol>
+            <li>What are some physical and psychological effects of prolonged isolation?</li>
+            <li>Why does the video say that social interaction is important?</li>
+            <li>What surprised you the most?</li>
+            <li>Why is solitary confinement discussed in the video?</li>
+            <li>What connection does the video make between isolation and mental health?</li>
+        </ol>
+    </div>
+</div>
+</section>
+
+<!-- 7 LANGUAGE DISCOVERY -->
+<section class="slide">
+<div class="container">
+    <h2 class="section-title">🔎 LANGUAGE DISCOVERY</h2>
+
+    <h3>PAST SIMPLE vs. PRESENT PERFECT vs. PAST PERFECT</h3>
+
+    <table class="language-table">
+        <thead>
+            <tr>
+                <th>¿Cuándo lo usamos?</th>
+                <th>Formula</th>
+                <th>Person + Example</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>
+                    <strong>Past Simple</strong><br>
+                    Para hablar de una acción terminada en el pasado,
+                    especialmente cuando sabemos cuándo ocurrió.
+                </td>
+                <td class="formula">
+                    Person + verb in past + complement
+                </td>
+                <td class="example">
+                    Many people <strong>moved</strong> to different cities
+                    during the pandemic.
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <strong>Present Perfect</strong><br>
+                    Para hablar de experiencias o situaciones que comenzaron
+                    en el pasado pero tienen conexión con el presente,
+                    o cuando no decimos cuándo ocurrió.
+                </td>
+                <td class="formula">
+                    Person + have/has + past participle + complement
+                </td>
+                <td class="example">
+                    Many adults <strong>have experienced</strong> loneliness
+                    at some point in their lives.
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <strong>Past Perfect</strong><br>
+                    Para hablar de una acción que ocurrió antes de otra
+                    acción en el pasado.
+                </td>
+                <td class="formula">
+                    Person + had + past participle + complement
+                </td>
+                <td class="example">
+                    She <strong>had lost</strong> contact with most of her
+                    friends before she realized she was lonely.
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <strong>If + Past Perfect</strong><br>
+                    Para imaginar una situación diferente en el pasado
+                    y hablar de una consecuencia que no ocurrió.
+                </td>
+                <td class="formula">
+                    If + person + had + past participle,
+                    person + would have + past participle
+                </td>
+                <td class="example">
+                    If she <strong>hadn't moved</strong> away, she
+                    <strong>would have stayed</strong> closer to her friends.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="tip">
+        <h3>🧠 REMEMBER</h3>
+        <p><strong>What is my reference point?</strong></p>
+        <p>🕐 <strong>Past Simple</strong> → a finished moment in the past</p>
+        <p>🔗 <strong>Present Perfect</strong> → past + connection to now</p>
+        <p>⏪ <strong>Past Perfect</strong> → before another past event</p>
+        <p>💭 <strong>If + Past Perfect</strong> → an unreal alternative in the past</p>
+    </div>
+</div>
+</section>
+
+<!-- 8 PRACTICE 10 -->
+<section class="slide">
+<div class="container">
+    <h2 class="section-title">🛠️ PRACTICE</h2>
+    <p><strong>Each sentence has ONE mistake. Find it and correct it.</strong></p>
+
+    <div id="practice"></div>
+</div>
+</section>
+
+<!-- 9 PRODUCTION -->
+<section class="slide">
+<div class="container">
+    <h2 class="section-title">🗣️ PRODUCTION</h2>
+
+    <h3>Are We Really More Connected?</h3>
+
+    <div class="question-card">1. Do you think people have become lonelier in recent years? Why or why not?</div>
+    <div class="question-card">2. Have you ever felt lonely even though you were surrounded by people? What had happened before you felt that way?</div>
+    <div class="question-card">3. Have your friendships changed as you've gotten older? How?</div>
+    <div class="question-card">4. Do you think social media has improved or damaged our relationships? What have you noticed?</div>
+    <div class="question-card">5. Think about a time when you drifted apart from someone. What had happened before the relationship changed?</div>
+    <div class="question-card">6. If social media hadn't become so popular, how do you think people's relationships would be different today?</div>
+
+    <div class="checklist">
+        <strong>🎯 Try to naturally use:</strong>
+        <p>🟠 Past Simple — a specific past event</p>
+        <p>🔵 Present Perfect — experiences or situations connected to now</p>
+        <p>🟣 Past Perfect — something that happened before another past event</p>
+        <p>🔴 If + Past Perfect — an alternative past situation</p>
+    </div>
+</div>
+</section>
+
+<!-- 10 CHALLENGE -->
+<section class="slide">
+<div class="container">
+    <h2 class="section-title">🎭 CHALLENGE</h2>
+
+    <h3>THE LONELINESS DEBATE</h3>
+
+    <div class="notice">
+        <strong>Situation:</strong>
+        <p>
+            A community center is planning a new program to help adults
+            build stronger social connections.
+        </p>
+        <p>
+            Two people have been invited to discuss why adults are becoming
+            more isolated and what can be done about it.
+        </p>
+    </div>
+
+    <div class="role">
+        <h3>👤 STUDENT A — THE COMMUNITY ORGANIZER</h3>
+
+        <p>You organize activities for adults in your city.</p>
+
+        <p>You believe loneliness has increased because people:</p>
+
+        <ul>
+            <li>work from home</li>
+            <li>spend too much time online</li>
+            <li>have moved away from family and friends</li>
+            <li>don't make enough time for meaningful relationships</li>
+        </ul>
+
+        <strong>Your goal:</strong>
+        <p>
+            Convince Student B that the community needs more opportunities
+            for people to connect in person.
+        </p>
+
+        <p>Ask questions, give examples, and explain what <strong>has changed</strong>.</p>
+    </div>
+
+    <div class="role">
+        <h3>👤 STUDENT B — THE REMOTE WORKER</h3>
+
+        <p>You work from home and don't completely agree with Student A.</p>
+
+        <p>You believe people aren't necessarily lonelier. You think technology has helped people:</p>
+
+        <ul>
+            <li>maintain long-distance friendships</li>
+            <li>meet people with similar interests</li>
+            <li>communicate more easily</li>
+            <li>have more control over their social lives</li>
+        </ul>
+
+        <strong>Your goal:</strong>
+        <p>
+            Challenge Student A's ideas and explain your own experience.
+        </p>
+    </div>
+
+    <div class="checklist">
+        <h3>🗣️ DURING THE CONVERSATION</h3>
+        <p>☐ Disagree with each other at least <strong>twice</strong></p>
+        <p>☐ Ask each other <strong>follow-up questions</strong></p>
+        <p>☐ Give at least <strong>one personal example</strong></p>
+        <p>☐ Reach a conclusion together</p>
+
+        <hr>
+
+        <strong>Final question:</strong>
+        <p>
+            What is one realistic thing communities could do to help people
+            feel less lonely?
+        </p>
+    </div>
+
+    <div class="tip">
+        <h3>🎯 LANGUAGE CHALLENGE</h3>
+        <p>
+            Don't force the grammar. Focus on communicating, reacting,
+            disagreeing, and keeping the conversation going.
+        </p>
+    </div>
+</div>
+</section>
+
+<!-- FINAL -->
+<section class="slide final">
+<div class="container">
+    <div style="padding-top:18vh;">
+        <div class="logo">ARVA ENGLISH</div>
+        <h2>🎉 GREAT JOB!</h2>
+        <p style="font-size:24px;">
+            You survived<br>
+            <strong>THE LONELINESS EPIDEMIC</strong>
+        </p>
+        <p style="font-size:19px;">
+            Remember: find your reference point first.
+        </p>
+    </div>
+</div>
+</section>
+
+<div class="nav">
+    <button onclick="prevSlide()">← Back</button>
+    <button onclick="nextSlide()">Next →</button>
+</div>
+
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+
+function showSlide(index) {
+    if (index < 0) index = 0;
+    if (index >= slides.length) index = slides.length - 1;
+
+    slides.forEach(slide => slide.classList.remove('active'));
+    slides[index].classList.add('active');
+    currentSlide = index;
+
+    const progress = ((index + 1) / slides.length) * 100;
+    document.getElementById('progress').style.width = progress + '%';
+
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+function nextSlide() {
+    showSlide(currentSlide + 1);
+}
+
+function prevSlide() {
+    showSlide(currentSlide - 1);
+}
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+});
+
+function toggleTranslation(card) {
+    card.classList.toggle('show');
+}
+
+function speak(event, text) {
+    event.stopPropagation();
+
+    if (!('speechSynthesis' in window)) {
+        alert('Audio is not supported in this browser.');
+        return;
+    }
+
+    speechSynthesis.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.88;
+    utterance.pitch = 1;
+
+    speechSynthesis.speak(utterance);
+}
+
+function checkRadio(name, answer, feedbackId, correctText, incorrectText) {
+    const selected = document.querySelector(
+        'input[name="' + name + '"]:checked'
+    );
+
+    const feedback = document.getElementById(feedbackId);
+
+    if (!selected) {
+        feedback.innerHTML = 'Choose an answer first.';
+        feedback.className = 'feedback incorrect';
+        return;
+    }
+
+    if (selected.value === answer) {
+        feedback.innerHTML = '✅ ' + correctText;
+        feedback.className = 'feedback correct';
+    } else {
+        feedback.innerHTML = '❌ ' + incorrectText;
+        feedback.className = 'feedback incorrect';
+    }
+}
+
+/* PRACTICE DATA */
+const practiceItems = [
+    {
+        sentence: "Many people have moved to another city in 2020 and struggled to make new friends.",
+        answers: [
+            "Many people moved to another city in 2020 and struggled to make new friends."
+        ],
+        explanation: "Use Past Simple because 2020 is a specific finished time."
+    },
+    {
+        sentence: "By the time Sarah realized she was lonely, she lost contact with most of her old friends.",
+        answers: [
+            "By the time Sarah realized she was lonely, she had lost contact with most of her old friends."
+        ],
+        explanation: "The loss of contact happened before Sarah realized she was lonely, so use Past Perfect."
+    },
+    {
+        sentence: "I have felt extremely lonely when I moved to a new city three years ago.",
+        answers: [
+            "I felt extremely lonely when I moved to a new city three years ago."
+        ],
+        explanation: "A specific past time ('three years ago') requires Past Simple."
+    },
+    {
+        sentence: "Before social media became so popular, people have spent more time interacting face-to-face.",
+        answers: [
+            "Before social media became so popular, people had spent more time interacting face-to-face."
+        ],
+        explanation: "The earlier past situation is viewed from another past reference point."
+    },
+    {
+        sentence: "She has never experienced loneliness before she started working from home.",
+        answers: [
+            "She had never experienced loneliness before she started working from home."
+        ],
+        explanation: "The experience happened before another past event, so use Past Perfect."
+    },
+    {
+        sentence: "When I started university, I have already known some of my classmates because we went to the same school.",
+        answers: [
+            "When I started university, I had already known some of my classmates because we went to the same school."
+        ],
+        explanation: "Knowing them happened before the past moment when university started."
+    },
+    {
+        sentence: "If he hadn't stopped going out with his friends, he wouldn't have felt so isolated now.",
+        answers: [
+            "If he hadn't stopped going out with his friends, he wouldn't feel so isolated now."
+        ],
+        explanation: "The condition is a past hypothetical, but the result is a present situation: would + base verb."
+    },
+    {
+        sentence: "I've lost touch with several friends after I moved abroad, but we've recently started talking again.",
+        answers: [
+            "I lost touch with several friends after I moved abroad, but we've recently started talking again."
+        ],
+        explanation: "The first event is a completed past event connected to another specific past event."
+    },
+    {
+        sentence: "By 2020, many people already experienced the negative effects of social isolation.",
+        answers: [
+            "By 2020, many people had already experienced the negative effects of social isolation."
+        ],
+        explanation: "'By 2020' establishes a past reference point, so the earlier experience takes Past Perfect."
+    },
+    {
+        sentence: "If people had understood earlier how important social connection was, they would have made different choices during the pandemic.",
+        answers: [
+            "If people had understood earlier how important social connection was, they would have made different choices during the pandemic."
+        ],
+        explanation: "This sentence is already correct. There is no grammatical error."
+    }
+];
+
+const practiceContainer = document.getElementById('practice');
+
+practiceItems.forEach((item, index) => {
+    const number = index + 1;
+
+    const div = document.createElement('div');
+    div.className = 'exercise';
+
+    div.innerHTML = `
+        <strong>${number}. ❌ ${item.sentence}</strong>
+
+        <textarea id="answer${number}"
+            placeholder="Write the corrected sentence here..."></textarea>
+
+        <button class="check" onclick="checkPractice(${number})">
+            Check
+        </button>
+
+        <div id="practiceFeedback${number}" class="feedback"></div>
+    `;
+
+    practiceContainer.appendChild(div);
+});
+
+function normalize(text) {
+    return text
+        .toLowerCase()
+        .replace(/[.,!?'"“”‘’]/g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+}
+
+function checkPractice(number) {
+    const item = practiceItems[number - 1];
+
+    const userAnswer = normalize(
+        document.getElementById('answer' + number).value
+    );
+
+    const feedback = document.getElementById(
+        'practiceFeedback' + number
+    );
+
+    const accepted = item.answers.map(normalize);
+
+    if (accepted.includes(userAnswer)) {
+        feedback.innerHTML =
+            '✅ <strong>Perfect!</strong><br>' + item.explanation;
+        feedback.className = 'feedback correct';
+    } else {
+        feedback.innerHTML =
+            '❌ <strong>Not quite.</strong> Try again.<br>' +
+            '<span style="font-weight:500;">Think about the reference point and the relationship between the events.</span>';
+        feedback.className = 'feedback incorrect';
+    }
+}
+
+showSlide(0);
+</script>
+
+</body>
+</html>
