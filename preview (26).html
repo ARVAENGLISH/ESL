@@ -1,0 +1,1757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROGRESS & STATUS | ARVA</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #EEF1F4;
+        color: #172033;
+        line-height: 1.6;
+    }
+
+    .app {
+        max-width: 1100px;
+        margin: auto;
+        background: white;
+        min-height: 100vh;
+    }
+
+    /* HEADER */
+    header {
+        background: #172033;
+        color: white;
+        padding: 38px 50px;
+        border-bottom: 5px solid #3B5B73;
+    }
+
+    .brand {
+        font-size: 13px;
+        letter-spacing: 2px;
+        color: #B8C4CE;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+
+    h1 {
+        font-size: 38px;
+        letter-spacing: 1px;
+        margin-bottom: 5px;
+    }
+
+    .subtitle {
+        color: #C8D0D8;
+        font-size: 16px;
+    }
+
+    /* NAV */
+    .nav {
+        display: flex;
+        gap: 7px;
+        padding: 12px 20px;
+        background: #F5F6F7;
+        border-bottom: 1px solid #D9DEE3;
+        overflow-x: auto;
+        position: sticky;
+        top: 0;
+        z-index: 20;
+    }
+
+    .nav button {
+        border: none;
+        background: transparent;
+        color: #5B6470;
+        padding: 9px 13px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: bold;
+        white-space: nowrap;
+    }
+
+    .nav button:hover,
+    .nav button.active {
+        background: #172033;
+        color: white;
+    }
+
+    /* CONTENT */
+    .content {
+        padding: 45px 55px 70px;
+    }
+
+    .section {
+        display: none;
+        animation: fade .25s ease;
+    }
+
+    .section.active {
+        display: block;
+    }
+
+    @keyframes fade {
+        from { opacity: 0; transform: translateY(5px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-number {
+        font-size: 12px;
+        color: #5B6470;
+        font-weight: bold;
+        letter-spacing: 2px;
+        margin-bottom: 5px;
+    }
+
+    h2 {
+        font-size: 29px;
+        margin-bottom: 25px;
+        color: #172033;
+    }
+
+    h3 {
+        font-size: 19px;
+        margin-bottom: 12px;
+        color: #172033;
+    }
+
+    .goal-box {
+        background: #F5F6F7;
+        border-left: 5px solid #3B5B73;
+        padding: 25px;
+        font-size: 20px;
+        line-height: 1.7;
+        margin-top: 20px;
+    }
+
+    /* CARDS */
+    .card {
+        border: 1px solid #D9DEE3;
+        border-radius: 7px;
+        padding: 22px;
+        margin-bottom: 16px;
+        background: white;
+    }
+
+    .question {
+        font-weight: bold;
+        margin-bottom: 12px;
+    }
+
+    .question-number {
+        color: #3B5B73;
+        margin-right: 5px;
+    }
+
+    /* WARM UP */
+    .warmup-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .warmup-card {
+        background: #F5F6F7;
+        border: 1px solid #D9DEE3;
+        padding: 22px;
+        border-radius: 7px;
+        font-size: 17px;
+    }
+
+    /* VOCAB */
+    .vocab-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 12px;
+    }
+
+    .vocab-card {
+        border: 1px solid #D9DEE3;
+        border-radius: 7px;
+        padding: 18px;
+        cursor: pointer;
+        transition: .2s;
+        background: white;
+    }
+
+    .vocab-card:hover {
+        border-color: #3B5B73;
+        transform: translateY(-2px);
+    }
+
+    .vocab-word {
+        font-weight: bold;
+        color: #172033;
+        font-size: 17px;
+    }
+
+    .vocab-example {
+        display: none;
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid #E2E5E8;
+        font-size: 14px;
+    }
+
+    .vocab-card.open .vocab-example {
+        display: block;
+    }
+
+    .translation {
+        color: #7A828B;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    /* CONVERSATION */
+    .conversation {
+        max-width: 900px;
+        margin: auto;
+    }
+
+    .line {
+        padding: 15px 18px;
+        margin-bottom: 10px;
+        border-radius: 7px;
+        background: #F5F6F7;
+    }
+
+    .speaker {
+        font-weight: bold;
+        color: #3B5B73;
+        margin-right: 7px;
+    }
+
+    .useful {
+        color: #B8873A;
+        font-weight: bold;
+    }
+
+    /* MCQ */
+    .option {
+        display: block;
+        border: 1px solid #D9DEE3;
+        padding: 12px 15px;
+        margin: 8px 0;
+        border-radius: 5px;
+        cursor: pointer;
+        background: white;
+    }
+
+    .option:hover {
+        background: #F5F6F7;
+    }
+
+    .option.correct {
+        background: #E8F2ED;
+        border-color: #3F7D65;
+    }
+
+    .option.incorrect {
+        background: #F7EAEA;
+        border-color: #A65353;
+    }
+
+    .feedback {
+        margin-top: 10px;
+        font-weight: bold;
+        min-height: 24px;
+    }
+
+    /* DISCOVERY */
+    .discovery-columns {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        margin-top: 25px;
+    }
+
+    .drop-zone {
+        min-height: 210px;
+        border: 2px dashed #AEB7C0;
+        border-radius: 7px;
+        padding: 15px;
+        background: #F8F9FA;
+    }
+
+    .drop-zone h3 {
+        font-size: 15px;
+        text-align: center;
+        border-bottom: 1px solid #D9DEE3;
+        padding-bottom: 10px;
+    }
+
+    .drag-area {
+        margin-top: 25px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .drag-item {
+        background: #172033;
+        color: white;
+        padding: 10px 13px;
+        border-radius: 5px;
+        cursor: grab;
+        font-size: 13px;
+    }
+
+    .drag-item.correct-drag {
+        background: #3F7D65;
+    }
+
+    /* GRAMMAR */
+    .grammar-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .grammar-box {
+        border: 1px solid #D9DEE3;
+        border-top: 5px solid #3B5B73;
+        padding: 25px;
+        border-radius: 7px;
+    }
+
+    .formula {
+        background: #F5F6F7;
+        padding: 13px;
+        margin: 15px 0;
+        font-weight: bold;
+        font-family: monospace;
+    }
+
+    .example {
+        margin: 9px 0;
+    }
+
+    .key-difference {
+        margin-top: 25px;
+        background: #172033;
+        color: white;
+        padding: 25px;
+        border-radius: 7px;
+    }
+
+    .key-difference strong {
+        color: #D9B56D;
+    }
+
+    /* TABLE */
+    .table-wrapper {
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
+
+    th {
+        background: #172033;
+        color: white;
+        padding: 13px;
+        text-align: left;
+        font-size: 13px;
+    }
+
+    td {
+        border: 1px solid #D9DEE3;
+        padding: 11px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #BFC6CD;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    input.correct-input {
+        border-color: #3F7D65;
+        background: #E8F2ED;
+    }
+
+    input.incorrect-input {
+        border-color: #A65353;
+        background: #F7EAEA;
+    }
+
+    .check-btn,
+    .next-btn,
+    .finish-btn {
+        background: #172033;
+        color: white;
+        border: none;
+        padding: 13px 23px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 12px;
+    }
+
+    .check-btn:hover,
+    .next-btn:hover,
+    .finish-btn:hover {
+        background: #3B5B73;
+    }
+
+    /* PRACTICE */
+    .practice-block {
+        margin-bottom: 30px;
+    }
+
+    .scenario {
+        background: #F5F6F7;
+        border-left: 4px solid #B8873A;
+        padding: 17px;
+        margin: 12px 0;
+    }
+
+    /* CHALLENGE */
+    .project-header {
+        background: #172033;
+        color: white;
+        padding: 25px;
+        border-radius: 7px 7px 0 0;
+    }
+
+    .project-status-table th {
+        background: #3B5B73;
+    }
+
+    .status-complete {
+        color: #3F7D65;
+        font-weight: bold;
+    }
+
+    .status-pending {
+        color: #B8873A;
+        font-weight: bold;
+    }
+
+    .status-delay {
+        color: #A65353;
+        font-weight: bold;
+    }
+
+    .useful-language {
+        background: #F5F6F7;
+        padding: 22px;
+        border-radius: 7px;
+        margin-top: 20px;
+    }
+
+    .phrase {
+        margin: 8px 0;
+        color: #B8873A;
+        font-weight: bold;
+    }
+
+    .speaking-box {
+        border: 2px solid #3B5B73;
+        padding: 25px;
+        margin-top: 25px;
+        border-radius: 7px;
+        background: #FAFBFC;
+    }
+
+    /* FINISH */
+    .finish {
+        text-align: center;
+        padding: 40px 10px;
+    }
+
+    .finish-icon {
+        font-size: 55px;
+        margin-bottom: 15px;
+    }
+
+    .learn-list {
+        max-width: 650px;
+        margin: 30px auto;
+        text-align: left;
+    }
+
+    .learn-item {
+        padding: 14px 18px;
+        border-bottom: 1px solid #D9DEE3;
+    }
+
+    .learn-item::before {
+        content: "✓";
+        color: #3F7D65;
+        font-weight: bold;
+        margin-right: 12px;
+    }
+
+    .complete-message {
+        display: none;
+        margin-top: 25px;
+        padding: 20px;
+        background: #E8F2ED;
+        border: 1px solid #3F7D65;
+        border-radius: 7px;
+        color: #315F4E;
+        font-weight: bold;
+    }
+
+    /* FOOTER */
+    footer {
+        text-align: center;
+        padding: 25px;
+        background: #172033;
+        color: #B8C4CE;
+        font-size: 12px;
+    }
+
+    @media(max-width: 750px) {
+        .content {
+            padding: 30px 20px 50px;
+        }
+
+        header {
+            padding: 30px 25px;
+        }
+
+        h1 {
+            font-size: 30px;
+        }
+
+        .warmup-grid,
+        .grammar-grid,
+        .discovery-columns,
+        .vocab-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+    <div class="brand">ARVA ENGLISH</div>
+    <h1>PROGRESS & STATUS</h1>
+    <div class="subtitle">Professional English for Construction & Project Planning</div>
+</header>
+
+<nav class="nav">
+    <button class="active" onclick="showSection(0)">GOAL</button>
+    <button onclick="showSection(1)">WARM-UP</button>
+    <button onclick="showSection(2)">VOCABULARY</button>
+    <button onclick="showSection(3)">LOOK</button>
+    <button onclick="showSection(4)">CHECK</button>
+    <button onclick="showSection(5)">DISCOVERY</button>
+    <button onclick="showSection(6)">GRAMMAR</button>
+    <button onclick="showSection(7)">CHALLENGE</button>
+    <button onclick="showSection(8)">PRACTICE</button>
+    <button onclick="showSection(9)">PROJECT UPDATE</button>
+    <button onclick="showSection(10)">FINISH</button>
+</nav>
+
+<main class="content">
+
+<!-- GOAL -->
+<section class="section active">
+    <div class="section-number">01 / GOAL</div>
+    <h2>Today's Goal</h2>
+
+    <div class="goal-box">
+        Al final de la clase, podrás dar una actualización clara y profesional sobre el progreso y el estado actual de un proyecto de construcción.
+    </div>
+
+    <button class="next-btn" onclick="showSection(1)">START →</button>
+</section>
+
+
+<!-- WARM UP -->
+<section class="section">
+    <div class="section-number">02 / WARM-UP</div>
+    <h2>PROJECT STATUS</h2>
+
+    <div class="warmup-grid">
+        <div class="warmup-card">
+            <strong>1.</strong><br>
+            What has happened with your new job in Spain?
+        </div>
+
+        <div class="warmup-card">
+            <strong>2.</strong><br>
+            What activities are you working on this week?
+        </div>
+
+        <div class="warmup-card">
+            <strong>3.</strong><br>
+            What activities are completed?
+        </div>
+
+        <div class="warmup-card">
+            <strong>4.</strong><br>
+            Is the project on schedule?
+        </div>
+    </div>
+
+    <button class="next-btn" onclick="showSection(2)">NEXT →</button>
+</section>
+
+
+<!-- VOCAB -->
+<section class="section">
+    <div class="section-number">03 / VOCABULARY</div>
+    <h2>PROGRESS & STATUS</h2>
+
+    <p style="margin-bottom:22px;color:#5B6470;">
+        Click each word to see a professional example and the Spanish translation.
+    </p>
+
+    <div class="vocab-grid">
+
+        <div class="vocab-card" onclick="toggleVocab(this)">
+            <div class="vocab-word">Progress</div>
+            <div class="vocab-example">
+                The project is making good progress.
+                <div class="translation">Progreso</div>
+            </div>
+        </div>
+
+        <div class="vocab-card" onclick="toggleVocab(this)">
+            <div class="vocab-word">Status</div>
+            <div class="vocab-example">
+                What is the current status of the project?
+                <div class="translation">Estado</div>
+            </div>
+        </div>
+
+        <div class="vocab-card" onclick="toggleVocab(this)">
+            <div class="vocab-word">Completed</div>
+            <div class="vocab-example">
+                The excavation is completed.
+                <div class="translation">Completado / terminado</div>
+            </div>
+        </div>
+
+        <div class="vocab-card" onclick="toggleVocab(this)">
+            <div class="vocab-word">In progress</div>
+            <div class="vocab-example">
+                The foundation work is in progress.
+                <div class="translation">En progreso</div>
+            </div>
+        </div>
+
+        <div class="vocab-card" onclick="toggleVocab(this)">
+            <div class="vocab-word">Pending</div>
+            <div class="vocab-example">
+                The electrical installation is still pending.
+                <div class="translation">Pendiente</div>
+            </div>
+        </div>
+
+        <div class="vocab-card" onclick="toggleVocab(this)">
+            <div class="vocab-word">On schedule</div>
+            <div class="vocab-example">
+                The project is on schedule.
+                <div class="translation">Según lo programado / a tiempo</div>
+            </div>
+        </div>
+
+        <div class="vocab-card" onclick="toggleVocab(this)">
+            <div class="vocab-word">Behind schedule</div>
+            <div class="vocab-example">
+                The project is behind schedule.
+                <div class="translation">Atrasado</div>
+            </div>
+        </div>
+
+        <div class="vocab-card" onclick="toggleVocab(this)">
+            <div class="vocab-word">Ahead of schedule</div>
+            <div class="vocab-example">
+                The project is ahead of schedule.
+                <div class="translation">Adelantado</div>
+            </div>
+        </div>
+
+        <div class="vocab-card" onclick="toggleVocab(this)">
+            <div class="vocab-word">Delayed</div>
+            <div class="vocab-example">
+                The construction work is delayed.
+                <div class="translation">Retrasado</div>
+            </div>
+        </div>
+
+        <div class="vocab-card" onclick="toggleVocab(this)">
+            <div class="vocab-word">Remaining</div>
+            <div class="vocab-example">
+                We have 30% of the work remaining.
+                <div class="translation">Restante</div>
+            </div>
+        </div>
+
+        <div class="vocab-card" onclick="toggleVocab(this)">
+            <div class="vocab-word">Deadline</div>
+            <div class="vocab-example">
+                The deadline is next Friday.
+                <div class="translation">Fecha límite</div>
+            </div>
+        </div>
+
+        <div class="vocab-card" onclick="toggleVocab(this)">
+            <div class="vocab-word">To complete</div>
+            <div class="vocab-example">
+                We need to complete the foundation this week.
+                <div class="translation">Completar / terminar</div>
+            </div>
+        </div>
+
+    </div>
+
+    <button class="next-btn" onclick="showSection(3)">NEXT →</button>
+</section>
+
+
+<!-- LOOK -->
+<section class="section">
+    <div class="section-number">04 / LOOK</div>
+    <h2>PROJECT STATUS MEETING</h2>
+
+    <div class="conversation">
+
+        <div class="line">
+            <span class="speaker">Laura:</span>
+            Hi, Camila. Do you have a minute? I want to
+            <span class="useful">check the status of the project.</span>
+        </div>
+
+        <div class="line">
+            <span class="speaker">Camila:</span>
+            Sure. Overall, we're
+            <span class="useful">making good progress.</span>
+            We <strong>have completed</strong> the excavation and the foundation is
+            <span class="useful">in progress.</span>
+        </div>
+
+        <div class="line">
+            <span class="speaker">Laura:</span>
+            Great. What about the building permit?
+        </div>
+
+        <div class="line">
+            <span class="speaker">Camila:</span>
+            That's the main problem right now. We
+            <strong>submitted</strong> the documents two weeks ago, but we
+            <strong>haven't received</strong> the final approval yet.
+        </div>
+
+        <div class="line">
+            <span class="speaker">Laura:</span>
+            I see. So, is the project
+            <span class="useful">behind schedule?</span>
+        </div>
+
+        <div class="line">
+            <span class="speaker">Camila:</span>
+            A little. We <strong>have lost</strong> about five days because of the permit.
+            The construction team <strong>stopped</strong> some activities last week.
+        </div>
+
+        <div class="line">
+            <span class="speaker">Laura:</span>
+            What activities are still
+            <span class="useful">pending?</span>
+        </div>
+
+        <div class="line">
+            <span class="speaker">Camila:</span>
+            The structural work is
+            <span class="useful">in progress</span>,
+            but the next phase is
+            <span class="useful">pending.</span>
+            We can't start it until we have the license.
+        </div>
+
+        <div class="line">
+            <span class="speaker">Laura:</span>
+            Have you talked to the person in charge of the permit?
+        </div>
+
+        <div class="line">
+            <span class="speaker">Camila:</span>
+            Yes, I <strong>spoke</strong> with her yesterday. She said they
+            <strong>have reviewed</strong> the documents, but they need one additional
+            document from the municipality.
+        </div>
+
+        <div class="line">
+            <span class="speaker">Laura:</span>
+            Okay. Have we sent that document?
+        </div>
+
+        <div class="line">
+            <span class="speaker">Camila:</span>
+            Yes, we <strong>sent</strong> it this morning. So now we're waiting for their response.
+        </div>
+
+        <div class="line">
+            <span class="speaker">Laura:</span>
+            That's good. What's the new
+            <span class="useful">deadline?</span>
+        </div>
+
+        <div class="line">
+            <span class="speaker">Camila:</span>
+            We <strong>have moved</strong> the deadline by one week.
+            If we receive the license this week, we can continue with the next activity on Monday.
+        </div>
+
+        <div class="line">
+            <span class="speaker">Laura:</span>
+            So, are we still
+            <span class="useful">on schedule?</span>
+        </div>
+
+        <div class="line">
+            <span class="speaker">Camila:</span>
+            Not exactly. We're currently
+            <span class="useful">behind schedule</span>,
+            but we have a plan to recover the time.
+        </div>
+
+        <div class="line">
+            <span class="speaker">Laura:</span>
+            Perfect. Let's
+            <span class="useful">keep monitoring</span>
+            the permit and
+            <span class="useful">update the schedule</span>
+            when we receive the approval.
+        </div>
+
+        <div class="line">
+            <span class="speaker">Camila:</span>
+            Absolutely. I'll
+            <span class="useful">send you an update</span>
+            this afternoon.
+        </div>
+
+    </div>
+
+    <button class="next-btn" onclick="showSection(4)">NEXT →</button>
+</section>
+
+
+<!-- CHECK -->
+<section class="section">
+    <div class="section-number">05 / CHECK UNDERSTANDING</div>
+    <h2>Check Understanding</h2>
+
+    <div class="card">
+        <div class="question">1. What is the main problem with the project?</div>
+        <div class="option" onclick="checkMCQ(this,true,'f1')">A. The foundation is not ready.</div>
+        <div class="option" onclick="checkMCQ(this,false,'f1')">B. The project has a problem with a permit.</div>
+        <div class="option" onclick="checkMCQ(this,false,'f1')">C. The construction team has left the project.</div>
+        <div id="f1" class="feedback"></div>
+    </div>
+
+    <div class="card">
+        <div class="question">2. What has the team completed?</div>
+        <div class="option" onclick="checkMCQ(this,true,'f2')">A. The excavation.</div>
+        <div class="option" onclick="checkMCQ(this,false,'f2')">B. The electrical installation.</div>
+        <div class="option" onclick="checkMCQ(this,false,'f2')">C. The next phase.</div>
+        <div id="f2" class="feedback"></div>
+    </div>
+
+    <div class="card">
+        <div class="question">3. Why is the project behind schedule?</div>
+        <div class="option" onclick="checkMCQ(this,false,'f3')">A. The workers stopped working.</div>
+        <div class="option" onclick="checkMCQ(this,false,'f3')">B. The materials arrived late.</div>
+        <div class="option" onclick="checkMCQ(this,true,'f3')">C. They are waiting for a permit.</div>
+        <div id="f3" class="feedback"></div>
+    </div>
+
+    <div class="card">
+        <div class="question">4. What are they waiting for?</div>
+        <div class="option" onclick="checkMCQ(this,false,'f4')">A. A new contractor.</div>
+        <div class="option" onclick="checkMCQ(this,true,'f4')">B. The final approval.</div>
+        <div class="option" onclick="checkMCQ(this,false,'f4')">C. More materials.</div>
+        <div id="f4" class="feedback"></div>
+    </div>
+
+    <div class="card">
+        <div class="question">5. What is the plan if they receive the license this week?</div>
+        <div class="option" onclick="checkMCQ(this,false,'f5')">A. They will stop the project.</div>
+        <div class="option" onclick="checkMCQ(this,false,'f5')">B. They will change the deadline.</div>
+        <div class="option" onclick="checkMCQ(this,true,'f5')">C. They can continue with the next activity on Monday.</div>
+        <div id="f5" class="feedback"></div>
+    </div>
+
+    <button class="next-btn" onclick="showSection(5)">NEXT →</button>
+</section>
+
+
+<!-- DISCOVERY -->
+<section class="section">
+    <div class="section-number">06 / DISCOVERY</div>
+    <h2>Discover the Difference</h2>
+
+    <p>
+        Drag each sentence into the correct column.
+    </p>
+
+    <div class="discovery-columns">
+
+        <div class="drop-zone" data-answer="past">
+            <h3>FINISHED ACTION</h3>
+            <p style="font-size:12px;color:#7A828B;">
+                Specific past time
+            </p>
+        </div>
+
+        <div class="drop-zone" data-answer="perfect">
+            <h3>NOT EXACT TIME</h3>
+            <p style="font-size:12px;color:#7A828B;">
+                Connected to the current situation
+            </p>
+        </div>
+
+        <div class="drop-zone" data-answer="phrases">
+            <h3>PHRASES</h3>
+            <p style="font-size:12px;color:#7A828B;">
+                Project status language
+            </p>
+        </div>
+
+    </div>
+
+    <div class="drag-area">
+
+        <div class="drag-item" draggable="true" data-answer="past">
+            We submitted the documents two weeks ago.
+        </div>
+
+        <div class="drag-item" draggable="true" data-answer="perfect">
+            We have completed the excavation.
+        </div>
+
+        <div class="drag-item" draggable="true" data-answer="past">
+            I spoke with her yesterday.
+        </div>
+
+        <div class="drag-item" draggable="true" data-answer="perfect">
+            We haven't received the final approval yet.
+        </div>
+
+        <div class="drag-item" draggable="true" data-answer="past">
+            The construction team stopped some activities last week.
+        </div>
+
+        <div class="drag-item" draggable="true" data-answer="perfect">
+            They have reviewed the documents.
+        </div>
+
+        <div class="drag-item" draggable="true" data-answer="past">
+            We sent the document this morning.
+        </div>
+
+        <div class="drag-item" draggable="true" data-answer="perfect">
+            We have moved the deadline.
+        </div>
+
+        <div class="drag-item" draggable="true" data-answer="phrases">
+            The project is behind schedule.
+        </div>
+
+        <div class="drag-item" draggable="true" data-answer="phrases">
+            The foundation is in progress.
+        </div>
+
+    </div>
+
+    <div id="dragFeedback" class="feedback"></div>
+
+    <div class="card" style="margin-top:30px;">
+        <strong>FINISHED ACTION</strong> → specific past time<br><br>
+        <strong>NOT EXACT TIME</strong> → action connected to the current project status
+    </div>
+
+    <button class="next-btn" onclick="showSection(6)">NEXT →</button>
+</section>
+
+
+<!-- GRAMMAR -->
+<section class="section">
+    <div class="section-number">07 / GRAMMAR</div>
+    <h2>Simple Past vs Present Perfect</h2>
+
+    <div class="grammar-grid">
+
+        <div class="grammar-box">
+            <h3>SIMPLE PAST</h3>
+
+            <p>
+                Acción terminada en el pasado, normalmente sabemos cuándo ocurrió.
+            </p>
+
+            <div class="formula">
+                🙋🏻‍♀️ Subject + past verb + complement
+            </div>
+
+            <div class="example">
+                🙋🏻‍♀️ <strong>We submitted</strong> the documents two weeks ago.
+            </div>
+
+            <div class="example">
+                🙋🏻‍♀️ <strong>She spoke</strong> with the contractor yesterday.
+            </div>
+
+            <div class="example">
+                🙋🏻‍♀️ <strong>They sent</strong> the document this morning.
+            </div>
+        </div>
+
+        <div class="grammar-box">
+            <h3>PRESENT PERFECT</h3>
+
+            <p>
+                Acción ocurrida en el pasado pero conectada con el presente.
+                El momento exacto no es importante o no se menciona.
+            </p>
+
+            <div class="formula">
+                🙋🏻‍♀️ Subject + have/has + V3 + complement
+            </div>
+
+            <div class="example">
+                🙋🏻‍♀️ <strong>We have completed</strong> the excavation.
+            </div>
+
+            <div class="example">
+                🙋🏻‍♀️ <strong>They have reviewed</strong> the documents.
+            </div>
+
+            <div class="example">
+                🙋🏻‍♀️ <strong>She has sent</strong> the report.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="key-difference">
+        <strong>KEY DIFFERENCE</strong><br><br>
+
+        Simple Past → ¿Cuándo ocurrió?<br>
+        We submitted the documents <strong>two weeks ago.</strong>
+        <br><br>
+
+        Present Perfect → ¿Cuál es el resultado / situación actual?<br>
+        We <strong>have submitted</strong> the documents.
+    </div>
+
+    <button class="next-btn" onclick="showSection(7)">NEXT →</button>
+</section>
+
+
+<!-- CHALLENGE VERBS -->
+<section class="section">
+    <div class="section-number">08 / CHALLENGE</div>
+    <h2>Verb Forms</h2>
+
+    <p style="margin-bottom:20px;">
+        Write the <strong>Simple Past</strong> and <strong>V3</strong> forms. Then click CHECK.
+    </p>
+
+    <div class="table-wrapper">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Verb</th>
+                    <th>Simple Past</th>
+                    <th>V3</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>submit</td>
+                    <td><input data-answer="submitted"></td>
+                    <td><input data-answer="submitted"></td>
+                </tr>
+
+                <tr>
+                    <td>build</td>
+                    <td><input data-answer="built"></td>
+                    <td><input data-answer="built"></td>
+                </tr>
+
+                <tr>
+                    <td>deal</td>
+                    <td><input data-answer="dealt"></td>
+                    <td><input data-answer="dealt"></td>
+                </tr>
+
+                <tr>
+                    <td>meet</td>
+                    <td><input data-answer="met"></td>
+                    <td><input data-answer="met"></td>
+                </tr>
+
+                <tr>
+                    <td>send</td>
+                    <td><input data-answer="sent"></td>
+                    <td><input data-answer="sent"></td>
+                </tr>
+
+                <tr>
+                    <td>receive</td>
+                    <td><input data-answer="received"></td>
+                    <td><input data-answer="received"></td>
+                </tr>
+
+                <tr>
+                    <td>begin</td>
+                    <td><input data-answer="began"></td>
+                    <td><input data-answer="begun"></td>
+                </tr>
+
+                <tr>
+                    <td>choose</td>
+                    <td><input data-answer="chose"></td>
+                    <td><input data-answer="chosen"></td>
+                </tr>
+
+                <tr>
+                    <td>lead</td>
+                    <td><input data-answer="led"></td>
+                    <td><input data-answer="led"></td>
+                </tr>
+
+                <tr>
+                    <td>approve</td>
+                    <td><input data-answer="approved"></td>
+                    <td><input data-answer="approved"></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <button class="check-btn" onclick="checkVerbs()">CHECK</button>
+
+    <div id="verbFeedback" class="feedback"></div>
+
+    <div style="margin-top:35px;">
+
+        <div class="card">
+            <div class="question">1. We ________ (begin) the foundation work last Monday.</div>
+            <input id="s1" data-answer="began">
+        </div>
+
+        <div class="card">
+            <div class="question">2. We have already ________ (submit) the documents.</div>
+            <input id="s2" data-answer="submitted">
+        </div>
+
+        <div class="card">
+            <div class="question">3. The contractor ________ (send) the report yesterday.</div>
+            <input id="s3" data-answer="sent">
+        </div>
+
+        <div class="card">
+            <div class="question">4. They haven't ________ (receive) the final approval yet.</div>
+            <input id="s4" data-answer="received">
+        </div>
+
+        <div class="card">
+            <div class="question">5. She ________ (meet) with the municipality last week.</div>
+            <input id="s5" data-answer="met">
+        </div>
+
+        <div class="card">
+            <div class="question">6. The team has ________ (complete) the excavation.</div>
+            <input id="s6" data-answer="completed">
+        </div>
+
+        <button class="check-btn" onclick="checkSentences()">CHECK SENTENCES</button>
+
+        <div id="sentenceFeedback" class="feedback"></div>
+
+    </div>
+
+    <button class="next-btn" onclick="showSection(8)">NEXT →</button>
+</section>
+
+
+<!-- PRACTICE -->
+<section class="section">
+    <div class="section-number">09 / PRACTICE</div>
+    <h2>PROJECT STATUS</h2>
+
+    <!-- MCQ 1 -->
+    <div class="practice-block card">
+        <div class="question">
+            1. The team ______ a problem with the concrete pouring.
+            The supplier didn't send the material on time.
+        </div>
+
+        <div class="option" onclick="checkMCQ(this,true,'p1')">A. has had</div>
+        <div class="option" onclick="checkMCQ(this,false,'p1')">B. had</div>
+        <div class="option" onclick="checkMCQ(this,false,'p1')">C. have</div>
+
+        <div id="p1" class="feedback"></div>
+    </div>
+
+    <!-- MCQ 2 -->
+    <div class="practice-block card">
+        <div class="question">
+            2. The foundation is <strong>60% complete</strong>.
+            The team ______ the remaining work this week.
+        </div>
+
+        <div class="option" onclick="checkMCQ(this,true,'p2')">A. has started</div>
+        <div class="option" onclick="checkMCQ(this,false,'p2')">B. started</div>
+        <div class="option" onclick="checkMCQ(this,false,'p2')">C. is starting</div>
+
+        <div id="p2" class="feedback"></div>
+    </div>
+
+    <!-- CORRECTION -->
+    <div class="practice-block card">
+        <div class="question">
+            3. ❌ The supplier <strong>hasn't delivered</strong> the steel
+            <strong>yesterday</strong>, so the team couldn't continue with the structure.
+        </div>
+
+        <input id="p3" placeholder="Write the corrected sentence...">
+        <button class="check-btn" onclick="checkCorrection('p3','The supplier didn\\'t deliver the steel yesterday, so the team couldn\\'t continue with the structure.')">
+            CHECK
+        </button>
+        <div id="p3feedback" class="feedback"></div>
+    </div>
+
+    <div class="practice-block card">
+        <div class="question">
+            4. ❌ We <strong>completed</strong> 45% of the concrete pouring <strong>so far</strong>.
+        </div>
+
+        <input id="p4" placeholder="Write the corrected sentence...">
+        <button class="check-btn" onclick="checkCorrection('p4','We have completed 45% of the concrete pouring so far.')">
+            CHECK
+        </button>
+        <div id="p4feedback" class="feedback"></div>
+    </div>
+
+    <!-- CREATE SENTENCE -->
+    <div class="practice-block card">
+        <div class="question">
+            5. 📊 Foundation: <strong>75% complete</strong>
+        </div>
+
+        <div class="scenario">
+            The foundation is 75% complete. You want to give a current progress update.
+        </div>
+
+        <input id="p5" placeholder="Write a professional project update...">
+
+        <button class="check-btn" onclick="checkFlexible('p5','75')">
+            CHECK
+        </button>
+
+        <div id="p5feedback" class="feedback"></div>
+    </div>
+
+    <div class="practice-block card">
+        <div class="question">
+            6. 🏗️ Structural work: <strong>40% → 65%</strong>
+        </div>
+
+        <div class="scenario">
+            Last week, the structural work was at 40%.
+            This week, the team has reached 65%.
+            Give a professional project update using the Present Perfect.
+        </div>
+
+        <input id="p6" placeholder="Write your project update...">
+
+        <button class="check-btn" onclick="checkFlexible('p6','65')">
+            CHECK
+        </button>
+
+        <div id="p6feedback" class="feedback"></div>
+    </div>
+
+    <button class="next-btn" onclick="showSection(9)">NEXT →</button>
+</section>
+
+
+<!-- PROJECT UPDATE -->
+<section class="section">
+    <div class="section-number">10 / SPEAKING CHALLENGE</div>
+    <h2>GIVE A PROJECT UPDATE</h2>
+
+    <div class="project-header">
+        <h3 style="color:white;">🏗️ PROJECT: RIVERSIDE BUILDING</h3>
+        <p>Your role: Project Planning Engineer</p>
+        <p>Your manager asks you for a quick update about the project.</p>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="project-status-table">
+            <thead>
+                <tr>
+                    <th>Activity</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Excavation</td>
+                    <td class="status-complete">100% complete</td>
+                </tr>
+
+                <tr>
+                    <td>Foundation</td>
+                    <td class="status-complete">85% complete</td>
+                </tr>
+
+                <tr>
+                    <td>Structural work</td>
+                    <td class="status-complete">60% complete</td>
+                </tr>
+
+                <tr>
+                    <td>Electrical installation</td>
+                    <td>30% complete</td>
+                </tr>
+
+                <tr>
+                    <td>Building permit</td>
+                    <td class="status-pending">Pending</td>
+                </tr>
+
+                <tr>
+                    <td>Project schedule</td>
+                    <td class="status-delay">5 days behind schedule</td>
+                </tr>
+
+                <tr>
+                    <td>New deadline</td>
+                    <td>October 18</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h3>🎯 YOUR TASK</h3>
+
+        <p>
+            Give a <strong>30–60 second professional update.</strong>
+        </p>
+
+        <br>
+
+        <p>Try to include:</p>
+
+        <ul style="padding-left:25px;margin-top:10px;">
+            <li>What has been <strong>completed</strong></li>
+            <li>What is <strong>in progress</strong></li>
+            <li>What is <strong>still pending</strong></li>
+            <li>Why the project is <strong>behind schedule</strong></li>
+            <li>The current <strong>percentage of progress</strong></li>
+            <li>The <strong>new deadline</strong></li>
+            <li>What the team needs to do next</li>
+        </ul>
+    </div>
+
+    <div class="useful-language">
+        <h3>USEFUL LANGUAGE</h3>
+
+        <div class="phrase">So far, we have completed...</div>
+        <div class="phrase">The ___ is currently ___% complete.</div>
+        <div class="phrase">The ___ is still in progress.</div>
+        <div class="phrase">The ___ is still pending.</div>
+        <div class="phrase">We are currently five days behind schedule because...</div>
+        <div class="phrase">The new deadline is...</div>
+        <div class="phrase">Our next step is to...</div>
+    </div>
+
+    <div class="speaking-box">
+        <h3>🎤 FINAL SPEAKING TASK</h3>
+
+        <p>
+            Now imagine your manager asks:
+        </p>
+
+        <br>
+
+        <strong>
+            “Can you give me a quick update on the project?”
+        </strong>
+
+        <br><br>
+
+        <p>
+            Give your update for <strong>30–60 seconds.</strong>
+        </p>
+    </div>
+
+    <button class="next-btn" onclick="showSection(10)">FINISH CLASS →</button>
+</section>
+
+
+<!-- FINISH -->
+<section class="section">
+    <div class="finish">
+
+        <div class="finish-icon">✓</div>
+
+        <h2>FINISH CLASS</h2>
+
+        <h3>TODAY YOU LEARNED HOW TO:</h3>
+
+        <div class="learn-list">
+
+            <div class="learn-item">
+                Give a clear project status update.
+            </div>
+
+            <div class="learn-item">
+                Talk about completed and ongoing activities.
+            </div>
+
+            <div class="learn-item">
+                Describe delays and pending activities.
+            </div>
+
+            <div class="learn-item">
+                Use Simple Past and Present Perfect in project updates.
+            </div>
+
+            <div class="learn-item">
+                Talk about percentages, deadlines, and project progress.
+            </div>
+
+            <div class="learn-item">
+                Explain the current situation and next steps.
+            </div>
+
+        </div>
+
+        <button class="finish-btn" onclick="finishClass()">
+            FINISH CLASS
+        </button>
+
+        <div id="completeMessage" class="complete-message">
+            CLASS COMPLETED ✓
+            <br>
+            Great work today!
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<footer>
+    ARVA ENGLISH · Professional English for Real-World Communication
+</footer>
+
+</div>
+
+
+<script>
+
+/* ---------------- NAVIGATION ---------------- */
+
+function showSection(index) {
+
+    const sections = document.querySelectorAll(".section");
+    const buttons = document.querySelectorAll(".nav button");
+
+    sections.forEach((section, i) => {
+        section.classList.toggle("active", i === index);
+    });
+
+    buttons.forEach((button, i) => {
+        button.classList.toggle("active", i === index);
+    });
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* ---------------- VOCABULARY ---------------- */
+
+function toggleVocab(card) {
+    card.classList.toggle("open");
+}
+
+
+/* ---------------- MCQ ---------------- */
+
+function checkMCQ(element, correct, feedbackId) {
+
+    const card = element.parentElement;
+
+    card.querySelectorAll(".option").forEach(option => {
+        option.classList.remove("correct", "incorrect");
+    });
+
+    const feedback = document.getElementById(feedbackId);
+
+    if (correct) {
+        element.classList.add("correct");
+        feedback.textContent = "✓ Perfect!";
+        feedback.style.color = "#3F7D65";
+    } else {
+        element.classList.add("incorrect");
+        feedback.textContent = "✕ Try again.";
+        feedback.style.color = "#A65353";
+    }
+}
+
+
+/* ---------------- DRAG & DROP ---------------- */
+
+let draggedItem = null;
+
+document.querySelectorAll(".drag-item").forEach(item => {
+
+    item.addEventListener("dragstart", function() {
+        draggedItem = this;
+    });
+
+});
+
+document.querySelectorAll(".drop-zone").forEach(zone => {
+
+    zone.addEventListener("dragover", function(e) {
+        e.preventDefault();
+    });
+
+    zone.addEventListener("drop", function(e) {
+
+        e.preventDefault();
+
+        if (!draggedItem) return;
+
+        const answer = draggedItem.dataset.answer;
+        const zoneAnswer = this.dataset.answer;
+
+        if (answer === zoneAnswer) {
+
+            this.appendChild(draggedItem);
+            draggedItem.classList.add("correct-drag");
+
+            document.getElementById("dragFeedback").textContent =
+                "✓ Correct!";
+
+            document.getElementById("dragFeedback").style.color =
+                "#3F7D65";
+
+        } else {
+
+            document.getElementById("dragFeedback").textContent =
+                "✕ Try another column.";
+
+            document.getElementById("dragFeedback").style.color =
+                "#A65353";
+        }
+
+    });
+
+});
+
+
+/* ---------------- VERBS ---------------- */
+
+function checkVerbs() {
+
+    const inputs = document.querySelectorAll(
+        ".section:nth-child(8) table input"
+    );
+
+    let correct = 0;
+
+    inputs.forEach(input => {
+
+        const answer = input.value.trim().toLowerCase();
+        const expected = input.dataset.answer.toLowerCase();
+
+        input.classList.remove("correct-input", "incorrect-input");
+
+        if (answer === expected) {
+            input.classList.add("correct-input");
+            correct++;
+        } else {
+            input.classList.add("incorrect-input");
+        }
+
+    });
+
+    const feedback = document.getElementById("verbFeedback");
+
+    if (correct === inputs.length) {
+
+        feedback.textContent = "✓ Perfect! All verb forms are correct.";
+        feedback.style.color = "#3F7D65";
+
+    } else {
+
+        feedback.textContent =
+            `You got ${correct} of ${inputs.length} correct. Check the highlighted answers.`;
+
+        feedback.style.color = "#A65353";
+    }
+}
+
+
+/* ---------------- SENTENCES ---------------- */
+
+function checkSentences() {
+
+    const ids = ["s1","s2","s3","s4","s5","s6"];
+
+    let correct = 0;
+
+    ids.forEach(id => {
+
+        const input = document.getElementById(id);
+
+        const answer = input.value.trim().toLowerCase();
+        const expected = input.dataset.answer.toLowerCase();
+
+        input.classList.remove("correct-input", "incorrect-input");
+
+        if (answer === expected) {
+            input.classList.add("correct-input");
+            correct++;
+        } else {
+            input.classList.add("incorrect-input");
+        }
+
+    });
+
+    const feedback = document.getElementById("sentenceFeedback");
+
+    if (correct === ids.length) {
+
+        feedback.textContent = "✓ Perfect!";
+        feedback.style.color = "#3F7D65";
+
+    } else {
+
+        feedback.textContent = "🟡 Almost! Check the verb form.";
+        feedback.style.color = "#B8873A";
+    }
+}
+
+
+/* ---------------- CORRECTION ---------------- */
+
+function normalize(text) {
+
+    return text
+        .toLowerCase()
+        .replace(/[.,!?]/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+}
+
+function checkCorrection(id, expected) {
+
+    const input = document.getElementById(id);
+    const feedback = document.getElementById(id + "feedback");
+
+    if (normalize(input.value) === normalize(expected)) {
+
+        input.classList.add("correct-input");
+        input.classList.remove("incorrect-input");
+
+        feedback.textContent = "✓ Perfect!";
+        feedback.style.color = "#3F7D65";
+
+    } else {
+
+        input.classList.add("incorrect-input");
+        input.classList.remove("correct-input");
+
+        feedback.textContent = "🟡 Almost! Check the verb tense.";
+        feedback.style.color = "#B8873A";
+    }
+}
+
+
+/* ---------------- FLEXIBLE PRACTICE ---------------- */
+
+function checkFlexible(id, keyword) {
+
+    const input = document.getElementById(id);
+    const feedback = document.getElementById(id + "feedback");
+
+    const text = input.value.toLowerCase();
+
+    if (
+        text.includes(keyword.toLowerCase()) &&
+        (
+            text.includes("complete") ||
+            text.includes("reached") ||
+            text.includes("has") ||
+            text.includes("is")
+        )
+    ) {
+
+        input.classList.add("correct-input");
+        input.classList.remove("incorrect-input");
+
+        feedback.textContent = "✓ Good professional update!";
+        feedback.style.color = "#3F7D65";
+
+    } else {
+
+        input.classList.add("incorrect-input");
+        input.classList.remove("correct-input");
+
+        feedback.textContent =
+            "🟡 Almost! Include the percentage and a clear project-status statement.";
+
+        feedback.style.color = "#B8873A";
+    }
+}
+
+
+/* ---------------- FINISH ---------------- */
+
+function finishClass() {
+
+    const message = document.getElementById("completeMessage");
+
+    message.style.display = "block";
+
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth"
+    });
+}
+
+</script>
+
+</body>
+</html>
