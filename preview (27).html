@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Première classe — Français A0</title>
+
+<style>
+  :root {
+    --orange: #ff6b4a;
+    --purple: #4f46e5;
+    --pink: #ff8ae2;
+    --cream: #feffd2;
+    --red: #ff2d55;
+    --white: #ffffff;
+    --text: #292929;
+    --light: #fff8f5;
+    --green: #c0fe72;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: "Montserrat", Arial, sans-serif;
+    background: var(--light);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .container {
+    max-width: 950px;
+    margin: auto;
+    padding: 25px 18px 60px;
+  }
+
+  /* HEADER */
+  .hero {
+    background: var(--orange);
+    color: white;
+    border-radius: 28px;
+    padding: 38px 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 0 rgba(0,0,0,0.08);
+  }
+
+  .hero .label {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    font-size: clamp(30px, 5vw, 48px);
+    margin: 8px 0;
+  }
+
+  .hero p {
+    margin: 5px 0;
+    font-size: 17px;
+  }
+
+  /* PROGRESS */
+  .progress-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--light);
+    padding: 10px 0;
+  }
+
+  .progress-bar {
+    height: 10px;
+    background: #eee;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .progress {
+    width: 0%;
+    height: 100%;
+    background: var(--purple);
+    transition: width .4s ease;
+  }
+
+  /* SECTIONS */
+  .section {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 28px;
+    margin: 25px 0;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.07);
+  }
+
+  .section h2 {
+    color: var(--purple);
+    margin-top: 0;
+    font-size: 27px;
+  }
+
+  .section h3 {
+    color: var(--orange);
+  }
+
+  .instruction {
+    background: var(--cream);
+    padding: 14px 18px;
+    border-radius: 14px;
+    margin: 15px 0 22px;
+  }
+
+  /* OBJECTIVE */
+  .objective {
+    background: var(--purple);
+    color: white;
+  }
+
+  .objective h2 {
+    color: white;
+  }
+
+  /* QUESTIONS */
+  .question-btn {
+    width: 100%;
+    text-align: left;
+    border: none;
+    background: #f7f4ff;
+    padding: 15px 18px;
+    margin: 8px 0;
+    border-radius: 14px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: .2s;
+  }
+
+  .question-btn:hover {
+    transform: translateX(4px);
+    background: #eeeaff;
+  }
+
+  .translation {
+    display: none;
+    background: var(--cream);
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin: -2px 0 8px;
+  }
+
+  .translation.show {
+    display: block;
+  }
+
+  /* VOCABULARY */
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 14px;
+  }
+
+  .vocab-card {
+    border: 2px solid #f0e9ff;
+    border-radius: 18px;
+    padding: 18px;
+    background: white;
+  }
+
+  .vocab-word {
+    font-size: 21px;
+    font-weight: 800;
+    color: var(--purple);
+  }
+
+  .translation-small {
+    color: #666;
+    margin: 5px 0 12px;
+  }
+
+  .audio-btn {
+    border: none;
+    background: var(--pink);
+    padding: 9px 14px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .audio-btn:hover {
+    transform: scale(1.04);
+  }
+
+  /* DIALOGUE */
+  .dialogue {
+    background: #fff5f1;
+    border-left: 6px solid var(--orange);
+    padding: 20px;
+    border-radius: 14px;
+    font-size: 17px;
+  }
+
+  .speaker {
+    font-weight: 800;
+    color: var(--purple);
+  }
+
+  /* DISCOVER */
+  .discover-box {
+    background: #f5f2ff;
+    border-radius: 18px;
+    padding: 20px;
+    margin-top: 15px;
+  }
+
+  .highlight {
+    background: var(--cream);
+    padding: 4px 9px;
+    border-radius: 7px;
+    font-weight: bold;
+  }
+
+  /* GRAMMAR TABLE */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+  }
+
+  th, td {
+    padding: 13px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+  }
+
+  th {
+    background: var(--purple);
+    color: white;
+  }
+
+  /* EXERCISES */
+  .exercise {
+    background: #fafafa;
+    border-radius: 18px;
+    padding: 20px;
+    margin: 18px 0;
+  }
+
+  input {
+    border: none;
+    border-bottom: 2px solid var(--purple);
+    padding: 6px;
+    font-size: 16px;
+    width: 130px;
+    background: transparent;
+  }
+
+  .check-btn {
+    border: none;
+    background: var(--purple);
+    color: white;
+    padding: 10px 17px;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 12px;
+    font-weight: bold;
+  }
+
+  .feedback {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+  .option {
+    display: block;
+    padding: 12px 15px;
+    background: white;
+    border: 2px solid #eee;
+    border-radius: 12px;
+    margin: 8px 0;
+    cursor: pointer;
+  }
+
+  .option:hover {
+    border-color: var(--purple);
+  }
+
+  .correct {
+    border-color: #7dbd2d !important;
+    background: #f3ffe5 !important;
+  }
+
+  .incorrect {
+    border-color: var(--red) !important;
+    background: #fff0f3 !important;
+  }
+
+  /* SPEAKING */
+  .speaking {
+    background: var(--pink);
+  }
+
+  .speaking h2 {
+    color: #7d1260;
+  }
+
+  .help-box {
+    background: white;
+    border-radius: 18px;
+    padding: 20px;
+    margin-top: 18px;
+  }
+
+  .help-box p {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .mission {
+    background: var(--green);
+    border-radius: 24px;
+    padding: 30px;
+    margin-top: 25px;
+  }
+
+  .mission h2 {
+    margin-top: 0;
+    color: #263800;
+  }
+
+  .final-message {
+    text-align: center;
+    background: var(--orange);
+    color: white;
+    border-radius: 24px;
+    padding: 30px;
+    margin-top: 25px;
+  }
+
+  @media (max-width: 600px) {
+    .section {
+      padding: 20px;
+    }
+
+    .hero {
+      padding: 28px 20px;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <header class="hero">
+    <div class="label">🇫🇷 Français • Niveau A0 • 50 min</div>
+    <h1>Bonjour ! Je m'appelle…</h1>
+    <p>Première classe</p>
+  </header>
+
+  <!-- PROGRESS -->
+  <div class="progress-wrapper">
+    <div class="progress-bar">
+      <div class="progress" id="progress"></div>
+    </div>
+  </div>
+
+  <!-- OBJECTIVE -->
+  <section class="section objective">
+    <h2>🎯 Objectif</h2>
+    <p>
+      À la fin du cours, tu pourras :
+    </p>
+    <ul>
+      <li>saluer quelqu'un 👋</li>
+      <li>te présenter 😊</li>
+      <li>demander le prénom d'une autre personne 👤</li>
+    </ul>
+  </section>
+
+
+  <!-- WARM UP -->
+  <section class="section">
+    <h2>🔥 Warm-up — 5 min</h2>
+
+    <div class="instruction">
+      💡 <strong>Clique sur une question</strong> pour voir la traduction en anglais.
+    </div>
+
+    <button class="question-btn" onclick="toggleTranslation('t1')">
+      Tu as déjà étudié le français ?
+    </button>
+    <div class="translation" id="t1">
+      🇬🇧 Have you studied French before?
+    </div>
+
+    <button class="question-btn" onclick="toggleTranslation('t2')">
+      Qu'est-ce que tu connais déjà en français ?
+    </button>
+    <div class="translation" id="t2">
+      🇬🇧 What do you already know in French?
+    </div>
+
+    <button class="question-btn" onclick="toggleTranslation('t3')">
+      Pourquoi veux-tu apprendre le français ?
+    </button>
+    <div class="translation" id="t3">
+      🇬🇧 Why do you want to learn French?
+    </div>
+
+    <button class="question-btn" onclick="toggleTranslation('t4')">
+      Qu'est-ce que tu aimerais pouvoir faire en français ?
+    </button>
+    <div class="translation" id="t4">
+      🇬🇧 What would you like to be able to do in French?
+    </div>
+
+    <div class="discover-box">
+      💬 <strong>Mini-challenge :</strong><br>
+      Dis bonjour à ton professeur en français.
+    </div>
+  </section>
+
+
+  <!-- VOCABULARY -->
+  <section class="section">
+    <h2>📚 Vocabulaire du jour — 8 min</h2>
+
+    <div class="instruction">
+      🔊 Clique sur <strong>Écouter</strong> pour entendre la prononciation.
+      <br>
+      🇬🇧 Clique sur la traduction pour la voir.
+    </div>
+
+    <h3>👋 Les salutations</h3>
+
+    <div class="vocab-grid">
+
+      <div class="vocab-card">
+        <div class="vocab-word">Bonjour</div>
+        <div class="translation-small">Hello / Good morning</div>
+        <button class="audio-btn" onclick="speak('Bonjour')">🔊 Écouter</button>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-word">Salut</div>
+        <div class="translation-small">Hi / Bye</div>
+        <button class="audio-btn" onclick="speak('Salut')">🔊 Écouter</button>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-word">Au revoir</div>
+        <div class="translation-small">Goodbye</div>
+        <button class="audio-btn" onclick="speak('Au revoir')">🔊 Écouter</button>
+      </div>
+
+    </div>
+
+
+    <h3>😊 Comment ça va ?</h3>
+
+    <div class="vocab-grid">
+
+      <div class="vocab-card">
+        <div class="vocab-word">Ça va ?</div>
+        <div class="translation-small">How are you?</div>
+        <button class="audio-btn" onclick="speak('Ça va ?')">🔊 Écouter</button>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-word">Très bien</div>
+        <div class="translation-small">Very well</div>
+        <button class="audio-btn" onclick="speak('Très bien')">🔊 Écouter</button>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-word">Merci</div>
+        <div class="translation-small">Thank you</div>
+        <button class="audio-btn" onclick="speak('Merci')">🔊 Écouter</button>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-word">Et toi ?</div>
+        <div class="translation-small">And you?</div>
+        <button class="audio-btn" onclick="speak('Et toi ?')">🔊 Écouter</button>
+      </div>
+
+    </div>
+
+
+    <h3>👤 Se présenter</h3>
+
+    <div class="vocab-grid">
+
+      <div class="vocab-card">
+        <div class="vocab-word">Je m'appelle…</div>
+        <div class="translation-small">My name is…</div>
+        <button class="audio-btn" onclick="speak('Je m’appelle')">🔊 Écouter</button>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-word">Comment tu t'appelles ?</div>
+        <div class="translation-small">What's your name?</div>
+        <button class="audio-btn" onclick="speak('Comment tu t’appelles ?')">🔊 Écouter</button>
+      </div>
+
+    </div>
+
+
+    <!-- QUICK CHECK -->
+    <div class="exercise">
+      <h3>⚡ Quick Check</h3>
+
+      <p>
+        Quelle expression signifie <strong>"Thank you"</strong>?
+      </p>
+
+      <label class="option" onclick="checkOption(this, false)">
+        A. Salut
+      </label>
+
+      <label class="option" onclick="checkOption(this, true)">
+        B. Merci
+      </label>
+
+      <label class="option" onclick="checkOption(this, false)">
+        C. Au revoir
+      </label>
+
+      <div id="quickFeedback" class="feedback"></div>
+    </div>
+
+  </section>
+
+
+  <!-- LOOK -->
+  <section class="section">
+    <h2>👀 Look — 7 min</h2>
+
+    <div class="instruction">
+      🔊 Écoute le dialogue. Puis lis-le avec ton professeur.
+    </div>
+
+    <div class="dialogue">
+
+      <p>
+        <span class="speaker">A :</span>
+        Bonjour !
+        <button class="audio-btn" onclick="speak('Bonjour !')">🔊</button>
+      </p>
+
+      <p>
+        <span class="speaker">B :</span>
+        Bonjour !
+      </p>
+
+      <p>
+        <span class="speaker">A :</span>
+        Comment tu t'appelles ?
+        <button class="audio-btn" onclick="speak('Comment tu t’appelles ?')">🔊</button>
+      </p>
+
+      <p>
+        <span class="speaker">B :</span>
+        Je m'appelle Kat. Et toi ?
+      </p>
+
+      <p>
+        <span class="speaker">A :</span>
+        Je m'appelle Marie.
+      </p>
+
+      <p>
+        <span class="speaker">B :</span>
+        Ça va ?
+      </p>
+
+      <p>
+        <span class="speaker">A :</span>
+        Très bien, merci !
+      </p>
+
+    </div>
+
+
+    <h3>🔎 Compréhension</h3>
+
+    <div class="exercise">
+
+      <p>Quels mots reconnais-tu ?</p>
+
+      <p>Comment dit-on <strong>"My name is…"</strong> ?</p>
+
+      <p>Comment demande-t-on le prénom de quelqu'un ?</p>
+
+      <p>Que signifie <strong>"Et toi ?"</strong> ?</p>
+
+    </div>
+
+
+    <h3>🎭 À ton tour !</h3>
+
+    <div class="dialogue">
+
+      <p><strong>A :</strong> Bonjour !</p>
+      <p><strong>B :</strong> Bonjour !</p>
+      <p><strong>A :</strong> Comment tu t'appelles ?</p>
+      <p><strong>B :</strong> Je m'appelle ________. Et toi ?</p>
+      <p><strong>A :</strong> Je m'appelle ________.</p>
+      <p><strong>B :</strong> Ça va ?</p>
+      <p><strong>A :</strong> Très bien, merci !</p>
+
+    </div>
+
+  </section>
+
+
+  <!-- DISCOVER -->
+  <section class="section">
+    <h2>🔎 Discover — 5 min</h2>
+
+    <div class="discover-box">
+
+      <h3>Observe 👀</h3>
+
+      <p>
+        <span class="highlight">Je m'appelle Kat.</span>
+      </p>
+
+      <p>
+        <span class="highlight">Comment tu t'appelles ?</span>
+      </p>
+
+      <hr>
+
+      <h3>💡 Découvre</h3>
+
+      <p><strong>Je</strong> = moi</p>
+      <p><strong>Tu</strong> = toi</p>
+
+      <p>
+        Observe les deux expressions :
+      </p>
+
+      <p>
+        <strong>Je m'appelle…</strong>
+      </p>
+
+      <p>
+        <strong>Tu t'appelles…</strong>
+      </p>
+
+      <hr>
+
+      <h3>🤔 Question</h3>
+
+      <p>
+        Qu'est-ce qui change entre <strong>Je</strong> et <strong>Tu</strong> ?
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- GRAMMAR -->
+  <section class="section">
+    <h2>✏️ Grammar — 5 min</h2>
+
+    <h3>Le verbe <em>s'appeler</em></h3>
+
+    <table>
+      <tr>
+        <th>Personne</th>
+        <th>S'appeler</th>
+      </tr>
+
+      <tr>
+        <td><strong>Je</strong></td>
+        <td><strong>m'appelle</strong></td>
+      </tr>
+
+      <tr>
+        <td><strong>Tu</strong></td>
+        <td><strong>t'appelles</strong></td>
+      </tr>
+    </table>
+
+
+    <div class="discover-box">
+
+      <h3>Pour demander le prénom :</h3>
+
+      <p>
+        <strong>Comment tu t'appelles ?</strong>
+      </p>
+
+      <p>🇬🇧 What's your name?</p>
+
+      <h3>Pour répondre :</h3>
+
+      <p>
+        <strong>Je m'appelle + prénom.</strong>
+      </p>
+
+      <p>Je m'appelle Kat.</p>
+      <p>Je m'appelle Marie.</p>
+
+    </div>
+
+
+    <div class="instruction">
+
+      🧠 <strong>Remember!</strong>
+
+      <p>
+        <strong>Je → m'</strong><br>
+        Je <strong>m'appelle</strong>
+      </p>
+
+      <p>
+        <strong>Tu → t'</strong><br>
+        Tu <strong>t'appelles</strong>
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- PRACTICE -->
+  <section class="section">
+    <h2>📝 Practice — 8 min</h2>
+
+
+    <!-- EXERCISE 1 -->
+    <div class="exercise">
+
+      <h3>1. Complète ✏️</h3>
+
+      <p>
+        Je
+        <input id="answer1" type="text">
+        Kat.
+      </p>
+
+      <p>
+        Comment tu
+        <input id="answer2" type="text">
+        ?
+      </p>
+
+      <p>
+        Ça
+        <input id="answer3" type="text">
+        ?
+      </p>
+
+      <button class="check-btn" onclick="checkFillBlanks()">
+        Vérifier
+      </button>
+
+      <div id="fillFeedback" class="feedback"></div>
+
+    </div>
+
+
+    <!-- EXERCISE 2 -->
+    <div class="exercise">
+
+      <h3>2. Remets les mots dans l'ordre 🔀</h3>
+
+      <p>
+        <strong>t'appelles / comment / tu</strong>
+      </p>
+
+      <input
+        id="orderAnswer"
+        type="text"
+        style="width:80%;"
+        placeholder="Écris la phrase..."
+      >
+
+      <br>
+
+      <button class="check-btn" onclick="checkOrder()">
+        Vérifier
+      </button>
+
+      <div id="orderFeedback" class="feedback"></div>
+
+    </div>
+
+
+    <!-- EXERCISE 3 -->
+    <div class="exercise">
+
+      <h3>3. Complète le dialogue 💬</h3>
+
+      <p><strong>A :</strong> Bonjour !</p>
+
+      <input id="dialogue1" type="text" placeholder="Ta réponse">
+
+      <p><strong>A :</strong> Comment tu t'appelles ?</p>
+
+      <p>
+        <strong>B :</strong>
+        Je
+        <input id="dialogue2" type="text">
+        Maria.
+        Et toi ?
+      </p>
+
+      <p><strong>A :</strong> Je m'appelle Paul.</p>
+
+      <button class="check-btn" onclick="checkDialogue()">
+        Vérifier
+      </button>
+
+      <div id="dialogueFeedback" class="feedback"></div>
+
+    </div>
+
+
+    <!-- EXERCISE 4 -->
+    <div class="exercise">
+
+      <h3>4. Choose the correct answer 🎯</h3>
+
+      <p>
+        <strong>Comment tu t'appelles ?</strong>
+      </p>
+
+      <label class="option" onclick="multipleChoice(this, false)">
+        A. Très bien, merci.
+      </label>
+
+      <label class="option" onclick="multipleChoice(this, true)">
+        B. Je m'appelle Sophie.
+      </label>
+
+      <label class="option" onclick="multipleChoice(this, false)">
+        C. Au revoir.
+      </label>
+
+      <div id="mcFeedback" class="feedback"></div>
+
+    </div>
+
+
+    <!-- EXERCISE 5 -->
+    <div class="exercise">
+
+      <h3>5. Complete the conversation</h3>
+
+      <div class="dialogue">
+
+        <p><strong>A :</strong> Bonjour !</p>
+
+        <p><strong>B :</strong> Bonjour !</p>
+
+        <p><strong>A :</strong> Comment tu t'appelles ?</p>
+
+        <p>
+          <strong>B :</strong>
+          __________________________
+        </p>
+
+        <p><strong>A :</strong> Ça va ?</p>
+
+        <p>
+          <strong>B :</strong>
+          __________________________
+        </p>
+
+      </div>
+
+      <p>
+        💬 Fais cette conversation à voix haute avec ton professeur.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- SPEAKING -->
+  <section class="section speaking">
+
+    <h2>🗣️ Speaking — 10 min</h2>
+
+    <h3>🎭 Situation : Première rencontre</h3>
+
+    <p>
+      Tu rencontres une personne pour la première fois.
+    </p>
+
+    <h3>Tu dois :</h3>
+
+    <ol>
+      <li>Dire bonjour. 👋</li>
+      <li>Demander son prénom.</li>
+      <li>Dire ton prénom.</li>
+      <li>Demander comment ça va.</li>
+      <li>Répondre.</li>
+    </ol>
+
+
+    <div class="help-box">
+
+      <h3>🆘 HELP BOX</h3>
+
+      <p>Bonjour !</p>
+      <p>Comment tu t'appelles ?</p>
+      <p>Je m'appelle ______.</p>
+      <p>Et toi ?</p>
+      <p>Ça va ?</p>
+      <p>Très bien, merci !</p>
+
+    </div>
+
+
+    <h3>🎭 ROLE-PLAY</h3>
+
+    <div class="exercise">
+
+      <h4>Round 1 — Avec ton professeur</h4>
+
+      <p>
+        Le professeur commence.
+      </p>
+
+      <p>
+        <strong>Professeur :</strong> Bonjour !
+      </p>
+
+      <p>
+        👉 <strong>À toi !</strong>
+      </p>
+
+    </div>
+
+
+    <div class="exercise">
+
+      <h4>Round 2 — Sans regarder 👀</h4>
+
+      <p>
+        Ferme le <strong>HELP BOX</strong>.
+      </p>
+
+      <p>
+        Fais la conversation avec ton professeur
+        sans regarder tes notes.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- FINAL MISSION -->
+  <section class="mission">
+
+    <h2>🏆 MISSION FINALE — 2 min</h2>
+
+    <h3>Can you do it?</h3>
+
+    <p>
+      <strong>Présente-toi en français ! 🇫🇷</strong>
+    </p>
+
+    <p>
+      Sans regarder tes notes, dis :
+    </p>
+
+    <div class="help-box">
+
+      <p>Bonjour !</p>
+      <p>Je m'appelle ______.</p>
+      <p>Comment tu t'appelles ?</p>
+      <p>Ça va ?</p>
+      <p>Très bien, merci !</p>
+
+    </div>
+
+  </section>
+
+
+  <!-- END -->
+  <section class="final-message">
+
+    <h2>🎉 Félicitations !</h2>
+
+    <p>
+      Tu viens de faire ta première conversation en français !
+      🇫🇷💜
+    </p>
+
+    <p>
+      À la prochaine ! 👋
+    </p>
+
+  </section>
+
+</div>
+
+
+<script>
+
+  /* -------------------------
+     TRANSLATIONS
+  ------------------------- */
+
+  function toggleTranslation(id) {
+
+    const element = document.getElementById(id);
+
+    element.classList.toggle("show");
+
+  }
+
+
+  /* -------------------------
+     FRENCH AUDIO
+  ------------------------- */
+
+  function speak(text) {
+
+    if (!("speechSynthesis" in window)) {
+
+      alert("Audio non disponible dans ce navigateur.");
+
+      return;
+    }
+
+    window.speechSynthesis.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+
+    utterance.lang = "fr-FR";
+    utterance.rate = 0.85;
+    utterance.pitch = 1;
+
+    window.speechSynthesis.speak(utterance);
+  }
+
+
+  /* -------------------------
+     QUICK CHECK
+  ------------------------- */
+
+  function checkOption(element, correct) {
+
+    const feedback =
+      document.getElementById("quickFeedback");
+
+    document.querySelectorAll(".option")
+      .forEach(option => {
+        option.classList.remove("correct", "incorrect");
+      });
+
+    if (correct) {
+
+      element.classList.add("correct");
+
+      feedback.innerHTML =
+        "✅ Correct ! <strong>Merci</strong> = Thank you.";
+
+      updateProgress();
+
+    } else {
+
+      element.classList.add("incorrect");
+
+      feedback.innerHTML =
+        "❌ Pas encore. Essaie encore !";
+
+    }
+
+  }
+
+
+  /* -------------------------
+     MULTIPLE CHOICE
+  ------------------------- */
+
+  function multipleChoice(element, correct) {
+
+    const feedback =
+      document.getElementById("mcFeedback");
+
+    const options =
+      element.parentElement.querySelectorAll(".option");
+
+    options.forEach(option => {
+      option.classList.remove("correct", "incorrect");
+    });
+
+    if (correct) {
+
+      element.classList.add("correct");
+
+      feedback.innerHTML =
+        "✅ Excellent ! Je m'appelle Sophie.";
+
+      updateProgress();
+
+    } else {
+
+      element.classList.add("incorrect");
+
+      feedback.innerHTML =
+        "❌ Essaie encore !";
+
+    }
+
+  }
+
+
+  /* -------------------------
+     FILL IN THE BLANKS
+  ------------------------- */
+
+  function checkFillBlanks() {
+
+    const a1 =
+      document.getElementById("answer1").value
+      .trim()
+      .toLowerCase();
+
+    const a2 =
+      document.getElementById("answer2").value
+      .trim()
+      .toLowerCase();
+
+    const a3 =
+      document.getElementById("answer3").value
+      .trim()
+      .toLowerCase();
+
+    const feedback =
+      document.getElementById("fillFeedback");
+
+    if (
+      a1 === "m'appelle" &&
+      a2 === "t'appelles" &&
+      a3 === "va"
+    ) {
+
+      feedback.innerHTML =
+        "🎉 Parfait ! Toutes les réponses sont correctes.";
+
+      updateProgress();
+
+    } else {
+
+      feedback.innerHTML =
+        "💡 Presque ! Vérifie : <strong>m'appelle / t'appelles / va</strong>.";
+
+    }
+
+  }
+
+
+  /* -------------------------
+     ORDER
+  ------------------------- */
+
+  function checkOrder() {
+
+    const answer =
+      document.getElementById("orderAnswer")
+      .value
+      .trim()
+      .toLowerCase();
+
+    const feedback =
+      document.getElementById("orderFeedback");
+
+    const correct =
+      "comment tu t'appelles ?";
+
+    if (
+      answer === correct ||
+      answer === "comment tu t'appelles"
+    ) {
+
+      feedback.innerHTML =
+        "✅ Correct ! Comment tu t'appelles ?";
+
+      updateProgress();
+
+    } else {
+
+      feedback.innerHTML =
+        "❌ Essaie encore. Commence par <strong>Comment...</strong>";
+
+    }
+
+  }
+
+
+  /* -------------------------
+     DIALOGUE
+  ------------------------- */
+
+  function checkDialogue() {
+
+    const first =
+      document.getElementById("dialogue1")
+      .value
+      .trim()
+      .toLowerCase();
+
+    const second =
+      document.getElementById("dialogue2")
+      .value
+      .trim()
+      .toLowerCase();
+
+    const feedback =
+      document.getElementById("dialogueFeedback");
+
+    const goodFirst =
+      ["bonjour", "salut"].includes(first);
+
+    const goodSecond =
+      second === "m'appelle";
+
+    if (goodFirst && goodSecond) {
+
+      feedback.innerHTML =
+        "🎉 Très bien ! Le dialogue est complet.";
+
+      updateProgress();
+
+    } else {
+
+      feedback.innerHTML =
+        "💡 Vérifie les réponses : <strong>Bonjour ! / m'appelle</strong>";
+
+    }
+
+  }
+
+
+  /* -------------------------
+     PROGRESS
+  ------------------------- */
+
+  let progress = 0;
+
+  function updateProgress() {
+
+    progress += 12.5;
+
+    if (progress > 100) {
+      progress = 100;
+    }
+
+    document.getElementById("progress")
+      .style.width = progress + "%";
+
+  }
+
+</script>
+
+</body>
+</html>
