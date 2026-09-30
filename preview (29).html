@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ARVA English · English → Spanish Flashcards</title>
+
+<style>
+
+/* =====================================================
+   GENERAL
+===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family:
+        "Montserrat",
+        "Poppins",
+        Arial,
+        sans-serif;
+
+    background: #F8F1E8;
+
+    color: #1A1A1A;
+
+    display: flex;
+    justify-content: center;
+
+    padding: 30px 16px;
+}
+
+.app {
+    width: min(900px, 100%);
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header {
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+.header h1 {
+    margin: 0;
+
+    font-size:
+        clamp(25px, 5vw, 38px);
+}
+
+.header p {
+    margin-top: 7px;
+
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   TABS
+===================================================== */
+
+.tabs {
+    display: flex;
+
+    gap: 8px;
+
+    margin-bottom: 18px;
+}
+
+.tab {
+    flex: 1;
+
+    padding: 14px 8px;
+
+    border:
+        2px solid #1A1A1A;
+
+    border-radius: 14px;
+
+    background: white;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.tab:hover {
+    transform:
+        translateY(-2px);
+}
+
+.tab.active {
+    background: #FFB3B3;
+}
+
+
+/* =====================================================
+   COUNTER
+===================================================== */
+
+.counter {
+    text-align: center;
+
+    font-weight: 800;
+
+    margin-bottom: 14px;
+}
+
+
+/* =====================================================
+   FLASHCARD
+===================================================== */
+
+.card-container {
+    perspective: 1200px;
+}
+
+.card {
+    width: 100%;
+
+    min-height: 390px;
+
+    cursor: pointer;
+}
+
+.card-inner {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 390px;
+
+    transition:
+        transform 0.55s;
+
+    transform-style:
+        preserve-3d;
+}
+
+
+/* Flip */
+
+.card.flipped
+.card-inner {
+
+    transform:
+        rotateY(180deg);
+}
+
+
+/* =====================================================
+   CARD SIDES
+===================================================== */
+
+.card-face {
+
+    position: absolute;
+
+    width: 100%;
+
+    min-height: 390px;
+
+    backface-visibility:
+        hidden;
+
+    background: white;
+
+    border:
+        3px solid #1A1A1A;
+
+    border-radius: 26px;
+
+    box-shadow:
+        0 9px 0 #1A1A1A;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 35px;
+}
+
+
+/* Spanish side */
+
+.card-back {
+
+    transform:
+        rotateY(180deg);
+
+    background:
+        #FFF9F2;
+}
+
+
+/* =====================================================
+   LANGUAGE LABEL
+===================================================== */
+
+.language-label {
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    font-weight: 900;
+
+    color: #888;
+
+    margin-bottom: 30px;
+}
+
+
+/* =====================================================
+   SENTENCE
+===================================================== */
+
+.sentence {
+
+    font-size:
+        clamp(23px, 4vw, 35px);
+
+    line-height: 1.45;
+
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   COLORS
+===================================================== */
+
+/*
+   BLUE = STRUCTURE
+
+   HAVE TO
+   HAS TO
+   WANT TO
+   WANTS TO
+   NEED TO
+   NEEDS TO
+
+   TENGO QUE
+   TIENE QUE
+   QUIERO
+   QUIERE
+   NECESITO
+   NECESITA
+*/
+
+.blue {
+
+    color:
+        #1976D2;
+
+    font-weight:
+        900;
+}
+
+
+/*
+   ORANGE = MAIN VERB
+
+   WORK
+   GO
+   BUY
+   etc.
+*/
+
+.orange {
+
+    color:
+        #F28C28;
+
+    font-weight:
+        900;
+}
+
+
+/* =====================================================
+   HINT
+===================================================== */
+
+.hint {
+
+    margin-top: 30px;
+
+    color: #999;
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.controls {
+
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 27px;
+}
+
+.nav-btn {
+
+    flex: 1;
+
+    padding:
+        15px 20px;
+
+    border:
+        2px solid #1A1A1A;
+
+    border-radius: 14px;
+
+    background:
+        #FFE66D;
+
+    font-size: 16px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 0 #1A1A1A;
+
+    transition:
+        0.1s;
+}
+
+.nav-btn:active {
+
+    transform:
+        translateY(3px);
+
+    box-shadow:
+        0 2px 0 #1A1A1A;
+}
+
+.nav-btn:disabled {
+
+    opacity: 0.35;
+
+    cursor:
+        not-allowed;
+}
+
+
+/* =====================================================
+   LEGEND
+===================================================== */
+
+.legend {
+
+    margin-top: 25px;
+
+    display: flex;
+
+    justify-content:
+        center;
+
+    gap: 22px;
+
+    flex-wrap: wrap;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+.legend-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+}
+
+.dot {
+
+    width: 11px;
+
+    height: 11px;
+
+    border-radius: 50%;
+}
+
+.dot-blue {
+    background:
+        #1976D2;
+}
+
+.dot-orange {
+    background:
+        #F28C28;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    body {
+        padding:
+            18px 12px;
+    }
+
+    .tabs {
+        gap: 5px;
+    }
+
+    .tab {
+        font-size:
+            12px;
+
+        padding:
+            12px 4px;
+    }
+
+    .card,
+    .card-inner,
+    .card-face {
+
+        min-height:
+            430px;
+    }
+
+    .card-face {
+
+        padding:
+            25px 18px;
+    }
+
+    .sentence {
+
+        font-size:
+            24px;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<div class="header">
+
+    <h1>
+        ARVA English 🦜
+    </h1>
+
+    <p>
+        English → Spanish · Making fluency fun!
+    </p>
+
+</div>
+
+
+
+<!-- =====================================================
+     TABS
+===================================================== -->
+
+<div class="tabs">
+
+    <button
+        class="tab active"
+        data-section="have">
+
+        HAVE TO
+
+    </button>
+
+
+    <button
+        class="tab"
+        data-section="want">
+
+        WANT TO
+
+    </button>
+
+
+    <button
+        class="tab"
+        data-section="need">
+
+        NEED TO
+
+    </button>
+
+</div>
+
+
+
+<!-- =====================================================
+     COUNTER
+===================================================== -->
+
+<div
+    class="counter"
+    id="counter">
+</div>
+
+
+
+<!-- =====================================================
+     FLASHCARD
+===================================================== -->
+
+<div class="card-container">
+
+<div
+    class="card"
+    id="card">
+
+
+<div class="card-inner">
+
+
+<!-- =================================================
+     FRONT = ENGLISH
+================================================= -->
+
+<div class="card-face">
+
+
+    <div class="language-label">
+        ENGLISH
+    </div>
+
+
+    <div
+        class="sentence"
+        id="englishText">
+    </div>
+
+
+    <div class="hint">
+        Haz clic para ver el español.
+    </div>
+
+</div>
+
+
+
+<!-- =================================================
+     BACK = SPANISH
+================================================= -->
+
+<div
+    class="card-face card-back">
+
+
+    <div class="language-label">
+        ESPAÑOL
+    </div>
+
+
+    <div
+        class="sentence"
+        id="spanishText">
+    </div>
+
+
+    <div class="hint">
+        Haz clic para volver al inglés.
+    </div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<div class="controls">
+
+    <button
+        class="nav-btn"
+        id="prev">
+
+        ← Atrás
+
+    </button>
+
+
+    <button
+        class="nav-btn"
+        id="next">
+
+        Adelante →
+
+    </button>
+
+</div>
+
+
+
+<!-- =====================================================
+     LEGEND
+===================================================== -->
+
+<div class="legend">
+
+    <div class="legend-item">
+
+        <span
+            class="dot dot-blue">
+        </span>
+
+        Estructura
+
+    </div>
+
+
+    <div class="legend-item">
+
+        <span
+            class="dot dot-orange">
+        </span>
+
+        Verbo principal
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+
+/* =====================================================
+   DECKS
+===================================================== */
+
+const decks = {
+
+
+/* =====================================================
+   HAVE TO
+===================================================== */
+
+have: [
+
+    {
+        english:
+        "I <span class='blue'>have to</span> <span class='orange'>work</span> today.",
+
+        spanish:
+        "Tengo que <span class='orange'>trabajar</span> hoy."
+    },
+
+
+    {
+        english:
+        "You <span class='blue'>have to</span> <span class='orange'>go</span> to the hardware store.",
+
+        spanish:
+        "Tienes que <span class='orange'>ir</span> a la ferretería."
+    },
+
+
+    {
+        english:
+        "We <span class='blue'>have to</span> <span class='orange'>reschedule</span> our class.",
+
+        spanish:
+        "Tenemos que <span class='orange'>reprogramar</span> nuestra clase."
+    },
+
+
+    {
+        english:
+        "Kat <span class='blue'>has to</span> <span class='orange'>go</span> to the doctor for her meds.",
+
+        spanish:
+        "Kat <span class='blue'>tiene que</span> <span class='orange'>ir</span> al médico por sus medicamentos."
+    },
+
+
+    {
+        english:
+        "Isaac <span class='blue'>has to</span> <span class='orange'>close</span> the shop.",
+
+        spanish:
+        "Isaac <span class='blue'>tiene que</span> <span class='orange'>cerrar</span> la tienda."
+    },
+
+
+    {
+        english:
+        "Martha y Stephany <span class='blue'>have to</span> <span class='orange'>do</span> the check in before midnight.",
+
+        spanish:
+        "Martha y Stephany <span class='blue'>tienen que</span> <span class='orange'>hacer</span> el check-in antes de medianoche."
+    },
+
+
+    {
+        english:
+        "I <span class='blue'>have to</span> <span class='orange'>take</span> the trash out.",
+
+        spanish:
+        "Tengo que <span class='orange'>sacar</span> la basura."
+    },
+
+
+    {
+        english:
+        "Do you <span class='blue'>have to</span> <span class='orange'>pay</span> taxes this year?",
+
+        spanish:
+        "¿Tienes que <span class='orange'>pagar</span> impuestos este año?"
+    }
+
+],
+
+
+
+/* =====================================================
+   WANT TO
+===================================================== */
+
+want: [
+
+    {
+        english:
+        "I <span class='blue'>want to</span> <span class='orange'>drink</span> some coffee this morning.",
+
+        spanish:
+        "Quiero <span class='orange'>tomar</span> café esta mañana."
+    },
+
+
+    {
+        english:
+        "Juan <span class='blue'>wants to</span> <span class='orange'>buy</span> a new shirt for the party.",
+
+        spanish:
+        "Juan <span class='blue'>quiere</span> <span class='orange'>comprar</span> una camisa nueva para la fiesta."
+    },
+
+
+    {
+        english:
+        "Sofía <span class='blue'>wants to</span> <span class='orange'>watch</span> a movie tonight.",
+
+        spanish:
+        "Sofía <span class='blue'>quiere</span> <span class='orange'>ver</span> una película esta noche."
+    },
+
+
+    {
+        english:
+        "We <span class='blue'>want to</span> <span class='orange'>eat</span> pizza for dinner.",
+
+        spanish:
+        "Queremos <span class='blue'>queremos</span> <span class='orange'>comer</span> pizza para la cena."
+    },
+
+
+    {
+        english:
+        "Julián <span class='blue'>wants to</span> <span class='orange'>play</span> soccer with his friends.",
+
+        spanish:
+        "Julián <span class='blue'>quiere</span> <span class='orange'>jugar</span> fútbol con sus amigos."
+    },
+
+
+    {
+        english:
+        "Alexandra <span class='blue'>wants to</span> <span class='orange'>learn</span> English this year.",
+
+        spanish:
+        "Alexandra <span class='blue'>quiere</span> <span class='orange'>aprender</span> inglés este año."
+    },
+
+
+    {
+        english:
+        "Martha and Stephany <span class='blue'>want to</span> <span class='orange'>go</span> to the supermarket after class.",
+
+        spanish:
+        "Martha y Stephany <span class='blue'>quieren</span> <span class='orange'>ir</span> al supermercado después de clase."
+    },
+
+
+    {
+        english:
+        "Magdalena <span class='blue'>wants to</span> <span class='orange'>visit</span> her family this weekend.",
+
+        spanish:
+        "Magdalena <span class='blue'>quiere</span> <span class='orange'>visitar</span> a su familia este fin de semana."
+    },
+
+
+    {
+        english:
+        "I <span class='blue'>want to</span> <span class='orange'>buy</span> a new house in Chicago.",
+
+        spanish:
+        "Quiero <span class='orange'>comprar</span> una casa nueva en Chicago."
+    }
+
+],
+
+
+
+/* =====================================================
+   NEED TO
+===================================================== */
+
+need: [
+
+    {
+        english:
+        "I <span class='blue'>need to</span> <span class='orange'>buy</span> some food for dinner.",
+
+        spanish:
+        "Necesito <span class='orange'>comprar</span> comida para la cena."
+    },
+
+
+    {
+        english:
+        "Juan <span class='blue'>needs to</span> <span class='orange'>call</span> his mom after work.",
+
+        spanish:
+        "Juan <span class='blue'>necesita</span> <span class='orange'>llamar</span> a su mamá después del trabajo."
+    },
+
+
+    {
+        english:
+        "Sofía <span class='blue'>needs to</span> <span class='orange'>clean</span> her room before the weekend.",
+
+        spanish:
+        "Sofía <span class='blue'>necesita</span> <span class='orange'>limpiar</span> su habitación antes del fin de semana."
+    },
+
+
+    {
+        english:
+        "We <span class='blue'>need to</span> <span class='orange'>go</span> to the supermarket today.",
+
+        spanish:
+        "Necesitamos <span class='orange'>ir</span> al supermercado hoy."
+    },
+
+
+    {
+        english:
+        "Julián <span class='blue'>needs to</span> <span class='orange'>study</span> for his English test.",
+
+        spanish:
+        "Julián <span class='blue'>necesita</span> <span class='orange'>estudiar</span> para su examen de inglés."
+    },
+
+
+    {
+        english:
+        "Alexandra <span class='blue'>needs to</span> <span class='orange'>drink</span> more water during the day.",
+
+        spanish:
+        "Alexandra <span class='blue'>necesita</span> <span class='orange'>tomar</span> más agua durante el día."
+    },
+
+
+    {
+        english:
+        "Martha and Stephany <span class='blue'>need to</span> <span class='orange'>arrive</span> early for the meeting.",
+
+        spanish:
+        "Martha y Stephany <span class='blue'>necesitan</span> <span class='orange'>llegar</span> temprano a la reunión."
+    },
+
+
+    {
+        english:
+        "Magdalena <span class='blue'>needs to</span> <span class='orange'>take</span> her dog to the vet tomorrow.",
+
+        spanish:
+        "Magdalena <span class='blue'>necesita</span> <span class='orange'>llevar</span> a su perro al veterinario mañana."
+    }
+
+]
+
+};
+
+
+
+/* =====================================================
+   STATE
+===================================================== */
+
+let currentSection = "have";
+
+let currentIndex = 0;
+
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const card =
+    document.getElementById("card");
+
+const englishText =
+    document.getElementById("englishText");
+
+const spanishText =
+    document.getElementById("spanishText");
+
+const counter =
+    document.getElementById("counter");
+
+const prev =
+    document.getElementById("prev");
+
+const next =
+    document.getElementById("next");
+
+
+
+/* =====================================================
+   RENDER
+===================================================== */
+
+function renderCard() {
+
+    const current =
+        decks[currentSection][currentIndex];
+
+
+    /*
+       ENGLISH = FRONT
+    */
+
+    englishText.innerHTML =
+        current.english;
+
+
+    /*
+       SPANISH = BACK
+    */
+
+    spanishText.innerHTML =
+        current.spanish;
+
+
+    /*
+       ALWAYS START ON ENGLISH
+    */
+
+    card.classList.remove("flipped");
+
+
+    /*
+       COUNTER
+    */
+
+    counter.textContent =
+        `${currentIndex + 1} / ${decks[currentSection].length}`;
+
+
+    /*
+       BUTTON STATES
+    */
+
+    prev.disabled =
+        currentIndex === 0;
+
+    next.disabled =
+        currentIndex ===
+        decks[currentSection].length - 1;
+}
+
+
+
+/* =====================================================
+   FLIP CARD
+===================================================== */
+
+card.addEventListener(
+    "click",
+    function() {
+
+        card.classList.toggle(
+            "flipped"
+        );
+
+    }
+);
+
+
+
+/* =====================================================
+   NEXT
+===================================================== */
+
+next.addEventListener(
+    "click",
+    function() {
+
+        if (
+            currentIndex <
+            decks[currentSection].length - 1
+        ) {
+
+            currentIndex++;
+
+            renderCard();
+        }
+
+    }
+);
+
+
+
+/* =====================================================
+   PREVIOUS
+===================================================== */
+
+prev.addEventListener(
+    "click",
+    function() {
+
+        if (
+            currentIndex > 0
+        ) {
+
+            currentIndex--;
+
+            renderCard();
+        }
+
+    }
+);
+
+
+
+/* =====================================================
+   TABS
+===================================================== */
+
+document
+    .querySelectorAll(".tab")
+    .forEach(
+        function(tab) {
+
+            tab.addEventListener(
+                "click",
+                function() {
+
+
+                    document
+                        .querySelectorAll(".tab")
+                        .forEach(
+                            function(t) {
+
+                                t.classList
+                                    .remove(
+                                        "active"
+                                    );
+
+                            }
+                        );
+
+
+                    tab.classList
+                        .add("active");
+
+
+                    currentSection =
+                        tab.dataset.section;
+
+
+                    currentIndex = 0;
+
+
+                    renderCard();
+
+                }
+            );
+
+        }
+    );
+
+
+
+/* =====================================================
+   KEYBOARD
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "ArrowLeft" &&
+            !prev.disabled
+        ) {
+
+            prev.click();
+
+        }
+
+
+        if (
+            event.key === "ArrowRight" &&
+            !next.disabled
+        ) {
+
+            next.click();
+
+        }
+
+
+        if (
+            event.key === " " ||
+            event.key === "Enter"
+        ) {
+
+            card.click();
+
+        }
+
+    }
+);
+
+
+
+/* =====================================================
+   START
+===================================================== */
+
+renderCard();
+
+</script>
+
+</body>
+
+</html>
