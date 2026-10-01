@@ -1,0 +1,156 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>A Very Hot Lawsuit · Passive Voice</title>
+<style>
+:root{--bg:#121214;--c:#1c1c22;--b:#2e2e38;--t:#ececf1;--m:#9a9aaa;--ok:#22c55e;--no:#ef4444;--or:#fb923c;--pk:#f472b6;--ac:#818cf8;--lime:#a3e635}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--t);font:16px/1.55 system-ui,sans-serif}
+main{max-width:920px;margin:auto;padding:20px 16px 90px}section{margin:48px 0}
+h1{font-size:2.4rem;margin:.2em 0}h2{font-size:1.7rem;margin:.25em 0 .3em}h3{margin:1.2em 0 .4em}
+.lbl{font:700 11px monospace;letter-spacing:.15em;text-transform:uppercase;color:var(--or);display:flex;gap:8px;align-items:center}
+.lbl:before{content:"";width:18px;height:4px;border-radius:4px;background:var(--or)}
+.sub{color:var(--m)}button{font:inherit;color:inherit;cursor:pointer}
+.g{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+.card,.q,.box{background:var(--c);border:1px solid var(--b);border-radius:12px;padding:12px 14px}
+.card{text-align:left;min-height:90px}button.card:hover,.btn:hover{border-color:var(--ac)}
+.q{margin:10px 0}.box{margin:12px 0;overflow-x:auto}
+.btn{background:var(--c);border:1px solid var(--b);border-radius:8px;padding:6px 12px;text-decoration:none;display:inline-block}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.col{flex-direction:column;align-items:flex-start}
+.on{border-color:var(--ac)!important;background:#25284a!important}
+.ok{background:#12351f!important;border-color:var(--ok)!important}.no{background:#3a1616!important;border-color:var(--no)!important}
+.fb{font-size:.9rem;color:var(--m);margin-top:6px}.fb.ok{background:none!important;color:#86efac}.fb.no{background:none!important;color:#fca5a5}
+.tag{font:700 10px monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--k);margin-bottom:4px}
+.verb{--k:#34d399}.adjective{--k:#fb923c}.noun{--k:#f472b6}.expression{--k:#a78bfa}
+.v{color:var(--or);font-weight:700}.p{color:var(--pk);font-weight:700}.p.v{text-decoration:underline var(--or)}
+.t{border-bottom:2px dotted var(--m);position:relative;cursor:help}
+.t:hover:after,.t:focus:after{content:attr(data-t);position:absolute;left:0;bottom:125%;background:#fff;color:#111;padding:3px 8px;border-radius:6px;font:400 .85rem system-ui;white-space:nowrap;z-index:5}
+.read p{font-size:1.08rem;margin:.8em 0}
+input{background:var(--bg);color:var(--t);border:0;border-bottom:2px solid var(--ac);padding:2px 6px;width:150px;font:inherit}
+input.ok{border-color:var(--ok)}input.no{border-color:var(--no)}
+textarea{width:100%;min-height:70px;background:var(--c);color:var(--t);border:1px solid var(--b);border-radius:10px;padding:10px;font:inherit;margin-top:10px}
+table{border-collapse:collapse;width:100%}td,th{border:1px solid var(--b);padding:6px 10px;text-align:left}th{background:#25252e}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}.pair div{padding:8px 12px;border-radius:8px;background:#25252e}
+.tl button{font-weight:700;border-width:2px;border-style:solid;background:var(--c);padding:12px 18px;border-radius:12px;text-align:left;flex:1;min-width:230px}
+.slot{flex:1;min-width:220px;border:2px solid var(--ac);border-radius:12px;padding:14px;text-align:center;font-weight:700;font-size:1.15rem;background:var(--c)}
+.slot small{display:block;color:var(--m);font:700 10px monospace;letter-spacing:.1em}
+.chip{background:#25252e;border:1px solid var(--b);border-radius:8px;padding:4px 10px}
+.ans{min-height:42px;border:1px dashed var(--b);border-radius:8px;padding:6px;margin-top:8px}
+</style></head><body><main></main><script>
+const $=(s,e=document)=>e.querySelector(s),h=(t,c='',x='')=>{const e=document.createElement(t);e.className=c;e.innerHTML=x;return e},M=$('main'),rnd=a=>[...a].sort(()=>Math.random()-.5),pad=i=>String(i+1).padStart(2,'0')+' · ';
+const S=s=>s.toLowerCase().replace(/’/g,"'").replace(/[.?!,]/g,'').replace(/\s+/g,' ').trim().replace(/ by .*$/,'');
+function sec(l,t,i){const s=h('section','',`<div class=lbl>${l}</div><h2>${t}</h2>${i?`<p class=sub>${i}</p>`:''}`),b=h('div');s.append(b);M.append(s);return b}
+M.append(h('header','',`<div class=lbl>ESL class · Passive voice</div><h1>A Very Hot Lawsuit</h1><p class=sub style="font-size:1.1rem">McDonald’s faced a highly publicized and controversial lawsuit. Today, you’ll hear the story and decide who was at fault.</p>`));
+
+/* quiz: options, green/red + short explanation */
+function quiz(b,Q){Q.forEach(([q,o,a,e],i)=>{const d=h('div','q',`<b>${pad(i)}${q}</b>`),r=h('div','row col'),f=h('div','fb');o.forEach((x,j)=>{const k=h('button','btn',x);k.onclick=()=>{if(d.dataset.d)return;if(j==a){k.classList.add('ok');d.dataset.d=1;f.className='fb ok';f.innerHTML='✔ '+e}else{k.classList.add('no');f.className='fb no';f.innerHTML='✘ Not quite — '+e}};r.append(k)});d.append(r,f);b.append(d)})}
+
+/* exercises: f=fill, c=choose, r=reorder, w=write */
+function ex(b,E){E.forEach(([k,q,x,y],i)=>{const d=h('div','q',`${pad(i)}${q.replace(/___/g,'<input>')}`),f=h('div','fb'),r=h('div','row');let go;
+if(k=='f'){const I=[...d.querySelectorAll('input')];go=()=>{const ok=I.every((e,j)=>x[j].split('/').some(a=>S(a)==S(e.value)));I.forEach(e=>e.className=ok?'ok':'no');f.className='fb '+(ok?'ok':'no');f.textContent=ok?'✔ Correct!':'✘ Answer: '+x.map(a=>a.split('/').join(' / ')).join(' … ')}}
+if(k=='c'){x.forEach((o,j)=>{const z=h('button','btn',o);z.onclick=()=>{if(d.dataset.d)return;d.dataset.d=1;z.classList.add(j==y?'ok':'no');if(j!=y)r.children[y].classList.add('ok');f.className='fb '+(j==y?'ok':'no');f.textContent=j==y?'✔ Correct!':'✘ Correct answer: '+x[y]};r.append(z)})}
+if(k=='r'){const A=h('div','ans'),P=h('div','row');rnd(x.split('|')).forEach(w=>{const c=h('button','chip',w);c.onclick=()=>(c.parentNode==P?A:P).append(c);P.append(c)});d.append(A,P);go=()=>{const s=[...A.children].map(c=>c.textContent).join(' '),ok=y.split('/').some(a=>S(a)==S(s));A.className='ans '+(ok?'ok':'no');f.className='fb '+(ok?'ok':'no');f.textContent=ok?'✔ Correct!':'✘ Answer: '+y.split('/')[0]+'.'}}
+if(k=='w'){d.append(h('textarea'));go=()=>{f.className='fb ok';f.textContent='✔ Great! Read your sentence aloud to your partner. Remember: BE + V3.'}}
+if(go){const c=h('button','btn','Check');c.onclick=go;r.append(c)}d.append(r,f);b.append(d)})}
+
+/* VOCABULARY */
+const V=[
+['adjective','elderly','older person (a polite word for old)','anciano/a, persona mayor','An elderly woman was burned by hot coffee.'],
+['adjective','burned','hurt by something very hot','quemado/a','Stella was badly burned.'],
+['verb','to spill','accidentally make a liquid fall','derramar','She spilled the coffee on her lap.','spill – spilled – spilled'],
+['noun','a lap','the top part of your legs when you are sitting','regazo','The cup fell onto her lap.'],
+['verb','to sue','take someone to court','demandar','She decided to sue the company.','sue – sued – sued'],
+['verb','to claim','say that something is true','afirmar / alegar','She claimed the coffee was too hot.','claim – claimed – claimed'],
+['noun','the jury','a group of people who decide a court case','jurado','The jury listened to both sides.'],
+['verb','awarded','officially given money by a court','concedido / otorgado','The jury awarded her $200,000.','award – awarded – awarded'],
+['noun','facts','things that are true','hechos','Always check the facts first.'],
+['expression','to file a lawsuit','to officially take someone to court','presentar una demanda','She filed a lawsuit against the company.'],
+['verb','to demand','to ask for something strongly or officially','exigir / reclamar','She demanded money for her medical bills.','demand – demanded – demanded'],
+['noun','a settlement','an agreement to end a legal dispute without going to trial','acuerdo / conciliación','They reached a settlement.'],
+['noun','a trial','a legal process in court where a case is decided','juicio','The trial lasted several days.'],
+['expression','to be at fault','to be responsible for something bad that happened','tener la culpa / ser responsable','Who was at fault in this case?']];
+let b=sec('Vocabulary',"Today's words",'Read the word aloud and guess the meaning. Then click the card to check. Verbs also show their three forms.');b.className='g';
+V.forEach(([t,w,en,es,ex,f])=>{const c=h('button','card '+t),a=`<div class=tag>${t}</div><b style="font-size:1.1rem">${w}</b>`;c.innerHTML=a;
+c.onclick=()=>{c.classList.toggle('on');c.innerHTML=c.classList.contains('on')?`<div class=tag>${t}</div><b>${w}</b><div class=fb>${en}</div><div class=fb><i>${ex}</i></div><div class=fb>🇪🇸 ${es}</div>${f?`<div class=fb>${f}</div>`:''}`:a};b.append(c)});
+
+/* WARM-UP */
+
+b=sec('Warm-up','Who is responsible?','Read each situation and discuss with your partner. Who do you think is responsible? Choose an option.');
+[['A customer spills a very hot coffee on herself.',['The customer','The restaurant','Both','Nobody']],['A bridge collapses because it was poorly designed.',['The engineer','The construction company','The government','Nobody']],['A roof collapses because it was not properly maintained.',['The owner','The architect','The construction company','Nobody']],['A person gets sick after eating at a restaurant.',['The customer','The restaurant','Both','Nobody']],['A beauty product causes an unexpected severe allergy to a customer.',['The customer','The company','Both','Nobody']]].forEach(([q,o])=>{const d=h('div','q',`<b>${q}</b>`),r=h('div','row');o.forEach(x=>{const k=h('button','btn',x);k.onclick=()=>{[...r.children].forEach(y=>y.classList.remove('on'));k.classList.add('on')};r.append(k)});d.append(r);b.append(d)});
+
+/* LISTENING */
+b=sec('Listening','Listen to the story','Listen to the first part of this story (about the first minute) and answer the questions below.');
+b.append(h('a','btn','▶ Watch on YouTube'));$('a',b).href='https://www.youtube.com/watch?v=pCkL9UlmCOE';$('a',b).target='_blank';$('a',b).rel='noopener';
+quiz(b,[['How was Stella Liebeck injured?',['She was hit by a car.','She was severely burned by hot coffee.','She was injured in a restaurant.'],1,'the audio says she “was severely burned when she spilled a cup of McDonald’s coffee in her lap.”'],
+['How much was Stella awarded?',['$800','$1 million','$2.9 million'],2,'“…has been awarded $2.9 million after she sued McDonald’s.”'],
+['Why was McDonald’s sued?',['The coffee was cold.','The coffee was considered too hot.','The restaurant was closed.'],1,'she sued “claiming their coffee was too hot.”'],
+['What was lost as the story was repeated in the media?',['The money','The facts','The lawsuit'],1,'“…one thing was lost. The facts.”'],
+['Where was Stella sitting when she was burned?',['In a restaurant','In the driver’s seat','In the passenger seat of a parked car'],2,'she was “sitting in the passenger seat of a parked car when she was burned.”']]);
+
+/* READING */
+const fmt=s=>s.replace(/\{(\w+)\|([^|}]*)\|?([^}]*)\}/g,(m,f,x,t)=>`<span class="${[f.includes('v')&&'v',f.includes('p')&&'p',f.includes('t')&&'t'].filter(Boolean).join(' ')}"${f.includes('t')?` tabindex=0 data-t="${t}"`:''}>${x}</span>`);
+b=sec('Reading','The McDonald’s Hot Coffee Case','Read the text and hover over the dotted words to see a translation. <span class=v>Orange</span> = today’s vocabulary · <span class=p>Pink</span> = passive voice · <span class=t>dotted</span> = translation.');
+const box=h('div','box read');b.append(box);
+["In 1992, a famous case involving McDonald’s received a lot of attention from the {t|media|medios de comunicación}. The case {pt|was brought|fue presentado} by Stella Liebeck, a 79-year-old woman. She {pv|was burned} by very hot coffee and later {v|sued} McDonald’s.",
+"On February 27, 1992, Stella was sitting in the {t|passenger seat|asiento del copiloto} of a {t|parked|estacionado} car when the coffee accidentally {v|spilled} on her. The coffee {p|was served} at a very high temperature. As a result, Stella suffered {t|serious burns|quemaduras graves}. About 16% of her body {pt|was affected|fue afectado}, and some of the burns were very severe.",
+"Stella {pt|was taken|fue llevada} to the hospital, where she stayed for about a week. Her {t|medical bills|facturas médicas} were about $10,000. After the accident, McDonald’s {p|was contacted} by Stella and her family. She asked for help with her medical costs, but she {pt|was offered|le ofrecieron} only $800. The amount {p|was considered} too low, so Stella decided to take the case to court.",
+"During the {v|trial}, information about McDonald’s coffee {p|was presented}. It {pt|was shown|se demostró} that other customers {pv|had been burned} by very hot coffee before. Hundreds of {t|complaints|quejas} {p|had been made} over several years. McDonald’s said that its coffee temperature {p|was accepted} in the industry and that the company did not plan to {t|lower|bajar} it.",
+"In the end, Stella {pv|was awarded} $200,000 in {t|compensation|compensación}. This amount {pt|was later reduced|fue reducido después} to $160,000 because she had also been responsible for {v|spilling} the coffee. She {pv|was also awarded} $2.7 million in {t|punitive damages|daños punitivos}, but this amount {p|was later reduced} by the judge.",
+"The case {p|has been discussed} for many years. However, the real {v|facts} {pt|have often been misunderstood|han sido malinterpretados}. In the media, the story {p|has been presented} in a much simpler way: a woman {v|spilled} coffee, {v|sued} McDonald’s, and won millions of dollars.",
+"Today, the case {p|is still used} as an example of {t|public perception|percepción pública}, product safety, and customer responsibility. The story shows that important information {pt|can be lost|puede perderse} when a complicated case {pt|is reduced|se reduce} to a simple {t|headline|titular}."].forEach(p=>box.append(h('p','',fmt(p))));
+b.append(h('h3','','Comprehension'));
+quiz(b,[['Why was Stella’s first request to McDonald’s not accepted?',['Her medical bills were too low.','The amount offered was considered insufficient.','She did not contact McDonald’s.'],1,'she was offered only $800, and “the amount was considered too low.”'],
+['What information was discovered during the trial?',['Many customers had been burned by very hot coffee before.','McDonald’s had stopped selling coffee.','Stella had worked for McDonald’s.'],0,'“Hundreds of complaints had been made over several years.”'],
+['Why was Stella’s compensation later reduced?',['She was considered partly responsible.','The jury changed its decision.','She did not have medical bills.'],0,'she “had also been responsible for spilling the coffee.”'],
+['How has the case often been presented in the media?',['As a complicated discussion about product safety in the coffee industry.','As a simple story about a woman who spilled coffee and won millions.','As a successful advertising campaign for McDonald’s hot coffee.'],1,'“a woman spilled coffee, sued McDonald’s, and won millions of dollars.”'],
+['What lesson is the case often used to illustrate?',['Important facts can be lost when a complicated story is simplified.','Companies should never sell hot drinks.','Customers are always responsible for accidents.'],0,'the text ends by saying information can be lost when a case becomes a simple headline.']]);
+
+/* WORD LAB */
+b=sec('Vocabulary · In context','Word lab','Words that go together. Click a word on the left, then its partner on the right. When you make a pair, each person says a sentence with it.');
+const L=['elderly','hot','coffee','medical','file','take','jury','legal','awarded','severe'],R=['bills','person','burns','a lawsuit','temperature','money','team','case','coffee','to court'],
+OK={elderly:['person'],hot:['coffee'],coffee:['temperature'],medical:['bills'],file:['a lawsuit'],take:['to court'],jury:['team','case'],legal:['case','team'],awarded:['money'],severe:['burns']};
+const wl=h('div','row'),cl=h('div','row col'),cr=h('div','row col');let sel=null;wl.append(cl,cr);b.append(wl);
+L.forEach(l=>{const k=h('button','btn',l);k.onclick=()=>{if(k.disabled)return;sel&&sel.classList.remove('on');sel=k;k.classList.add('on')};cl.append(k)});
+R.forEach(r=>{const k=h('button','btn',r);k.onclick=()=>{if(!sel||k.disabled)return;if(OK[sel.textContent].includes(r)){sel.className=k.className='btn ok';sel.disabled=k.disabled=true;sel=null}else{k.classList.add('no');setTimeout(()=>k.classList.remove('no'),600)}};cr.append(k)});
+cl.style.marginRight='40px';
+
+b=sec('Vocabulary · In context','Pick the right shade of meaning','Both options look similar. Choose the one that fits the sentence best and read the explanation.');
+quiz(b,[['Stella was an ___ woman when the accident happened.',['elderly','old'],0,'<b>old</b> is grammatically correct, but <b>elderly</b> is more polite and formal for an older person.'],
+['Stella was badly ___ by the coffee.',['hurt','burned'],1,'<b>hurt</b> is more general. <b>Burned</b> means injured by something very hot.'],
+['Stella decided to ___ McDonald’s.',['claim','sue'],1,'<b>Claim</b> means to say something is true. <b>Sue</b> means to take someone to court.'],
+['Stella ___ that the coffee was too hot.',['said','claimed'],1,'<b>Said</b> is possible, but <b>claimed</b> fits a legal context: she stated something she believed was true.'],
+['The jury ___ Stella $200,000 in compensation.',['gave','awarded'],1,'<b>Gave</b> is general. <b>Awarded</b> is used when money is officially given, especially by a court.'],
+['Stella decided to ___ a lawsuit against McDonald’s.',['make','file'],1,'We say <b>file</b> a lawsuit, not “make” one. <b>File</b> means to officially submit a legal case.'],
+['The case was decided by a ___ of people.',['jury','group'],0,'A <b>jury</b> is a specific group that listens to a legal case and decides. <b>Group</b> is much more general.'],
+['The media did not always show the real ___.',['stories','facts'],1,'A <b>story</b> is a narrative. <b>Facts</b> are things that are actually true.']]);
+
+/* PASSIVE REVIEW */
+b=sec('Passive voice · Review','Who does the action?','Look at the sentences. What is important: who does the action, or what happens to the person/thing?');
+[['McDonald’s serves the coffee at a very high temperature.','The coffee is served at a very high temperature.'],['The hot coffee burned Stella.','Stella was burned by the hot coffee.'],['The jury awarded Stella $200,000.','Stella was awarded $200,000.'],['The media has misunderstood the case.','The case has been misunderstood by the media.']].forEach(([a,p],i)=>b.append(h('div','pair',`<div>${pad(i)}${a}</div><div style="border-left:3px solid var(--pk)">${p}</div>`)));
+const tbl='<table><tr><th>Tense<th>Passive structure<th>Example<tr><td>Simple Present<td>am / is / are + past participle<td>The coffee is served hot.<tr><td>Simple Past<td>was / were + past participle<td>Stella was burned.<tr><td>Present Perfect<td>has / have + been + past participle<td>The case has been misunderstood.</table>';
+b.append(h('div','box',`<h3 style="margin:0">Notice the pattern</h3><p>In the passive voice, we focus on the person or thing that <b>receives</b> the action.</p><div class=pair><div><b>ACTIVE</b><br>McDonald’s serves the coffee.</div><div style="border-left:3px solid var(--pk)"><b>PASSIVE</b><br>The coffee is served by McDonald’s.</div></div><p>The object of the active sentence becomes the subject of the passive sentence.</p><h3>The formula</h3><p class=p style="font-size:1.2rem">Subject + BE + Past Participle</p><p>The form of BE changes depending on the tense:</p>${tbl}`));
+b.append(h('h3','','Put it into practice'),h('p','sub','Complete each sentence with the correct passive form of the verb in parentheses, then click Check.'));
+ex(b,[['f',"Today McDonald’s coffee ___ at a very high temperature anymore. (serve, negative)",["isn't served/is not served"]],['f',"Stella ___ by the hot coffee in 1992. (burn)",["was burned"]],['f',"The bridge ___ by a team of engineers last year. (design)",["was designed"]],['f',"Important safety rules ___ after the earthquake. (establish)",["were established"]],['f',"The case ___ by the media in a very simple way. (present)",["has been presented/was presented"]],['f',"The damaged roof ___ after the heavy storm. (repair)",["was repaired"]],['f',"New materials ___ in the construction of the building. (use)",["have been used/were used"]]]);
+
+/* ROULETTE */
+const A=['The project manager','The architect','The engineer','The construction team','The restaurant manager','The jury','The company','The safety inspector','The contractor','The media'],B=['the report','the building','the coffee','the bridge','the safety problems','the design','the customers','the roof','the case','the construction materials'];
+b=sec('Speaking · Writing','🎡 Sentence Roulette','Spin the roulette and create a phrase using the passive voice.');
+b.innerHTML='<div class=row><div class=slot><small>A — WHO?</small><span>?</span></div><div class=slot><small>B — WHAT?</small><span>?</span></div></div><div class=row><button class=btn>🎡 Spin</button></div><textarea placeholder="Write your sentence…"></textarea>';
+const sl=b.querySelectorAll('.slot span');b.querySelector('button').onclick=()=>{let n=0;const t=setInterval(()=>{sl[0].textContent=A[Math.random()*10|0];sl[1].textContent=B[Math.random()*10|0];if(++n>14)clearInterval(t)},70)};
+
+/* DISCUSSION */
+b=sec('Discussion','Who is responsible?');
+b.append(h('div','box',`<b style="color:var(--lime)">Useful language</b><ol style="margin:6px 0 0;padding-left:22px">${['I think we should…','In my opinion, …','The main problem is…','I think ___ is responsible for…','The problem was caused by…','We need to find out who was responsible.','I suggest we…','I agree with you.','I’m not sure about that.','Could you explain that?'].map(x=>`<li>${x}</li>`).join('')}</ol>`),h('h3','','Debate cards'),h('p','sub','Choose a card and discuss the situation. Try to use the passive voice. Click a card to go further.'));
+const D=h('div','g');b.append(D);
+[['Construction','A door is not closing properly three months after the building was delivered to the client. Who should fix it? Why?','Should the contractor be contacted first?'],['Architecture','A design mistake is discovered after construction has been completed. Who should be responsible for the mistake?','Should the building be modified or should the client accept it?'],['Engineering','A bridge is damaged after only two years of use. Who should pay for the repairs?','Should the bridge have been inspected more carefully?'],['Workplace','A safety problem is reported several times, but nothing is done about it. Who should take responsibility?','What should be done when a reported problem is ignored?']].forEach(([t,q,g],i)=>{const c=h('button','card','');const a=`<div class=tag style="color:var(--ac)">${pad(i)}${t}</div>${q}<div class=fb>Click · go further</div>`;c.innerHTML=a;c.onclick=()=>{c.classList.toggle('on');c.innerHTML=c.classList.contains('on')?a.replace('Click · go further',`<b style="color:var(--lime)">Go further:</b> ${g}`):a};D.append(c)});
+
+/* CLOSING — traffic light */
+b=sec('Closing','How do you feel?','Choose the colour that best describes how you feel at the end of the class. Your homework depends on your colour.');
+const IR='be (am / is / are)|was / were|been|ser / estar;become|became|become|convertirse;begin|began|begun|empezar;break|broke|broken|romper;bring|brought|brought|traer;build|built|built|construir;buy|bought|bought|comprar;choose|chose|chosen|elegir;come|came|come|venir;do|did|done|hacer;find|found|found|encontrar;get|got|got / gotten|obtener;give|gave|given|dar;go|went|gone|ir;have|had|had|tener;hold|held|held|sostener;know|knew|known|saber / conocer;leave|left|left|dejar / salir;lose|lost|lost|perder;make|made|made|hacer / fabricar;pay|paid|paid|pagar;put|put|put|poner;run|ran|run|correr;say|said|said|decir;see|saw|seen|ver;send|sent|sent|enviar;take|took|taken|tomar / llevar;tell|told|told|decir / contar;think|thought|thought|pensar;write|wrote|written|escribir'.split(';'),vt=()=>h('div','box',`<b>Common irregular verbs</b><table><tr><th>Simple Present<th>Simple Past<th>Past Participle<th>Español${IR.map(x=>'<tr>'+x.split('|').map(y=>'<td>'+y).join('')).join('')}</table>`),
+fm='<p><b>Formula:</b> <span class=p>Subject + BE + V3 + (by + person)</span></p>';
+const eq=(a,s)=>['f',`${a}<br>→ ${s} ___`],
+GP=[['f',"The coffee ___ at a high temperature. (serve)",["is served"]],['f',"The building ___ yesterday. (inspect)",["was inspected"]],['f',"The design ___ approved. (has / have)",["has been"]],['f',"The materials ___ regularly. (check)",["are checked"]],['f',"The roof ___ last week. (repair)",["was repaired"]],['r',"Reorder: ","was|the bridge|inspected|yesterday","The bridge was inspected yesterday/Yesterday the bridge was inspected"],['r',"Reorder: ","has|been|the problem|reported","The problem has been reported"],['r',"Reorder: ","are|the materials|checked|regularly","The materials are checked regularly/Regularly the materials are checked"],['f',"Complete: The report was sent ___ the project manager.",["by"]],['w',"Write one passive sentence about your work."]],
+YP=[[...eq('The engineer checks the equipment.','The equipment'),["is checked"]],[...eq('The architect designed the building.','The building'),["was designed"]],[...eq('The company has approved the design.','The design'),["has been approved"]],[...eq('The workers repaired the roof.','The roof'),["was repaired"]],[...eq('The safety inspector has reported the problem.','The problem'),["has been reported"]],['c',"The materials ________ every morning.",["are checked","were checked","has checked"],0],['c',"The building ________ last year.",["is designed","was designed","has design"],1],['c',"The report ________ already been sent.",["is","was","has"],2],['r',"Build the question: ","was|the building|inspected|yesterday","Was the building inspected yesterday"],['r',"Build the question: ","has|the problem|been|reported","Has the problem been reported"]],
+RP=[['f',"The coffee ___ at a high temperature. (serve)",["is served"]],['f',"The building ___ yesterday. (inspect)",["was inspected"]],['f',"The design ___ already ___. (approve)",["has","been approved"]],['f',"The materials ___ every morning. (check)",["are checked"]],['f',"The roof ___ last week. (repair)",["was repaired"]],['f',"The problem ___ reported. (has / have)",["has been"]],[...eq('The engineer checks the equipment.','The equipment'),["is checked"]],[...eq('The architect designed the building.','The building'),["was designed"]],[...eq('The company has approved the project.','The project'),["has been approved"]],[...eq('The workers repaired the door.','The door'),["was repaired"]],['r',"Reorder: ","was|the bridge|inspected|yesterday","The bridge was inspected yesterday/Yesterday the bridge was inspected"],['r',"Reorder: ","has|been|the report|sent","The report has been sent"],['r',"Reorder: ","are|the materials|tested|regularly","The materials are tested regularly/Regularly the materials are tested"],['c',"The doors ___ installed every day.",["is","are"],1],['c',"The roof ___ repaired.",["was","were"],0],['c',"The problems ___ been reported.",["has","have"],1],['w',"Write one sentence in the Simple Past Passive."],['w',"Write one sentence in the Present Perfect Passive."]];
+const T=h('div'),tl=h('div','row tl');
+[['🟢 Green','I can use today’s words and the passive voice with confidence.','var(--ok)',()=>[h('h3','','🟢 Green · Practice'),h('div','box',fm+'<p>Present → am/is/are + V3 · Past → was/were + V3 · Present Perfect → has/have + been + V3</p>'),vt(),GP]],
+['🟡 Yellow','I understand the passive voice, but I want more practice building sentences.','#facc15',()=>[h('h3','','🟡 Yellow · A little more practice'),h('div','box','<p>In the passive voice, the object of the active sentence becomes the subject.</p><p><b>Active:</b> The engineer inspected the bridge.<br><b>Passive:</b> The bridge was inspected by the engineer.</p><p>Remember: <span class=p>BE + V3</span></p>'),vt(),YP]],
+['🔴 Red','I want to review how the passive voice works.','var(--no)',()=>[h('h3','','🔴 Red · Repaso + práctica'),h('div','box',`<b>¿Qué es la voz pasiva (Passive Voice)?</b><p>Usamos la voz pasiva cuando queremos destacar lo que le pasa a una persona o cosa, y no quién realiza la acción.</p><p><b>Activa:</b> The engineer inspected the bridge. (El ingeniero inspeccionó el puente.)<br><b>Pasiva:</b> The bridge was inspected by the engineer. (El puente fue inspeccionado por el ingeniero.)</p><p><b>Fórmula:</b> <span class=p>Sujeto + BE + V3 + (by + persona)</span></p><p>V3 es el participio pasado del verbo. El verbo BE cambia según el tiempo verbal:</p><table><tr><th>Tiempo<th>Fórmula<th>Ejemplo<tr><td>Presente simple<td>am / is / are + V3<td>The door is checked.<tr><td>Pasado simple<td>was / were + V3<td>The door was checked.<tr><td>Presente perfecto<td>has / have + been + V3<td>The door has been checked.</table><h3>¿Cuándo la usamos?</h3><p><b>Presente simple:</b> rutinas, procesos y procedimientos. <i>The equipment is checked every day.</i> (El equipo se revisa todos los días.)</p><p><b>Pasado simple:</b> acciones terminadas en el pasado. <i>The roof was repaired last week.</i> (El techo fue reparado la semana pasada.)</p><p><b>Presente perfecto:</b> acciones terminadas que tienen conexión con el presente. <i>The problem has been reported.</i> (El problema ha sido reportado.)</p><p>Podemos usar <b>by</b> para decir quién hizo la acción (<i>The building was designed by the architect</i>), pero <b>by + persona</b> es opcional: se omite cuando no sabemos quién lo hizo o no es importante.</p>`),vt(),h('h3','','Practice · 18 exercises'),RP]]].forEach(([n,d,col,f])=>{const k=h('button','',`${n}<div class=fb style="font-weight:400">${d}</div>`);k.style.borderColor=col;k.onclick=()=>{[...tl.children].forEach(x=>x.classList.remove('on'));k.classList.add('on');T.innerHTML='';f().forEach(x=>Array.isArray(x)?ex(T,x):T.append(x));T.scrollIntoView({behavior:'smooth'})};tl.append(k)});
+b.append(tl,T);
+</script></body></html>
