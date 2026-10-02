@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ARVA English · B1 · How Weight Loss Is Being Sold: The Peptide Era</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;600;700&display=swap">
+<style>
+:root{--navy:#14264f;--blue:#2a55d4;--sky:#dbe6ff;--beige:#f4ead5;--sand:#e6d6b2;--paper:#fbf6ea;--ink:#1b2438;--ok:#1f9d55;--bad:#d64545;--or:#e8730c;--pk:#d6247f}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--beige);color:var(--ink);font:17px/1.6 Figtree,system-ui,sans-serif}
+h1,h2,h3{font-family:'Bricolage Grotesque',Figtree,sans-serif;color:var(--navy);line-height:1.15;margin:0 0 .5em}
+header{background:var(--navy);color:#fff;padding:56px 20px 48px}
+header>div,main{max-width:900px;margin:auto}
+header small{color:var(--sand);font-weight:700;letter-spacing:.02em}
+header h1{color:#fff;font-size:clamp(2rem,6vw,3.6rem);margin:.3em 0}
+header p{max-width:62ch;color:#dfe6fa}
+nav{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:2px solid var(--sand);display:flex;gap:4px;overflow-x:auto;padding:8px 12px;justify-content:center}
+nav a{white-space:nowrap;color:var(--navy);text-decoration:none;font-weight:700;font-size:.85rem;padding:6px 10px;border-radius:99px}
+nav a:hover{background:var(--sky)}
+main{padding:20px}
+section{background:var(--paper);border:2px solid var(--sand);border-left:8px solid var(--blue);border-radius:14px;padding:26px;margin:28px 0}
+.sub{color:#4a5675;margin-top:-.2em}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.card{perspective:700px;height:150px;cursor:pointer;border:0;background:none;padding:0;font:inherit}
+.card i{display:block;position:relative;height:100%;transition:transform .5s;transform-style:preserve-3d;font-style:normal}
+.card.f i{transform:rotateY(180deg)}
+.card b,.card u{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;padding:14px;display:flex;flex-direction:column;justify-content:center;text-decoration:none;text-align:left}
+.card b{background:var(--navy);color:#fff;font:800 1.25rem 'Bricolage Grotesque',sans-serif}
+.card b span{font:700 .72rem Figtree;color:var(--sand);margin-bottom:6px}
+.card u{background:var(--sky);border:2px solid var(--blue);transform:rotateY(180deg);color:var(--navy);font-size:.92rem;line-height:1.35}
+.card u strong{display:block;margin-top:8px;color:var(--blue)}
+.pair{background:#fff;border:2px solid var(--sand);border-radius:12px;padding:12px}
+.pair>b{display:block;margin-bottom:8px}
+.btn,.pair button,.opt,.tile{font:inherit;cursor:pointer}
+.btn{background:var(--blue);color:#fff;border:0;border-radius:99px;padding:9px 18px;font-weight:700;text-decoration:none;display:inline-block}
+.btn:hover{background:var(--navy)}
+.btn.alt{background:var(--sky);color:var(--navy)}
+.pair button{border:2px solid var(--blue);background:var(--sky);color:var(--navy);border-radius:99px;padding:4px 12px;font-weight:600;margin-right:6px}
+.pair button.ok,.opt.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+.pair button.no,.opt.no{background:var(--bad);border-color:var(--bad);color:#fff}
+.fb{display:block;margin-top:8px;font-size:.9rem;color:#4a5675}
+.q{background:#fff;border:2px solid var(--sand);border-radius:12px;padding:14px 16px;margin:12px 0}
+.q p{margin:0 0 8px;font-weight:700}
+.opt{display:block;width:100%;text-align:left;background:var(--paper);border:2px solid var(--sand);border-radius:10px;padding:8px 12px;margin:6px 0}
+.opt:hover:not(:disabled){border-color:var(--blue)}
+.why{display:none;margin-top:8px;padding:8px 12px;border-radius:8px;font-size:.93rem;background:var(--sky)}
+.why.ok{background:#dcf4e5;display:block}.why.no{background:#fbe0e0;display:block}
+.why em{display:block;color:#4a5675;margin-top:4px}
+input.in{font:inherit;border:0;border-bottom:3px solid var(--blue);background:var(--sky);border-radius:6px 6px 0 0;padding:2px 8px;width:11em}
+input.in.ok{background:#dcf4e5;border-color:var(--ok)}input.in.no{background:#fbe0e0;border-color:var(--bad)}
+.read{background:#fff;border-radius:12px;padding:6px 22px 14px;border:2px solid var(--sand)}
+.read h3{margin-top:1em;font-size:1.05rem;color:var(--blue)}
+.a{color:var(--or);font-weight:800}.p{color:var(--pk);font-weight:800}
+.leg span{margin-right:16px;font-weight:700}
+.t{border-bottom:2px dotted var(--blue);cursor:help;position:relative}
+.t:hover::after,.t:focus::after{content:attr(data-t);position:absolute;left:0;bottom:120%;background:var(--navy);color:#fff;font:600 .85rem Figtree;padding:4px 10px;border-radius:8px;white-space:nowrap;z-index:3}
+.lab{display:grid;grid-template-columns:1fr 1fr;gap:12px 36px}
+.tile{display:block;width:100%;margin:5px 0;border:2px solid var(--blue);background:var(--sky);color:var(--navy);border-radius:10px;padding:7px 10px;font-weight:600}
+.tile.sel{background:var(--blue);color:#fff}.tile.done{background:#dcf4e5;border-color:var(--ok);opacity:.6;pointer-events:none}
+.tile.shake{border-color:var(--bad);background:#fbe0e0}
+table{border-collapse:collapse;width:100%;background:#fff;font-size:.95rem}
+th,td{border:2px solid var(--sand);padding:8px 10px;text-align:left}th{background:var(--navy);color:#fff}
+.box{background:var(--sky);border-left:6px solid var(--blue);border-radius:10px;padding:12px 16px;margin:14px 0}
+.wheels{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.wheel{background:var(--navy);color:#fff;border-radius:14px;padding:16px;text-align:center}
+.wheel small{color:var(--sand);font-weight:700}.wheel div{font:800 1.4rem 'Bricolage Grotesque',sans-serif;min-height:2em;margin-top:6px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0}
+.ans{display:none;color:var(--ok);font-weight:700;margin-top:4px}
+textarea{width:100%;font:inherit;border:2px solid var(--sand);border-radius:10px;padding:8px;background:#fff}
+li{margin:4px 0}
+@media(max-width:620px){.lab,.wheels{grid-template-columns:1fr}section{padding:18px}}
+@media(prefers-reduced-motion:reduce){.card i{transition:none}}
+</style></head><body>
+<header><div><small>ARVA ENGLISH · B1 · Passive Voice</small>
+<h1>How weight loss is being sold: the peptide era</h1>
+<p>Obesity is being treated as a major health problem, while thin bodies are still being celebrated by Hollywood, social media, and the fitness industry. Now, a new generation of peptide-based treatments is being promoted as a solution.</p>
+<p>Today, we'll examine how the obesity crisis, fitness culture, beauty standards, and the pharmaceutical industry have become connected. We'll discuss the topic from two perspectives: as women whose bodies are constantly being judged, and as healthcare workers who have to understand the risks, benefits, and regulation of new treatments.</p>
+<p><b>Are we becoming healthier — or are we simply being sold a new way to change our bodies?</b></p></div></header>
+<nav><a href="#vocab">Vocabulary</a><a href="#warm">Warm-up</a><a href="#listen">Listening</a><a href="#read">Reading</a><a href="#lab">Word lab</a><a href="#review">Passive voice</a><a href="#practice">Practice</a><a href="#roulette">Roulette</a><a href="#swap">Active ↔ Passive</a><a href="#role">Roleplay</a></nav>
+<main>
+<section id="vocab"><h2>Today's words</h2><p class="sub">Read the word aloud and guess the meaning. Click the card to hear it and check the meaning (simple English + español).</p><div class="grid" id="vgrid"></div></section>
+
+<section id="warm"><h2>Warm-up</h2><h3>Let's talk about our bodies</h3><p class="sub">Discuss the questions with your partner. There are no right or wrong answers.</p>
+<ol><li><b>Do you know what peptides are?</b><br>What do you think they are used for?</li><li><b>Why do you think the “skinny body” is making a comeback?</b><br>Do you think beauty standards are changing again? Why?</li><li><b>Do you think obesity is always an illness?</b><br>What if a person's lab results are within the normal range?</li><li><b>Why do people want to lose weight?</b><br>Health? Appearance? Social pressure? Something else?</li><li><b>Have you ever done something that was not medically recommended to lose or gain weight?</b></li></ol></section>
+
+<section id="listen"><h2>Listening</h2><p class="sub">Listen to the first part of this story and answer the questions below.</p>
+<a class="btn" href="https://youtu.be/xpdLs-_nl4g?si=EdAe1M2-6dzP3JIv&t=156" target="_blank" rel="noopener">▶ Watch on YouTube (starts at 2:36)</a><div id="lq"></div></section>
+
+<section id="read"><h2>Reading</h2><p class="sub">Hover over (or tap) the dotted words to see the Spanish translation.</p>
+<p class="leg"><span class="a">Orange = active voice</span><span class="p">Pink = passive voice</span></p>
+<div class="read" id="rtext"></div><h3 style="margin-top:1.4em">Comprehension — answer together</h3><div id="rq"></div></section>
+
+<section id="lab"><h2>Word lab</h2><h3>Words that go together</h3><p class="sub">Click a word on the left, then its partner on the right. When you make a pair, each person says a sentence with it.</p>
+<div class="lab"><div id="la"></div><div id="lb"></div></div><p id="lmsg" style="font-weight:700"></p></section>
+
+<section id="review"><h2>Passive voice · Time check</h2><h3>What is the passive voice?</h3>
+<p>We use the passive voice when the focus is on <b>what happens</b> to a person or thing, not on <b>who</b> does the action.</p>
+<div class="box"><b>Active:</b> <span class="a">Researchers studied</span> the treatment. → Focus: WHO? Researchers<br><b>Passive:</b> The treatment <span class="p">was studied</span>. → Focus: WHAT HAPPENED? It was studied.</div>
+<p><b>What about BY?</b> <i>by</i> + person/organization tells us who did the action: The treatment was studied <b>by researchers</b>. But <i>by</i> is not always necessary — we omit it when the person is unknown, obvious, or not important.</p>
+<table><tr><th>Tense</th><th>Formula</th><th>Example</th></tr><tr><td>Present simple</td><td>am/is/are + V3</td><td>Peptides are studied.</td></tr><tr><td>Past simple</td><td>was/were + V3</td><td>Peptides were studied.</td></tr><tr><td>Present perfect</td><td>has/have + been + V3</td><td>Peptides have been studied.</td></tr><tr><td>Present continuous</td><td>am/is/are + being + V3</td><td>Peptides are being studied.</td></tr></table>
+<p class="box"><b>KEY: Passive = BE + V3</b></p></section>
+
+<section id="practice"><h2>Put it into practice</h2><p class="sub">Complete each sentence with the correct passive form of the verb in parentheses.</p><div id="pq"></div></section>
+
+<section id="roulette"><h2>Sentence roulette</h2><p class="sub">Spin both roulettes and create a sentence using the passive voice. Write it, then say it.</p>
+<div class="wheels"><div class="wheel"><small>ROULETTE A — WHO?</small><div id="wa">?</div></div><div class="wheel"><small>ROULETTE B — WHAT?</small><div id="wb">?</div></div></div>
+<button class="btn" id="spin">Spin both</button><p class="box">Example: Researchers + the treatment → <b class="p">The treatment has been studied</b> by researchers.</p><textarea rows="2" placeholder="Write your sentence…"></textarea></section>
+
+<section id="swap"><h2>Active ↔ Passive</h2><p class="sub">Rewrite each sentence: active → passive or passive → active.</p><div id="sq"></div></section>
+
+<section id="role"><h2>Roleplay — doctor &amp; patient</h2>
+<div class="box">A patient wants to lose weight at any cost and has come to the doctor asking about peptide treatments. The doctor needs to ask questions, explain the risks, and discuss safer, evidence-based options.</div>
+<div class="lab"><div class="pair"><b>🩺 Doctor</b><ul><li>What have you been taking so far?</li><li>Where was it bought? Who was it made by?</li><li>Has it been prescribed by a doctor?</li><li>Explain: the dose and purity may not be guaranteed.</li><li>Suggest evidence-based options under medical supervision.</li></ul></div>
+<div class="pair"><b>🙋 Patient</b><ul><li>I've seen peptides being promoted on social media.</li><li>I want results fast — I'll do anything.</li><li>Is it safe to inject them?</li><li>What options are recommended for me?</li></ul></div></div>
+<p class="sub">Use at least 5 passive sentences. Then switch roles.</p></section>
+</main>
+<script>
+const $=s=>document.querySelector(s),sp=t=>{try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=.85;speechSynthesis.speak(u)}catch(e){}};
+const V=[['Noun','peptide','a short chain of amino acids','péptido'],['Noun','GLP-1','a hormone involved in appetite and blood sugar regulation','GLP-1 / hormona relacionada con el apetito y el azúcar en sangre'],['Noun','amino acid','a building block of proteins','aminoácido'],['Noun','compound','a substance made from different ingredients','compuesto / sustancia'],['Verb','inject','to put a substance into the body with a needle','inyectar'],['Noun','contaminant','a harmful or unwanted substance','contaminante'],['Noun','oversight','official supervision or control','supervisión / vigilancia'],['Verb','regulate','to control something through rules','regular / controlar'],['Noun','obesity','a medical condition involving excessive body fat','obesidad'],['Noun','appetite','the desire to eat','apetito'],['Noun','loophole','a gap in a rule that allows people to avoid it','vacío legal / laguna legal'],['Expression','medical supervision','monitoring by a healthcare professional','supervisión médica']];
+$('#vgrid').innerHTML=V.map(v=>`<button class="card" aria-label="${v[1]}"><i><b><span>${v[0]}</span>${v[1]}</b><u>${v[2]}<strong>🇨🇴 ${v[3]}</strong></u></i></button>`).join('');
+document.querySelectorAll('.card').forEach((c,i)=>c.onclick=()=>{c.classList.toggle('f');sp(V[i][1])});
+function quiz(id,items){$(id).innerHTML=items.map((it,n)=>`<div class="q"><p>${n+1}. ${it.q}</p>${it.o.map((o,j)=>`<button class="opt" data-j="${j}">${'ABCD'[j]}. ${o}</button>`).join('')}<div class="why"></div></div>`).join('');
+document.querySelectorAll(id+' .q').forEach((q,n)=>q.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{const it=items[n],ok=+b.dataset.j==it.a;q.querySelectorAll('.opt').forEach(x=>{x.disabled=1;x.className='opt'+(+x.dataset.j==it.a?' ok':'')});if(!ok)b.className='opt no';const w=q.querySelector('.why');w.className='why '+(ok?'ok':'no');w.innerHTML=(ok?'✓ Correct. ':'✗ Not quite. ')+it.w+(it.s?`<em>🎧 “${it.s}”</em>`:'')}))}
+const norm=s=>s.toLowerCase().replace(/n't/g,' not').replace(/[^a-z0-9 -]/g,'').replace(/\s+/g,' ').trim();
+function fills(id,items){$(id).innerHTML=items.map((it,n)=>{const [a,b]=it.q.split('____');return `<div class="q"><p style="font-weight:600">${n+1}. ${a}<input class="in" aria-label="answer ${n+1}">${b} </p><button class="btn alt">Check</button><div class="why"></div></div>`}).join('');
+document.querySelectorAll(id+' .q').forEach((q,n)=>q.querySelector('button').onclick=()=>{const it=items[n],i=q.querySelector('input'),ok=it.a.some(x=>norm(x)==norm(i.value)),w=q.querySelector('.why');i.className='in '+(ok?'ok':'no');w.className='why '+(ok?'ok':'no');w.innerHTML=ok?'✓ Correct! '+(it.w||''):`✗ Correct answer: <b>${it.a[0]}</b>. ${it.w||''}`+(it.s?`<em>🎧 “${it.s}”</em>`:'')}) }
+quiz('#lq',[{q:'Where did many people obtain wellness peptides?',o:['Only from hospitals','Telehealth clinics, longevity clinics, med spas, and gray-market websites','Only from regular pharmacies','Only from fitness centers'],a:1,w:'The speaker lists several non-traditional sources.',s:'through telehealth, longevity or functional medicine clinics, med spas, or even gray market websites'},{q:'According to the video, what was a major concern about some peptides sold online?',o:['They were too expensive.','They were difficult to inject.','They were sold without medical supervision and could contain questionable contaminants.','They were only available as capsules.'],a:2,w:'Many vendors sold directly, with no supervision and doubtful contaminants.',s:'many online vendors often sold directly without any medical supervision whatsoever'},{q:'Why does the speaker mention celebrities talking about their “peptide stack” on podcasts?',o:['To show that celebrities were conducting clinical trials.','To show how social media and celebrity culture were helping promote the peptide trend.','To explain how peptides are manufactured.','To compare different medical treatments.'],a:1,w:'Celebrities sharing their results made the trend more popular.',s:'celebrities couldn’t stop going on podcasts sharing their stack'}]);
+$('#lq').insertAdjacentHTML('afterbegin','<div id="lf"></div>');
+fills('#lf',[{q:'In 2023, the FDA identified significant safety concerns involving many ____ peptides.',a:['compounded'],w:'',s:'the FDA identified significant safety concerns involving many compounded peptides'},{q:'The new market created a ____ where it seemed regulation couldn’t stop or catch up to the peptide industry.',a:['loophole'],w:'',s:'This created a loophole where it seemed regulation couldn’t stop or catch up'}]);
+const A=(x)=>`<b class="a">${x}</b>`,P=(x)=>`<b class="p">${x}</b>`;
+const tr={'peptides':'péptidos','amino acids':'aminoácidos','regulate':'regular','insulin':'insulina','blood sugar':'azúcar en sangre','medical conditions':'condiciones médicas','obesity':'obesidad','appetite':'apetito','inflammation':'inflamación','metabolism':'metabolismo','muscle recovery':'recuperación muscular','promising':'prometedores','proven':'comprobados','compounds':'compuestos','investigated':'investigados','dose':'dosis','purity':'pureza','contamination':'contaminación','clinical trial':'ensayo clínico','unregulated':'no regulado','marketplace':'mercado','testimonials':'testimonios','body fat':'grasa corporal','influencers':'influencers','lifestyle':'estilo de vida','transformation':'transformación','transformations':'transformaciones','hype':'exageración / bombo','downside':'lado negativo','research chemicals':'sustancias de investigación','manufactured':'fabricados','stored':'almacenados','transported':'transportados','verify':'verificar','safe':'seguro','effective':'eficaz','strong human evidence':'evidencia humana sólida','guaranteed':'garantizados','treatments':'tratamientos','medicines':'medicamentos','peptide':'péptido'};
+let R=`<h2 style="margin-top:.6em">Peptides: how our bodies ${P('are being changed')}</h2><p><i>The promise, the hype, and the risks behind the peptide boom</i></p>
+<p>A few years ago, most people ${A('had never heard')} of peptides. Today, they ${P('are being discussed')} everywhere — in medical offices, fitness communities, podcasts, and social media.</p>
+<p>Peptides ${A('are')} short chains of amino acids that ${A('help')} regulate different processes in the body. Some peptide-based medicines ${P('have been carefully studied')} and ${P('are now used')} to treat medical conditions. For example, insulin ${P('has been studied')} for decades and ${P('is widely used')} to control blood sugar.</p>
+<p>But a new generation of peptides ${A('is attracting')} attention for very different reasons.</p>
+<h3>THE WEIGHT-LOSS BOOM</h3>
+<p>Weight loss ${A('has always been')} part of the fitness industry, but social media and Hollywood ${A('have made')} body transformation more visible than ever.</p>
+<p>Celebrities ${A('promote')} smaller bodies, influencers ${A('share')} dramatic transformations, and weight-loss treatments ${P('are increasingly being discussed')} as lifestyle solutions.</p>
+<p>GLP-1 medications ${A('have changed')} obesity treatment for many patients. They ${A('can reduce')} appetite and ${A('help')} some people lose weight.</p>
+<p>However, a medical treatment ${P('can be used')} for a medical reason while the culture around it ${A('can focus')} on appearance.</p>
+<p><b>Are we ${A('treating')} obesity — or ${P('are we being taught')} to fear body fat?</b></p>
+<h3>THE PROMISE</h3>
+<p>Peptides ${P('are being promoted')} for many different purposes. Some ${P('are being studied')} for metabolism, inflammation, muscle recovery, and other medical conditions.</p>
+<p>Researchers ${A('have discovered')} promising biological effects, but promising results ${A('are not')} the same as proven treatments.</p>
+<p>A peptide that ${A('works')} for one condition cannot automatically be expected to work for another.</p>
+<p>Some compounds ${A('are still being investigated')}, while others ${P('are being sold')} online with claims that ${P('have not been supported')} by strong human evidence.</p>
+<h3>THE DOWNSIDE</h3>
+<p>The biggest problem ${A('is not')} necessarily the idea of peptides. The problem is what people may actually receive.</p>
+<p>Some products ${P('are sold')} online as “research chemicals” or “not for human use.” Products ${P('may be manufactured, stored, or transported')} under conditions that are difficult to verify. The exact dose and purity ${P('may not be guaranteed')}.</p>
+<p>In a clinical trial, researchers ${A('know')} what participants receive. In an unregulated marketplace, that certainty ${A('can disappear')}.</p>
+<p>And when products ${P('are injected')} into the body, contamination or incorrect dosing ${A('can create')} serious risks.</p>
+<h3>SCIENCE VS. SOCIAL MEDIA</h3><p>Science ${A('moves')} slowly.<br>Social media ${A('moves')} fast.</p>
+<p>A researcher ${A('may spend')} years studying a treatment, while an influencer ${A('can promote')} it in a thirty-second video.</p>
+<p>Testimonials ${P('are shared')} thousands of times, but personal experiences ${A('do not prove')} that a treatment is safe or effective.</p>
+<p>Healthcare professionals therefore ${A('have to ask')} important questions:</p><ul><li>Has it been studied in humans?</li><li>What condition was it studied for?</li><li>What dose was tested?</li><li>What risks have been identified?</li><li>Who manufactured it?</li></ul>`;
+const keys=Object.keys(tr).sort((a,b)=>b.length-a.length).map(k=>k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|'),re=new RegExp('\\b('+keys+')\\b','gi');
+$('#rtext').innerHTML=R.replace(/>([^<]+)</g,(m,t)=>'>'+t.replace(re,w=>`<span class="t" tabindex="0" data-t="${tr[w.toLowerCase()]}">${w}</span>`)+'<');
+quiz('#rq',[{q:'Why does the author mention insulin when introducing peptides?',o:['To show that peptides are mainly used to control blood sugar.','To provide an example of a peptide-based treatment with a long history of medical research.','To explain why insulin has recently become popular on social media.','To suggest that all new peptides should be treated like insulin.'],a:1,w:'Insulin “has been studied for decades”: it shows a well-researched peptide.'},{q:'What distinction does the text make between treating obesity and changing people’s appearance?',o:['Weight-loss treatments are mainly designed to respond to beauty standards.','Obesity should only be treated when a person has abnormal laboratory results.','A treatment may have a legitimate medical purpose even when the culture surrounding it emphasizes physical appearance.','Social media has made medical treatments less effective for people with obesity.'],a:2,w:'The text says a treatment can be medical while the culture focuses on appearance.'},{q:'What can be inferred from “A peptide that works for one condition cannot automatically be expected to work for another”?',o:['Peptides normally work only when they are prescribed by a doctor.','Evidence for one medical use does not necessarily support other uses of the same or similar compound.','Researchers have not discovered any effective uses for peptides yet.','Different medical conditions require exactly the same type of treatment.'],a:1,w:'Proof for one use is not proof for every use.'},{q:'Why does the author focus on what people “may actually receive” in the downside section?',o:['Because patients often misunderstand the purpose of peptide treatments.','Because online products are usually more expensive than prescription treatments.','Because people may receive a lower dose than the one used in clinical trials.','Because the product’s identity, purity, dosage, and manufacturing conditions may not be reliably known.'],a:3,w:'The risk is not the idea, but unknown identity, purity, dose and manufacturing.'}]);
+const L=[['peptide','chain'],['medical','supervision'],['clinical','trial'],['side','effects'],['research','chemicals'],['strong human','evidence'],['exact','dose'],['obesity','condition'],['serious','risks'],['appetite','regulation'],['medical','effects'],['official','control']];
+const sh=a=>[...a].sort(()=>Math.random()-.5);let selA=null,done=0;
+$('#la').innerHTML=sh(L).map(p=>`<button class="tile" data-w="${p[0]}">${p[0]}</button>`).join('');$('#lb').innerHTML=sh(L).map(p=>`<button class="tile" data-w="${p[1]}">${p[1]}</button>`).join('');
+document.querySelectorAll('#la .tile').forEach(t=>t.onclick=()=>{document.querySelectorAll('#la .tile').forEach(x=>x.classList.remove('sel'));t.classList.add('sel');selA=t});
+document.querySelectorAll('#lb .tile').forEach(t=>t.onclick=()=>{if(!selA)return;if(L.some(p=>p[0]==selA.dataset.w&&p[1]==t.dataset.w)){selA.className=t.className='tile done';$('#lmsg').textContent=`✓ ${selA.dataset.w} ${t.dataset.w} — now say a sentence!`;selA=null;if(++done==12)$('#lmsg').textContent='🎉 All pairs found!'}else{t.classList.add('shake');setTimeout(()=>t.classList.remove('shake'),500);$('#lmsg').textContent='✗ Try again.'}});
+fills('#pq',[{q:'GLP-1 medications ____ by millions of patients around the world. (use)',a:['are used']},{q:'Some peptide compounds ____ in clinical trials in recent years. (study)',a:['have been studied']},{q:'Several safety concerns ____ by researchers. (identify)',a:['have been identified']},{q:'Some products ____ online as “research chemicals.” (sell)',a:['are sold']},{q:'The exact dosage ____ by the consumer. (not / always / know)',a:['is not always known','is always not known']},{q:'New peptide treatments ____ by scientists right now. (investigate)',a:['are being investigated']}]);
+$('#pq').insertAdjacentHTML('afterbegin','<p class="box">0. Today, peptide treatments <b class="p">are used</b> for several medical conditions. (use)</p>');
+const WA=['Researchers','Doctors','The FDA','Scientists','Healthcare professionals','Pharmaceutical companies','Influencers','The media','Clinical researchers','Online sellers'],WB=['the treatment','the peptide','the medication','the safety concerns','the product','the dosage','the clinical trial','the risks','the research','the new compounds'];
+$('#spin').onclick=()=>{let n=0;const r=a=>a[Math.random()*a.length|0],t=setInterval(()=>{$('#wa').textContent=r(WA);$('#wb').textContent=r(WB);if(++n>14)clearInterval(t)},80)};
+const S=[['Researchers have studied the peptide for several years.','The peptide has been studied by researchers for several years.'],['The medication is being investigated by scientists.','Scientists are investigating the medication.'],['Influencers promote weight-loss treatments on social media.','Weight-loss treatments are promoted by influencers on social media.'],['Some peptide products are sold online.','Online sellers sell some peptide products.'],['The FDA identified several safety concerns.','Several safety concerns were identified by the FDA.'],['The exact dosage has not been guaranteed by the manufacturer.','The manufacturer has not guaranteed the exact dosage.'],['Doctors use GLP-1 medications to treat some patients.','GLP-1 medications are used by doctors to treat some patients.'],['New compounds are being developed by pharmaceutical companies.','Pharmaceutical companies are developing new compounds.']];
+$('#sq').innerHTML=S.map((s,i)=>`<div class="q"><p style="font-weight:600">${i+1}. ${s[0]}</p><textarea rows="1"></textarea><button class="btn alt" style="margin-top:6px">Show answer</button><div class="ans">✓ ${s[1]}</div></div>`).join('');
+document.querySelectorAll('#sq .q').forEach(q=>q.querySelector('button').onclick=()=>q.querySelector('.ans').style.display='block');
+</script></body></html>
