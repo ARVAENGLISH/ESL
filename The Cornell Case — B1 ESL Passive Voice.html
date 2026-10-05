@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Cornell Case — ARVA by Kat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --orange:#ff751f;--blue:#4f46e5;--pink:#ff2d55;--beige:#feffd2;--white:#ffffff;
+  --bg:#feffd2;--card:#ffffff;--ink:#1d1b3a;--muted:#5d5a7a;--line:#e4e2b8;--soft:#f6f7dc;
+  --okbg:#1d1b3a;--oktx:#ffffff;
+  --act-t:#4338ca;--act-bg:rgba(79,70,229,.12);--pas-t:#c2530a;--pas-bg:rgba(255,117,31,.17);
+  --g:#22c55e;--y:#facc15;--r:#ef4444;
+  --shadow:0 8px 28px rgba(29,27,58,.09);
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#13121f;--card:#1e1d30;--ink:#f2f1ff;--muted:#a9a7c6;--line:#34324d;--soft:#272640;--okbg:#f2f1ff;--oktx:#13121f;--act-t:#a9a4ff;--act-bg:rgba(129,122,255,.22);--pas-t:#ff9a57;--pas-bg:rgba(255,117,31,.22);--shadow:0 8px 28px rgba(0,0,0,.4)}
+}
+:root[data-theme="dark"]{--bg:#13121f;--card:#1e1d30;--ink:#f2f1ff;--muted:#a9a7c6;--line:#34324d;--soft:#272640;--okbg:#f2f1ff;--oktx:#13121f;--act-t:#a9a4ff;--act-bg:rgba(129,122,255,.22);--pas-t:#ff9a57;--pas-bg:rgba(255,117,31,.22);--shadow:0 8px 28px rgba(0,0,0,.4)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;line-height:1.55;font-size:16px;-webkit-font-smoothing:antialiased}
+button,input,textarea{font-family:inherit;font-size:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
+
+/* header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.top-row{display:flex;align-items:center;gap:12px;max-width:980px;margin:0 auto;padding:10px 16px 6px}
+.brand{font-weight:900;letter-spacing:.02em;font-size:14px;white-space:nowrap}
+.brand b{color:var(--pink)}
+.bar{flex:1;height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--orange));border-radius:99px;transition:width .5s ease}
+.score{font-weight:800;font-size:13px;background:var(--card);border:1px solid var(--line);padding:4px 10px;border-radius:99px;white-space:nowrap}
+nav.pills{display:flex;gap:6px;overflow-x:auto;padding:4px 16px 10px;max-width:980px;margin:0 auto;scrollbar-width:none}
+nav.pills::-webkit-scrollbar{display:none}
+nav.pills button{flex:0 0 auto;border:1px solid var(--line);background:var(--card);border-radius:99px;padding:6px 12px;font-weight:700;font-size:12px;cursor:pointer;transition:all .2s;color:var(--muted)}
+nav.pills button.seen{color:var(--ink)}
+nav.pills button[aria-current="step"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+nav.pills button:hover{transform:translateY(-1px)}
+
+main{max-width:980px;margin:0 auto;padding:20px 16px 120px}
+.sec{display:none}
+.sec.active{display:block;animation:rise .45s ease}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.kicker{font-size:12px;font-weight:800;letter-spacing:.14em;color:var(--pink);text-transform:uppercase;margin:0 0 4px}
+h2{font-size:clamp(26px,5vw,38px);font-weight:900;line-height:1.1;margin:0 0 8px;letter-spacing:-.01em}
+h3{font-size:18px;font-weight:800;margin:0 0 8px}
+.lead{color:var(--muted);font-weight:500;margin:0 0 18px;max-width:70ch}
+.card{background:var(--card);border-radius:22px;box-shadow:var(--shadow);padding:20px;margin:0 0 18px;border:1px solid var(--line)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:700px){.grid2{grid-template-columns:1fr}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:2px solid var(--ink);background:var(--ink);color:var(--bg);font-weight:800;letter-spacing:.03em;padding:11px 20px;border-radius:99px;cursor:pointer;transition:transform .15s,box-shadow .2s,opacity .2s;text-decoration:none;font-size:14px}
+.btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 6px 16px rgba(29,27,58,.2)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.big{padding:15px 28px;font-size:16px}
+.btn.small{padding:7px 14px;font-size:12px}
+
+/* hero */
+.hero{position:relative;overflow:hidden;border-radius:30px;padding:clamp(28px,6vw,64px);color:#fff;background:#1d1b3a;min-height:70vh;display:flex;flex-direction:column;justify-content:center;gap:18px;box-shadow:var(--shadow)}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;filter:blur(2px);opacity:.9}
+.hero::before{width:380px;height:380px;right:-120px;top:-120px;background:radial-gradient(circle at 30% 30%,#ff2d55,#ff751f 70%)}
+.hero::after{width:300px;height:300px;left:-100px;bottom:-130px;background:radial-gradient(circle at 60% 40%,#4f46e5,#4f46e500 70%)}
+.hero>*{position:relative;z-index:1}
+.badge{align-self:flex-start;background:#feffd2;color:#1d1b3a;font-weight:900;font-size:12px;letter-spacing:.12em;padding:7px 14px;border-radius:99px}
+.hero h1{font-size:clamp(40px,10vw,92px);line-height:.95;font-weight:900;margin:0;letter-spacing:-.02em}
+.hero h1 span{display:block;color:#feffd2}
+.hero .sub{font-size:clamp(17px,2.6vw,24px);font-weight:600;max-width:34ch;margin:0}
+.hero .goal{max-width:60ch;font-weight:500;opacity:.92;margin:0}
+.note{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:12px 14px;font-size:13px;max-width:64ch}
+.hero .btn{align-self:flex-start;background:#feffd2;color:#1d1b3a;border-color:#feffd2}
+
+/* carousel */
+.car-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.qpill{font-weight:800;font-size:12px;letter-spacing:.1em;background:var(--ink);color:var(--bg);padding:5px 12px;border-radius:99px}
+.dots{display:flex;gap:6px}
+.dots i{width:10px;height:10px;border-radius:50%;background:var(--line);transition:all .3s}
+.dots i.on{background:var(--pink);transform:scale(1.25)}
+.car-q{font-size:clamp(19px,3vw,26px);font-weight:800;line-height:1.3;margin:6px 0 14px;min-height:3.4em}
+textarea.notes,textarea.free{width:100%;border:2px solid var(--line);background:var(--soft);border-radius:16px;padding:12px 14px;resize:vertical;min-height:110px;transition:border-color .2s}
+textarea.notes:focus,textarea.free:focus,input.blank:focus{border-color:var(--pink);outline:none}
+.ng{font-size:12px;color:var(--muted);font-weight:600;margin:6px 0 0}
+.car-nav{display:flex;justify-content:space-between;gap:10px;margin-top:14px}
+
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.vcard{background:var(--card);border:2px solid var(--line);border-radius:20px;padding:16px 18px;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;box-shadow:var(--shadow);text-align:left}
+.vcard:hover{transform:translateY(-3px)}
+.vcard.open{border-color:var(--pink)}
+.vword{font-size:22px;font-weight:900;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.vhint{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.vback{max-height:0;overflow:hidden;opacity:0;transition:max-height .4s ease,opacity .3s ease,margin .3s}
+.vcard.open .vback{max-height:420px;opacity:1;margin-top:10px}
+.es{font-weight:800;color:var(--pink);font-size:17px}
+.vdef{margin:6px 0;font-weight:500}
+.vex{font-style:italic;color:var(--muted);margin:6px 0 10px}
+.warn{background:var(--pas-bg);border-radius:12px;padding:8px 10px;font-size:13px;font-weight:600;margin:6px 0 10px}
+.aud{border:2px solid var(--line);background:var(--soft);border-radius:99px;padding:6px 12px;font-weight:800;font-size:12px;cursor:pointer}
+.aud:hover{border-color:var(--pink)}
+
+/* video */
+.vid{position:relative;padding-top:56.25%;border-radius:18px;overflow:hidden;background:#000;margin-bottom:12px}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* article */
+.article{font-size:17px;line-height:1.85}
+.article .src{font-weight:800;font-size:13px;letter-spacing:.06em;color:var(--pink);text-transform:uppercase}
+.article h3{font-size:clamp(21px,3.4vw,28px);line-height:1.2;font-weight:900;margin:4px 0 6px}
+.article p{margin:0 0 14px}
+.act,.pas{padding:1px 4px;border-radius:6px;font-weight:700;transition:all .3s;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.act{color:var(--act-t);background:var(--act-bg);border-bottom:2px solid var(--blue)}
+.pas{color:var(--pas-t);background:var(--pas-bg);border-bottom:2px dashed var(--orange)}
+.nohl .act,.nohl .pas{color:inherit;background:none;border-bottom:none;font-weight:inherit}
+.legend{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:12px;font-weight:700;font-size:14px}
+.sw-a,.sw-p{display:inline-block;width:14px;height:14px;border-radius:5px;vertical-align:-2px;margin-right:6px}
+.sw-a{background:var(--blue)}.sw-p{background:var(--orange)}
+.cnote{font-size:12px;color:var(--muted);font-weight:600;border-left:4px solid var(--pink);padding-left:10px;margin:0 0 16px}
+
+/* exercises */
+.ex{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px 18px;margin:0 0 14px;box-shadow:var(--shadow);transition:opacity .3s}
+.ex.done{opacity:.97}
+.ex-head{display:flex;gap:12px;align-items:flex-start}
+.num{flex:0 0 auto;min-width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-weight:900;font-size:13px;padding:0 4px}
+.ex-q{font-weight:700;font-size:17px;padding-top:2px}
+.ex-body{margin-top:12px}
+.opts{display:grid;gap:8px}
+.opt{display:flex;gap:12px;align-items:center;text-align:left;width:100%;border:2px solid var(--line);background:var(--soft);padding:10px 14px;border-radius:14px;cursor:pointer;font-weight:600;transition:transform .15s,border-color .2s,background .2s}
+.opt b{flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--card);display:grid;place-items:center;font-size:12px}
+.opt:hover:not(:disabled){transform:translateX(3px);border-color:var(--ink)}
+.opt:disabled{cursor:default}
+.opt.ok{background:var(--okbg);color:var(--oktx);border-color:var(--okbg)}
+.opt.ok b{background:var(--oktx);color:var(--okbg)}
+.opt.ok::after{content:"✅";margin-left:auto}
+.opt.bad{border-color:var(--pink);background:rgba(255,45,85,.1);color:var(--pink)}
+.opt.sel{border-color:var(--ink);background:var(--card);box-shadow:inset 0 0 0 2px var(--ink)}
+.opt.compact{width:auto;display:inline-flex}
+.optrow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.lbl{font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--muted);margin:8px 0 6px;text-transform:uppercase}
+input.blank{border:0;border-bottom:3px solid var(--ink);background:var(--soft);border-radius:8px 8px 0 0;padding:3px 8px;font-weight:800;min-width:90px;max-width:100%;text-align:center}
+input.blank.wide{display:block;width:100%;text-align:left;border:2px solid var(--line);border-radius:14px;padding:11px 14px}
+.verb{display:inline-block;background:var(--soft);border:1px solid var(--line);border-radius:99px;padding:0 10px;font-size:13px;font-weight:800;margin-left:6px}
+.wrong{margin-top:6px;font-weight:700;color:var(--pink);text-decoration:line-through;text-decoration-thickness:2px}
+.sent{margin-top:6px;font-size:18px}
+.fb{display:none;margin-top:12px;border-radius:14px;padding:10px 14px;font-weight:700}
+.fb.show{display:block;animation:rise .3s}
+.fb span{font-weight:500;display:inline-block;margin-left:4px}
+.fb.good{background:var(--soft);border-left:5px solid var(--ink)}
+.fb.bad{background:rgba(255,45,85,.1);border-left:5px solid var(--pink);color:var(--ink)}
+.fb.info{background:var(--soft);border-left:5px solid var(--muted)}
+.ex-act{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.ex-act:empty{display:none}
+.ex.shake{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.chips{display:flex;gap:8px;flex-wrap:wrap;min-height:46px;padding:6px;border-radius:14px}
+.chips.target{border:2px dashed var(--line);background:var(--soft)}
+.chip{border:2px solid var(--ink);background:var(--card);border-radius:12px;padding:7px 13px;font-weight:700;cursor:pointer;transition:transform .15s}
+.chip:hover{transform:translateY(-2px)}
+.chip:disabled{cursor:default;transform:none}
+.prog{font-weight:800;font-size:13px;color:var(--muted);margin:0 0 12px}
+
+/* tabs */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.tabs button{border:2px solid var(--line);background:var(--card);border-radius:99px;padding:8px 14px;font-weight:800;font-size:12px;cursor:pointer;letter-spacing:.04em;transition:all .2s}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.panel{display:none}.panel.on{display:block;animation:rise .35s}
+.formula{display:inline-block;background:var(--pas-bg);color:var(--pas-t);border:2px dashed var(--orange);border-radius:14px;padding:8px 16px;font-weight:900;font-size:clamp(17px,3vw,24px);margin:4px 0 10px}
+.golden{text-align:center;background:var(--ink);color:var(--bg);border-radius:26px;padding:26px 18px;margin-bottom:18px}
+.golden small{letter-spacing:.2em;font-weight:800;font-size:12px;color:var(--orange)}
+.golden .big{font-size:clamp(40px,10vw,76px);font-weight:900;line-height:1;margin:6px 0 10px}
+.golden p{margin:0 auto;max-width:48ch;font-weight:500}
+.row{border-radius:16px;padding:12px 14px;margin:8px 0;background:var(--soft)}
+.row .tag{display:block;font-size:11px;font-weight:800;letter-spacing:.12em;margin-bottom:2px;color:var(--muted)}
+.row.a{border-left:6px solid var(--blue)}.row.p{border-left:6px solid var(--orange)}
+.row.plain{border-left:6px solid var(--line)}
+.swapbox{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:12px 0;min-height:46px}
+.swapbox span{padding:9px 14px;border-radius:12px;font-weight:800;animation:pop .4s both}
+.swapbox.A span{background:var(--act-bg);color:var(--act-t);border:2px solid var(--blue)}
+.swapbox.P span{background:var(--pas-bg);color:var(--pas-t);border:2px dashed var(--orange)}
+@keyframes pop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:none}}
+.tl{display:flex;gap:10px;margin:10px 0 14px}
+.tl button{flex:1;position:relative;border:2px solid var(--line);background:var(--card);border-radius:18px;padding:12px 10px;cursor:pointer;font-weight:800;font-size:12px;letter-spacing:.04em;text-align:center;transition:all .25s}
+.tl button .dotn{display:block;width:16px;height:16px;border-radius:50%;margin:0 auto 6px;background:var(--line);transition:all .25s}
+.tl button[aria-selected="true"]{border-color:var(--orange);background:var(--pas-bg);transform:translateY(-3px)}
+.tl button[aria-selected="true"] .dotn{background:var(--orange);transform:scale(1.35)}
+@media (max-width:640px){.tl{flex-direction:column}.tl button{display:flex;align-items:center;gap:10px;text-align:left}.tl button .dotn{margin:0}}
+.tlpanel{border:2px dashed var(--orange);border-radius:18px;padding:16px;background:var(--card);animation:rise .3s}
+.tlpanel .s{font-size:clamp(18px,3vw,24px);font-weight:900;margin:6px 0}
+
+/* discovery */
+.reveal-box{display:none}
+.reveal-box.on{display:block;animation:rise .5s}
+.pattern{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+@media (max-width:640px){.pattern{grid-template-columns:1fr}}
+.pat{border-radius:20px;padding:18px;font-weight:700}
+.pat h4{margin:0 0 4px;font-size:22px;font-weight:900;letter-spacing:.05em}
+.pat.a{background:var(--act-bg);border:2px solid var(--blue);color:var(--act-t)}
+.pat.p{background:var(--pas-bg);border:2px dashed var(--orange);color:var(--pas-t)}
+
+/* roulette */
+.wheels{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px}
+@media (max-width:640px){.wheels{grid-template-columns:1fr}}
+.wcol{text-align:center}
+.wheel{position:relative;width:min(100%,250px);aspect-ratio:1;margin:0 auto}
+.ring{position:absolute;inset:0;border-radius:50%;background:conic-gradient(var(--pink),var(--orange),var(--beige),var(--blue),var(--pink))}
+.spinning .ring{animation:spin .6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.face{position:absolute;inset:14px;border-radius:50%;background:var(--card);display:grid;place-items:center;text-align:center;padding:18px;font-weight:800;font-size:15px;line-height:1.25}
+.spinning .face{filter:blur(.6px)}
+.combo{background:var(--ink);color:var(--bg);border-radius:20px;padding:16px 18px;margin-bottom:14px;text-align:center;font-weight:800}
+.combo small{display:block;letter-spacing:.14em;font-size:11px;color:var(--orange)}
+.check{display:grid;gap:6px;margin:12px 0}
+.check label{display:flex;align-items:center;gap:10px;background:var(--soft);border-radius:12px;padding:8px 12px;font-weight:700;cursor:pointer}
+.check input{width:20px;height:20px;accent-color:var(--pink)}
+.example{background:var(--soft);border-radius:16px;padding:12px 16px;margin-top:10px}
+
+/* selfeval */
+.lights{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:12px 0 18px}
+@media (max-width:760px){.lights{grid-template-columns:1fr}}
+.light{text-align:left;border:3px solid var(--line);background:var(--card);border-radius:22px;padding:16px;cursor:pointer;transition:all .25s;box-shadow:var(--shadow)}
+.light:hover{transform:translateY(-3px)}
+.light .em{font-size:30px}
+.light h3{margin:4px 0 6px;font-size:16px}
+.light p{margin:0;font-size:13px;font-weight:500;color:var(--muted)}
+.light.g[aria-pressed="true"]{border-color:var(--g);background:rgba(34,197,94,.12)}
+.light.y[aria-pressed="true"]{border-color:var(--y);background:rgba(250,204,21,.18)}
+.light.r[aria-pressed="true"]{border-color:var(--r);background:rgba(239,68,68,.12)}
+.path{display:none}.path.on{display:block;animation:rise .4s}
+.ptitle{font-size:clamp(20px,3.4vw,28px);font-weight:900;margin:0 0 6px}
+.checklist{padding-left:0;list-style:none;margin:10px 0}
+.checklist li{padding:4px 0 4px 28px;position:relative;font-weight:600}
+.checklist li::before{content:"✔";position:absolute;left:0;font-weight:900}
+.endmsg{display:none;border-radius:20px;padding:18px;font-weight:800;font-size:18px;text-align:center;margin-top:10px}
+.endmsg.on{display:block;animation:rise .5s}
+.endmsg.g{background:rgba(34,197,94,.18);border:2px solid var(--g)}
+.endmsg.y{background:rgba(250,204,21,.25);border:2px solid var(--y)}
+.endmsg.r{background:rgba(239,68,68,.15);border:2px solid var(--r)}
+.stepcard{border:2px solid var(--line);background:var(--card);border-radius:18px;padding:14px 16px;margin:0 0 12px}
+.stepcard h4{margin:0 0 6px;font-size:14px;letter-spacing:.06em;font-weight:900}
+.stepcard .ans{display:none;margin-top:8px;font-weight:700;animation:rise .3s}
+.stepcard .ans.on{display:block}
+table.be{width:100%;border-collapse:collapse;font-weight:600;font-size:14px}
+table.be td{padding:8px 10px;border-bottom:1px solid var(--line)}
+table.be td:first-child{font-weight:800}
+.redformula{background:var(--ink);color:var(--bg);border-radius:20px;padding:16px 20px;margin:14px 0}
+.redformula ol{margin:6px 0 0;padding-left:22px;font-weight:700}
+.pairs{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.pairs span{background:var(--soft);border-radius:99px;padding:5px 12px;font-weight:700;font-size:14px}
+
+/* final */
+.final{text-align:center;background:var(--ink);color:#fff;border-radius:30px;padding:clamp(26px,6vw,56px);position:relative;overflow:hidden}
+.final h2{font-size:clamp(36px,9vw,72px);color:#feffd2}
+.final p{font-size:18px;font-weight:600;margin:6px auto;max-width:42ch}
+.sumgrid{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:20px 0}
+.sumgrid div{background:rgba(255,255,255,.1);border-radius:16px;padding:10px 16px;font-weight:800;min-width:130px}
+.sumgrid small{display:block;font-weight:600;opacity:.8;font-size:12px}
+.sig{margin-top:24px;font-weight:900;letter-spacing:.04em;font-size:20px}
+.sig small{display:block;font-weight:500;opacity:.85;font-size:14px;letter-spacing:0}
+
+/* bottom bar */
+footer.bottom{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--bg);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px))}
+.bottom-in{max-width:980px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.where{font-weight:800;font-size:13px;color:var(--muted);text-align:center}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:99px;font-weight:700;font-size:14px;z-index:40;opacity:0;pointer-events:none;transition:opacity .3s}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-row">
+    <div class="brand">ARVA <b>by Kat</b></div>
+    <div class="bar" role="progressbar" aria-label="Lesson progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="barfill"></i></div>
+    <div class="score" id="score" aria-live="polite">⭐ 0</div>
+  </div>
+  <nav class="pills" id="pills" aria-label="Lesson sections"></nav>
+</header>
+
+<main id="main">
+
+<!-- 1 HERO -->
+<section class="sec" id="s0" aria-label="Opening">
+  <div class="hero">
+    <div class="badge">B1 ESL | PASSIVE VOICE</div>
+    <h1>THE <span>CORNELL CASE</span></h1>
+    <p class="sub">How does the way we talk about a crime change the way we understand it?</p>
+    <p class="goal"><strong>Goal:</strong> Discuss one of the most mediatized sexual-assault cases and explore how speech and language matter.</p>
+    <div class="note" role="note">⚠️ This lesson discusses allegations of sexual assault. The case is presented as a news-based language-learning activity. Allegations should not be treated as criminal convictions.</div>
+    <button class="btn big" id="start">START THE CASE →</button>
+  </div>
+</section>
+
+<!-- 2 WARM UP -->
+<section class="sec" id="s1" aria-label="Warm up">
+  <p class="kicker">02 · Warm up</p>
+  <h2>LET'S DISCUSS</h2>
+  <p class="lead">Read each question, write a few notes, then discuss with your teacher or partner.</p>
+  <div class="card" id="warm"></div>
+</section>
+
+<!-- 3 VOCAB -->
+<section class="sec" id="s2" aria-label="Vocabulary">
+  <p class="kicker">03 · Vocabulary</p>
+  <h2>VOCABULARY</h2>
+  <p class="lead">Click a card to reveal the Spanish translation, a simple definition and an example. Press 🔊 to listen.</p>
+  <p class="prog" id="vprog">Cards opened: 0 / 12</p>
+  <div class="vgrid" id="vgrid"></div>
+</section>
+
+<!-- 4 LISTEN -->
+<section class="sec" id="s3" aria-label="Listening">
+  <p class="kicker">04 · Listen</p>
+  <h2>LISTEN 🎧</h2>
+  <p class="lead">Watch the video, then answer the questions below.</p>
+  <div class="card">
+    <div class="vid"><iframe src="https://www.youtube.com/embed/rGd2TT0enmA" title="Listening video" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+    <p class="ng">Video not loading?</p>
+    <a class="btn small" href="https://www.youtube.com/watch?v=rGd2TT0enmA" target="_blank" rel="noopener noreferrer">WATCH ON YOUTUBE ↗</a>
+  </div>
+  <h3>LISTENING QUESTIONS</h3>
+  <div class="card" id="listen"></div>
+</section>
+
+<!-- 5 READING -->
+<section class="sec" id="s4" aria-label="Reading">
+  <p class="kicker">05 · Reading</p>
+  <h2>READ THE NEWS</h2>
+  <p class="lead">Read the article carefully. Pay attention to the sentences marked in blue and orange.</p>
+  <div class="card">
+    <div class="legend"><span><i class="sw-a"></i>Blue phrases</span><span><i class="sw-p"></i>Orange phrases</span>
+      <button class="btn small ghost" id="hlbtn" aria-pressed="true">Hide colours</button></div>
+    <p class="cnote">Content note: this article reports allegations. No criminal convictions have been issued.</p>
+    <article class="article" id="article"></article>
+  </div>
+</section>
+
+<!-- 6 INFERENCE -->
+<section class="sec" id="s5" aria-label="Inference">
+  <p class="kicker">06 · Inference</p>
+  <h2>THINK DEEPER 🔎</h2>
+  <p class="lead">The answers are not copied word for word from the text. Read between the lines.</p>
+  <div id="inf"></div>
+</section>
+
+<!-- 7 DISCOVERY -->
+<section class="sec" id="s6" aria-label="Discovery">
+  <p class="kicker">07 · Discovery</p>
+  <h2>DISCOVERY 🔎</h2>
+  <p class="lead">Let's go back to the text. Look at the blue and orange phrases again, write your ideas, and then reveal the pattern.</p>
+  <div class="card" id="disc"></div>
+  <div class="reveal-box" id="discrev"></div>
+</section>
+
+<!-- 8 TIME CHECK -->
+<section class="sec" id="s7" aria-label="Time check">
+  <p class="kicker">08 · Time check</p>
+  <h2>PASSIVE VOICE ⏰</h2>
+  <div class="golden">
+    <small>THE GOLDEN RULE</small>
+    <div class="big">BE + V3</div>
+    <p>In the Passive Voice, <strong>BE carries the tense</strong>. The main verb stays in <strong>V3 / past participle</strong>.</p>
+  </div>
+  <div class="card">
+    <h3>Move the receiver to the front</h3>
+    <div class="swapbox A" id="swapbox" aria-live="polite"></div>
+    <div style="text-align:center"><button class="btn small" id="swapbtn">SWAP ⇄</button></div>
+  </div>
+  <h3>FOUR TENSES</h3>
+  <div class="card">
+    <div class="tabs" id="ttabs" role="tablist"></div>
+    <div id="tpanels"></div>
+  </div>
+  <h3>TIMELINE</h3>
+  <div class="card">
+    <p class="lead" style="margin-bottom:6px">Click each point on the timeline.</p>
+    <div class="tl" id="tl" role="tablist"></div>
+    <div class="tlpanel" id="tlpanel" aria-live="polite"></div>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3>WHEN DO WE USE ACTIVE VOICE?</h3>
+      <p>Use Active Voice when the person or organization performing the action is important.</p>
+      <div class="row a"><span class="tag">EXAMPLE</span><span class="act">Cornell opened</span> the investigation.</div>
+      <p><strong>Focus:</strong> Cornell</p>
+    </div>
+    <div class="card">
+      <h3>WHEN DO WE USE PASSIVE VOICE?</h3>
+      <p style="margin-bottom:4px">Use Passive Voice when:</p>
+      <ul style="margin:0 0 8px;padding-left:20px;font-weight:600">
+        <li>the action is more important;</li><li>the result is more important;</li><li>we don't know who performed the action;</li><li>the person is obvious;</li><li>the style is formal or objective.</li>
+      </ul>
+      <div class="row p"><span class="tag">EXAMPLES</span>
+        The case <span class="pas">was reported</span>.<br>Several interviews <span class="pas">were conducted</span>.<br>The investigation <span class="pas">was reopened</span>.<br>Potential charges <span class="pas">are being considered</span>.</div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>THE USE OF BY</h3>
+    <p>Use <strong>BY + person/organization</strong> when you want to identify who performed the action.</p>
+    <div class="row p"><span class="tag">WITH BY</span>The case <span class="pas">was investigated</span> by Cornell University Police.</div>
+    <p>But <strong>BY is optional</strong> when the person is not important or obvious.</p>
+    <div class="row p"><span class="tag">WITHOUT BY</span>The case <span class="pas">was reopened</span>.</div>
+    <p class="ng">Do not add BY to every passive sentence.</p>
+  </div>
+</section>
+
+<!-- 9 PRACTICE -->
+<section class="sec" id="s8" aria-label="Practice">
+  <p class="kicker">09 · Practice</p>
+  <h2>PRACTICE 🧠</h2>
+  <p class="lead">12 exercises, all about the Cornell case. You can try again after a mistake.</p>
+  <p class="prog" id="pprog">Done: 0 / 12</p>
+  <div id="prac"></div>
+</section>
+
+<!-- 10 PLUS MINUS -->
+<section class="sec" id="s9" aria-label="Plus minus question">
+  <p class="kicker">10 · Forms</p>
+  <h2>+ / − / ?</h2>
+  <p class="lead">Choose a tense. Read the positive sentence, then complete the negative and build the question.</p>
+  <div class="tabs" id="pmtabs" role="tablist"></div>
+  <div id="pmpanels"></div>
+</section>
+
+<!-- 11 CASE FILE -->
+<section class="sec" id="s10" aria-label="Case file challenge">
+  <p class="kicker">11 · Case file challenge</p>
+  <h2>FIND THE VOICE 🔎</h2>
+  <p class="lead">For each sentence choose <strong>1)</strong> Active or Passive and <strong>2)</strong> the tense. Then press CHECK.</p>
+  <div id="voice"></div>
+</section>
+
+<!-- 12 SPEAKING -->
+<section class="sec" id="s11" aria-label="Speaking">
+  <p class="kicker">12 · Speaking time</p>
+  <h2>HEADLINE ROULETTE 📰</h2>
+  <p class="lead">Spin both wheels. Create your own headline and a mini news report. Use careful reporting language: <em>allegedly</em>, <em>according to the report</em>, <em>the investigation</em>.</p>
+  <div class="wheels">
+    <div class="wcol"><div class="lbl">WHEEL 1 — SITUATION</div><div class="wheel"><div class="ring"></div><div class="face"><span id="w1">?</span></div></div></div>
+    <div class="wcol"><div class="lbl">WHEEL 2 — OBJECT / EVIDENCE</div><div class="wheel"><div class="ring"></div><div class="face"><span id="w2">?</span></div></div></div>
+  </div>
+  <div style="text-align:center;margin-bottom:16px"><button class="btn big" id="spin">SPIN 🎰</button></div>
+  <div id="builder" style="display:none">
+    <div class="combo"><small>SITUATION + OBJECT</small><span id="combo"></span></div>
+    <div class="card">
+      <h3>CREATE YOUR OWN HEADLINE</h3>
+      <input class="blank wide" id="headline" type="text" placeholder="Write your headline here…" aria-label="Your headline">
+      <h3 style="margin-top:18px">MINI NEWS REPORT</h3>
+      <textarea class="free" id="report" rows="6" placeholder="Write 5 or more sentences…" aria-label="Your news report"></textarea>
+      <p class="ng">Your report must contain:</p>
+      <div class="check" id="rcheck"></div>
+      <p class="ng">The first four boxes tick automatically when the tool finds a pattern. Check them yourself, and tick “Active” manually. Not graded.</p>
+      <button class="btn small ghost" id="exbtn">SHOW AN EXAMPLE</button>
+      <div class="example" id="exbox" style="display:none">
+        <strong>Situation:</strong> A university investigation is reopened.<br><strong>Object:</strong> A phone.<br>
+        <strong>Headline:</strong> UNIVERSITY INVESTIGATION REOPENED AFTER PHONE IS DISCOVERED<br><br>
+        A university investigation <span class="pas">has been reopened</span> after a phone <span class="pas">was discovered</span>. The phone <span class="pas">is examined</span> by experts, and the messages <span class="pas">are being reviewed</span> now. A university spokesperson <span class="act">announced</span> the news on Monday. The allegations have not been proven.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 13 SELF EVAL -->
+<section class="sec" id="s12" aria-label="Self evaluation">
+  <p class="kicker">13 · Self-evaluation</p>
+  <h2>🚦 HOW DID YOU DO?</h2>
+  <p class="lead"><strong>Choose the color that best describes your grammar right now.</strong> There are no wrong choices. The color simply tells you what kind of review you need.</p>
+  <div class="lights" id="lights">
+    <button class="light g" data-p="green" aria-pressed="false"><span class="em">🟢</span><h3>GREEN — I CAN USE IT</h3><p>I can identify Active and Passive, use BE + V3 and transform sentences.</p></button>
+    <button class="light y" data-p="yellow" aria-pressed="false"><span class="em">🟡</span><h3>YELLOW — I NEED MORE PRACTICE</h3><p>I understand the idea, but some forms still get mixed up.</p></button>
+    <button class="light r" data-p="red" aria-pressed="false"><span class="em">🔴</span><h3>RED — LET'S BUILD IT STEP BY STEP</h3><p>I want to rebuild the Passive Voice from the beginning.</p></button>
+  </div>
+  <div class="path" id="p-green"></div>
+  <div class="path" id="p-yellow"></div>
+  <div class="path" id="p-red"></div>
+</section>
+
+<!-- 14 FINAL -->
+<section class="sec" id="s13" aria-label="Final screen">
+  <div class="final">
+    <h2>CASE CLOSED 🕵️‍♀️</h2>
+    <p>You investigated the grammar.</p>
+    <p>You found the pattern.</p>
+    <p>You learned how Passive Voice changes the focus of a news story.</p>
+    <p><strong>Now you're ready to report the story yourself.</strong></p>
+    <div class="sumgrid" id="summary"></div>
+    <p style="font-size:13px;opacity:.85">Remember: in this case, allegations are not criminal convictions.</p>
+    <div class="sig">ARVA by Kat<small>English through real stories.</small></div>
+    <div style="margin-top:20px"><button class="btn" id="restart" style="background:#feffd2;color:#1d1b3a;border-color:#feffd2">START AGAIN ↺</button></div>
+  </div>
+</section>
+</main>
+
+<footer class="bottom">
+  <div class="bottom-in">
+    <button class="btn ghost" id="prev">← PREVIOUS</button>
+    <div class="where" id="where">1 / 14</div>
+    <button class="btn" id="next">NEXT →</button>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+'use strict';
+var $=function(s,r){return (r||document).querySelector(s)};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var h=function(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e};
+var mk=function(s){return String(s).replace(/\{([ap])\|([^}]+)\}/g,function(m,t,x){return '<span class="'+(t==='a'?'act':'pas')+'">'+x+'</span>'})};
+var CONTR={"isn't":"is not","aren't":"are not","wasn't":"was not","weren't":"were not","hasn't":"has not","haven't":"have not"};
+var norm=function(s){s=String(s).toLowerCase().replace(/[’‘]/g,"'");Object.keys(CONTR).forEach(function(k){s=s.split(k).join(CONTR[k])});return s.replace(/[.,!?;:"“”]/g,'').replace(/\s+/g,' ').trim()};
+var shuffle=function(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a};
+var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var toastT;function toast(m){var t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove('on')},2200)}
+
+/* ---------- STATE / SCORE ---------- */
+var state={res:{},gt:{},gd:{}},cbs={};
+function updScore(){var n=0;for(var k in state.res)n+=state.res[k];$('#score').textContent='⭐ '+n}
+
+/* ---------- EXERCISE ENGINE ---------- */
+var TENSES=['Simple Present','Simple Past','Present Continuous','Present Perfect'];
+function ex(o){
+  state.gt[o.g]=(state.gt[o.g]||0)+1;
+  var w=h('div','ex'),tries=0,done=false,lock=function(){};
+  var q=mk(o.q);
+  if(o.t==='fill'){q=q.replace('[[]]','<input class="blank" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Your answer" size="'+(o.size||12)+'">')}
+  else q=q.replace('[[]]','______');
+  w.innerHTML='<div class="ex-head">'+(o.n!=null?'<span class="num">'+o.n+'</span>':'')+'<div class="ex-q">'+q+'</div></div><div class="ex-body"></div><div class="fb" role="status" aria-live="polite"></div><div class="ex-act"></div>';
+  var body=$('.ex-body',w),fb=$('.fb',w),act=$('.ex-act',w);
+  var say=function(m,c){fb.className='fb show '+c;fb.innerHTML=m};
+  var finish=function(ok){done=true;w.classList.add('done');if(state.res[o.id]===undefined){state.res[o.id]=ok?1:0;state.gd[o.g]=(state.gd[o.g]||0)+1;updScore();if(cbs[o.g])cbs[o.g]()}};
+  var good=function(){say('✅ Perfect!'+(o.fb?'<span>'+mk(o.fb)+'</span>':''),'good');lock(false);finish(true)};
+  var reveal=function(){say('👉 Answer: <strong>'+mk(o.show)+'</strong>'+(o.fb?'<br><span style="margin-left:0">'+mk(o.fb)+'</span>':''),'info');lock(true);var r=$('.reveal',act);if(r)r.remove();finish(false)};
+  var bad=function(){tries++;var m='❌ Almost! Try again.';if(tries>=2&&o.hint)m+='<span>💡 '+mk(o.hint)+'</span>';say(m,'bad');w.classList.remove('shake');void w.offsetWidth;w.classList.add('shake');
+    if(tries>=2&&!$('.reveal',act)){var b=h('button','btn small ghost reveal','SHOW ANSWER');b.onclick=reveal;act.appendChild(b)}};
+  var match=function(n){if(o.re)return o.re.some(function(r){return new RegExp(r).test(n)});return (o.a||[]).some(function(a){return norm(a)===n})||(o.full&&norm(o.full)===n)};
+
+  if(o.t==='mc'){
+    var box=h('div','opts');
+    o.opts.forEach(function(t,i){
+      var b=h('button','opt',(o.nl?'':'<b>'+'ABCD'[i]+'</b>')+'<span>'+mk(t)+'</span>');
+      b.onclick=function(){if(done)return;if(i===o.c){b.classList.add('ok');good()}else{b.classList.add('bad');b.disabled=true;bad()}};
+      box.appendChild(b)});
+    body.appendChild(box);
+    o.show=o.show||o.opts[o.c];
+    lock=function(){$$('.opt',box).forEach(function(b,i){b.disabled=true;if(i===o.c){b.classList.remove('bad');b.classList.add('ok')}})};
+  }
+  else if(o.t==='fill'){
+    var inp=$('.blank',w);
+    if(!inp){inp=h('input','blank wide');inp.type='text';inp.autocomplete='off';inp.spellcheck=false;inp.setAttribute('aria-label','Your answer');inp.placeholder='Type your answer…';body.appendChild(inp)}
+    if(o.pre)inp.value=o.pre;
+    var cb=h('button','btn small','CHECK');act.insertBefore(cb,act.firstChild);
+    var check=function(){if(done)return;var n=norm(inp.value);if(!n){say('✍️ Type your answer first.','info');return}
+      if(o.pre&&n===norm(o.pre)){bad();return}
+      if(match(n))good();else bad()};
+    cb.onclick=check;inp.onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();check()}};
+    lock=function(rev){inp.disabled=true;cb.disabled=true;if(rev)inp.value=String(o.show).replace(/<[^>]+>/g,'')};
+  }
+  else if(o.t==='vt'){
+    var v=null,t=null;
+    body.appendChild(h('div','lbl','1 · Voice'));
+    var r1=h('div','optrow'),r2=h('div','optrow');
+    [['A','🔵 Active'],['P','🟧 Passive']].forEach(function(p){var b=h('button','opt compact',p[1]);b.onclick=function(){if(done)return;v=p[0];$$('.opt',r1).forEach(function(x){x.classList.remove('sel')});b.classList.add('sel')};r1.appendChild(b)});
+    body.appendChild(r1);body.appendChild(h('div','lbl','2 · Tense'));
+    TENSES.forEach(function(p,i){var b=h('button','opt compact',p);b.onclick=function(){if(done)return;t=i;$$('.opt',r2).forEach(function(x){x.classList.remove('sel')});b.classList.add('sel')};r2.appendChild(b)});
+    body.appendChild(r2);
+    var cb2=h('button','btn small','CHECK');act.insertBefore(cb2,act.firstChild);
+    cb2.onclick=function(){if(done)return;if(v===null||t===null){say('👆 Choose the voice and the tense.','info');return}if(v===o.vo&&t===o.tn)good();else bad()};
+    lock=function(){$$('.opt',w).forEach(function(b){b.disabled=true});cb2.disabled=true};
+  }
+  else if(o.t==='build'){
+    var tray=h('div','chips'),area=h('div','chips target');
+    area.setAttribute('aria-label','Your sentence');
+    shuffle(o.words).forEach(function(wd){var b=h('button','chip',wd);b.onclick=function(){if(done)return;(b.parentNode===tray?area:tray).appendChild(b)};tray.appendChild(b)});
+    body.appendChild(tray);body.appendChild(area);
+    var cb3=h('button','btn small','CHECK'),cl=h('button','btn small ghost','CLEAR');act.appendChild(cb3);act.appendChild(cl);
+    cl.onclick=function(){if(done)return;$$('.chip',area).forEach(function(c){tray.appendChild(c)})};
+    cb3.onclick=function(){if(done)return;var s=$$('.chip',area).map(function(c){return c.textContent}).join(' ');if(!s){say('👆 Tap the words to build the sentence.','info');return}if(match(norm(s)))good();else bad()};
+    lock=function(rev){$$('.chip',w).forEach(function(c){c.disabled=true});cb3.disabled=true;cl.disabled=true;if(rev){area.innerHTML='';String(o.show).replace(/[.?]$/,'').split(' ').forEach(function(x){area.appendChild(h('button','chip',x)).disabled=true})}};
+  }
+  return w;
+}
+function mount(sel,list){var r=$(sel);list.forEach(function(e){r.appendChild(e)})}
+
+/* ---------- CAROUSEL (warm-up & listening) ---------- */
+function carousel(root,qs,ph){
+  var i=0;
+  root.innerHTML='<div class="car-top"><span class="qpill"></span><div class="dots"></div></div><div class="car-q"></div><div class="tas"></div><p class="ng">Not graded. Write a few notes before discussing.</p><div class="car-nav"><button class="btn ghost" data-d="-1">← PREVIOUS</button><button class="btn" data-d="1">NEXT →</button></div>';
+  var tas=$('.tas',root);
+  var texts=qs.map(function(){var t=h('textarea','notes');t.rows=4;t.placeholder=ph;t.setAttribute('aria-label','Your notes');t.style.display='none';tas.appendChild(t);return t});
+  var dots=$('.dots',root);qs.forEach(function(){dots.appendChild(h('i'))});
+  function draw(){
+    $('.qpill',root).textContent='QUESTION '+(i+1)+' OF '+qs.length;
+    $('.car-q',root).textContent=qs[i];
+    $$('i',dots).forEach(function(d,k){d.classList.toggle('on',k<=i)});
+    texts.forEach(function(t,k){t.style.display=k===i?'block':'none'});
+    $('[data-d="-1"]',root).disabled=i===0;$('[data-d="1"]',root).disabled=i===qs.length-1;
+  }
+  $$('[data-d]',root).forEach(function(b){b.onclick=function(){i=Math.max(0,Math.min(qs.length-1,i+Number(b.dataset.d)));draw()}});
+  draw();
+}
+carousel($('#warm'),["What would you do if, for one month, women/men didn't exist?","If you had a daughter and she got lost, would you rather her be with a bear or a man? Why?","Have you ever been harassed by a man or a woman? What happened?","Why do you think the way we talk about sexual assault matters?"],'Write a few notes before discussing.');
+carousel($('#listen'),["What did you understand from the video?","When did the incident take place?","Was anyone charged with the crime?","What was the first statement Jane Doe gave to the police?"],'Write your notes here…');
+
+/* ---------- VOCABULARY ---------- */
+var VOC=[
+ {w:'Jane Doe',es:'Jane Doe (nombre ficticio para proteger la identidad de una mujer)',d:'A name used to protect the identity of a woman whose real name is not publicly disclosed.',e:'The student in the lawsuit is identified as Jane Doe.'},
+ {w:'allegedly',es:'supuestamente / presuntamente',d:'Something that is said to have happened but has not been proven.',e:'She was allegedly assaulted.'},
+ {w:'“grape”',es:'«uva» (eufemismo en redes sociales)',d:'A social-media euphemism sometimes used to refer to rape in order to avoid moderation filters.',e:'Some people write “grape” online to avoid filters.',warn:'⚠️ This is NOT standard English. It is internet slang used to get around moderation filters. Use the standard word in formal speech and writing.',say:'grape'},
+ {w:'rape',es:'violación',d:'Sexual activity without consent.',e:'Rape is a serious crime.'},
+ {w:'lawsuit',es:'demanda (judicial)',d:'A legal action brought to court.',e:'She filed a lawsuit against the university.'},
+ {w:'sorority',es:'hermandad universitaria femenina (en EE. UU.)',d:'A university organization traditionally for female students.',e:'She went out with her sorority friends.'},
+ {w:'fraternity',es:'fraternidad universitaria masculina (en EE. UU.)',d:'A university organization traditionally for male students.',e:'The fraternity chapter was closed.'},
+ {w:'ketamine',es:'ketamina',d:'A drug that can be used medically but can also be misused.',e:'Ketamine can be useful in medicine, but it can also be misused.'},
+ {w:'assault',es:'agresión',d:'A violent or unwanted physical or sexual act against another person.',e:'The lawsuit describes an alleged assault.'},
+ {w:'attorney',es:'abogado / abogada',d:'A lawyer.',e:'Her attorney spoke to the press.'},
+ {w:'file a lawsuit',es:'presentar una demanda',d:'To officially start a legal case.',e:'She decided to file a lawsuit against the university.'},
+ {w:'be charged with a crime',es:'ser acusado/a formalmente de un delito',d:'To be formally accused of a crime by authorities.',e:'So far, no one has been charged with a crime.'}
+];
+function speak(t){if(!('speechSynthesis' in window)||typeof SpeechSynthesisUtterance==='undefined'){toast('Audio is not available in this browser.');return}
+  try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=.9;speechSynthesis.speak(u)}catch(e){toast('Audio is not available.')}}
+var opened={};
+VOC.forEach(function(v,i){
+  var c=h('div','vcard');c.tabIndex=0;c.setAttribute('role','button');c.setAttribute('aria-expanded','false');
+  c.innerHTML='<div class="vword"><span>'+v.w+'</span><span class="vhint">tap ▾</span></div><div class="vback"><div class="es">'+v.es+'</div><div class="vdef">'+v.d+'</div>'+(v.warn?'<div class="warn">'+v.warn+'</div>':'')+'<div class="vex">“'+v.e+'”</div><button class="aud" type="button" aria-label="Listen to '+v.w+'">🔊 LISTEN</button></div>';
+  var tog=function(){var o=c.classList.toggle('open');c.setAttribute('aria-expanded',o);$('.vhint',c).textContent=o?'close ▴':'tap ▾';opened[i]=1;$('#vprog').textContent='Cards opened: '+Object.keys(opened).length+' / '+VOC.length};
+  c.onclick=tog;c.onkeydown=function(e){if((e.key==='Enter'||e.key===' ')&&e.target===c){e.preventDefault();tog()}};
+  $('.aud',c).onclick=function(e){e.stopPropagation();speak((v.say||v.w)+'. '+v.e)};
+  $('#vgrid').appendChild(c);
+});
+
+/* ---------- ARTICLE ---------- */
+var ART=[
+"On October 19, 2024, a 20-year-old Cornell University student, identified as Jane Doe, {a|went out} with her sorority friends to two bars in Ithaca, New York. She {a|had been drinking} more than usual that night, and although she was under 21, she {p|was allegedly served} alcohol at one of the bars. Later, she {a|left} the second bar and {a|went} to a Chi Phi fraternity house to meet a male friend. According to her lawsuit, she {p|was given} more alcohol and {p|was pressured} to consume drugs, including ketamine. She {a|says} she {p|was then sexually assaulted} by several fraternity members while she was too intoxicated to give consent.",
+"According to the lawsuit, the situation {a|became} even more disturbing after one of the men {a|sent} a message to a fraternity Snapchat group. Other members {p|were allegedly invited} to go upstairs, where Jane Doe was in the room. A message referring to her as “Free p---y” {p|was shared} in the group. The lawsuit {a|alleges} that several other fraternity members {p|were brought} into the situation and that Jane Doe {p|was sexually assaulted} by seven men over approximately seven hours. The men named in the lawsuit {a|have denied} wrongdoing, and the allegations {p|have not been established} as criminal convictions.",
+"The case {p|was reported} to Cornell University Police in November 2024. Cornell {a|opened} a Title IX investigation in 2025, and dozens of interviews {p|were conducted} before a disciplinary panel {a|reviewed} the evidence. Two students {p|were expelled}, while others {p|were suspended} or {a|received} other disciplinary sanctions. Some students {p|were also given} educational assignments and reflection papers. These punishments {a|have generated} intense criticism because the university's disciplinary response {p|has been described} by critics as inadequate. Cornell, however, {a|says} that no student {p|was given} an essay as the sole consequence of his involvement. The fraternity chapter {p|was closed} and remains banned from campus.",
+"Jane Doe later {a|left} Cornell and {a|has remained} anonymous. Her attorney {a|has said} that she {p|was denied} a tuition refund after she {a|decided} to leave the university, although the exact amount she {a|requested} {p|has not been publicly confirmed}. In September 2026, she {a|filed} a civil lawsuit against Cornell, the fraternity and the seven men. The lawsuit {a|brought} new attention to evidence from the original investigation, including the Snapchat messages. The criminal investigation {p|had been closed} without charges before the new lawsuit {p|was filed}. It {p|was reopened} in September 2026, and New York Attorney General Letitia James {p|was appointed} as a special prosecutor to oversee the renewed investigation.",
+"Today, the case {p|is being investigated} again, and potential criminal charges {p|are being considered}. No criminal convictions {p|have been issued}, and no one {p|has been criminally charged} so far. Jane Doe {a|continues} to remain anonymous while women and activists online {a|are showing} their support through the #IamJaneDoe campaign, a movement that {p|has been compared} to the spirit of #MeToo. The case {a|has raised} questions about consent, university responsibility and whether sexual-assault allegations {p|are being handled} fairly and transparently. For now, the investigation is ongoing, and the final outcome {p|has not been determined}."
+];
+$('#article').innerHTML='<div class="src">CNN — October 2026</div><h3>A Student Was Allegedly Raped at a Fraternity; Case Is Reopened in 2026</h3>'+ART.map(function(p){return '<p>'+mk(p)+'</p>'}).join('');
+$('#hlbtn').onclick=function(){var a=$('#article'),on=a.classList.toggle('nohl');this.textContent=on?'Show colours':'Hide colours';this.setAttribute('aria-pressed',String(!on))};
+
+/* ---------- INFERENCE ---------- */
+mount('#inf',[
+ ex({id:'inf1',g:'infer',n:1,t:'mc',q:'Why do you think the case received renewed attention in 2026?',opts:['Cornell University closed permanently.','A new lawsuit brought attention to evidence from the original investigation.','Jane Doe publicly revealed her identity.','All seven men were convicted.'],c:1,fb:'The lawsuit brought new attention to evidence from the original investigation.',hint:'Look again at paragraph 4.'}),
+ ex({id:'inf2',g:'infer',n:2,t:'mc',q:"What can we infer about Cornell's response?",opts:['The university completely ignored the allegations.','The university investigated the allegations, but its disciplinary response was criticized.','The university immediately sent everyone to prison.','No investigation took place.'],c:1,fb:'Cornell opened an investigation and applied sanctions, but critics described the response as inadequate.',hint:'Think about paragraph 3: sanctions and criticism.'}),
+ ex({id:'inf3',g:'infer',n:3,t:'mc',q:'Why might Jane Doe have chosen to remain anonymous?',opts:['She was not involved in the case.','Anonymity can provide privacy and protection in a highly publicized case.','The university required her to reveal her identity.','She was charged with a crime.'],c:1,fb:'Anonymity can protect a person’s privacy in a highly publicized case.',hint:'Think about privacy and protection.'})
+]);
+
+/* ---------- DISCOVERY ---------- */
+(function(){
+  var qs=["What's the difference between the blue and orange phrases?","Who performs the action?","Who receives the action?","Can you find a repeated pattern?"];
+  var box=$('#disc'),areas=[];
+  qs.forEach(function(q,i){var d=h('div','',' ');d.style.marginBottom='14px';d.innerHTML='<div class="ex-head"><span class="num">'+(i+1)+'</span><div class="ex-q">'+q+'</div></div>';var t=h('textarea','notes');t.rows=2;t.style.minHeight='64px';t.style.marginTop='8px';t.placeholder='Write your idea…';t.setAttribute('aria-label','Answer '+(i+1));areas.push(t);d.appendChild(t);box.appendChild(d)});
+  var b=h('button','btn','REVEAL THE PATTERN'),msg=h('p','ng','');box.appendChild(b);box.appendChild(msg);
+  var rev=$('#discrev');
+  rev.innerHTML='<div class="card"><h3>LOOK AT THESE SENTENCES</h3>'+
+   '<div class="row a"><span class="tag">🔵</span><span class="act">Cornell opened</span> a Title IX investigation.</div>'+
+   '<div class="row p"><span class="tag">🟧</span>The case <span class="pas">was reported</span> to Cornell University Police.</div>'+
+   '<div class="row a"><span class="tag">🔵</span><span class="act">Jane Doe filed</span> a civil lawsuit.</div>'+
+   '<div class="row p"><span class="tag">🟧</span>The investigation <span class="pas">was reopened</span>.</div></div>'+
+   '<h3>THE PATTERN</h3><div class="pattern"><div class="pat a"><h4>ACTIVE</h4>The subject does the action.</div><div class="pat p"><h4>PASSIVE</h4>The subject receives the action.</div></div>';
+  b.onclick=function(){var any=areas.some(function(t){return t.value.trim().length>2});
+    if(!any){msg.textContent='✍️ Write at least one idea first, then reveal the pattern.';return}
+    msg.textContent='';rev.classList.add('on');b.disabled=true;rev.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'})};
+})();
+
+/* ---------- TIME CHECK ---------- */
+(function(){
+  var sw=$('#swapbox'),isA=true;
+  function drawSw(){sw.className='swapbox '+(isA?'A':'P');sw.innerHTML=isA?'<span>Cornell</span><span>opened</span><span>the investigation</span>':'<span>The investigation</span><span>was opened</span><span>by Cornell</span>';$('#swapbtn').textContent=isA?'MAKE IT PASSIVE ⇄':'MAKE IT ACTIVE ⇄'}
+  $('#swapbtn').onclick=function(){isA=!isA;drawSw()};drawSw();
+
+  var T=[
+   {k:'Simple Present Passive',s:'PRESENT',f:'am / is / are + V3',a:'{a|Authorities investigate} the case.',p:'The case {p|is investigated} by authorities.',m:'The evidence {p|is reviewed} by investigators.'},
+   {k:'Simple Past Passive',s:'PAST',f:'was / were + V3',a:'{a|Jane Doe reported} the case.',p:'The case {p|was reported} to Cornell University Police.',m:'Dozens of interviews {p|were conducted}.'},
+   {k:'Present Continuous Passive',s:'NOW',f:'am / is / are + being + V3',a:'{a|Authorities are investigating} the case.',p:'The case {p|is being investigated}.',m:'Potential criminal charges {p|are being considered}.'},
+   {k:'Present Perfect Passive',s:'PERFECT',f:'has / have + been + V3',a:'{a|Authorities have reopened} the investigation.',p:'The investigation {p|has been reopened}.',m:'The evidence {p|has been reviewed}.'}
+  ];
+  var tabs=$('#ttabs'),pan=$('#tpanels');
+  T.forEach(function(t,i){
+    var b=h('button','',t.k.replace(' Passive',''));b.setAttribute('role','tab');b.setAttribute('aria-selected',i===0);
+    b.onclick=function(){$$('button',tabs).forEach(function(x,k){x.setAttribute('aria-selected',k===i)});$$('.panel',pan).forEach(function(x,k){x.classList.toggle('on',k===i)})};
+    tabs.appendChild(b);
+    var p=h('div','panel'+(i===0?' on':''));
+    p.innerHTML='<h3>'+t.k.toUpperCase()+'</h3><div class="formula">'+t.f+'</div><div class="row a"><span class="tag">🔵 ACTIVE</span>'+mk(t.a)+'</div><div class="row p"><span class="tag">🟧 PASSIVE</span>'+mk(t.p)+'</div><div class="row plain"><span class="tag">ANOTHER</span>'+mk(t.m)+'</div>';
+    pan.appendChild(p);
+  });
+
+  var TL=[
+   {l:'GENERAL / CURRENT',s:'The case {p|is investigated}.',k:'Simple Present Passive'},
+   {l:'COMPLETED PAST',s:'The case {p|was reported} in 2024.',k:'Simple Past Passive'},
+   {l:'HAPPENING NOW',s:'The case {p|is being investigated} again.',k:'Present Continuous Passive'},
+   {l:'PAST + PRESENT CONNECTION',s:'The investigation {p|has been reopened}.',k:'Present Perfect Passive'}
+  ];
+  var tl=$('#tl'),tp=$('#tlpanel');
+  function showTL(i){$$('button',tl).forEach(function(b,k){b.setAttribute('aria-selected',k===i)});tp.innerHTML='<span class="lbl" style="margin:0">'+TL[i].l+'</span><div class="s">'+mk(TL[i].s)+'</div><strong>'+TL[i].k+'</strong>';tp.style.animation='none';void tp.offsetWidth;tp.style.animation=''}
+  TL.forEach(function(t,i){var b=h('button','','<span class="dotn"></span><span>'+t.l+'</span>');b.setAttribute('role','tab');b.onclick=function(){showTL(i)};tl.appendChild(b)});
+  showTL(0);
+})();
+
+/* ---------- PRACTICE ---------- */
+var P=[
+ {t:'mc',q:'The case [[]] to Cornell University Police in November 2024.',opts:['reported','was reported','is reporting','has report'],c:1,fb:'Simple Past Passive: was + V3.',hint:'The case receives the action, and it happened in November 2024.'},
+ {t:'mc',q:'Cornell [[]] a Title IX investigation in 2025.',opts:['opened','was opened','is being opened','has been opened'],c:0,fb:'Cornell does the action, so this sentence is active.',hint:'Who does the action: Cornell or the investigation?'},
+ {t:'fill',q:'Several interviews [[]] during the Title IX investigation. <span class="verb">conduct</span>',size:16,a:['were conducted'],show:'were conducted',hint:'Simple Past Passive: was / were + V3.'},
+ {t:'fill',q:'The criminal investigation [[]] in September 2026. <span class="verb">reopen</span>',size:14,a:['was reopened'],show:'was reopened',hint:'Simple Past Passive: was / were + V3.'},
+ {t:'fill',q:'The case [[]] again by authorities. <span class="verb">investigate</span>',size:18,a:['is being investigated'],show:'is being investigated',hint:'Happening now: is / are + being + V3.'},
+ {t:'fill',q:'The investigation [[]] in 2026. <span class="verb">reopen</span>',size:16,a:['has been reopened'],show:'has been reopened',hint:'Past + present connection: has / have + been + V3.'},
+ {t:'fill',q:'Correct the sentence.<div class="wrong">The case was report to the police.</div>',pre:'The case was report to the police.',a:['the case was reported to the police'],show:'The case was reported to the police.',hint:'After was / were we need V3.'},
+ {t:'fill',q:'Correct the sentence.<div class="wrong">Several students was expelled after the investigation.</div>',pre:'Several students was expelled after the investigation.',a:['several students were expelled after the investigation'],show:'Several students were expelled after the investigation.',hint:'“Several students” is plural.'},
+ {t:'fill',q:'Active → Passive<div class="sent">{a|Jane Doe filed} a civil lawsuit in September 2026.</div>',re:['^(a|the) civil lawsuit was filed (by jane doe )?in september 2026( by jane doe)?$','^in september 2026 (a|the) civil lawsuit was filed( by jane doe)?$'],show:'A civil lawsuit was filed by Jane Doe in September 2026.',hint:'Start with “A civil lawsuit…”'},
+ {t:'fill',q:'Active → Passive<div class="sent">{a|Cornell conducted} dozens of interviews.</div>',re:['^dozens of interviews were conducted( by cornell)?$'],show:'Dozens of interviews were conducted by Cornell.',hint:'Start with “Dozens of interviews…”'},
+ {t:'fill',q:'Passive → Active<div class="sent">The lawsuit {p|was filed} by Jane Doe in September 2026.</div>',re:['^jane doe filed (the|a) (civil )?lawsuit( in september 2026)?$'],show:'Jane Doe filed the lawsuit in September 2026.',hint:'Start with the person who did the action.'},
+ {t:'fill',q:'Passive → Active<div class="sent">The fraternity chapter {p|was closed} by the university.</div>',re:['^the university closed the fraternity chapter$'],show:'The university closed the fraternity chapter.',hint:'Start with “The university…”'}
+];
+mount('#prac',P.map(function(o,i){o.id='pr'+i;o.g='practice';o.n=i+1;return ex(o)}));
+cbs.practice=function(){$('#pprog').textContent='Done: '+state.gd.practice+' / '+state.gt.practice};
+
+/* ---------- PLUS MINUS QUESTION ---------- */
+var PM=[
+ {t:'SIMPLE PRESENT',pl:'The case is investigated by authorities.',neg:'The case [[]] investigated by authorities.',na:['is not'],nshow:'is not',nf:'The case is not investigated by authorities.',qw:['Is','the case','investigated','by authorities'],qa:['is the case investigated by authorities'],qs:'Is the case investigated by authorities?'},
+ {t:'SIMPLE PAST',pl:'The case was reported in November 2024.',neg:'The case [[]] reported in November 2024.',na:['was not'],nshow:'was not',nf:'The case was not reported in November 2024.',qw:['Was','the case','reported','in November 2024'],qa:['was the case reported in november 2024'],qs:'Was the case reported in November 2024?'},
+ {t:'PRESENT CONTINUOUS',pl:'The case is being investigated again.',neg:'The case [[]] investigated again.',na:['is not being'],nshow:'is not being',nf:'The case is not being investigated again.',qw:['Is','the case','being','investigated','again'],qa:['is the case being investigated again'],qs:'Is the case being investigated again?'},
+ {t:'PRESENT PERFECT',pl:'The investigation has been reopened.',neg:'The investigation [[]] reopened.',na:['has not been'],nshow:'has not been',nf:'The investigation has not been reopened.',qw:['Has','the investigation','been','reopened'],qa:['has the investigation been reopened'],qs:'Has the investigation been reopened?'}
+];
+(function(){
+  var tabs=$('#pmtabs'),pan=$('#pmpanels');
+  PM.forEach(function(p,i){
+    var b=h('button','',p.t);b.setAttribute('role','tab');b.setAttribute('aria-selected',i===0);
+    b.onclick=function(){$$('button',tabs).forEach(function(x,k){x.setAttribute('aria-selected',k===i)});$$('.panel',pan).forEach(function(x,k){x.classList.toggle('on',k===i)})};
+    tabs.appendChild(b);
+    var d=h('div','panel'+(i===0?' on':''));
+    d.appendChild(h('div','card','<span class="lbl" style="margin-top:0">🟢 +  POSITIVE</span><div class="ex-q" style="font-size:20px">'+mk(p.pl.replace(/(is|was|has) (being |been )?(\w+)/,function(m){return '{p|'+m+'}'}))+'</div>'));
+    d.appendChild(ex({id:'pmn'+i,g:'pm',n:'−',t:'fill',q:'🔴 − Complete the negative sentence.<div class="sent">'+p.neg+'</div>',size:14,a:p.na,full:p.nf,show:p.nshow,fb:p.nf,hint:'Add NOT after the first part of BE (is / was / has).'}));
+    d.appendChild(ex({id:'pmq'+i,g:'pm',n:'?',t:'build',q:'❓ ? Build the question.',words:p.qw,a:p.qa,show:p.qs,fb:p.qs,hint:'The first part of BE goes to the front.'}));
+    pan.appendChild(d);
+  });
+})();
+
+/* ---------- FIND THE VOICE ---------- */
+var VT=[
+ {s:'Cornell {a|opened} a Title IX investigation.',vo:'A',tn:1,show:'🔵 Active — Simple Past'},
+ {s:'The case {p|was reported} to Cornell University Police.',vo:'P',tn:1,show:'🟧 Passive — Simple Past'},
+ {s:'The case {p|is being investigated} again.',vo:'P',tn:2,show:'🟧 Passive — Present Continuous'},
+ {s:'The investigation {p|has been reopened}.',vo:'P',tn:3,show:'🟧 Passive — Present Perfect'},
+ {s:'Jane Doe {a|filed} a civil lawsuit.',vo:'A',tn:1,show:'🔵 Active — Simple Past'},
+ {s:'Potential criminal charges {p|are being considered}.',vo:'P',tn:2,show:'🟧 Passive — Present Continuous'}
+];
+mount('#voice',VT.map(function(o,i){return ex({id:'vt'+i,g:'voice',n:i+1,t:'vt',q:o.s.replace(/\{[ap]\|([^}]+)\}/g,'$1'),vo:o.vo,tn:o.tn,show:o.show,hint:'Look at BE: is it +being, +been, or just was/were?'})}));
+
+/* ---------- ROULETTE ---------- */
+var SIT=['A university investigation is reopened','New evidence is discovered','A lawsuit is filed','A student gives a new statement','A controversial university decision is announced','New messages are discovered','A disciplinary investigation begins','A police investigation is reopened','A witness gives new information','A university organization is suspended'];
+var OBJ=['a phone','a photograph','a message','a backpack','a video','a document','a key','a notebook','a laptop','a security camera'];
+var spinning=false;
+function anim(el,list,fin,extra){var wh=el.closest('.wheel');wh.classList.add('spinning');
+  return new Promise(function(res){
+    if(reduce){el.textContent=fin;wh.classList.remove('spinning');return res()}
+    var i=0,n=14+extra,d=45;
+    (function t(){if(i>=n){el.textContent=fin;wh.classList.remove('spinning');return res()}
+      el.textContent=list[Math.floor(Math.random()*list.length)];i++;d*=1.1;setTimeout(t,d)})();
+  })}
+$('#spin').onclick=function(){
+  if(spinning)return;spinning=true;var b=this;b.disabled=true;
+  var s=SIT[Math.floor(Math.random()*SIT.length)],o=OBJ[Math.floor(Math.random()*OBJ.length)];
+  Promise.all([anim($('#w1'),SIT,s,0),anim($('#w2'),OBJ,o,3)]).then(function(){
+    spinning=false;b.disabled=false;b.textContent='SPIN AGAIN 🎰';
+    $('#combo').innerHTML='<strong>'+s+'</strong> + <strong>'+o+'</strong>';
+    $('#builder').style.display='block';
+  });
+};
+var RC=['1 Simple Present Passive','1 Simple Past Passive','1 Present Continuous Passive','1 Present Perfect Passive','1 Active sentence'];
+var irr='made|done|known|seen|shown|given|taken|found|held|kept|sent|built|told|lost|caught|written|stolen|broken|chosen|hidden|opened|closed';
+var RX=[new RegExp('\\b(is|are|am)\\s+(not\\s+)?(\\w+ed|'+irr+')\\b'),new RegExp('\\b(was|were)\\s+(not\\s+)?(\\w+ed|'+irr+')\\b'),/\b(is|are|am)\s+(not\s+)?being\s+\w+/,/\b(has|have)\s+(not\s+)?been\s+\w+/];
+var rcb=RC.map(function(t,i){var l=h('label','','<input type="checkbox"> <span>☐ '+t+'</span>');$('#rcheck').appendChild(l);return $('input',l)});
+$('#report').oninput=function(){var v=this.value.toLowerCase();RX.forEach(function(r,i){if(r.test(v))rcb[i].checked=true})};
+$('#exbtn').onclick=function(){var b=$('#exbox');var s=b.style.display==='none';b.style.display=s?'block':'none';this.textContent=s?'HIDE THE EXAMPLE':'SHOW AN EXAMPLE'};
+
+/* ---------- SELF EVALUATION ---------- */
+var PATHS={};
+function chk(lines){return '<ul class="checklist">'+lines.map(function(l){return '<li>'+l+'</li>'}).join('')+'</ul>'}
+function build(name){
+  var el=$('#p-'+name);
+  if(name==='green'){
+    el.innerHTML='<div class="card"><h3 class="ptitle">🟢 GREEN — I CAN USE IT</h3>'+chk(['I can identify Active and Passive Voice.','I understand BE + V3.','I can recognize Simple Present, Simple Past, Present Continuous and Present Perfect Passive.','I can transform Active → Passive and Passive → Active.','I can use Passive Voice when talking about the Cornell case.'])+'<p><strong>You don\'t need a long review. Let\'s see if you can use the grammar independently.</strong></p></div><h3>GREEN CHALLENGE ⭐⭐⭐</h3><div class="gx"></div><div class="endmsg g" id="end-green">🟢 Excellent. You are ready to use Passive Voice in conversation.</div>';
+    var G=[
+     {t:'mc',q:'The investigation has been reopened.<br>What is it?',opts:['Active — Present Perfect','Passive — Present Perfect','Active — Simple Past','Passive — Simple Past'],c:1,hint:'has + been + V3'},
+     {t:'mc',q:'Complete:<br>Several interviews [[]] conducted during the investigation.',opts:['was','were','have','are being'],c:1,hint:'Past + plural subject.'},
+     {t:'fill',q:'Transform:<div class="sent">{a|Authorities are investigating} the case.</div>',re:['^the case is being investigated( by authorities)?$'],show:'The case is being investigated by authorities.',hint:'Present continuous → is / are + being + V3.'},
+     {t:'fill',q:'Transform:<div class="sent">{a|Jane Doe filed} the lawsuit.</div>',re:['^the lawsuit was filed( by jane doe)?$'],show:'The lawsuit was filed by Jane Doe.',hint:'Simple past → was / were + V3.'},
+     {t:'mc',q:'Choose the correct sentence.',opts:['The case was reopen.','The case was reopened.','The case were reopened.','The case has reopen.'],c:1,hint:'Singular subject + was + V3.'},
+     {t:'vt',q:'Identify:<div class="sent">Potential charges are being considered.</div>',vo:'P',tn:2,show:'🟧 Passive — Present Continuous',hint:'Look at “are being”.'},
+     {t:'mc',q:'Complete:<br>The evidence [[]] been reviewed.',opts:['has','is','was','being'],c:0,hint:'been → has / have.'},
+     {t:'fill',q:'Create a sentence using:<br><strong>investigation / reopen / Present Perfect Passive</strong>',re:['^(the |this )?(criminal )?investigation has been reopened.*$'],show:'The investigation has been reopened.',hint:'has / have + been + V3'}
+    ];
+    G.forEach(function(o,i){o.id='gr'+i;o.g='green';o.n=i+1;$('.gx',el).appendChild(ex(o))});
+    cbs.green=function(){if(state.gd.green===state.gt.green)$('#end-green').classList.add('on')};
+  }
+  if(name==='yellow'){
+    el.innerHTML='<div class="card"><h3 class="ptitle">🟡 YELLOW — I NEED MORE PRACTICE</h3><p>You understand the basic idea, but some forms still get mixed up.</p><p>Maybe you know that Passive Voice uses <strong>BE + V3</strong>, but you sometimes choose the wrong form of BE, the wrong tense, or V2 instead of V3.</p><p><strong>That\'s completely normal.</strong></p></div>'+
+     '<div class="card"><h3>FIRST: CHOOSE THE TENSE</h3>'+
+     [['Simple Present','is / are + V3','The case {p|is investigated}.'],['Simple Past','was / were + V3','The case {p|was reported}.'],['Present Continuous','is / are + being + V3','The case {p|is being investigated}.'],['Present Perfect','has / have + been + V3','The investigation {p|has been reopened}.']].map(function(r){return '<div class="row p"><span class="tag">'+r[0].toUpperCase()+'</span><strong>'+r[1]+'</strong><br>'+mk(r[2])+'</div>'}).join('')+
+     '<p><strong>Don\'t choose the V3 first. Choose the tense first.</strong></p></div><h3>YELLOW PRACTICE ⭐⭐</h3><div class="yx"></div><div class="endmsg y" id="end-yellow">🟡 You\'re close. Your next step is to slow down and identify the tense before building the passive sentence.</div>';
+    var TN=['Simple Present Passive','Simple Past Passive','Present Continuous Passive','Present Perfect Passive'];
+    var Y=[
+     {t:'mc',q:'Choose BE:<br>The case [[]] reported in November 2024.',opts:['is','was','has','being'],c:1,hint:'November 2024 = past.'},
+     {t:'mc',q:'Choose BE:<br>The case [[]] being investigated now.',opts:['was','has','is','were'],c:2,hint:'“now” + being → is / are.'},
+     {t:'mc',q:'Choose V3:<br>The case was [[]] to the police.',opts:['report','reported','reporting','reports'],c:1,hint:'After BE we need V3.'},
+     {t:'mc',q:'Choose V3:<br>Several interviews were [[]].',opts:['conduct','conducted','conducting','conducts'],c:1,hint:'After BE we need V3.'},
+     {t:'fill',q:'Complete:<br>The investigation [[]] been reopened.',size:8,a:['has'],show:'has',hint:'Singular subject + been.'},
+     {t:'fill',q:'Complete:<br>The allegations [[]] being investigated.',size:8,a:['are'],show:'are',hint:'Plural subject + being.'},
+     {t:'mc',q:'Identify the tense:<div class="sent">The case {p|was reported} in November 2024.</div>',opts:TN,c:1,hint:'was / were + V3'},
+     {t:'mc',q:'Identify the tense:<div class="sent">The case {p|is being investigated} again.</div>',opts:TN,c:2,hint:'is / are + being + V3'},
+     {t:'mc',q:'Choose the correct sentence.',opts:['The investigation has reopened by authorities.','The investigation has been reopened by authorities.','The investigation has being reopened.','The investigation was been reopened.'],c:1,hint:'has + been + V3'},
+     {t:'fill',q:'Transform:<div class="sent">{a|Cornell opened} the investigation.</div>',re:['^the investigation was opened( by cornell)?$'],show:'The investigation was opened by Cornell.',hint:'First choose the tense: simple past.'}
+    ];
+    Y.forEach(function(o,i){o.id='ye'+i;o.g='yellow';o.n=i+1;$('.yx',el).appendChild(ex(o))});
+    cbs.yellow=function(){if(state.gd.yellow===state.gt.yellow)$('#end-yellow').classList.add('on')};
+  }
+  if(name==='red'){
+    var steps=[
+     ['STEP 1 — FIND THE ACTION','Cornell investigated the case.','What is the action?','investigated','{a|Cornell} <strong>investigated</strong> the case.'],
+     ['STEP 2 — FIND WHO DOES THE ACTION','Cornell investigated the case.','Who does it?','Cornell',''],
+     ['STEP 3 — FIND WHO RECEIVES THE ACTION','Cornell investigated the case.','What receives the action?','the case',''],
+     ['STEP 4 — MOVE THE RECEIVER TO THE FRONT','Active: Cornell investigated the case.','Passive →','The case…','']
+    ];
+    var html='<div class="card"><h3 class="ptitle">🔴 RED — LET\'S BUILD IT STEP BY STEP</h3><p>That\'s okay. Don\'t try to memorize everything at once.</p><p><strong>We are going to rebuild the Passive Voice using the Cornell case.</strong></p></div>';
+    steps.forEach(function(s,i){html+='<div class="stepcard"><h4>'+s[0]+'</h4><div class="ex-q">'+s[1]+'</div><p style="margin:6px 0">'+s[2]+'</p><button class="btn small ghost rv" data-i="'+i+'">SHOW</button><div class="ans" id="rv'+i+'">'+s[3]+'</div></div>'});
+    html+='<div class="stepcard"><h4>STEP 5 — CHOOSE THE CORRECT FORM OF BE</h4><table class="be"><tr><td>Simple Past</td><td>was / were</td></tr><tr><td>Simple Present</td><td>is / are</td></tr><tr><td>Present Continuous</td><td>is / are being</td></tr><tr><td>Present Perfect</td><td>has / have been</td></tr></table></div>';
+    html+='<div class="stepcard"><h4>STEP 6 — USE V3</h4><div class="pairs">'+[['investigate','investigated'],['report','reported'],['reopen','reopened'],['conduct','conducted'],['close','closed'],['file','filed']].map(function(p){return '<span>'+p[0]+' → <strong>'+p[1]+'</strong></span>'}).join('')+'</div></div>';
+    html+='<div class="redformula"><strong>THE RED FORMULA</strong><ol><li>Find the receiver.</li><li>Choose BE.</li><li>Use V3.</li><li>Add BY only if necessary.</li></ol></div><h3>RED PRACTICE ⭐</h3><div class="rx"></div><div class="endmsg r" id="end-red">🔴 You rebuilt the structure step by step. Remember: BE + V3. You don\'t need to memorize everything at once.</div>';
+    el.innerHTML=html;
+    $$('.rv',el).forEach(function(b){b.onclick=function(){var a=$('#rv'+b.dataset.i);var on=a.classList.toggle('on');b.textContent=on?'HIDE':'SHOW'}});
+    var A='Cornell opened the investigation.';
+    var R=[
+     {t:'mc',nl:1,q:'Is this Active or Passive?<div class="sent">{a|Cornell opened} the investigation.</div>',opts:['🔵 Active','🟧 Passive'],c:0,hint:'Cornell does the action.'},
+     {t:'mc',nl:1,q:'Is this Active or Passive?<div class="sent">The investigation {p|was opened}.</div>',opts:['🔵 Active','🟧 Passive'],c:1,hint:'The investigation receives the action.'},
+     {t:'mc',q:'Choose the correct BE:<br>The case [[]] reported.',opts:['was','were'],c:0,hint:'One case = singular.'},
+     {t:'mc',q:'Choose the correct BE:<br>The interviews [[]] conducted.',opts:['was','were'],c:1,hint:'Interviews = plural.'},
+     {t:'mc',q:'Choose the correct V3:<br>The case was [[]].',opts:['report','reported','reporting'],c:1,hint:'V3 of report.'},
+     {t:'mc',q:'Choose the correct V3:<br>The investigation was [[]].',opts:['reopen','reopened','reopening'],c:1,hint:'V3 of reopen.'},
+     {t:'fill',q:'Complete:<br>The case [[]] reported.',size:8,a:['was'],show:'was',hint:'Singular + past.'},
+     {t:'fill',q:'Complete:<br>The case was [[]]. <span class="verb">report</span>',size:12,a:['reported'],show:'reported',hint:'V3 of report.'},
+     {t:'build',q:'Build the sentence.<div class="sent"><span class="verb">The / case / was / reported</span></div>',words:['The','case','was','reported'],a:['the case was reported'],show:'The case was reported.',hint:'Receiver + BE + V3.'},
+     {t:'build',q:'Build the sentence.<div class="sent"><span class="verb">Interviews / were / conducted</span></div>',words:['Interviews','were','conducted'],a:['interviews were conducted'],show:'Interviews were conducted.',hint:'Receiver + BE + V3.'},
+     {t:'mc',nl:1,q:'Choose the correct sentence.',opts:['A. The case was reported.','B. The case was report.','C. The case were reported.'],c:0,hint:'was + V3, singular.'},
+     {t:'mc',nl:1,q:'Choose the correct Present Continuous Passive.',opts:['A. The case is investigate.','B. The case is being investigated.','C. The case was being investigate.'],c:1,hint:'is + being + V3'},
+     {t:'mc',nl:1,q:'Choose the correct Present Perfect Passive.',opts:['A. The investigation has reopened.','B. The investigation has been reopened.','C. The investigation was been reopened.'],c:1,hint:'has + been + V3'},
+     {t:'fill',q:'Transform with support.<div class="sent">Active: {a|Cornell opened} the investigation.</div><div class="sent">The investigation [[]].</div>',size:14,a:['was opened'],show:'was opened',hint:'was + V3'},
+     {t:'fill',q:'Final guided transformation.<div class="sent">Active: {a|Authorities are investigating} the case.</div><div class="sent">The case [[]].</div>',size:20,a:['is being investigated'],show:'is being investigated',hint:'is + being + V3'}
+    ];
+    R.forEach(function(o,i){o.id='re'+i;o.g='red';o.n=i+1;$('.rx',el).appendChild(ex(o))});
+    cbs.red=function(){if(state.gd.red===state.gt.red)$('#end-red').classList.add('on')};
+  }
+}
+$$('.light').forEach(function(b){
+  b.onclick=function(){var p=b.dataset.p;
+    $$('.light').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
+    $$('.path').forEach(function(x){x.classList.remove('on')});
+    if(!PATHS[p]){build(p);PATHS[p]=1}
+    var t=$('#p-'+p);t.classList.add('on');t.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+  };
+});
+
+/* ---------- FINAL ---------- */
+var PFX={inf:'infer',pr:'practice',pmn:'pm',pmq:'pm',vt:'voice',gr:'green',ye:'yellow',re:'red'};
+function grp(id){var m=id.match(/^(inf|pmn|pmq|pr|vt|gr|ye|re)\d+$/);return m?PFX[m[1]]:null}
+function summary(){
+  var L={infer:'Think deeper',practice:'Practice',pm:'+ / − / ?',voice:'Find the voice',green:'🟢 Green',yellow:'🟡 Yellow',red:'🔴 Red'};
+  var right={};Object.keys(state.res).forEach(function(id){var g=grp(id);if(g)right[g]=(right[g]||0)+state.res[id]});
+  var html='';
+  Object.keys(L).forEach(function(k){if(state.gd[k])html+='<div>'+(right[k]||0)+' / '+state.gt[k]+'<small>'+L[k]+'</small></div>'});
+  $('#summary').innerHTML=html||'<div>⭐<small>Do some exercises to see your score here</small></div>';
+}
+$('#restart').onclick=function(){location.reload()};
+
+/* ---------- NAVIGATION ---------- */
+var NAMES=['Home','Warm up','Vocabulary','Listen','Read','Think deeper','Discovery','Time check','Practice','+ / − / ?','Find the voice','Speaking','Self-check','Case closed'];
+var cur=0,seen={0:1};
+var pills=$('#pills');
+NAMES.forEach(function(n,i){var b=h('button','',(i+1)+'. '+n);b.type='button';b.onclick=function(){go(i)};pills.appendChild(b)});
+function go(i){
+  i=Math.max(0,Math.min(NAMES.length-1,i));cur=i;seen[i]=1;
+  $$('.sec').forEach(function(s,k){s.classList.toggle('active',k===i)});
+  $$('button',pills).forEach(function(b,k){if(k===i)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');b.classList.toggle('seen',!!seen[k])});
+  var pct=Math.round(i/(NAMES.length-1)*100);$('#barfill').style.width=pct+'%';$('.bar').setAttribute('aria-valuenow',pct);
+  $('#where').textContent=(i+1)+' / '+NAMES.length;
+  $('#prev').disabled=i===0;$('#next').disabled=i===NAMES.length-1;
+  var cp=$$('button',pills)[i];if(cp)pills.scrollTo({left:cp.offsetLeft-pills.clientWidth/2+cp.clientWidth/2,behavior:reduce?'auto':'smooth'});
+  window.scrollTo({top:0,behavior:reduce?'auto':'smooth'});
+  if(i===13)summary();
+}
+$('#prev').onclick=function(){go(cur-1)};
+$('#next').onclick=function(){go(cur+1)};
+$('#start').onclick=function(){go(1)};
+go(0);
+})();
+</script>
+</body>
+</html>
