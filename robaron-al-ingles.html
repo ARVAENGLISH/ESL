@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Robaron al inglés 🚨 – Simple Present</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFF8E8;--ink:#1F2340;--muted:#6b6f8d;
+  --orange:#FF7A1A;--orange-l:#FFE9D6;
+  --blue:#4A4AE8;--blue-l:#E6E6FF;
+  --pink:#FF3D81;--pink-l:#FFE0EC;
+  --green:#22B573;--green-l:#D9F7E8;
+  --yellow:#FFC531;--yellow-l:#FFF3C4;
+  --red:#E5383B;--red-l:#FFDADA;
+  --navy:#2F4B6E;--r:24px;
+  --head:'Comfortaa','Nunito',system-ui,'Segoe UI',sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:78px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Nunito','Comfortaa',system-ui,'Segoe UI',sans-serif;font-size:18px;line-height:1.5;overflow-x:hidden}
+h1,h2,h3{font-family:var(--head);line-height:1.15;margin:0 0 .4em}
+p{margin:.4em 0}
+.hidden{display:none!important}
+button{font-family:inherit}
+
+/* top bar */
+#topbar{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,248,232,.94);backdrop-filter:blur(8px);box-shadow:0 2px 12px rgba(31,35,64,.08)}
+#topbar .in{display:flex;align-items:center;gap:10px;padding:8px 12px}
+#nav{display:flex;gap:6px;overflow-x:auto;flex:1;scrollbar-width:none}
+#nav::-webkit-scrollbar{display:none}
+#nav a{flex:none;text-decoration:none;color:var(--ink);font-weight:800;font-size:14px;padding:6px 12px;border-radius:999px;background:#fff;border:2px solid #efe6cf;white-space:nowrap;transition:.2s}
+#nav a.on{background:var(--orange);border-color:var(--orange);color:#fff}
+.stars{flex:none;font-weight:800;background:var(--yellow-l);border:2px solid var(--yellow);padding:4px 12px;border-radius:999px;font-size:15px}
+#pbar{height:6px;background:#f1e8d0}
+#pfill{height:100%;width:0;background:linear-gradient(90deg,var(--orange),var(--pink));transition:width .2s}
+
+/* hero */
+.hero{min-height:100vh;background:var(--navy);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:90px 20px 50px;position:relative;overflow:hidden}
+.hero .light{position:absolute;top:0;width:50%;height:100%;opacity:.0;animation:flash 1.2s infinite}
+.hero .l1{left:0;background:radial-gradient(circle at 0 0,rgba(229,56,59,.75),transparent 60%)}
+.hero .l2{right:0;background:radial-gradient(circle at 100% 0,rgba(74,74,232,.9),transparent 60%);animation-delay:.6s}
+@keyframes flash{0%,100%{opacity:0}50%{opacity:1}}
+.hero>*:not(.light){position:relative;z-index:2}
+.kicker{font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:14px;color:var(--yellow)}
+.hero h1{font-size:clamp(38px,9vw,92px);color:#FFF8E8;text-shadow:0 4px 0 var(--orange);margin:.3em 0}
+.hero h1 .em{display:inline-block;animation:bounce 1s infinite}
+@keyframes bounce{50%{transform:translateY(-10px) rotate(-6deg)}}
+.hero .sub{font-size:22px;max-width:560px;color:#dfe8f5}
+.tape{position:absolute;bottom:26px;left:-5%;right:-5%;transform:rotate(-2deg);background:repeating-linear-gradient(45deg,var(--yellow) 0 22px,#222 22px 44px);color:#222;font-weight:800;padding:8px 0;font-family:var(--head);letter-spacing:.2em;white-space:nowrap;overflow:hidden;z-index:2;text-align:center}
+.tape span{background:var(--yellow);padding:2px 14px;border-radius:6px}
+
+/* buttons */
+.btn{border:0;border-radius:999px;padding:.65em 1.3em;font-weight:800;font-size:17px;color:#fff;cursor:pointer;transition:transform .15s,box-shadow .15s,opacity .2s;box-shadow:0 4px 0 rgba(0,0,0,.18);background:var(--blue)}
+.btn:hover:not(:disabled){transform:translateY(-2px)}
+.btn:active:not(:disabled){transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.18)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.orange{background:var(--orange)}.btn.blue{background:var(--blue)}.btn.pink{background:var(--pink)}.btn.green{background:var(--green)}.btn.red{background:var(--red)}
+.btn.ghost{background:#fff;color:var(--ink);border:2px solid #e6dcc0;box-shadow:none}
+.btn.yellow{background:var(--yellow);color:var(--ink)}
+.btn.big{font-size:22px;padding:.8em 1.6em}
+.btn.sm{font-size:14px;padding:.45em 1em}
+a.btn{display:inline-block;text-decoration:none}
+
+/* sections */
+section.sec{padding:60px 16px 30px}
+.wrap{max-width:980px;margin:0 auto}
+.sechead{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.sechead .num{flex:none;width:52px;height:52px;border-radius:18px;background:var(--orange);color:#fff;display:grid;place-items:center;font-family:var(--head);font-weight:700;font-size:24px;transform:rotate(-6deg)}
+.sechead h2{font-size:clamp(26px,5vw,40px);margin:0}
+.sechead .tagline{color:var(--muted);font-weight:700;font-size:16px}
+.card{background:#fff;border-radius:var(--r);padding:22px;box-shadow:0 6px 0 rgba(31,35,64,.07),0 12px 30px rgba(31,35,64,.06)}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.pill{display:inline-block;padding:3px 12px;border-radius:999px;font-weight:800;font-size:14px}
+.p-o{background:var(--orange-l);color:#b84c00}.p-b{background:var(--blue-l);color:var(--blue)}.p-p{background:var(--pink-l);color:#c2185b}.p-g{background:var(--green-l);color:#0f7a4b}.p-y{background:var(--yellow-l);color:#8a6200}.p-r{background:var(--red-l);color:var(--red)}
+.o{color:var(--orange)}.b{color:var(--blue)}.pk{color:var(--pink)}.gr{color:var(--green)}.rd{color:var(--red)}
+
+/* goal */
+.goal{border:4px dashed var(--orange);background:var(--orange-l)}
+.goal .item{background:#fff;border-radius:20px;padding:16px;display:flex;gap:12px;align-items:flex-start;font-weight:700}
+.goal .item span.ic{font-size:30px;line-height:1}
+
+/* vocab */
+.vcard{perspective:900px;height:236px;cursor:pointer;outline:none}
+.vinner{position:relative;width:100%;height:100%;transition:transform .55s;transform-style:preserve-3d}
+.vcard.flipped .vinner{transform:rotateY(180deg)}
+.vcard:focus-visible .vinner{outline:4px solid var(--blue);outline-offset:4px;border-radius:var(--r)}
+.vf{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:var(--r);padding:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 6px 0 rgba(31,35,64,.1)}
+.vf.front{background:var(--orange);color:#fff}
+.vf.front .w{font-family:var(--head);font-weight:700;font-size:34px;text-transform:uppercase;letter-spacing:.04em}
+.vf.front .hint{font-size:13px;opacity:.9;margin-top:8px;font-weight:700}
+.vf.back{background:#fff;border:3px solid var(--orange);transform:rotateY(180deg);gap:2px}
+.vf.back .es{font-family:var(--head);font-weight:700;font-size:26px;color:var(--orange);margin-bottom:4px}
+.vf.back .ex{display:flex;align-items:center;gap:6px;font-size:17px;font-weight:700}
+.sp{border:0;background:rgba(255,255,255,.28);color:inherit;width:42px;height:42px;border-radius:50%;font-size:20px;cursor:pointer;flex:none;transition:.15s}
+.sp:hover{transform:scale(1.12)}
+.back .sp{background:var(--orange-l);width:32px;height:32px;font-size:15px}
+.front .sp{margin-top:12px;background:#fff}
+b.v1{color:var(--blue);background:var(--blue-l);padding:0 5px;border-radius:7px}
+b.v3{color:var(--pink);background:var(--pink-l);padding:0 5px;border-radius:7px}
+b.v3 u{text-decoration:none;color:#fff;background:var(--pink);border-radius:5px;padding:0 2px}
+.note{font-size:12px;color:var(--muted);font-weight:700}
+
+/* warm-up */
+.warm{background:var(--blue);color:#fff;text-align:center;padding:30px 20px;border-radius:32px}
+.warm .qn{font-weight:800;opacity:.85}
+.warm .qq{font-family:var(--head);font-weight:700;font-size:clamp(24px,5vw,40px);min-height:2.4em;display:flex;align-items:center;justify-content:center;margin:14px 0;animation:pop .35s}
+@keyframes pop{from{transform:scale(.92);opacity:0}to{transform:none;opacity:1}}
+.dots{display:flex;gap:8px;justify-content:center;margin:10px 0}
+.dots button{width:14px;height:14px;border-radius:50%;border:0;background:rgba(255,255,255,.35);cursor:pointer;padding:0}
+.dots button.on{background:var(--yellow);transform:scale(1.3)}
+.warm .controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+
+/* review */
+.fr{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.fr .box{border-radius:28px;padding:22px;border:4px solid}
+.followers{background:var(--blue-l);border-color:var(--blue)}
+.rebels{background:var(--pink-l);border-color:var(--pink)}
+.box h3{font-size:26px}
+.box .quote{background:#fff;border-radius:16px;padding:10px 14px;margin:10px 0;font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:#fff;border-radius:999px;padding:5px 14px;font-weight:800;border:2px solid transparent}
+.rebels .chip s{display:none}
+.snake{display:inline-block;animation:wig 1.4s infinite}
+@keyframes wig{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(10deg) translateX(4px)}}
+.demo{margin-top:16px;background:#fff;border-radius:24px;padding:18px;text-align:center}
+.demo select{font:inherit;font-weight:800;padding:8px 14px;border-radius:14px;border:2px solid #e6dcc0;background:#fff}
+.pron{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:12px 0}
+.pron button{border:3px solid transparent;border-radius:999px;padding:8px 18px;font-weight:800;font-size:17px;cursor:pointer;background:var(--blue-l);color:var(--blue)}
+.pron button.reb{background:var(--pink-l);color:var(--pink)}
+.pron button.on{border-color:var(--ink);transform:scale(1.08)}
+.demoOut{font-family:var(--head);font-weight:700;font-size:clamp(22px,4.5vw,34px);min-height:1.6em}
+.irr{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.irr span{background:var(--yellow-l);border:2px solid var(--yellow);border-radius:16px;padding:6px 14px;font-weight:800}
+
+/* quiz engine */
+.set{margin-top:14px}
+.setbar{display:flex;align-items:center;gap:12px;margin-bottom:10px;position:sticky;top:64px;z-index:5;background:var(--bg);padding:6px 0}
+.setbar .score{font-weight:800;background:var(--yellow-l);border:2px solid var(--yellow);border-radius:999px;padding:3px 12px;white-space:nowrap}
+.setprog{flex:1;height:12px;background:#efe6cf;border-radius:99px;overflow:hidden}
+.setprog i{display:block;height:100%;width:0;background:var(--green);transition:width .3s}
+.q{background:#fff;border-radius:22px;padding:18px;margin-bottom:12px;box-shadow:0 4px 0 rgba(31,35,64,.07);border:3px solid transparent;transition:border-color .25s}
+.q.solved{border-color:var(--green)}
+.q.shown{border-color:var(--yellow)}
+.qhead{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.qn{width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:800;font-size:14px;flex:none}
+.qp{font-size:20px;font-weight:700;margin:6px 0 10px}
+.blank{display:inline-block;min-width:70px;border-bottom:4px solid var(--orange);text-align:center;color:var(--green);font-weight:800;margin:0 4px}
+.opts{display:flex;flex-wrap:wrap;gap:10px}
+.opt{border:3px solid #e9e2cf;background:#fff;border-radius:16px;padding:10px 18px;font-weight:800;font-size:17px;cursor:pointer;color:var(--ink);transition:.15s;text-align:left}
+.opt:hover:not(:disabled){border-color:var(--blue);background:var(--blue-l)}
+.opt.ok{background:var(--green);border-color:var(--green);color:#fff}
+.opt.bad{background:var(--red-l);border-color:var(--red);color:var(--red);text-decoration:line-through}
+.opt:disabled{cursor:default}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.inp{flex:1;min-width:200px;font:inherit;font-weight:700;border:3px solid #e9e2cf;border-radius:16px;padding:10px 14px;outline:none;background:#fff}
+.inp:focus{border-color:var(--blue)}
+.inp.ok{border-color:var(--green);background:var(--green-l)}
+.inp.bad{border-color:var(--red);background:var(--red-l)}
+.hint{color:var(--muted);font-weight:700;font-size:15px;margin:-4px 0 8px}
+.fb{margin-top:10px;font-weight:800;min-height:0}
+.fb.ok{color:#0f7a4b}.fb.bad{color:var(--red)}.fb.show{color:#8a6200}
+.fb .tip{display:block;font-weight:700;color:var(--muted);margin-top:2px}
+.shake{animation:shake .4s}
+@keyframes shake{20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+.build,.pool{display:flex;flex-wrap:wrap;gap:8px;min-height:56px;padding:10px;border-radius:16px}
+.build{background:var(--blue-l);border:3px dashed var(--blue);margin-bottom:10px}
+.build:empty::before{content:"Tap the words to build the sentence 👇";color:var(--blue);opacity:.7;font-weight:700}
+.pool{background:#faf5e6}
+.tok{border:0;background:#fff;border:3px solid var(--blue);color:var(--blue);border-radius:14px;padding:6px 16px;font-weight:800;font-size:18px;cursor:pointer;box-shadow:0 3px 0 var(--blue);transition:.12s}
+.tok:hover:not(:disabled){transform:translateY(-2px)}
+.tok:disabled{cursor:default}
+.build .tok{background:var(--blue);color:#fff}
+.build.ok .tok{background:var(--green);border-color:var(--green);box-shadow:0 3px 0 #168a56}
+.words{display:flex;flex-wrap:wrap;gap:8px}
+.wd{border:3px solid #e9e2cf;background:#fff;border-radius:14px;padding:6px 14px;font-weight:800;font-size:19px;cursor:pointer;color:var(--ink)}
+.wd:hover:not(:disabled){border-color:var(--pink);background:var(--pink-l)}
+.wd.bad{background:var(--red-l);border-color:var(--red);color:var(--red)}
+.wd.found{background:var(--pink);border-color:var(--pink);color:#fff;text-decoration:line-through}
+.wd:disabled{cursor:default}
+.setdone{background:var(--green-l);border:3px solid var(--green);border-radius:22px;padding:16px;text-align:center;font-weight:800;font-size:20px;animation:pop .4s}
+.subhead{font-family:var(--head);font-weight:700;font-size:24px;margin:30px 0 4px;display:flex;align-items:center;gap:10px}
+
+/* listening */
+.listen{background:var(--navy);color:#fff;border-radius:30px;padding:26px;text-align:center}
+.listen .btn{font-size:26px}
+
+/* discovery */
+#discovery{background:var(--navy);color:#fff;margin-top:30px;padding-bottom:50px}
+#discovery .sechead h2{color:#FFF8E8}
+.robbery{font-family:var(--head);font-size:clamp(24px,5vw,40px);text-align:center;color:#fff}
+.robbery .sir{display:inline-block;animation:bounce .8s infinite}
+.cream{background:#FFFDE8;color:var(--ink);border-radius:28px;padding:24px}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+@media(max-width:640px){.vs{grid-template-columns:1fr}}
+.vs .col{background:#fff;border-radius:22px;padding:16px;text-align:center}
+.vs .lang{font-weight:800;font-size:13px;letter-spacing:.1em;color:var(--muted)}
+.vs .sent{font-family:var(--head);font-weight:700;font-size:clamp(22px,4vw,30px);margin-top:4px}
+.qm{display:inline-block;color:var(--pink);font-size:1.25em;animation:pulse 1.2s infinite}
+@keyframes pulse{50%{transform:scale(1.35)}}
+.missing{display:inline-block;border:3px dashed var(--pink);border-radius:12px;padding:0 14px;color:var(--pink);font-weight:800;margin-right:6px;animation:pulse 1.6s infinite}
+.green-w{color:#7AA83A}
+.call{display:block;margin:18px auto;font-size:clamp(24px,5vw,36px);padding:.7em 1.2em;border-radius:24px;border:0;color:#fff;font-weight:800;font-family:var(--head);cursor:pointer;background:linear-gradient(90deg,var(--red) 0 50%,var(--blue) 50% 100%);background-size:200% 100%;animation:siren 1s infinite alternate;box-shadow:0 6px 0 rgba(0,0,0,.3)}
+.call:disabled{animation:none;background:var(--green);cursor:default}
+@keyframes siren{from{background-position:0 0;transform:rotate(-1.5deg)}to{background-position:100% 0;transform:rotate(1.5deg)}}
+#reveal{animation:pop .5s}
+.golden{background:var(--yellow-l);border:4px solid var(--yellow);border-radius:24px;padding:18px;text-align:center}
+.golden .big{font-family:var(--head);font-weight:700;font-size:clamp(22px,4.4vw,32px)}
+.form{border-radius:22px;padding:18px;border:3px solid}
+.form.f-do{background:var(--blue-l);border-color:var(--blue)}
+.form.f-does{background:var(--pink-l);border-color:var(--pink)}
+.form .eq{font-family:var(--head);font-weight:700;font-size:22px;margin:6px 0}
+.DO{color:var(--blue);font-weight:800}.DOES{color:var(--pink);font-weight:800}
+.fmark{background:#fff;border-radius:14px;padding:8px 12px;font-weight:800;margin-top:8px}
+.eqbig{background:#E7FF8F;border-radius:20px;text-align:center;font-family:var(--head);font-weight:700;font-size:clamp(24px,5vw,36px);padding:10px;margin:14px 0;color:var(--orange)}
+
+/* short answers */
+.sa{border-radius:26px;background:#fff;padding:20px;border:4px solid}
+.sa.b1{border-color:var(--blue)}.sa.b2{border-color:var(--pink)}
+.sa .qline{font-family:var(--head);font-weight:700;font-size:clamp(20px,4vw,28px);margin-bottom:12px}
+.sa .ans{margin-top:12px;border-radius:18px;padding:12px 16px;font-weight:700;animation:pop .35s}
+.sa .ans.yes{background:var(--green-l)}.sa .ans.no{background:var(--red-l)}
+.sa .ans .short{font-family:var(--head);font-size:24px;font-weight:700;display:block}
+.emph{margin-top:16px;background:#fff;border:4px dashed var(--pink);border-radius:26px;padding:20px;text-align:center}
+.emph .line{font-family:var(--head);font-weight:700;font-size:clamp(20px,4.2vw,30px)}
+.emph .arrow{color:var(--pink);font-size:28px;display:block}
+.wk{color:var(--blue);background:var(--blue-l);border-radius:8px;padding:0 6px}
+.wks{color:var(--pink);background:var(--pink-l);border-radius:8px;padding:0 6px}
+
+/* speaking */
+.speak{background:var(--pink);color:#fff;border-radius:30px;padding:26px}
+.speak .scn{background:rgba(255,255,255,.18);border-radius:20px;padding:14px 18px;font-weight:700}
+.speak .ex{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.speak .ex span{background:#fff;color:var(--pink);font-weight:800;border-radius:16px;padding:8px 16px}
+textarea#notes{width:100%;min-height:340px;border:0;border-radius:22px;padding:18px;font:inherit;font-size:19px;font-weight:700;resize:vertical;outline:none;background:#fffdf4;color:var(--ink);line-height:1.8;background-image:repeating-linear-gradient(transparent 0 33px,#e7dfc5 33px 34px)}
+
+/* self eval */
+.tl{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin:18px 0}
+.tlb{border:5px solid transparent;border-radius:30px;padding:22px 16px;cursor:pointer;color:#fff;font-weight:800;text-align:center;transition:.2s;box-shadow:0 6px 0 rgba(0,0,0,.18)}
+.tlb .dot{font-size:56px;display:block;line-height:1.1}
+.tlb .t{font-family:var(--head);font-size:22px;display:block;margin-top:4px}
+.tlb.g{background:var(--green)}.tlb.y{background:var(--yellow);color:var(--ink)}.tlb.r{background:var(--red)}
+.tlb:hover{transform:translateY(-4px) scale(1.02)}
+.tlb.on{border-color:var(--ink);transform:scale(1.04)}
+.panel{margin-top:20px;border-radius:30px;padding:22px;border:4px solid;animation:pop .45s}
+.panel.g{border-color:var(--green);background:#f1fff8}.panel.y{border-color:var(--yellow);background:#fffbea}.panel.r{border-color:var(--red);background:#fff6f6}
+.gbox{background:var(--blue-l);border:3px solid var(--blue);border-radius:22px;padding:18px}
+.formula{font-family:var(--head);font-weight:700;font-size:20px;background:#fff;border-radius:14px;padding:8px 14px;margin:8px 0}
+.rule{background:var(--yellow-l);border-left:8px solid var(--yellow);border-radius:14px;padding:12px 16px;font-weight:800;margin:12px 0}
+.explain{background:#fff;border-radius:22px;padding:18px;margin-bottom:12px;box-shadow:0 4px 0 rgba(31,35,64,.07)}
+.explain h3{font-size:22px}
+.xo{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.xo div{background:var(--bg);border-radius:12px;padding:5px 12px;font-weight:800}
+.wrong{color:var(--red);font-weight:800}.right{color:#0f7a4b;font-weight:800}
+.pm{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;color:#fff;font-weight:800;margin-right:6px}
+.pm.plus{background:var(--orange)}.pm.minus{background:var(--red)}.pm.pmq{background:var(--pink)}
+footer{text-align:center;padding:50px 20px 70px;color:var(--muted);font-weight:700}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 20px;border-radius:99px;font-weight:700;z-index:99;opacity:0;pointer-events:none;transition:.3s}
+#toast.on{opacity:1}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <div class="in">
+    <nav id="nav" aria-label="Lesson sections"></nav>
+    <div class="stars" title="Correct answers">⭐ <b id="starCount">0</b></div>
+  </div>
+  <div id="pbar"><div id="pfill"></div></div>
+</div>
+
+<!-- 1. TITLE -->
+<header class="hero" id="top">
+  <div class="light l1"></div><div class="light l2"></div>
+  <p class="kicker">ARVA by Kat · Simple Present · A1–A2</p>
+  <h1>ROBARON AL INGLÉS <span class="em">🚨</span><span class="em" style="animation-delay:.3s">🔫</span></h1>
+  <p class="sub">Do, does… and the missing question. Ready to solve the case? 🕵️</p>
+  <p><button class="btn orange big" data-go="goal">Start the case 🔎</button></p>
+  <div class="tape"><span>CRIME SCENE · DO NOT CROSS · CRIME SCENE · DO NOT CROSS</span></div>
+</header>
+
+<!-- 2. GOAL -->
+<section class="sec" id="goal"><div class="wrap">
+  <div class="sechead"><div class="num">1</div><div><h2>🎯 Nuestra meta</h2><div class="tagline">Lo que vas a lograr hoy</div></div></div>
+  <div class="card goal">
+    <p style="font-size:21px;font-weight:800;margin-top:0">Hoy vas a aprender a:</p>
+    <div class="grid g2">
+      <div class="item"><span class="ic">❓</span><span>Crear <b>preguntas</b> en presente simple.</span></div>
+      <div class="item"><span class="ic">🔑</span><span>Usar <b class="b">DO</b> y <b class="pk">DOES</b> en las preguntas.</span></div>
+      <div class="item"><span class="ic">🐍</span><span>Entender <b>cuándo cambia el verbo principal</b> y cuándo no.</span></div>
+      <div class="item"><span class="ic">💬</span><span>Responder preguntas con <b>respuestas cortas</b>: <i>Yes, I do. / No, she doesn't.</i></span></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- 3. VOCAB -->
+<section class="sec" id="vocab"><div class="wrap">
+  <div class="sechead"><div class="num">2</div><div><h2>🗂️ Vocabulary</h2><div class="tagline">Toca la tarjeta para ver la traducción · 🔊 para escuchar</div></div></div>
+  <div class="grid g4" id="vocabGrid"></div>
+</div></section>
+
+<!-- 4. WARM-UP -->
+<section class="sec" id="warmup"><div class="wrap">
+  <div class="sechead"><div class="num">3</div><div><h2>🔥 Warm-up</h2><div class="tagline">Try to answer out loud. It's OK if you don't know yet!</div></div></div>
+  <div class="warm">
+    <div class="qn" id="wNum"></div>
+    <div class="qq" id="wQ"></div>
+    <div class="dots" id="wDots"></div>
+    <div class="controls">
+      <button class="btn ghost" id="wPrev">← Back</button>
+      <button class="btn yellow" id="wSay">🔊 Listen</button>
+      <button class="btn orange" id="wNext">Next →</button>
+    </div>
+    <p id="wEnd" class="hidden" style="margin-top:16px;font-weight:800">🗣️ Great job speaking! Now let's review what you already know ⬇️</p>
+  </div>
+</div></section>
+
+<!-- 5. REVIEW -->
+<section class="sec" id="review"><div class="wrap">
+  <div class="sechead"><div class="num">4</div><div><h2>🐍 THE FOLLOWERS vs. THE REBELS</h2><div class="tagline">Review from last class</div></div></div>
+  <div class="fr">
+    <div class="box followers">
+      <h3>👥 THE FOLLOWERS</h3>
+      <p><b class="b">I / YOU / WE / THEY</b></p>
+      <div class="quote">Les vale madres conjugar. 😂<br>El verbo <b>NO</b> cambia.</div>
+      <div class="chips"><span class="chip">I work.</span><span class="chip">You work.</span><span class="chip">We work.</span><span class="chip">They work.</span></div>
+    </div>
+    <div class="box rebels">
+      <h3>🐍 THE REBELS</h3>
+      <p><b class="pk">HE / SHE / IT</b></p>
+      <div class="quote">Son mordidos por una serpiente <span class="snake">🐍</span> y llevan <b class="pk">SSSSS</b> al final.</div>
+      <div class="chips"><span class="chip">He work<b class="pk">s</b>.</span><span class="chip">She work<b class="pk">s</b>.</span><span class="chip">It work<b class="pk">s</b>.</span></div>
+    </div>
+  </div>
+  <div class="demo">
+    <p style="margin:0 0 8px;font-weight:800">🧪 Try it: choose a verb, then tap a pronoun</p>
+    <select id="demoVerb" aria-label="Choose a verb"></select>
+    <div class="pron" id="demoPron"></div>
+    <div class="demoOut" id="demoOut">👆 Tap a pronoun</div>
+    <div class="note" id="demoNote"></div>
+  </div>
+  <div class="irr"><span>💡 Algunos verbos son irregulares:</span><span>have → <b class="pk">has</b></span><span>do → <b class="pk">does</b></span><span>go → <b class="pk">goes</b></span></div>
+
+  <div class="subhead"><span class="pill p-o">Practice</span> Review: choose the correct option</div>
+  <div id="reviewSet"></div>
+</div></section>
+
+<!-- 6. LISTENING -->
+<section class="sec" id="listening"><div class="wrap">
+  <div class="sechead"><div class="num">5</div><div><h2>🎧 LISTENING</h2><div class="tagline">Watch the video and answer</div></div></div>
+  <div class="listen">
+    <p style="font-weight:800;font-size:20px;margin-top:0">Listen to the video and answer the questions.</p>
+    <a class="btn pink" href="https://www.youtube.com/watch?v=KL89K07KxYc&amp;t=460s" target="_blank" rel="noopener noreferrer">🎧 LISTENING</a>
+    <p style="opacity:.8;font-size:15px;margin-bottom:0">It opens in a new tab. Come back here to answer 👇</p>
+  </div>
+  <div id="listenSet"></div>
+</div></section>
+
+<!-- 7. DISCOVERY -->
+<section class="sec" id="discovery"><div class="wrap">
+  <h2 class="robbery"><span class="sir">🚨</span> EL INGLÉS FUE VÍCTIMA DE UN ROBO A MANO ARMADA <span class="sir">🚨</span></h2>
+  <div class="cream" style="margin-top:20px">
+    <p style="font-size:22px;font-weight:800;text-align:center">El inglés fue víctima de un robo a mano armada. 🔫<br>¿Puedes descubrir qué existe en español que le robaron al inglés?</p>
+    <div class="vs">
+      <div class="col"><div class="lang">🇨🇴 ESPAÑOL</div><div class="sent"><span class="qm">¿</span>Tú <span class="green-w">trabajas</span> en Bolívar?</div></div>
+      <div class="col"><div class="lang">🇺🇸 ENGLISH</div><div class="sent"><span class="missing">???</span>You <span class="green-w">work</span> in Bolivar?</div></div>
+    </div>
+    <button class="call" id="call911">🚨 CALL 911 🚨</button>
+
+    <div id="reveal" class="hidden">
+      <div class="golden">
+        <div class="big">👮‍♀️ La regla de oro</div>
+        <div class="big" style="margin-top:6px">Si tenemos <span class="DO">DO</span> o <span class="DOES">DOES</span>,<br>el verbo <u>NO</u> cambia.</div>
+        <p style="margin-bottom:0;font-weight:700">Aunque el sujeto sea <b>HE / SHE / IT</b>, el verbo principal se queda en su forma base porque <b>DO/DOES</b> hace el trabajo gramatical.</p>
+      </div>
+      <p style="text-align:center;font-size:20px;font-weight:800;margin:16px 0">🐍 Aunque haya sido mordido por la serpiente, si aparece <span class="DOES">DOES</span>, el verbo <b>NO</b> lleva S.</p>
+      <div class="eqbig">¿ = Do / Does 👩🏻 🧔🏻 🐶</div>
+      <div class="grid g2">
+        <div class="form f-do">
+          <span class="pill p-b">I / YOU / WE / THEY</span>
+          <div class="eq"><span class="DO" style="font-size:1.3em">Do</span> + subject + base verb?</div>
+          <div class="fmark"><span class="DO">Do</span> you <span class="green-w">work</span> in marketing?</div>
+        </div>
+        <div class="form f-does">
+          <span class="pill p-p">HE / SHE / IT</span>
+          <div class="eq"><span class="DOES" style="font-size:1.3em">Does</span> + subject + base verb?</div>
+          <div class="fmark"><span class="DOES">Does</span> Angie <span class="green-w">work</span> in marketing?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- 8. SHORT ANSWERS -->
+<section class="sec" id="answers"><div class="wrap">
+  <div class="sechead"><div class="num">6</div><div><h2>💬 Short answers</h2><div class="tagline">Tap Yes or No to see the answers</div></div></div>
+  <div class="grid g2">
+    <div class="sa b1">
+      <div class="qline"><span class="DO">Do</span> you <span class="wk">work</span> in marketing?</div>
+      <div class="row"><button class="btn green" data-sa="a1y">✅ Yes</button><button class="btn red" data-sa="a1n">❌ No</button></div>
+      <div id="a1y" class="ans yes hidden"><span class="short">Yes, I <span class="o">do</span>.</span>I work in content creation.</div>
+      <div id="a1n" class="ans no hidden"><span class="short">No, I <span class="o">don't</span>.</span>I <span class="o">don't</span> work. I am a student.</div>
+    </div>
+    <div class="sa b2">
+      <div class="qline"><span class="DOES">Does</span> Maria <span class="wk">work</span> in marketing?</div>
+      <div class="row"><button class="btn green" data-sa="a2y">✅ Yes</button><button class="btn red" data-sa="a2n">❌ No</button></div>
+      <div id="a2y" class="ans yes hidden"><span class="short">Yes, she <span class="o">does</span>.</span>Maria work<span class="wks">s</span> in content creation.</div>
+      <div id="a2n" class="ans no hidden"><span class="short">No, she <span class="o">doesn't</span>.</span>She <span class="o">doesn't</span> <span class="wk">work</span>. She is a student.</div>
+    </div>
+  </div>
+  <div class="emph">
+    <div class="line"><span class="DOES">Does</span> Maria <span class="wk">work</span>…?</div>
+    <span class="arrow">⬇</span>
+    <div class="line">Maria <span class="wks">works</span>…</div>
+    <p style="font-weight:800;margin:12px 0 0">After <span class="DOES">does</span> → the verb goes back to the base form: <b>does + work</b> ✅</p>
+    <button class="btn pink sm" id="whereS" style="margin-top:12px">🐍 Where did the S go?</button>
+    <p id="whereSans" class="hidden" style="font-weight:700;margin-bottom:0">En la pregunta, la S vive en <span class="DOES">DOES</span>. En la respuesta afirmativa no hay DOES, así que la S vuelve al verbo: <b>works</b>.</p>
+  </div>
+</div></section>
+
+<!-- 9. PRACTICE -->
+<section class="sec" id="practice"><div class="wrap">
+  <div class="sechead"><div class="num">7</div><div><h2>🧩 Practice</h2><div class="tagline">12 exercises · 3 games</div></div></div>
+  <div class="subhead"><span class="pill p-b">1</span> Multiple choice</div>
+  <div id="pMC"></div>
+  <div class="subhead"><span class="pill p-p">2</span> Correct the phrase</div>
+  <p class="hint" style="margin-top:0">Rewrite the sentence correctly.</p>
+  <div id="pFix"></div>
+  <div class="subhead"><span class="pill p-o">3</span> Reorganize it</div>
+  <div id="pOrder"></div>
+</div></section>
+
+<!-- 10. SPEAKING -->
+<section class="sec" id="speaking"><div class="wrap">
+  <div class="sechead"><div class="num">8</div><div><h2>🗣️ SPEAKING TIME</h2><div class="tagline">Time to talk!</div></div></div>
+  <div class="speak">
+    <div class="scn">You got an amazing job opportunity in a multinational company. Unfortunately, you need to go to the office every day. You now have the possibility to hire a nanny to take care of your child.</div>
+    <p style="font-size:22px;font-weight:800;margin:16px 0 6px">Imagine you are interviewing the nanny. Ask as many questions as possible.</p>
+    <div class="ex"><span>How old are you?</span><span>Do you have children?</span></div>
+    <textarea id="notes" placeholder="Write your notes and questions here ✍️" aria-label="Speaking notes"></textarea>
+    <div class="row" style="margin-top:10px;justify-content:space-between">
+      <span id="qCount" style="font-weight:800">🎯 Questions written: 0</span>
+      <button class="btn ghost sm" id="clearNotes">🧹 Clear notes</button>
+    </div>
+  </div>
+</div></section>
+
+<!-- 11. SELF EVAL -->
+<section class="sec" id="selfeval"><div class="wrap">
+  <div class="sechead"><div class="num">9</div><div><h2>🚦 Autoevaluación</h2><div class="tagline">Tu semáforo</div></div></div>
+  <div class="card" style="text-align:center">
+    <h2 style="font-size:clamp(28px,5vw,42px)">Hemos terminado nuestra clase 🎉</h2>
+    <p style="font-size:24px;font-weight:800">¿Qué tal te sientes con el presente simple?</p>
+    <p>Vamos a usar la estrategia del <b>semáforo</b>: elige el color que mejor describe cómo te sientes y te mostraré el repaso ideal para ti. 🚦</p>
+  </div>
+  <div class="tl">
+    <button class="tlb g" data-tl="g"><span class="dot">🟢</span><span class="t">GREEN</span>I understand everything.</button>
+    <button class="tlb y" data-tl="y"><span class="dot">🟡</span><span class="t">YELLOW</span>I need some extra help.</button>
+    <button class="tlb r" data-tl="r"><span class="dot">🔴</span><span class="t">RED</span>I didn't understand much.</button>
+  </div>
+
+  <!-- GREEN -->
+  <div class="panel g hidden" id="pg">
+    <h2>🟢 Quick Grammar Review</h2>
+    <div class="gbox">
+      <div class="formula"><span class="DO">DO</span> + I / you / we / they + base verb?</div>
+      <div class="formula"><span class="DOES">DOES</span> + he / she / it + base verb?</div>
+      <div class="fmark" style="background:#fff;border-radius:14px;padding:8px 12px;font-weight:800">Do you work here? &nbsp;·&nbsp; Does she work here?</div>
+      <div class="rule">⚠️ After DO / DOES, the main verb does NOT take -s.</div>
+    </div>
+    <div class="subhead"><span class="pill p-g">Practice</span> 6 questions</div>
+    <div id="gSet"></div>
+  </div>
+
+  <!-- YELLOW -->
+  <div class="panel y hidden" id="py">
+    <h2>🟡 Vamos paso a paso</h2>
+    <div class="explain"><h3>📘 ¿Cuándo usamos el presente simple?</h3>
+      <p>Para hablar de <b>rutinas, hábitos, hechos</b> y cosas que pasan con frecuencia, y también para <b>gustos</b>.</p>
+      <div class="xo"><div>I work every day.</div><div>She likes pizza.</div></div></div>
+    <div class="grid g2">
+      <div class="explain" style="border-top:8px solid var(--blue)"><h3 class="b">¿Cuándo usamos DO?</h3><p>Con <b>I, you, we, they</b> (y sujetos plurales: <i>my parents, the students</i>).</p><div class="xo"><div>Do you work?</div></div></div>
+      <div class="explain" style="border-top:8px solid var(--pink)"><h3 class="pk">¿Cuándo usamos DOES?</h3><p>Con <b>he, she, it</b> (y sujetos singulares: <i>Maria, my dad, the dog</i>).</p><div class="xo"><div>Does she work?</div></div></div>
+    </div>
+    <div class="explain"><h3>🐍 ¿Por qué el verbo no lleva -s después de DOES?</h3>
+      <p>Porque <b>DOES ya lleva la S</b>. Cuando aparece DOES (o DOESN'T), él hace el trabajo y el verbo principal vuelve a su forma original.</p>
+      <div class="xo"><div class="wrong">❌ Does she works?</div><div class="right">✅ Does she work?</div></div></div>
+    <div class="grid g3">
+      <div class="explain" style="border-top:8px solid var(--orange)"><h3><span class="pm plus">+</span>Positive</h3><p>Sujeto + verbo (con <b>-s</b> para he/she/it).</p><div class="xo"><div>I work.</div><div>She work<b class="pk">s</b>.</div></div></div>
+      <div class="explain" style="border-top:8px solid var(--red)"><h3><span class="pm minus">−</span>Negative</h3><p>Sujeto + <b>don't / doesn't</b> + verbo base.</p><div class="xo"><div>I don't work.</div><div>She doesn't work.</div></div></div>
+      <div class="explain" style="border-top:8px solid var(--pink)"><h3><span class="pm pmq">?</span>Question</h3><p><b>Do / Does</b> + sujeto + verbo base.</p><div class="xo"><div>Do you work?</div><div>Does she work?</div></div></div>
+    </div>
+    <div class="subhead"><span class="pill p-y">Practice</span> 10 exercises: find the error + multiple choice</div>
+    <div id="ySet"></div>
+  </div>
+
+  <!-- RED -->
+  <div class="panel r hidden" id="pr">
+    <h2>🔴 Repaso completo, sin afanes</h2>
+    <p>Empecemos desde cero. ¡Tú puedes! 💪</p>
+
+    <div class="explain"><h3>1️⃣ ¿Cuándo usamos el presente simple?</h3>
+      <p>Lo usamos para hablar de cosas que pasan <b>con regularidad</b>:</p>
+      <div class="grid g2">
+        <div class="xo"><div>🔁 <b>Rutinas</b>: I wake up at 6.</div></div>
+        <div class="xo"><div>🔂 <b>Hábitos</b>: She drinks coffee every morning.</div></div>
+        <div class="xo"><div>🌎 <b>Hechos</b>: Cali is in Colombia.</div></div>
+        <div class="xo"><div>📅 <b>Cosas regulares</b>: The bus comes at 7.</div></div>
+        <div class="xo"><div>❤️ <b>Gustos</b>: He likes pizza. / I don't like cold weather.</div></div>
+      </div>
+    </div>
+
+    <div class="explain" style="border-top:8px solid var(--orange)"><h3><span class="pm plus">+</span>2️⃣ Oraciones positivas</h3>
+      <p><b class="b">I / YOU / WE / THEY</b> → sujeto + verbo base</p>
+      <div class="xo"><div>I work.</div><div>They live in Cali.</div></div>
+      <p><b class="pk">HE / SHE / IT</b> → sujeto + verbo + <b class="pk">S</b></p>
+      <div class="xo"><div>She work<b class="pk">s</b>.</div><div>He live<b class="pk">s</b> in Cali.</div></div>
+      <p>Algunos verbos son irregulares:</p>
+      <div class="irr"><span>have → <b class="pk">has</b></span><span>do → <b class="pk">does</b></span><span>go → <b class="pk">goes</b></span></div>
+      <p class="note" style="font-size:14px">Otros: watch → watch<b>es</b>, study → stud<b>ies</b>.</p>
+    </div>
+
+    <div class="explain" style="border-top:8px solid var(--red)"><h3><span class="pm minus">−</span>3️⃣ Oraciones negativas</h3>
+      <p><b class="b">I / YOU / WE / THEY</b> → <b>do not / don't</b> + verbo base</p>
+      <div class="xo"><div>I don't work.</div></div>
+      <p><b class="pk">HE / SHE / IT</b> → <b>does not / doesn't</b> + verbo base</p>
+      <div class="xo"><div>She doesn't work.</div></div>
+      <div class="xo"><div class="wrong">❌ She doesn't works.</div><div class="right">✅ She doesn't work.</div></div>
+    </div>
+
+    <div class="explain" style="border-top:8px solid var(--pink)"><h3><span class="pm pmq">?</span>4️⃣ Preguntas</h3>
+      <p><span class="DO">DO</span> + I / you / we / they + verbo base?</p>
+      <div class="xo"><div>Do you work here?</div></div>
+      <p><span class="DOES">DOES</span> + he / she / it + verbo base?</p>
+      <div class="xo"><div>Does she work here?</div></div>
+      <div class="xo"><div class="wrong">❌ Does she works here?</div><div class="right">✅ Does she work here?</div></div>
+      <div class="rule">🐍 Si aparece DOES, la S se queda en la casa de DOES. El verbo vuelve a su forma original.</div>
+    </div>
+
+    <div class="subhead"><span class="pill p-r">Practice</span> 15 exercises · de fácil a difícil</div>
+    <div id="rSet"></div>
+  </div>
+</div></section>
+
+<footer>Made with ❤️ for English learners · ARVA by Kat style 🐑</footer>
+<div id="toast" role="status"></div>
+
+<script>
+(function(){
+'use strict';
+/* ---------- helpers ---------- */
+var $=function(s,r){return (r||document).querySelector(s);};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function norm(s){return String(s).toLowerCase().replace(/[\u2018\u2019`\u00B4]/g,"'").replace(/\s+/g,' ').replace(/\s+([?.!,])/g,'$1').trim().replace(/[.?!]+$/,'').trim();}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function pick(a){return a[Math.floor(Math.random()*a.length)];}
+function fmt(q){return esc(q).replace(/_{3,}/g,'<span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>');}
+var stars=0;
+function addStar(){stars++;$('#starCount').textContent=stars;}
+var toastT;
+function toast(m){var t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove('on');},2200);}
+function speak(text){
+  if(!('speechSynthesis' in window)||typeof SpeechSynthesisUtterance==='undefined'){toast('Tu navegador no tiene audio 😢');return;}
+  try{
+    window.speechSynthesis.cancel();
+    var u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=.85;
+    var vs=window.speechSynthesis.getVoices();
+    for(var i=0;i<vs.length;i++){if(/^en[-_]US/i.test(vs[i].lang)){u.voice=vs[i];break;}}
+    window.speechSynthesis.speak(u);
+  }catch(e){toast('No se pudo reproducir el audio 😢');}
+}
+function shake(e){e.classList.remove('shake');void e.offsetWidth;e.classList.add('shake');}
+var GOOD=["Great! 🎉","Perfect! ⭐","Yes! 💪","Nice one! 🙌","Exactly! 🔥","Awesome! 🚀"];
+var BAD=["Almost! Try again 💭","Not yet — try again 🔁","Hmm, check it again 👀","Oops! Another try 💪"];
+function hlForm(form,base){
+  if(form===base){return '<b class="v1">'+form+'</b>';}
+  var i=0;while(i<base.length&&i<form.length&&base.charAt(i)===form.charAt(i)){i++;}
+  return '<b class="v3">'+form.slice(0,i)+'<u>'+form.slice(i)+'</u></b>';
+}
+
+/* ---------- nav & progress ---------- */
+var SECS=[['goal','🎯','Goal'],['vocab','🗂️','Words'],['warmup','🔥','Warm-up'],['review','🐍','Review'],['listening','🎧','Listening'],['discovery','🚨','Discovery'],['answers','💬','Answers'],['practice','🧩','Practice'],['speaking','🗣️','Speaking'],['selfeval','🚦','Check-in']];
+var nav=$('#nav');
+SECS.forEach(function(s){var a=el('a','',s[1]+' '+s[2]);a.href='#'+s[0];a.dataset.id=s[0];nav.appendChild(a);});
+function onScroll(){
+  var h=document.documentElement.scrollHeight-window.innerHeight;
+  $('#pfill').style.width=(h>0?Math.min(100,window.scrollY/h*100):0)+'%';
+  var cur=null;
+  SECS.forEach(function(s){var e=document.getElementById(s[0]);if(e&&e.getBoundingClientRect().top<150){cur=s[0];}});
+  $$('#nav a').forEach(function(a){var on=a.dataset.id===cur;a.classList.toggle('on',on);if(on&&a.scrollIntoView){var n=$('#nav');var l=a.offsetLeft-n.clientWidth/2+a.clientWidth/2;n.scrollLeft=l;}});
+}
+window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);onScroll();
+$$('[data-go]').forEach(function(b){b.addEventListener('click',function(){document.getElementById(b.dataset.go).scrollIntoView({behavior:'smooth'});});});
+
+/* ---------- vocabulary ---------- */
+var VOCAB=[
+ {w:'have',es:'Tener',b:'have',t:'has',ex:['I have a dog.','She has a dog.']},
+ {w:'go',es:'Ir',b:'go',t:'goes',ex:['I go to school by bus.','He goes to school by bus.']},
+ {w:'do',es:'Hacer',b:'do',t:'does',ex:['I do my homework at night.','She does her homework at night.']},
+ {w:'nickname',es:'Apodo',noun:true,ex:['My nickname is Ara.','Her nickname is Ara.']},
+ {w:'live',es:'Vivir',b:'live',t:'lives',ex:['I live in Cali.','She lives in Cali.']},
+ {w:'prefer',es:'Preferir',b:'prefer',t:'prefers',ex:['I prefer tea.','He prefers coffee.']},
+ {w:'work',es:'Trabajar',b:'work',t:'works',ex:['I work in marketing.','She works in marketing.']},
+ {w:'buy',es:'Comprar',b:'buy',t:'buys',ex:['I buy fruit on Sundays.','She buys fruit on Sundays.']},
+ {w:'watch',es:'Ver / Mirar',b:'watch',t:'watches',ex:['I watch movies on Fridays.','She watches movies on Fridays.']},
+ {w:'travel',es:'Viajar',b:'travel',t:'travels',ex:['I travel in July.','He travels in July.']},
+ {w:'like',es:'Gustar / Me gusta',b:'like',t:'likes',ex:['I like pizza.','She likes pizza.']}
+];
+var vg=$('#vocabGrid');
+VOCAB.forEach(function(v){
+  var h1,h2;
+  if(v.noun){
+    h1=esc(v.ex[0]).replace('My','<b class="v1">My</b>');
+    h2=esc(v.ex[1]).replace('Her','<b class="v3">Her</b>');
+  }else{
+    h1=esc(v.ex[0]).replace(new RegExp('\\b'+v.b+'\\b'),function(m){return hlForm(v.b,v.b);});
+    h2=esc(v.ex[1]).replace(new RegExp('\\b'+v.t+'\\b'),function(m){return hlForm(v.t,v.b);});
+  }
+  var c=el('div','vcard');c.tabIndex=0;c.setAttribute('role','button');c.setAttribute('aria-label','Card: '+v.w+'. Press to flip.');
+  c.innerHTML='<div class="vinner"><div class="vf front"><div class="w">'+v.w+'</div><button class="sp" type="button" aria-label="Listen to '+v.w+'">🔊</button><div class="hint">Tap to flip 👆</div></div>'+
+   '<div class="vf back"><div class="es">'+v.es+'</div>'+
+   '<div class="ex"><button class="sp" type="button" data-s="0" aria-label="Listen">🔊</button><span>'+h1+'</span></div>'+
+   '<div class="ex"><button class="sp" type="button" data-s="1" aria-label="Listen">🔊</button><span>'+h2+'</span></div>'+
+   (v.noun?'<div class="note">Es un sustantivo: no se conjuga 🙂</div>':'')+'</div></div>';
+  function flip(){c.classList.toggle('flipped');}
+  c.addEventListener('click',flip);
+  c.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target===c){e.preventDefault();flip();}});
+  $$('.sp',c).forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();var s=b.dataset.s;speak(s===undefined?v.w:v.ex[+s]);});});
+  vg.appendChild(c);
+});
+
+/* ---------- warm-up ---------- */
+var WQ=["Do you usually cook at home, order delivery or eat out?","Does your kid study in a public school?","Is he a good student?","What’s the most difficult class for him?"];
+var wi=0,wDots=$('#wDots');
+WQ.forEach(function(q,i){var d=el('button');d.type='button';d.setAttribute('aria-label','Question '+(i+1));d.addEventListener('click',function(){wi=i;renderWarm();});wDots.appendChild(d);});
+function renderWarm(){
+  $('#wNum').textContent='Question '+(wi+1)+' / '+WQ.length;
+  var q=$('#wQ');q.textContent=WQ[wi];q.style.animation='none';void q.offsetWidth;q.style.animation='';
+  $$('button',wDots).forEach(function(d,i){d.classList.toggle('on',i===wi);});
+  $('#wPrev').disabled=wi===0;$('#wNext').disabled=wi===WQ.length-1;
+  $('#wEnd').classList.toggle('hidden',wi!==WQ.length-1);
+}
+$('#wPrev').addEventListener('click',function(){if(wi>0){wi--;renderWarm();}});
+$('#wNext').addEventListener('click',function(){if(wi<WQ.length-1){wi++;renderWarm();}});
+$('#wSay').addEventListener('click',function(){speak(WQ[wi]);});
+renderWarm();
+
+/* ---------- review demo ---------- */
+var DV={work:['works','in a bank'],live:['lives','in Cali'],like:['likes','pizza'],go:['goes','to school'],have:['has','a dog'],do:['does','my homework'],watch:['watches','movies']};
+var sel=$('#demoVerb');
+Object.keys(DV).forEach(function(k){var o=el('option','',k);o.value=k;sel.appendChild(o);});
+var PR=[['I',0],['You',0],['We',0],['They',0],['He',1],['She',1],['It',1]];
+var curP=null;
+var pr=$('#demoPron');
+PR.forEach(function(p,i){var b=el('button',p[1]?'reb':'',p[0]);b.type='button';b.addEventListener('click',function(){curP=i;renderDemo();});pr.appendChild(b);});
+function renderDemo(){
+  $$('button',pr).forEach(function(b,i){b.classList.toggle('on',i===curP);});
+  if(curP===null)return;
+  var v=sel.value,d=DV[v],p=PR[curP];
+  var form=p[1]?hlForm(d[0],v):hlForm(v,v);
+  var out=p[0]+' '+form+' '+d[1]+'.';
+  $('#demoOut').innerHTML=out;
+  $('#demoNote').textContent=p[1]?'🐍 Bitten by the snake! → '+d[0]:'😎 Follower: the verb does not change.';
+}
+sel.addEventListener('change',renderDemo);
+
+/* ---------- quiz engine ---------- */
+function rMC(card,it,fin){
+  var ans=[].concat(it.a),solved=false;
+  var qp=el('div','qp',fmt(it.q));card.appendChild(qp);
+  var box=el('div','opts');var fb=el('div','fb');
+  shuffle(it.o).forEach(function(o){
+    var b=el('button','opt',esc(o));b.type='button';
+    b.addEventListener('click',function(){
+      if(solved||b.disabled)return;
+      if(ans.indexOf(o)>-1){
+        solved=true;b.classList.add('ok');
+        $$('.opt',box).forEach(function(x){x.disabled=true;});
+        var bl=$('.blank',qp);if(bl&&ans.length===1){bl.textContent=o;}
+        fb.className='fb ok';fb.innerHTML=pick(GOOD)+(it.tip?'<span class="tip">'+esc(it.tip)+'</span>':'');
+        card.classList.add('solved');fin('ok');
+      }else{
+        b.classList.add('bad');b.disabled=true;shake(card);
+        fb.className='fb bad';fb.textContent=it.neg||pick(BAD);
+      }
+    });
+    box.appendChild(b);
+  });
+  card.appendChild(box);card.appendChild(fb);
+}
+function attachShow(card,row,fb,it,reveal){
+  var b=el('button','btn ghost sm','👀 Show answer');b.type='button';
+  b.addEventListener('click',function(){reveal();b.remove();});
+  row.appendChild(b);return b;
+}
+function rType(card,it,fin){
+  var qp=el('div','qp',fmt(it.q));card.appendChild(qp);
+  if(it.hint){card.appendChild(el('div','hint','💡 '+esc(it.hint)));}
+  var row=el('div','row');
+  var inp=el('input','inp');inp.type='text';inp.placeholder=it.ph||'Type your answer…';inp.setAttribute('autocomplete','off');inp.setAttribute('autocapitalize','none');inp.setAttribute('spellcheck','false');inp.setAttribute('aria-label','Your answer');
+  var btn=el('button','btn blue','Check ✓');btn.type='button';
+  row.appendChild(inp);row.appendChild(btn);card.appendChild(row);
+  var fb=el('div','fb');card.appendChild(fb);
+  var attempts=0,done=false,showBtn=null;
+  var model=it.model||(it.a?it.a[0]:'');
+  function lock(){done=true;inp.disabled=true;btn.disabled=true;if(showBtn){showBtn.remove();showBtn=null;}}
+  function check(){
+    if(done)return;
+    var v=norm(inp.value);
+    if(!v){fb.className='fb bad';fb.textContent='Write your answer first ✍️';return;}
+    var r;
+    if(it.chk){r=it.chk(v);}else{r=it.a.map(norm).indexOf(v)>-1;}
+    if(r===true){
+      lock();inp.classList.remove('bad');inp.classList.add('ok');
+      fb.className='fb ok';fb.innerHTML=pick(GOOD)+'<span class="tip">✅ '+esc(model)+(it.tip?' — '+esc(it.tip):'')+'</span>';
+      card.classList.add('solved');fin('ok');
+    }else{
+      attempts++;inp.classList.add('bad');shake(inp);
+      fb.className='fb bad';fb.textContent=(typeof r==='string')?r:(it.neg||pick(BAD));
+      if(attempts>=2&&!showBtn){
+        showBtn=attachShow(card,row,fb,it,function(){
+          lock();inp.classList.remove('bad');inp.value=model;
+          fb.className='fb show';fb.innerHTML='👀 Answer: <b>'+esc(model)+'</b>'+(it.tip?'<span class="tip">'+esc(it.tip)+'</span>':'');
+          card.classList.add('shown');fin('shown');
+        });
+      }
+    }
+  }
+  btn.addEventListener('click',check);
+  inp.addEventListener('keydown',function(e){if(e.key==='Enter'){check();}});
+}
+function rOrder(card,it,fin){
+  card.appendChild(el('div','qp','Put the words in order 🧩'));
+  var build=el('div','build'),pool=el('div','pool');
+  var toks=[];
+  var order=shuffle(it.w);
+  var tries=0;
+  while(it.w.length>2&&order.join(' ')===it.w.join(' ')&&tries<20){order=shuffle(it.w);tries++;}
+  order.forEach(function(w){
+    var t=el('button','tok',esc(w));t.type='button';
+    t.addEventListener('click',function(){
+      if(done)return;
+      if(t.parentNode===pool){build.appendChild(t);}else{pool.appendChild(t);}
+    });
+    toks.push(t);pool.appendChild(t);
+  });
+  var row=el('div','row');
+  var chk=el('button','btn blue','Check ✓');chk.type='button';
+  var rst=el('button','btn ghost sm','↺ Reset');rst.type='button';
+  row.appendChild(chk);row.appendChild(rst);
+  card.appendChild(build);card.appendChild(pool);card.appendChild(el('div','',''));card.appendChild(row);
+  var fb=el('div','fb');card.appendChild(fb);
+  var done=false,attempts=0,showBtn=null;
+  function lock(){done=true;chk.disabled=true;rst.disabled=true;toks.forEach(function(t){t.disabled=true;});if(showBtn){showBtn.remove();showBtn=null;}}
+  rst.addEventListener('click',function(){if(done)return;toks.forEach(function(t){pool.appendChild(t);});fb.textContent='';fb.className='fb';});
+  chk.addEventListener('click',function(){
+    if(done)return;
+    var cur=$$('.tok',build);
+    if(cur.length!==it.w.length){fb.className='fb bad';fb.textContent='Use all the words 👆';shake(build);return;}
+    var s=norm(cur.map(function(t){return t.textContent;}).join(' '));
+    if(it.a.map(norm).indexOf(s)>-1){
+      lock();build.classList.add('ok');
+      fb.className='fb ok';fb.innerHTML=pick(GOOD)+'<span class="tip">✅ '+esc(it.a[0])+(it.tip?' — '+esc(it.tip):'')+'</span>';
+      card.classList.add('solved');fin('ok');
+    }else{
+      attempts++;shake(build);fb.className='fb bad';fb.textContent=it.neg||'Not quite. Remember: Do/Does first, then the subject, then the base verb 🔁';
+      if(attempts>=2&&!showBtn){
+        showBtn=attachShow(card,row,fb,it,function(){
+          lock();
+          var words=it.a[0].replace('?',' ?').split(' ');
+          build.innerHTML='';
+          words.forEach(function(w){build.appendChild(el('button','tok',esc(w)));});
+          pool.innerHTML='';
+          fb.className='fb show';fb.innerHTML='👀 Answer: <b>'+esc(it.a[0])+'</b>';
+          card.classList.add('shown');fin('shown');
+        });
+      }
+    }
+  });
+}
+function rFind(card,it,fin){
+  card.appendChild(el('div','qp','Find the mistake 🔍 <span style="font-weight:700;font-size:15px;color:var(--muted)">(tap the wrong word)</span>'));
+  var wrap=el('div','words');var fb=el('div','fb');
+  var parts=it.s.split(' ');var btns=[];var done=false,attempts=0,showBtn=null;
+  var row=el('div','row');row.style.marginTop='8px';
+  function lock(){done=true;btns.forEach(function(b){b.disabled=true;});if(showBtn){showBtn.remove();showBtn=null;}}
+  parts.forEach(function(w,i){
+    var b=el('button','wd',esc(w));b.type='button';btns.push(b);
+    b.addEventListener('click',function(){
+      if(done)return;
+      if(i===it.bad){
+        lock();b.classList.add('found');
+        fb.className='fb ok';fb.innerHTML=pick(GOOD)+'<span class="tip">✅ '+esc(it.fix)+(it.tip?' — '+esc(it.tip):'')+'</span>';
+        card.classList.add('solved');fin('ok');
+      }else{
+        b.classList.add('bad');b.disabled=true;shake(wrap);attempts++;
+        fb.className='fb bad';fb.textContent=it.neg||pick(BAD);
+        if(attempts>=2&&!showBtn){
+          showBtn=attachShow(card,row,fb,it,function(){
+            lock();btns[it.bad].classList.add('found');
+            fb.className='fb show';fb.innerHTML='👀 The mistake is here. Correct: <b>'+esc(it.fix)+'</b>'+(it.tip?'<span class="tip">'+esc(it.tip)+'</span>':'');
+            card.classList.add('shown');fin('shown');
+          });
+        }
+      }
+    });
+    wrap.appendChild(b);
+  });
+  card.appendChild(wrap);card.appendChild(row);card.appendChild(fb);
+}
+var RENDER={mc:rMC,type:rType,order:rOrder,find:rFind};
+function buildSet(root,items,label){
+  var wrap=el('div','set');
+  var bar=el('div','setbar','<span class="score">⭐ <b class="sc">0</b> / '+items.length+'</span><div class="setprog"><i></i></div>');
+  wrap.appendChild(bar);
+  var done=0,score=0,sc=$('.sc',bar),prog=$('.setprog i',bar);
+  var end=el('div','setdone hidden','');
+  items.forEach(function(it,i){
+    var card=el('div','q');
+    var head=el('div','qhead','<span class="qn">'+(i+1)+'</span>'+(it.tag?'<span class="pill '+(it.tc||'p-b')+'">'+esc(it.tag)+'</span>':''));
+    card.appendChild(head);
+    var called=false;
+    RENDER[it.type](card,it,function(status){
+      if(called)return;called=true;
+      done++;if(status==='ok'){score++;addStar();}
+      sc.textContent=score;prog.style.width=(done/items.length*100)+'%';
+      if(done===items.length){
+        end.classList.remove('hidden');
+        end.innerHTML=(score===items.length?'🏆 Perfect! ':'🎉 Set complete! ')+score+' / '+items.length+(score<items.length?' — you can review the ones you needed help with 💪':'');
+      }
+    });
+    wrap.appendChild(card);
+  });
+  wrap.appendChild(end);
+  root.appendChild(wrap);
+}
+
+/* ---------- data ---------- */
+var REVIEW=[
+ {type:'mc',q:"She ___ to work every day.",o:["go","goes","going"],a:"goes",tip:"She = rebel 🐍 → goes"},
+ {type:'mc',q:"They ___ like cold weather.",o:["doesn't","don't","does"],a:"don't",tip:"They = follower → don't"},
+ {type:'mc',q:"He ___ coffee every morning.",o:["drink","drinks","drinking"],a:"drinks",tip:"He = rebel 🐍 → drinks"},
+ {type:'mc',q:"My sister ___ like spicy food.",o:["don't","doesn't","isn't"],a:"doesn't",tip:"My sister = she → doesn't"},
+ {type:'mc',q:"I ___ my homework at night.",o:["do","does","doing"],a:"do",tip:"I = follower → do"},
+ {type:'mc',q:"Maria ___ a nickname.",o:["have","has","haves"],a:"has",tip:"have → has (irregular)"},
+ {type:'mc',q:"My dad ___ TV at night.",o:["watch","watches","watchs"],a:"watches",tip:"watch → watches (+es)"}
+];
+var ACCEPT_Q2=["They are good friends.","They are sisters.","They are step sisters."]; /* ← edit if the video gives a single correct answer */
+var LISTEN=[
+ {type:'type',q:"What is her middle name?",chk:function(v){return /danielle/.test(v);},model:"Her middle name is Danielle.",ph:"Her middle name is…",neg:"Listen again 🎧 and try once more."},
+ {type:'mc',q:"What is the speaker's relationship with Samara?",o:["They are good friends.","They are sisters.","They are step sisters."],a:ACCEPT_Q2,neg:"Listen again 🎧 and try another option."},
+ {type:'type',q:"What nickname does her friend call her?",chk:function(v){return /\bara\b/.test(v);},model:"Ara.",ph:"Her friend calls her…",neg:"Listen again 🎧 and try once more."},
+ {type:'type',q:"Where does she live?",chk:function(v){return /maine/.test(v);},model:"She lives in Maine.",ph:"She lives in…",neg:"Listen again 🎧 and try once more."},
+ {type:'type',q:"What places does she like?",chk:function(v){if(/tropical/.test(v))return true;if(/trop/.test(v))return "Close! Check the spelling of tropical 🌴";return false;},model:"She likes tropical places.",ph:"She likes…",neg:"Listen again 🎧 and try once more."},
+ {type:'type',q:"Does she want to travel somewhere cold?",chk:function(v){if(/doesn'?t|does not/.test(v))return true;if(/^no\b/.test(v))return "Add the short answer: No, she …";return false;},model:"No, she doesn't. She doesn't like cold weather.",ph:"Yes/No, she …",neg:"Listen again 🎧 and try once more."},
+ {type:'type',q:"What country borders Maine?",chk:function(v){return /canada/.test(v);},model:"Canada.",ph:"The country is…",neg:"Listen again 🎧 and try once more."}
+];
+var P_MC=[
+ {type:'mc',tag:'Do vs Does',tc:'p-b',q:"___ she work here?",o:["Do","Does","Is"],a:"Does",tip:"she → Does"},
+ {type:'mc',tag:"Don't vs Doesn't",tc:'p-r',q:"My brother ___ like pizza.",o:["don't","doesn't","isn't"],a:"doesn't",tip:"My brother = he → doesn't"},
+ {type:'mc',tag:'Base verb',tc:'p-o',q:"Does he ___ English?",o:["speak","speaks","speaking"],a:"speak",tip:"After does → base verb (no -s)"},
+ {type:'mc',tag:'Question formation',tc:'p-p',q:"Which question is correct?",o:["Does your mom cook at home?","Does your mom cooks at home?","Do your mom cook at home?"],a:"Does your mom cook at home?",tip:"Does + subject + base verb?"}
+];
+var P_FIX=[
+ {type:'type',q:"Does she works in Cali?",hint:"Mistake in the verb",a:["Does she work in Cali?"],tip:"After does → work (no -s)"},
+ {type:'type',q:"Do he like coffee?",hint:"Mistake with the helper (Do/Does)",a:["Does he like coffee?"],tip:"he → Does"},
+ {type:'type',q:"She don't live here.",hint:"Mistake in the negative",a:["She doesn't live here.","She does not live here."],tip:"she → doesn't"},
+ {type:'type',q:"They doesn't have a car.",hint:"Mistake in the negative",a:["They don't have a car.","They do not have a car."],tip:"they → don't"}
+];
+var P_ORDER=[
+ {type:'order',w:["Do","you","work","here","?"],a:["Do you work here?"]},
+ {type:'order',w:["Does","she","live","in","Cali","?"],a:["Does she live in Cali?"]},
+ {type:'order',w:["Do","they","like","cold","weather","?"],a:["Do they like cold weather?"]},
+ {type:'order',w:["Does","Maria","have","a","nickname","?"],a:["Does Maria have a nickname?"]}
+];
+var GREEN=[
+ {type:'mc',q:"___ you work here?",o:["Do","Does","Is"],a:"Do"},
+ {type:'mc',q:"___ she work here?",o:["Do","Does","Are"],a:"Does"},
+ {type:'mc',q:"Does he ___ coffee?",o:["drink","drinks","drinking"],a:"drink",tip:"After does → base verb"},
+ {type:'mc',q:"Do they ___ in Cali?",o:["live","lives","living"],a:"live"},
+ {type:'mc',q:"Does your friend ___ English?",o:["speak","speaks","speaking"],a:"speak"},
+ {type:'mc',q:"Does Maria work in marketing? — Yes, she ___.",o:["do","does","works"],a:"does"}
+];
+var YELLOW=[
+ {type:'find',s:"Does she works here?",bad:2,fix:"Does she work here?",tip:"After does → base verb"},
+ {type:'mc',q:"He ___ in a bank.",o:["work","works","working"],a:"works",tip:"He = rebel 🐍 → works"},
+ {type:'find',s:"She doesn't likes coffee.",bad:2,fix:"She doesn't like coffee.",tip:"After doesn't → base verb"},
+ {type:'mc',q:"___ your parents live in Cali?",o:["Do","Does","Is"],a:"Do",tip:"your parents = they → Do"},
+ {type:'find',s:"Do he have a car?",bad:0,fix:"Does he have a car?",tip:"he → Does"},
+ {type:'mc',q:"We ___ watch TV on weekdays.",o:["don't","doesn't","isn't"],a:"don't"},
+ {type:'find',s:"My dog don't eat meat.",bad:2,fix:"My dog doesn't eat meat.",tip:"My dog = it → doesn't"},
+ {type:'mc',q:"Which sentence is correct?",o:["She has a nickname.","She haves a nickname.","She have a nickname."],a:"She has a nickname."},
+ {type:'find',s:"Does your friend lives in Bogotá?",bad:3,fix:"Does your friend live in Bogotá?",tip:"After does → base verb"},
+ {type:'mc',q:"Does Maria ___ at a hospital?",o:["work","works","working"],a:"work"}
+];
+var RED=[
+ {type:'type',tag:'+',tc:'p-o',q:"She ___ in a bank. (work)",a:["works"],tip:"She → work + s"},
+ {type:'type',tag:'+',tc:'p-o',q:"They ___ in Cali. (live)",a:["live"],tip:"They → no change"},
+ {type:'type',tag:'+',tc:'p-o',q:"He ___ a nickname. (have)",a:["has"],tip:"have → has"},
+ {type:'type',tag:'+',tc:'p-o',q:"My mom ___ to the gym. (go)",a:["goes"],tip:"go → goes"},
+ {type:'type',tag:'−',tc:'p-r',q:"She ______ on Sundays. (not + work)",hint:"Write: doesn't / don't + base verb",a:["doesn't work","does not work"]},
+ {type:'type',tag:'−',tc:'p-r',q:"They ______ coffee. (not + drink)",hint:"Write: doesn't / don't + base verb",a:["don't drink","do not drink"]},
+ {type:'type',tag:'−',tc:'p-r',q:"He ______ TV at night. (not + watch)",hint:"Write: doesn't / don't + base verb",a:["doesn't watch","does not watch"]},
+ {type:'order',tag:'?',tc:'p-p',w:["Do","you","live","in","Cali","?"],a:["Do you live in Cali?"]},
+ {type:'order',tag:'?',tc:'p-p',w:["Does","your","sister","like","pizza","?"],a:["Does your sister like pizza?"]},
+ {type:'order',tag:'?',tc:'p-p',w:["Do","they","travel","in","July","?"],a:["Do they travel in July?"]},
+ {type:'mc',tag:'Correct or incorrect?',tc:'p-y',q:"Does she works here?",o:["✅ Correct","❌ Incorrect"],a:"❌ Incorrect",tip:"Does she work here?"},
+ {type:'mc',tag:'Correct or incorrect?',tc:'p-y',q:"Do they like cold weather?",o:["✅ Correct","❌ Incorrect"],a:"✅ Correct",tip:"Do + they + base verb ✔"},
+ {type:'mc',tag:'Correct or incorrect?',tc:'p-y',q:"Does he has a car?",o:["✅ Correct","❌ Incorrect"],a:"❌ Incorrect",tip:"Does he have a car?"},
+ {type:'mc',tag:'Multiple choice',tc:'p-b',q:"Which sentence is correct?",o:["She doesn't works on Sundays.","She doesn't work on Sundays.","She don't work on Sundays."],a:"She doesn't work on Sundays."},
+ {type:'mc',tag:'Multiple choice',tc:'p-b',q:"Does your brother work in a hospital? — No, he ___.",o:["don't","doesn't","isn't"],a:"doesn't",tip:"No, he doesn't."}
+];
+
+buildSet($('#reviewSet'),REVIEW);
+buildSet($('#listenSet'),LISTEN);
+buildSet($('#pMC'),P_MC);
+buildSet($('#pFix'),P_FIX);
+buildSet($('#pOrder'),P_ORDER);
+
+/* ---------- discovery ---------- */
+$('#call911').addEventListener('click',function(){
+  var b=$('#call911');b.disabled=true;b.textContent='✅ 911 responded!';
+  var r=$('#reveal');r.classList.remove('hidden');
+  setTimeout(function(){r.scrollIntoView({behavior:'smooth',block:'start'});},120);
+});
+
+/* ---------- short answers ---------- */
+$$('[data-sa]').forEach(function(b){
+  b.addEventListener('click',function(){
+    var id=b.dataset.sa;
+    var pair=id.slice(0,2);
+    $('#'+pair+'y').classList.add('hidden');$('#'+pair+'n').classList.add('hidden');
+    $('#'+id).classList.remove('hidden');
+  });
+});
+$('#whereS').addEventListener('click',function(){$('#whereSans').classList.toggle('hidden');});
+
+/* ---------- speaking ---------- */
+var notes=$('#notes');
+try{var sv=localStorage.getItem('arva_notes');if(sv)notes.value=sv;}catch(e){}
+function cnt(){$('#qCount').textContent='🎯 Questions written: '+((notes.value.match(/\?/g)||[]).length);}
+notes.addEventListener('input',function(){cnt();try{localStorage.setItem('arva_notes',notes.value);}catch(e){}});
+$('#clearNotes').addEventListener('click',function(){if(!notes.value||confirm('Clear all notes?')){notes.value='';cnt();try{localStorage.removeItem('arva_notes');}catch(e){}}});
+cnt();
+
+/* ---------- traffic light ---------- */
+var built={g:false,y:false,r:false};
+$$('.tlb').forEach(function(b){
+  b.addEventListener('click',function(){
+    var k=b.dataset.tl;
+    $$('.tlb').forEach(function(x){x.classList.toggle('on',x===b);});
+    ['g','y','r'].forEach(function(c){$('#p'+c).classList.toggle('hidden',c!==k);});
+    if(!built[k]){
+      built[k]=true;
+      if(k==='g')buildSet($('#gSet'),GREEN);
+      if(k==='y')buildSet($('#ySet'),YELLOW);
+      if(k==='r')buildSet($('#rSet'),RED);
+    }
+    setTimeout(function(){$('#p'+k).scrollIntoView({behavior:'smooth',block:'start'});},80);
+  });
+});
+})();
+</script>
+</body>
+</html>
