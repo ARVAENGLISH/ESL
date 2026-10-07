@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE BASICS TEST — ARVA by Kat</title>
+<style>
+  :root{
+    --orange:#ff751f; --pink:#ff2d55; --blue:#4f46e5; --cream:#feffd2;
+    --ink:#242124; --muted:#747078; --white:#fff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; font-family:Montserrat,Arial,sans-serif; color:var(--ink);
+    background:linear-gradient(135deg,#fff 0%,#fff8f4 55%,#feffd2 100%);
+    min-height:100vh;
+  }
+  .app{max-width:850px;margin:0 auto;padding:28px 20px 42px}
+  .brand{font-weight:900;letter-spacing:.12em;font-size:13px;color:var(--orange);text-align:center}
+  .screen{display:none}.screen.active{display:block}
+  .welcome{text-align:center;padding:30px 0 12px}
+  h1{font-size:clamp(38px,8vw,70px);line-height:.95;margin:12px 0 16px;font-weight:950;letter-spacing:-.05em}
+  .subtitle{font-size:18px;color:var(--muted);max-width:680px;margin:0 auto 28px;line-height:1.55}
+  .topics{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:9px;max-width:720px;margin:24px auto 30px
+  }
+  .topic{padding:10px 14px;border-radius:999px;background:#fff;border:1px solid #e8e3df;font-size:13px;font-weight:800}
+  .topic:nth-child(3n){border-color:#cfcaff}.topic:nth-child(3n+1){border-color:#ffd0b7}.topic:nth-child(3n+2){border-color:#ffc2cf}
+  .instruction{
+    background:#fff;border:1px solid #e8e3df;border-radius:22px;padding:20px 22px;
+    text-align:left;box-shadow:0 8px 30px rgba(36,33,36,.06);margin:0 auto 25px;max-width:680px
+  }
+  .instruction strong{color:var(--pink)}
+  .start,.nav button{
+    border:0;border-radius:14px;padding:14px 24px;font-weight:900;font-size:15px;cursor:pointer;
+    transition:.18s transform,.18s opacity
+  }
+  .start{background:var(--orange);color:#fff;min-width:190px}
+  button:hover{transform:translateY(-1px)} button:disabled{opacity:.45;cursor:not-allowed;transform:none}
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:16px}
+  .counter{font-weight:900;font-size:14px}.score{color:var(--pink);font-weight:950}
+  .progress{height:9px;background:#eee9e6;border-radius:20px;overflow:hidden;margin-bottom:28px}
+  .progress span{display:block;height:100%;background:linear-gradient(90deg,var(--orange),var(--pink));width:0%;transition:.25s}
+  .card{
+    background:#fff;border:1px solid #e7e2df;border-radius:28px;padding:clamp(25px,5vw,48px);
+    box-shadow:0 15px 45px rgba(36,33,36,.08);min-height:430px;display:flex;flex-direction:column
+  }
+  .label{font-size:12px;font-weight:950;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+  .spanish{font-size:clamp(24px,4.5vw,37px);font-weight:850;line-height:1.2;margin:16px 0 30px}
+  .hint{font-size:14px;color:var(--muted);margin-bottom:10px}
+  textarea{
+    width:100%;min-height:125px;resize:vertical;border:2px solid #ded9d6;border-radius:17px;
+    padding:17px;font:600 17px Arial,sans-serif;outline:none;color:var(--ink)
+  }
+  textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(79,70,229,.1)}
+  .check{
+    align-self:flex-start;margin-top:12px;border:0;border-radius:13px;padding:13px 20px;
+    background:var(--blue);color:#fff;font-weight:950;font-size:14px;cursor:pointer;
+  }
+  .check:hover{transform:translateY(-1px)}
+  .answer{display:none;margin-top:18px;border-radius:17px;padding:17px 19px;background:#f7f5ff;border-left:5px solid var(--blue)}
+  .answer.show{display:block}
+  .answer .en{font-size:19px;font-weight:800;line-height:1.5}
+  .answer .es{margin-top:8px;color:#5e5960;line-height:1.45}
+  .target{background:var(--cream);padding:2px 5px;border-radius:5px;color:#111;font-weight:950}
+  .feedback{min-height:28px;margin-top:13px;font-weight:850}
+  .nav{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:17px}
+  .nav button{background:#fff;border:1px solid #ddd7d4;color:var(--ink)}
+  .nav .point{background:var(--pink);border-color:var(--pink);color:#fff}
+  .nav .next{background:var(--blue);border-color:var(--blue);color:#fff}
+  .result{text-align:center;padding:35px 0}
+  .result h2{font-size:48px;margin:10px 0;font-weight:950}
+  .bigscore{font-size:80px;font-weight:950;color:var(--pink);line-height:1}
+  .message{font-size:20px;font-weight:800;margin:20px 0 30px}
+  .restart{background:var(--orange);color:#fff;border:0;border-radius:14px;padding:14px 24px;font-weight:900;cursor:pointer}
+  .mini{font-size:12px;color:var(--muted);margin-top:18px}
+  @media(max-width:560px){
+    .app{padding:20px 14px 30px}.card{min-height:480px;padding:23px}
+    .nav{grid-template-columns:1fr 1fr}.nav .point{grid-column:1/-1;grid-row:1}
+    .nav .back{grid-column:1;grid-row:2}.nav .next{grid-column:2;grid-row:2}
+    .bigscore{font-size:65px}
+  }
+</style>
+</head>
+<body>
+<main class="app" id="app">
+  <div class="brand">ARVA BY KAT · ENGLISH</div>
+
+  <section class="screen active" id="welcome">
+    <div class="welcome">
+      <div style="font-size:42px">🧠 ✨</div>
+      <h1>THE BASICS<br>TEST</h1>
+      <p class="subtitle">Vamos a evaluar lo más importante que hemos aprendido en estos dos meses.</p>
+
+      <div class="topics">
+        <span class="topic">Verb to be</span><span class="topic">Present Simple</span>
+        <span class="topic">Do vs. Does</span><span class="topic">Quantifiers</span>
+        <span class="topic">Frequencies</span><span class="topic">Invitations</span>
+        <span class="topic">Physical descriptions</span><span class="topic">Routines</span>
+        <span class="topic">Possessives</span><span class="topic">Object pronouns</span>
+      </div>
+
+      <div class="instruction">
+        <b>HOW IT WORKS</b><br><br>
+        Look at the phrase in Spanish and take a couple of seconds to think.
+        <strong>NOT A TRANSLATION</strong> — think about the best way to say it in English.
+        <br><br>
+        Tienes todas las herramientas y vocabulario para lograrlo. 💪
+      </div>
+      <button class="start" id="startBtn">START TEST →</button>
+      <div class="mini">30 challenges · 30 possible points</div>
+    </div>
+  </section>
+
+  <section class="screen" id="test">
+    <div class="topbar">
+      <div class="counter" id="counter">1 / 30</div>
+      <div class="score">POINTS: <span id="score">0</span> / 30</div>
+    </div>
+    <div class="progress"><span id="progress"></span></div>
+
+    <div class="card">
+      <div class="label">Think in English · Challenge <span id="challengeNo">1</span></div>
+      <div class="spanish" id="spanish"></div>
+      <div class="hint">Type or say your answer before checking.</div>
+      <textarea id="answerInput" aria-label="Your English answer" placeholder="Your answer in English..."></textarea>
+      <button class="check" id="checkBtn" type="button">CHECK MY ANSWER ✓</button>
+      <div class="feedback" id="feedback" aria-live="polite"></div>
+      <div class="answer" id="modelAnswer">
+        <div class="en" id="englishAnswer"></div>
+        <div class="es" id="translation"></div>
+      </div>
+    </div>
+
+    <div class="nav">
+      <button class="point" id="pointBtn">POINT +1 ⭐</button>
+      <button class="back" id="backBtn">← BACK</button>
+      <button class="next" id="nextBtn">NEXT →</button>
+    </div>
+  </section>
+
+  <section class="screen" id="result">
+    <div class="result">
+      <div style="font-size:58px">🎉</div>
+      <h2>TEST COMPLETE!</h2>
+      <div class="bigscore"><span id="finalScore">0</span>/30</div>
+      <div class="message" id="finalMessage"></div>
+      <button class="restart" id="restartBtn">TAKE IT AGAIN ↻</button>
+      <div class="mini">Your score is based on the points you awarded yourself.</div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  const questions = [
+    ["En la noche tengo que usar gafas porque no veo muy bien.","At night, I have to wear glasses because I can't see <span class='target'>WELL</span>.","En la noche tengo que usar gafas porque no veo muy bien."],
+    ["Voy al gym todas las mañanas, pero solo me lavo el pelo día de por medio.","I go to the gym <span class='target'>EVERY MORNING</span>, but I only wash my hair <span class='target'>EVERY OTHER DAY</span>.","Voy al gym todas las mañanas, pero solo me lavo el pelo día de por medio."],
+    ["Mi hermana no come muchas verduras, pero toma mucha agua todos los días.","My sister <span class='target'>DOESN'T EAT MANY</span> vegetables, but she drinks <span class='target'>A LOT OF WATER</span> every day.","Mi hermana no come muchas verduras, pero toma mucha agua todos los días."],
+    ["¿Tu hermano normalmente trabaja desde casa o va a la oficina?","<span class='target'>DOES YOUR BROTHER USUALLY WORK</span> from home, or does he go to the office?","¿Tu hermano normalmente trabaja desde casa o va a la oficina?"],
+    ["Casi nunca tomo café después del almuerzo porque me mantiene despierta en la noche.","I <span class='target'>HARDLY EVER DRINK COFFEE</span> after lunch because it keeps me awake at night.","Casi nunca tomo café después del almuerzo porque me mantiene despierta en la noche."],
+    ["No hay muchas personas en el gym tan temprano, así que puedo entrenar muy bien.","There aren't <span class='target'>MANY PEOPLE</span> at the gym this early, so I can exercise <span class='target'>REALLY WELL</span>.","No hay muchas personas en el gym tan temprano, así que puedo entrenar muy bien."],
+    ["Tengo algunos amigos que viven cerca, pero no tengo ninguna familia en esta ciudad.","I have <span class='target'>SOME FRIENDS</span> who live nearby, but I don't have <span class='target'>ANY FAMILY</span> in this city.","Tengo algunos amigos que viven cerca, pero no tengo ninguna familia en esta ciudad."],
+    ["Hay muchos restaurantes por aquí, pero ninguno de ellos abre los domingos.","There are <span class='target'>MANY RESTAURANTS</span> around here, but <span class='target'>NONE OF THEM</span> are open on Sundays.","Hay muchos restaurantes por aquí, pero ninguno de ellos abre los domingos."],
+    ["No tengo ningún plan esta noche, así que ¿te gustaría cenar conmigo?","I don't have <span class='target'>ANY PLANS</span> tonight, so <span class='target'>WOULD YOU LIKE TO HAVE DINNER</span> with me?","No tengo ningún plan esta noche, así que ¿te gustaría cenar conmigo?"],
+    ["¿Te gustaría venir a mi casa a cenar este viernes?","<span class='target'>WOULD YOU LIKE TO COME</span> to my house for dinner this Friday?","¿Te gustaría venir a mi casa a cenar este viernes?"],
+    ["Normalmente cocino en casa, pero a veces pido comida cuando estoy demasiado cansada.","I usually cook at home, but <span class='target'>SOMETIMES I ORDER</span> food when I'm too tired.","Normalmente cocino en casa, pero a veces pido comida cuando estoy demasiado cansada."],
+    ["Salimos a cenar una vez al mes, pero casi nunca vamos a restaurantes caros.","We go out for dinner <span class='target'>ONCE A MONTH</span>, but we <span class='target'>HARDLY EVER GO</span> to expensive restaurants.","Salimos a cenar una vez al mes, pero casi nunca vamos a restaurantes caros."],
+    ["Mi prima es muy alta y tiene el cabello largo, liso y oscuro.","My cousin <span class='target'>IS VERY TALL</span> and has <span class='target'>LONG, STRAIGHT, DARK HAIR</span>.","Mi prima es muy alta y tiene el cabello largo, liso y oscuro."],
+    ["Ella tiene ojos cafés grandes, una nariz pequeña y una sonrisa bonita.","She has <span class='target'>BIG BROWN EYES</span>, a small nose, and a beautiful smile.","Ella tiene ojos cafés grandes, una nariz pequeña y una sonrisa bonita."],
+    ["Mi hermano no es muy alto, pero tiene hombros anchos y brazos fuertes.","My brother <span class='target'>ISN'T VERY TALL</span>, but he has <span class='target'>BROAD SHOULDERS AND STRONG ARMS</span>.","Mi hermano no es muy alto, pero tiene hombros anchos y brazos fuertes."],
+    ["La mujer del vestido rojo tiene el cabello corto, rizado y rubio y ojos verdes.","The woman in the red dress has <span class='target'>SHORT, CURLY BLONDE HAIR</span> and green eyes.","La mujer del vestido rojo tiene el cabello corto, rizado y rubio y ojos verdes."],
+    ["¿De quién es esta chaqueta? — Es de mi hermana, pero la negra es de ella.","<span class='target'>WHOSE JACKET IS THIS?</span> — It's <span class='target'>MY SISTER'S</span>, but the black one is <span class='target'>HERS</span>.","¿De quién es esta chaqueta? — Es de mi hermana, pero la negra es de ella."],
+    ["Ese es el carro de Daniel, pero el carro azul de al lado es de él.","That's <span class='target'>DANIEL'S CAR</span>, but the blue car next to it is <span class='target'>HIS</span>.","Ese es el carro de Daniel, pero el carro azul de al lado es de él."],
+    ["No me gusta su apartamento nuevo, pero me gusta mucho el barrio alrededor del de ella.","I don't like <span class='target'>HER NEW APARTMENT</span>, but I really like the neighborhood around <span class='target'>HERS</span>.","No me gusta su apartamento nuevo, pero me gusta mucho el barrio alrededor del de ella."],
+    ["¿Este es tu teléfono o es de Laura?","<span class='target'>IS THIS YOUR PHONE</span>, or is it <span class='target'>LAURA'S</span>?","¿Este es tu teléfono o es de Laura?"],
+    ["Mi amiga no hace ejercicio todos los días porque trabaja muchas horas.","My friend <span class='target'>DOESN'T EXERCISE EVERY DAY</span> because she works long hours.","Mi amiga no hace ejercicio todos los días porque trabaja muchas horas."],
+    ["¿Normalmente tomas el bus para ir al trabajo o manejas?","<span class='target'>DO YOU USUALLY TAKE</span> the bus to work, or do you drive?","¿Normalmente tomas el bus para ir al trabajo o manejas?"],
+    ["Mis padres son muy activos, pero no van al gym muy seguido.","My parents <span class='target'>ARE VERY ACTIVE</span>, but they <span class='target'>DON'T GO</span> to the gym very often.","Mis padres son muy activos, pero no van al gym muy seguido."],
+    ["A veces tengo algo de tiempo libre después del trabajo, pero normalmente tengo demasiadas cosas que hacer.","I <span class='target'>SOMETIMES HAVE SOME FREE TIME</span> after work, but I usually have <span class='target'>TOO MANY THINGS</span> to do.","A veces tengo algo de tiempo libre después del trabajo, pero normalmente tengo demasiadas cosas que hacer."],
+    ["Hay casi nada de comida en la nevera, así que ¿te gustaría pedir algo?","There is <span class='target'>HARDLY ANY FOOD</span> in the refrigerator, so <span class='target'>WOULD YOU LIKE TO ORDER</span> something?","Hay casi nada de comida en la nevera, así que ¿te gustaría pedir algo?"],
+    ["Veo a mi mejor amiga día de por medio, y normalmente hablamos de nuestros problemas.","I see my best friend <span class='target'>EVERY OTHER DAY</span>, and we usually talk about <span class='target'>OUR PROBLEMS</span>.","Veo a mi mejor amiga día de por medio, y normalmente hablamos de nuestros problemas."],
+    ["Él habla inglés muy bien, pero su pronunciación todavía no es muy buena.","He speaks English <span class='target'>VERY WELL</span>, but his pronunciation <span class='target'>ISN'T VERY GOOD</span> yet.","Él habla inglés muy bien, pero su pronunciación todavía no es muy buena."],
+    ["Mi profesora explica las cosas muy bien, así que incluso la gramática difícil no es demasiado complicada para mí.","My teacher <span class='target'>EXPLAINS THINGS REALLY WELL</span>, so even difficult grammar isn't too hard for me.","Mi profesora explica las cosas muy bien, así que incluso la gramática difícil no es demasiado complicada para mí."],
+    ["¿Te gustaría conocer a mi hermana? Ella es la mujer alta de cabello largo, ondulado y café.","<span class='target'>WOULD YOU LIKE TO MEET MY SISTER?</span> She's the tall woman with <span class='target'>LONG, WAVY BROWN HAIR</span>.","¿Te gustaría conocer a mi hermana? Ella es la mujer alta de cabello largo, ondulado y café."],
+    ["Normalmente no compro mucha ropa, pero a veces compro algo bonito cuando tengo dinero extra.","I <span class='target'>DON'T USUALLY BUY MANY CLOTHES</span>, but I <span class='target'>SOMETIMES BUY SOMETHING NICE</span> when I have extra money.","Normalmente no compro mucha ropa, pero a veces compro algo bonito cuando tengo dinero extra."]
+  ];
+
+  let current=0, points=new Set(), started=false;
+  const $=id=>document.getElementById(id);
+  function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$(id).classList.add('active')}
+  function render(){
+    const q=questions[current];
+    $('counter').textContent=(current+1)+' / '+questions.length;
+    $('challengeNo').textContent=current+1;
+    $('progress').style.width=((current+1)/questions.length*100)+'%';
+    $('score').textContent=points.size;
+    $('spanish').textContent=q[0];
+    $('answerInput').value='';
+    $('feedback').textContent='';
+    $('modelAnswer').classList.remove('show');
+    $('checkBtn').disabled=false;
+    $('checkBtn').textContent='CHECK MY ANSWER ✓';
+    $('englishAnswer').innerHTML=q[1];
+    $('translation').textContent=q[2];
+    $('backBtn').disabled=current===0;
+    $('nextBtn').textContent=current===questions.length-1?'FINISH →':'NEXT →';
+    $('pointBtn').textContent=points.has(current)?'POINT AWARDED ✓':'POINT +1 ⭐';
+    $('pointBtn').disabled=points.has(current);
+    $('answerInput').focus();
+  }
+  $('startBtn').addEventListener('click',()=>{started=true;current=0;points.clear();show('test');render()});
+  $('checkBtn').addEventListener('click',()=>{
+    const response=$('answerInput').value.trim();
+    if(!response){
+      $('feedback').textContent='✏️ Write your answer first, then check it.';
+      $('answerInput').focus();
+      return;
+    }
+    $('modelAnswer').classList.add('show');
+    $('checkBtn').textContent='ANSWER CHECKED ✓';
+    $('checkBtn').disabled=true;
+    $('feedback').textContent='Compare your answer with the model answer below. If your answer is correct, give yourself a point!';
+  });
+  $('pointBtn').addEventListener('click',()=>{
+    if(!$('modelAnswer').classList.contains('show')){
+      $('feedback').textContent='👀 Check your answer first!';
+      return;
+    }
+    if(!points.has(current)){
+      points.add(current);
+      $('score').textContent=points.size;
+      $('pointBtn').textContent='POINT AWARDED ✓';
+      $('pointBtn').disabled=true;
+      $('feedback').textContent='⭐ Point added! Great job!';
+    }
+  });
+  $('backBtn').addEventListener('click',()=>{if(current>0){current--;render()}});
+  $('nextBtn').addEventListener('click',()=>{
+    if(current<questions.length-1){current++;setTimeout(render,80)}
+    else{
+      show('result');const pct=Math.round(points.size/questions.length*100);$('finalScore').textContent=points.size;
+      $('finalMessage').textContent=pct>=90?'🏆 Excellent! You have a strong foundation.':pct>=80?'🌟 Great job! Keep building your confidence.':pct>=70?'💪 Good job! Keep practicing.':pct>=60?'📚 Almost there! Let’s review the basics.':'🔄 Let’s review the basics and try again!';}
+  });
+  $('restartBtn').addEventListener('click',()=>{current=0;points.clear();show('welcome')});
+  $('answerInput').addEventListener('keydown',e=>{
+    if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){$('checkBtn').click()}
+  });
+})();
+</script>
+</body>
+</html>
