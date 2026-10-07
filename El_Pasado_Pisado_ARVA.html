@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>El Pasado Pisado — ARVA by Kat</title>
+<style>
+:root{--b:#4f46e5;--p:#ff2d55;--o:#ff751f;--bg:#feffd2;--m:#8b5e3c;--t:#2a1f2d}
+*{box-sizing:border-box;margin:0}
+body{font-family:Montserrat,'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--t);line-height:1.55}
+.w{max-width:980px;margin:auto;padding:0 16px}
+header{background:linear-gradient(135deg,var(--b),var(--p) 62%,var(--o));color:#fff;text-align:center;padding:60px 16px;position:relative;overflow:hidden}
+header h1{font-size:clamp(2.2rem,8vw,4.6rem);font-weight:900;letter-spacing:-1px}
+header .sub{font-weight:700;font-size:1.1rem;opacity:.95}
+.tag2{display:inline-block;margin-top:18px;background:#fff;color:var(--p);padding:10px 20px;border-radius:40px;font-weight:800}
+.fl{position:absolute;font-size:2.4rem;opacity:.35;animation:fl 6s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-16px) rotate(8deg)}}
+section{padding:42px 0;border-bottom:2px dashed #e5dfa0}
+h2{font-size:clamp(1.5rem,5vw,2.2rem);font-weight:900;color:var(--b);margin-bottom:6px}
+h2 small{display:block;font-size:.8rem;color:var(--m);font-weight:600;letter-spacing:1px}
+.lead{margin:10px 0 20px}
+.card{background:#fff;border-radius:20px;padding:22px;box-shadow:0 6px 20px #4f46e522}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+button{font:inherit;font-weight:800;border:0;border-radius:30px;padding:10px 20px;cursor:pointer;color:#fff;background:var(--b);transition:.2s}
+button:hover{transform:translateY(-2px);filter:brightness(1.1)}
+.bp{background:var(--p)}.bo{background:var(--o)}.bg{background:#999}.bm{background:var(--m)}
+.wc{background:#fff;border:3px solid var(--b);border-radius:22px;padding:24px;cursor:pointer;font-weight:700;font-size:1.1rem;transition:.2s}
+.wc:hover{transform:scale(1.02);border-color:var(--p)}
+.wc b{display:block;color:var(--p);font-size:2rem}
+.wc em{display:none;margin-top:10px;color:var(--o);font-style:normal;font-weight:900}
+.wc.on em{display:block;animation:pop .4s}
+@keyframes pop{from{transform:scale(.6);opacity:0}}
+.leg{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;font-weight:700}
+.vc{min-height:150px;border-radius:20px;padding:18px;cursor:pointer;background:#fff;border-top:8px solid;box-shadow:0 4px 14px #0002;position:relative;transition:.25s}
+.vc:hover{transform:translateY(-4px)}
+.vc.V{border-color:var(--o)}.vc.N{border-color:var(--b)}.vc.E{border-color:var(--p)}
+.vc .k{display:none}.vc.on .k{display:block;animation:pop .35s}.vc.on .f{display:none}
+.tg{font-size:.72rem;font-weight:800;letter-spacing:1px;margin-bottom:6px;display:block}
+.vc h3{font-size:1.35rem}.vc h4{font-size:1.2rem;color:var(--p)}
+.vc small{color:#999}.vc button{position:absolute;right:10px;bottom:10px;padding:4px 10px;background:#eee;color:#333}
+.qs li{background:#fff;border-left:6px solid var(--p);padding:14px;margin:10px 0;border-radius:12px;font-weight:700;list-style:none}
+.story{font-size:1.08rem}.story p{margin:10px 0}.story h3{font-size:1.6rem;color:var(--p)}
+.story b,.story i{font-style:normal;font-weight:800;transition:.3s;border-radius:6px;padding:0 2px}
+.story.be b{background:var(--b);color:#fff}.story.be i{opacity:.25}
+.story.sp i{background:var(--o);color:#fff}.story.sp b{opacity:.25}
+.bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+textarea,input[type=text]{width:100%;font:inherit;padding:10px;border:2px solid #ddd;border-radius:12px;margin:8px 0}
+.ans,.hid{display:none;background:#eef;border-left:5px solid var(--b);padding:10px;border-radius:10px;margin-top:6px;font-weight:700}
+.ans.show,.hid.show{display:block;animation:pop .3s}
+.gc{padding:22px;border-radius:20px;color:#fff}.gc.bl{background:var(--b)}.gc.or{background:var(--o)}
+.gc h3{font-size:1.4rem;margin-bottom:8px}.gc p{margin:6px 0}
+.no{color:#ffd1d9;text-decoration:line-through}
+.mantra{background:#ffe14d;border:4px solid var(--t);border-radius:26px;padding:28px;text-align:center;margin:26px 0;animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.025);box-shadow:0 0 0 14px #ffe14d66}}
+.mantra h3{font-size:1.9rem}.mantra .big{font-size:clamp(1.3rem,4.5vw,2rem);font-weight:900;color:var(--p);margin:12px 0}
+.mantra .cols{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));text-align:left;margin:14px 0}
+.mantra .cols div{background:#fff9;padding:10px;border-radius:12px}
+.fm{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.fm div{background:#fff;border-radius:18px;padding:18px;border-top:8px solid}
+.fm code{display:block;font-weight:900;font-size:1.05rem;margin:6px 0;color:var(--b)}
+.rb{text-align:center}.rb .v{font-size:clamp(2.2rem,9vw,4rem);font-weight:900;color:var(--p);margin:10px 0}
+.rb .pv{font-size:2rem;font-weight:900;color:var(--b);min-height:50px}
+.ex{background:#fff;border-radius:20px;padding:20px;margin:14px 0;border-left:8px solid var(--b)}
+.ex .n{font-weight:900;color:var(--p)}.ex .es{font-weight:800;font-size:1.1rem;margin:6px 0 10px}
+.op{display:block;width:100%;text-align:left;background:#f3f2ff;color:var(--t);border-radius:14px;margin:7px 0;font-weight:600}
+.op.ok{background:#22c55e;color:#fff}.op.bad{background:var(--p);color:#fff}
+.ex.ok{animation:glow .9s}.ex.bad{animation:shake .45s}
+@keyframes glow{50%{box-shadow:0 0 0 8px #22c55e88,0 0 30px #22c55e}}
+@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.fb{margin-top:8px;font-weight:700}
+.chips{min-height:48px;display:flex;flex-wrap:wrap;gap:8px;padding:8px;border-radius:12px;background:#f3f2ff;margin:6px 0}
+.chips button{background:var(--o);padding:6px 14px}.chips.a button{background:var(--b)}
+.score{position:sticky;top:8px;z-index:5;background:var(--t);color:#fff;border-radius:30px;padding:8px 20px;display:inline-block;font-weight:900}
+.tl{display:grid;gap:18px}
+.tc{border-radius:24px;padding:26px;border:5px solid}
+.tc h3{font-size:1.5rem;margin-bottom:8px}.tc p{margin:8px 0}
+.g{background:#d9f9df;border-color:#22c55e}.y{background:#fff3a6;border-color:#facc15}.r{background:#ffd9df;border-color:#ef233c}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;margin-top:12px}
+td,th{padding:9px;border:1px solid #eee;text-align:left}th{background:var(--p);color:#fff}
+.rule{background:linear-gradient(135deg,#1f1830,var(--b));color:#fff;border-radius:28px;padding:34px;text-align:center;animation:pulse 3.2s ease-in-out infinite}
+.rule h3{font-size:2rem}.rule .big{font-size:1.5rem;font-weight:900;color:var(--bg);margin:12px 0}
+.rule .cols{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));margin:16px 0}
+.rule .cols p{background:#fff2;border-radius:12px;padding:10px;font-weight:800}
+.fin{background:linear-gradient(135deg,var(--p),var(--o));color:#fff;text-align:center;padding:70px 16px}
+.fin h2{color:#fff;font-size:clamp(2rem,8vw,4rem);line-height:1.1}
+footer{background:var(--t);color:#fff;text-align:center;padding:26px}
+.tb{margin-top:12px}.tf{display:none;margin-top:14px;background:#fff;border-radius:16px;padding:14px;color:var(--t)}.tf.show{display:block;animation:pop .3s}.tf.ok{animation:glow .9s}.tf.bad{animation:shake .45s}.bt{background:#fff3f3;border-left:5px solid var(--p);padding:10px;border-radius:10px;font-weight:700;margin:8px 0}
+.tc button.bo{margin-top:6px}
+</style></head><body>
+
+<header>
+<span class="fl" style="left:6%;top:14%">🏚️</span><span class="fl" style="right:8%;top:18%;animation-delay:1s">🪦</span><span class="fl" style="left:12%;bottom:12%;animation-delay:2s">💔</span><span class="fl" style="right:14%;bottom:10%;animation-delay:3s">❤️‍🩹</span>
+<div class="w"><p style="font-weight:800;letter-spacing:3px">ARVA by Kat</p>
+<h1>EL PASADO PISADO</h1><p class="sub">A2 Review — Past Verb To Be + Simple Past</p>
+<div class="tag2">THE PAST IS PAST. DON'T GO BACK. 💅</div></div></header>
+
+<div class="w">
+<section><h2>🎯 GOAL</h2>
+<div class="card"><p>Vamos a recordar las dos formas de hablar de acciones o situaciones que sucedieron en el pasado y terminaron en el pasado.</p>
+<p>Por eso se llama: <b style="color:var(--p)">EL PASADO PISADO.</b></p>
+<p style="margin-top:12px;font-weight:900;color:var(--b)">Master the past of the Verb To Be and the Simple Past. 🪦</p></div></section>
+
+<section><h2>🔥 WARM UP <small>CLICK A QUESTION AND SPEAK</small></h2><div class="grid" id="warm" style="margin-top:16px"></div></section>
+
+<section><h2>☕ VOCABULARY <small>CLICK THE CARD TO REVEAL</small></h2>
+<div class="leg"><span>🟠 VERB</span><span>🔵 NOUN</span><span>💗 EXPRESSION</span></div>
+<div class="grid" id="vocab"></div></section>
+
+<section><h2>👀 LOOK <small>BEFORE THE TEXT</small></h2>
+<h3 style="margin:10px 0">BEFORE YOU READ...</h3>
+<ol class="qs"><li>1. Why did you break up with your ex?</li><li>2. Would you go back with him/her?</li><li>3. Do you believe in second chances? Why?</li></ol></section>
+
+<section><h2>📖 LOOK <small>THE STORY</small></h2>
+<div class="bar"><button onclick="hl('be')">🔵 PAST VERB TO BE</button><button class="bo" onclick="hl('sp')">🟠 PASADO PISADO</button><button class="bg" onclick="hl('')">⚪ CLEAR</button></div>
+<div class="card story" id="story">
+<h3>Why did I break up with my ex?</h3><p>By <b style="all:unset;font-weight:800">Kat</b> ❤️</p>
+<p>That's <i>water under the bridge</i>.</p>
+<p>I <i>met</i> my ex-boyfriend John when we <b>were</b> in college. We <b>were</b> in the same career, the same semester, and the same classes.</p>
+<p>It all started as friendship, but honestly, I <i>found</i> him attractive from the first moment we met.</p>
+<p>For one year, we <b>were</b> just friends. In our third semester, we <i>had</i> a little fling: flirting, holding hands, and kissing at parties. Nothing serious.</p>
+<p>Later, we both <i>got</i> partners, but our friendship <i>didn't stop</i>. We <i>graduated</i>, and I <i>moved</i> to France for an exchange.</p>
+<p>When I <i>came</i> back home, I <i>got</i> in touch with my college friends. That's when I <i>met</i> John again.</p>
+<p>Nothing romantic. We <b>were</b> just two old friends.</p>
+<p>Then I <i>decided</i> to move alone. I <i>asked</i> John to help me, and that's when our relationship <i>started</i>.</p>
+<p>We <i>dated</i> and <i>spent</i> nights at my place, but we <b>weren't</b> official.</p>
+<p>After five months, he <i>asked</i> me to be his girlfriend.</p>
+<p>Four years <i>passed</i>.</p>
+<p>I <i>traveled</i> alone because he didn't want to join my adventures. I <i>waited</i> two and a half years to meet his parents.</p>
+<p>It <b>was</b> okay... until it <b>wasn't</b>.</p>
+<p>Little by little, I <i>got</i> tired of asking him to have initiative, make plans, and take me on proper dates — not just Netflix and pizza at home.</p>
+<p>I really <i>thought</i> we <b>were</b> going to be together forever.</p>
+<p>I <i>pictured</i> a family with him, a house, and two dogs called Tinto and Panela.</p>
+<p>In December 2024, he <i>promised</i> that by January 2025 we would move in together.</p>
+<p>It <i>didn't happen</i>.</p>
+<p>I <i>went</i> on another solo trip.</p>
+<p>When I <i>came</i> back from my trip, he <i>promised</i> again he would move in.</p>
+<p>But on October 12, 2025, two days before my birthday, we <i>had</i> a long conversation.</p>
+<p>I <i>asked</i>, “Are you actually moving with me this year?”</p>
+<p>He <b>was</b> silent.</p>
+<p>I understood.</p>
+<p>Living with me <b>wasn't</b> in his plans.</p>
+<p>We <i>broke up</i> that night.</p>
+<p>I <i>cried</i> a river.</p>
+<p>It has been almost a year. I would like to say it's all <i>water under the bridge</i>, but sometimes I still <i>cry</i> when I remember all the things I wanted to do with him that will never happen.</p>
+</div></section>
+
+<section><h2>🔎 COMPREHENSION <small>ANSWER FIRST, THEN CHECK</small></h2><div id="comp"></div>
+<h2 style="margin-top:34px">🔍 DISCOVERY</h2>
+<div class="card" style="margin-top:12px"><p><b>Look at the story.</b></p>
+<p>Which words describe a <b style="color:var(--b)">state or situation</b>?</p>
+<p>Which words describe a <b style="color:var(--o)">finished action</b>?</p>
+<p>What is the difference between them?</p>
+<textarea rows="3" placeholder="Discuss with your teacher first..."></textarea>
+<button class="bm" onclick="this.nextElementSibling.classList.toggle('show')">🤔 CHECK AFTER DISCUSSING</button>
+<div class="hid"><span style="color:var(--b)">was/were</span> = state, situation, feeling, place. <span style="color:var(--o)">Simple Past verbs</span> = finished actions.</div></div></section>
+
+<section><h2>🧠 GRAMMAR</h2>
+<div class="grid" style="margin-top:16px">
+<div class="gc bl"><h3>🔵 PAST VERB TO BE</h3><p><b>WAS / WERE</b> for: situations, descriptions, feelings, locations, identities, states.</p>
+<p><b>+</b> I <b>was</b> tired. / They <b>were</b> in college.</p>
+<p><b>−</b> I <b>wasn't</b> happy. / They <b>weren't</b> official.</p>
+<p><b>?</b> <b>Was</b> he serious? / <b>Were</b> they together?</p>
+<p class="no">Did she was happy?</p><p>✅ Was she happy?</p>
+<p><b>With was/were, we DON'T use DID.</b></p></div>
+<div class="gc or"><h3>🟠 PASADO PISADO — SIMPLE PAST</h3><p>We use Simple Past for <b>finished actions in the past.</b></p>
+<p>Kat <b>met</b> John.</p><p>They <b>graduated</b>.</p><p>She <b>moved</b> to France.</p><p>They <b>broke up</b>.</p></div></div>
+
+<div class="mantra"><h3>⚠️ MANTRA DE CONJUGAR</h3>
+<div class="big">EN EL PASADO PISADO NO HAY CONJUGACIONES.</div>
+<p>Everyone gets: <b>DID / DIDN'T + VERB</b><br>The subject DOES NOT change the verb after DID.</p>
+<div class="cols"><div><b>+</b><br>I <b>did</b> go.<br>She <b>did</b> go.<br>They <b>did</b> go.</div>
+<div><b>−</b><br>I <b>didn't</b> go.<br>She <b>didn't</b> go.<br>They <b>didn't</b> go.</div>
+<div><b>?</b><br><b>Did</b> I go?<br><b>Did</b> she go?<br><b>Did</b> they go?</div></div>
+<p>❌ Did she <b>went</b>? ✅ Did she <b>go</b>?<br>❌ She didn't <b>went</b>. ✅ She didn't <b>go</b>.</p></div>
+
+<h2>🧩 GRAMMAR FORMULA</h2>
+<div class="fm" style="margin-top:14px">
+<div style="border-color:#22c55e"><b>POSITIVE +</b><code>SUBJECT + PAST VERB</code>Kat met John.</div>
+<div style="border-color:var(--p)"><b>NEGATIVE −</b><code>SUBJECT + DIDN'T + BASE VERB</code>Kat didn't meet John.</div>
+<div style="border-color:var(--b)"><b>QUESTION ?</b><code>DID + SUBJECT + BASE VERB?</code>Did Kat meet John?</div>
+<div style="border-color:#facc15;background:#fff9d6"><b>⚠️ EXCEPTION</b><code>Verb To Be does NOT use DID.</code>Was Kat happy?<br>Were they together?</div></div></section>
+
+<section><h2>🎰 PAST VERB ROULETTE <small>SAY IT OUT LOUD FIRST</small></h2>
+<div class="card rb" style="margin-top:14px"><button onclick="spin()">🎰 SPIN</button>
+<div class="v" id="rv">?</div><div class="pv" id="rp"></div>
+<button class="bo" onclick="chk()">CHECK ✓</button> <button class="bp" onclick="lis()">🔊 LISTEN</button></div></section>
+
+<section><h2>✍️ PRACTICE <small>THINK BEFORE YOU CLICK</small></h2>
+<p class="lead"><span class="score" id="sc">Score: 0 / 11</span></p><div id="ex"></div>
+<div class="card" id="endmsg" style="display:none;text-align:center;font-weight:900;font-size:1.2rem"></div></section>
+
+<section><h2>🗣️ FINALLY — SPEAKING <small>TELL THE STORY</small></h2>
+<h3 style="font-size:2rem;color:var(--p);margin:10px 0">THE EX FILES 💔</h3>
+<div class="card" style="text-align:center"><button class="bp" onclick="rq()">RANDOM QUESTION 🎲</button>
+<p id="rqt" style="font-size:1.4rem;font-weight:800;margin:18px 0;min-height:70px">Teacher: click the button! 🏚️</p>
+<div style="background:var(--bg);border-radius:14px;padding:12px;font-weight:700">🎯 Your story must include:<br><b style="color:var(--o)">5 Simple Past verbs</b> + <b style="color:var(--b)">3 was/were forms</b></div></div></section>
+
+<section><h2>🚦 TRAFFIC LIGHT <small>¿EN QUÉ COLOR ESTÁS HOY?</small></h2>
+<div class="tl" style="margin-top:16px">
+<div class="tc g"><h3>🟢 GREEN — LO TIENES</h3>
+<p>Si estás en GREEN, ya entiendes la diferencia.</p>
+<p><b>WAS/WERE</b> habla de cómo alguien/algo <b>era, estaba, se sentía o dónde estaba</b>.</p>
+<p><b>SIMPLE PAST</b> habla de una <b>acción terminada</b>.</p>
+<p>👉 John <b>was</b> silent. → John estaba en silencio.</p>
+<p>👉 Kat <b>met</b> John. → Kat conoció a John.</p>
+<p><b>Estado/situación → WAS/WERE<br>Acción terminada → SIMPLE PAST</b></p></div>
+<div class="tc y"><h3>🟡 YELLOW — MANEJAS LA IDEA, PERO OJO</h3>
+<p>El error más común es usar <b>DID + pasado</b>.</p>
+<p>Cuando aparece <b>DID o DIDN'T</b>, el verbo vuelve a su forma básica.</p>
+<p>❌ Did Kat <b>met</b> John? ✅ Did Kat <b>meet</b> John?</p>
+<p>❌ Kat didn't <b>went</b>. ✅ Kat didn't <b>go</b>.</p>
+<p>DID ya está marcando el pasado. Por eso el segundo verbo NO necesita volver a marcar el pasado.</p>
+<p><b>DID + BASE VERB</b><br><b>DIDN'T + BASE VERB</b><br><b>DID + SUBJECT + BASE VERB?</b></p></div>
+<div class="tc r"><h3>🔴 RED — NECESITO AYUDA</h3>
+<p>Si estás en RED, vuelve a estas tres preguntas:</p>
+<p><b>1.</b> ¿Estoy describiendo una situación, estado o ubicación? → <b>WAS / WERE</b></p>
+<p><b>2.</b> ¿Estoy hablando de una acción terminada? → <b>SIMPLE PAST</b></p>
+<p><b>3.</b> ¿Tengo DID o DIDN'T? → El verbo que sigue vuelve a su forma básica.</p>
+<table><tr><th>IDEA</th><th>STRUCTURE</th><th>EXAMPLE</th></tr>
+<tr><td>Estado</td><td>was/were</td><td>She was tired.</td></tr>
+<tr><td>Acción</td><td>past verb</td><td>She traveled.</td></tr>
+<tr><td>Negativa</td><td>didn't + base</td><td>She didn't travel.</td></tr>
+<tr><td>Pregunta</td><td>Did + subject + base?</td><td>Did she travel?</td></tr>
+<tr><td>Pregunta BE</td><td>Was/Were + subject?</td><td>Was she tired?</td></tr></table></div></div><div style="margin-top:22px;text-align:center"><button class="bp" onclick="tlOpen()">💅 THE GOSSIP — ARREGLA EL TEXTO</button><div class="tf" id="tf0" style="text-align:left"></div></div></section>
+
+<section style="border:0"><div class="rule"><h3>🚨 THE PASADO PISADO RULE 🪦</h3>
+<div class="big">DID already did the past.<br>So DON'T put the verb in the past again.</div>
+<div class="cols"><p>Did + go ✅</p><p>Did + went ❌</p><p>Didn't + break ✅</p><p>Didn't + broke ❌</p></div>
+<div class="big">BUT... WAS/WERE don't need DID.</div>
+<div class="cols"><p>Was she tired? ✅</p><p>Did she was tired? ❌</p></div></div></section>
+</div>
+
+<div class="fin"><h2>THE PAST IS PAST.<br>DON'T GO BACK. 💅</h2>
+<p style="margin-top:20px;font-size:1.3rem;font-weight:800">You survived EL PASADO PISADO. 🪦😂</p>
+<p style="font-size:2rem;margin-top:14px">🏚️ 🪦 💔 ❤️‍🩹</p></div>
+<footer><b>ARVA by Kat ♥</b><br>English that feels real.</footer>
+
+<script>
+const $=s=>document.querySelector(s);
+function sp(t){if(!window.speechSynthesis)return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-US';const v=speechSynthesis.getVoices().find(v=>v.lang==='en-US');if(v)u.voice=v;speechSynthesis.speak(u)}
+// Warm up
+$('#warm').innerHTML=["Did you study English during our class break?","What was your favorite part of the A1 course?","Did you cook at home today for lunch, or did you eat out?","How was your trip to Medellín and why were you there?"].map((q,i)=>`<div class="wc" onclick="this.classList.toggle('on')"><b>${i+1}</b>${q}<em>Tell me more! 👀</em></div>`).join('');
+// Vocab
+const L={V:["🟠 VERB","#ff751f"],N:["🔵 NOUN","#4f46e5"],E:["💗 EXPRESSION","#ff2d55"]};
+const V=[
+["break up","V","broke up","terminar una relación","They broke up in October."],["meet","V","met","conocer / encontrarse con alguien","Kat met John in college."],["find","V","found","encontrar","Kat found John attractive."],["have","V","had","tener","They had a little fling."],["get","V","got","conseguir / obtener / llegar a","They got partners."],["move","V","moved","mudarse / mover","Kat moved to France."],["come","V","came","venir / regresar","She came back home."],["spend","V","spent","pasar tiempo / gastar","They spent nights together."],["cry","V","cried","llorar","She cried a river."],
+["fling","N","","aventura romántica / algo casual","They had a little fling."],["manchild","N","","adulto que actúa como niño","He was a manchild."],["date","N","","cita romántica","They never went on a proper date."],["trip","N","","viaje","Kat's solo trip was long."],
+["water under the bridge","E","","pasado pisado / algo que ya pasó","That's water under the bridge."],["get in touch","E","","ponerse en contacto","She got in touch with her friends."],["move in","E","","mudarse a vivir con alguien","He promised to move in."],["proper date","E","","una cita de verdad","Netflix and pizza wasn't a proper date."],["cry a river","E","","llorar muchísimo","I cried a river."],["have initiative","E","","tener/tomar iniciativa","He didn't have initiative."]];
+$('#vocab').innerHTML=V.map(([w,c,p,es,ex])=>`<div class="vc ${c}" onclick="this.classList.toggle('on')"><div class="f"><span class="tg" style="color:${L[c][1]}">${L[c][0]}</span><h3>${w}</h3><small>click to flip</small><button onclick="event.stopPropagation();sp('${w}')">🔊</button></div><div class="k"><h4>${es}</h4>${p?`<p>Simple Past: <b style="color:var(--o)">${p}</b></p>`:''}<p>“${ex}”</p></div></div>`).join('');
+// Story
+function hl(m){$('#story').className='card story '+m}
+// Comprehension
+$('#comp').innerHTML=[["Where did Kat meet John?","They met in college."],["What happened in their third semester?","They had a little fling."],["Why did Kat get tired of the relationship?","She got tired of asking him to have initiative and make plans."],["What did John promise in December 2024?","He promised that they would move in together by January 2025."],["What happened on October 12, 2025?","They had a long conversation and broke up."]].map(([q,a],i)=>`<div class="card" style="margin:12px 0"><b>${i+1}. ${q}</b><textarea rows="2" placeholder="Your answer..."></textarea><button class="bo" onclick="this.nextElementSibling.classList.toggle('show')">SHOW ANSWER</button><div class="ans">${a}</div></div>`).join('');
+// Roulette
+const R=[["take","took"],["meet","met"],["want","wanted"],["go","went"],["come","came"],["break","broke"],["think","thought"],["have","had"],["get","got"],["find","found"],["feel","felt"],["make","made"],["say","said"],["see","saw"],["eat","ate"],["drink","drank"],["give","gave"],["write","wrote"],["speak","spoke"],["drive","drove"],["buy","bought"],["bring","brought"],["catch","caught"],["teach","taught"],["leave","left"],["sleep","slept"],["keep","kept"],["choose","chose"],["begin","began"],["study","studied"],["travel","traveled"],["ask","asked"],["start","started"],["kiss","kissed"]];
+let cur=null,tm;
+function spin(){clearInterval(tm);$('#rp').textContent='';let n=0;tm=setInterval(()=>{cur=R[Math.floor(Math.random()*R.length)];$('#rv').textContent=cur[0];if(++n>10)clearInterval(tm)},70)}
+function chk(){if(cur)$('#rp').textContent=cur[1]}
+function lis(){if(cur)sp(cur[1])}
+// Practice
+const E=[
+{n:"1 · MULTIPLE CHOICE",q:"Kat conoció a John en la universidad.",o:["Kat did met John in college.","Kat met John in college.","Kat was meet John in college.","Kat meets John in college."],a:1,e:"Acción terminada = Simple Past (met). Sin DID en positivo, y 'meets' es presente."},
+{n:"2 · MULTIPLE CHOICE",q:"Ellos no eran oficiales.",o:["They didn't official.","They weren't official.","They wasn't official.","They didn't were official."],a:1,e:"'Ser/estar' en pasado = was/were. Con 'they' usamos weren't; nunca didn't + were."},
+{n:"3 · REORGANIZE THE QUESTION",q:"Why…? Order the words.",t:"ord",w:["did","Kat","why","break up","with","John"],k:"why did kat break up with john",end:"?",e:"Question word + DID + subject + base verb: Why did Kat break up with John?"},
+{n:"4 · REORGANIZE",q:"Order the words. Which helper do you need?",t:"ord",w:["were","they","together"],k:"were they together",end:"?",e:"'Be' va primero en la pregunta: Were they together? Aquí NO usamos did."},
+{n:"5 · TRICKY CHOICE",q:"______ Kat happy with the relationship?",o:["Did","Was","Does","Were"],a:1,e:"'Happy' es un estado → verb to be. Kat = singular → Was."},
+{n:"6A · TRICKY CHOICE",q:"______ Kat travel alone?",o:["Was","Were","Did","Does"],a:2,e:"'Travel' es una acción terminada → necesitamos DID."},
+{n:"6B · TRICKY CHOICE",q:"Did Kat ______ alone?",o:["traveled","travel","travels","was travel"],a:1,e:"DID ya marca el pasado → el verbo vuelve a base: travel."},
+{n:"7 · CORRECT THE SENTENCE",q:"Fix it: Kat didn't went to France.",t:"fix",k:"kat didn't go to france",e:"Didn't + base verb: Kat didn't go to France."},
+{n:"8 · SPANISH → ENGLISH",q:"¿John estaba en silencio?",o:["Did John silent?","Was John silent?","Did John was silent?","Were John silent?"],a:1,e:"Estado + John (singular) = Was John silent? Sin DID."},
+{n:"9 · SPANISH → ENGLISH",q:"¿Kat terminó con John?",o:["Was Kat break up with John?","Did Kat broke up with John?","Did Kat break up with John?","Does Kat broke up with John?"],a:2,e:"Acción terminada: Did + subject + base verb (break up)."},
+{n:"10 · MIXED CHALLENGE",q:"Kat estaba cansada, así que se fue a casa.",o:["Kat was tired, so she went home.","Kat did tired, so she went home.","Kat were tired, so she goed home.","Kat was tired, so she did went home."],a:0,e:"Estado = was (tired). Acción = went (pasado irregular de go). 'goed' no existe."}];
+let score=0,done=0;
+function render(i){const x=E[i];let h=`<div class="n">${x.n}</div><p class="es">${x.q}</p>`;
+ if(x.o)h+=x.o.map((o,j)=>`<button class="op" onclick="mc(${i},${j})"><b>${'ABCD'[j]}.</b> ${o}</button>`).join('');
+ else if(x.t==='fix')h+=`<input type="text" id="in${i}" placeholder="Type the correct sentence"><button class="bo" onclick="fx(${i})">CHECK ✓</button>`;
+ else{x.s=x.s||[];h+=`<div class="chips a">${x.s.map(k=>`<button onclick="pk(${i},${k})">${x.w[k]}</button>`).join('')}<span style="align-self:center;font-weight:900">${x.s.length?x.end:''}</span></div><div class="chips">${x.w.map((w,k)=>x.s.includes(k)?'':`<button onclick="pk(${i},${k})">${w}</button>`).join('')}</div><button class="bo" onclick="ck(${i})">CHECK ✓</button> <button class="bg" onclick="E[${i}].s=[];render(${i})">RESET</button>`}
+ $('#x'+i).innerHTML=h+'<div class="fb"></div>'}
+$('#ex').innerHTML=E.map((x,i)=>{x.w&&x.w.sort(()=>Math.random()-.5);return`<div class="ex" id="x${i}"></div>`}).join('');
+E.forEach((x,i)=>{if(x.w){const o=[...x.w];x.o2=o}render(i)});
+function fin(i,ok){const x=E[i],el=$('#x'+i);if(x.d)return false;x.d=1;el.classList.remove('ok','bad');void el.offsetWidth;el.classList.add(ok?'ok':'bad');
+ el.querySelector('.fb').innerHTML=(ok?'<span style="color:#16a34a">Perfecto! 🔥</span>':'<span style="color:var(--p)">Casi perfecto! Look at the helper verb. 👀</span>')+`<br><span style="font-weight:600">${x.e}</span>`;
+ if(ok)score++;done++;$('#sc').textContent=`Score: ${score} / ${E.length}`;
+ if(done===E.length){const m=$('#endmsg');m.style.display='block';m.innerHTML=`${score>=10?'🪦 LEYENDA DEL PASADO PISADO!':score>=7?'💅 Muy bien, casi lo pisas!':'❤️‍🩹 Repasa el Traffic Light y vuelve a intentar!'}<br>${score} / ${E.length}`}return true}
+function mc(i,j){const x=E[i];if(x.d)return;const b=document.querySelectorAll('#x'+i+' .op');b[x.a].classList.add('ok');if(j!==x.a)b[j].classList.add('bad');fin(i,j===x.a)}
+function fx(i){const x=E[i];if(x.d)return;const v=$('#in'+i).value.toLowerCase().replace(/[’‘]/g,"'").replace(/[.!?]/g,'').trim().replace(/\s+/g,' ');if(!v)return;if(v!==x.k)$('#in'+i).value+='';fin(i,v===x.k);if(v!==x.k)$('#x'+i).querySelector('.fb').innerHTML+=`<br>✅ ${x.k.charAt(0).toUpperCase()+x.k.slice(1)}.`}
+function pk(i,k){const x=E[i];if(x.d)return;const p=x.s.indexOf(k);p>-1?x.s.splice(p,1):x.s.push(k);render(i)}
+function ck(i){const x=E[i];if(x.d||!x.s.length)return;const ok=x.s.map(k=>x.w[k]).join(' ').toLowerCase()===x.k;fin(i,ok);if(!ok)$('#x'+i).querySelector('.fb').innerHTML+=`<br>✅ ${x.k.charAt(0).toUpperCase()+x.k.slice(1)}${x.end}`}
+// Traffic light fix
+const G=`💅 THE GOSSIP
+Last Saturday, Laura go to my house and tell me the craziest story.
+Her husband Daniel cheat on her… but not with another woman. 😳
+Last month, Daniel start acting strange. He come home late and don’t answered his phone.
+One night, Laura followed him after work. She see him entering a restaurant with another man.
+They talked, laughed, and then Daniel kissed him! 😱
+Laura didn’t knew what to do, so she called me.
+The next day, she asked Daniel, “Who was that man? Did you cheated on me?”
+Daniel didn’t said anything. Finally, he admitted that he have a relationship with the man for six months.
+Laura was furious. She packed her bags and left the house.
+And girls… she never imagined that her husband was cheating on her with ANOTHER MAN! 💀`;
+const K=["Last Saturday, Laura went to my house and told me the craziest story.","Her husband Daniel cheated on her but not with another woman.","Last month, Daniel started acting strange.","He came home late and didn't answer his phone.","She saw him entering a restaurant with another man.","Laura didn't know what to do, so she called me.","Did you cheat on me?","Daniel didn't say anything.",["Finally, he admitted that he had a relationship with the man for six months.","Finally, he admitted that he had had a relationship with the man for six months."]];
+const nm=s=>s.toLowerCase().replace(/[’‘]/g,"'").replace(/\bwas not\b/g,"wasn't").replace(/\bwere not\b/g,"weren't").replace(/\bdid not\b/g,"didn't").replace(/[^\p{L}\p{N}' ]/gu,' ').replace(/\s+/g,' ').trim();
+function tlOpen(){const f=$('#tf0');f.classList.toggle('show');if(f.dataset.r)return;f.dataset.r=1;f.innerHTML=`<p><b>Fix all the mistakes! 🔧</b> Edit the text directly.</p><textarea rows="12" id="tt0" style="font-weight:600"></textarea><button class="bo" onclick="tlCk()">CHECK ✓</button> <button class="bg" onclick="$('#tt0').value=G;$('#tr0').innerHTML=''">RESET</button><div class="fb" id="tr0"></div>`;$('#tt0').value=G}
+function tlCk(){const v=nm($('#tt0').value),r=K.map(k=>{const a=[].concat(k);return[a[0],a.some(x=>v.includes(nm(x)))]}),n=r.filter(x=>x[1]).length,all=n===r.length,f=$('#tf0');
+f.classList.remove('ok','bad');void f.offsetWidth;f.classList.add(all?'ok':'bad');
+$('#tr0').innerHTML=(all?'<span style="color:#16a34a">Perfecto! 🔥</span>':'<span style="color:var(--p)">Casi perfecto! Look at the helper verb. 👀</span>')+` (${n}/${r.length})<br>`+r.map(x=>x[1]?`✅ ${x[0]}`:`❌ → <b>${x[0]}</b>`).join('<br>')}
+// Speaking
+const Q=["Why did you break up with your last partner?","What was your funniest date ever?","Did you ever have a crush on a friend? What happened?","What was the biggest red flag in a relationship you had?","Did you ever go back to an ex? Why?","Who was your first serious boyfriend/girlfriend and how did you meet?","What did you do on your first date with someone you really liked?","Was your last relationship easy or difficult? Tell me why.","Did you ever ghost someone or get ghosted? What happened?","What was one thing you wanted to do with an ex but never did?"];
+let lq=-1;function rq(){let n;do{n=Math.floor(Math.random()*Q.length)}while(n===lq);lq=n;const e=$('#rqt');e.textContent=Q[n];e.style.animation='none';void e.offsetWidth;e.style.animation='pop .4s'}
+</script></body></html>
