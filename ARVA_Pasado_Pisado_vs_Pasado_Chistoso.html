@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PASADO PISADO vs. PASADO CHISTOSO | ¡HABLEMOS! ARVA by Kat</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--o:#ff751f;--b:#4f46e5;--p:#ff2d55;--bg:#feffd2;--w:#fff;--t:#252525;--ok:#1a9e55}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Montserrat,system-ui,sans-serif;background:var(--bg);color:var(--t);line-height:1.6}
+#bar{position:fixed;top:0;left:0;height:6px;width:0;background:linear-gradient(90deg,var(--o),var(--p),var(--b));z-index:9;transition:width .2s}
+main{max-width:1000px;margin:auto;padding:24px 16px 80px}
+section{background:var(--w);border-radius:24px;padding:28px;margin:28px 0;border:3px solid var(--t);box-shadow:6px 6px 0 var(--t)}
+h1,h2,h3{line-height:1.2;margin:.2em 0 .5em}h1{font-size:clamp(2rem,6vw,3.6rem);font-weight:800}h2{font-size:clamp(1.4rem,4vw,2rem)}
+.brand{font-weight:800;color:var(--p);letter-spacing:.02em}
+.o{color:var(--o)}.b{color:var(--b)}
+.btn{font:800 1rem Montserrat,sans-serif;border:3px solid var(--t);background:var(--o);color:#fff;padding:12px 22px;border-radius:999px;cursor:pointer;box-shadow:3px 3px 0 var(--t);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--t)}.btn:focus-visible,.cell:focus-visible,.opt:focus-visible,.tag:focus-visible{outline:4px solid var(--p);outline-offset:2px}
+.btn.blue{background:var(--b)}.btn.pink{background:var(--p)}.btn.ghost{background:#fff;color:var(--t)}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.card{border-radius:18px;padding:18px;border:3px solid}.card.o{border-color:var(--o);background:#fff3ea;color:var(--t)}.card.b{border-color:var(--b);background:#eeedff;color:var(--t)}
+.big{font-size:1.2rem;font-weight:600}
+table{width:100%;border-collapse:collapse}th{background:var(--t);color:#fff;padding:10px;font-size:.85rem}th:nth-child(3){background:var(--o)}th:nth-child(4),th:nth-child(2){background:var(--b)}
+td{border:2px solid #ddd;padding:8px;text-align:center}td:first-child{font-weight:800;background:var(--bg)}
+.cell{width:100%;min-height:44px;border:2px dashed #aaa;background:#fafafa;border-radius:10px;font:600 .9rem Montserrat,sans-serif;cursor:pointer;color:#777}
+.cell.on{border-style:solid;font-weight:800;font-size:1rem;background:#fff}.cell.c2.on{color:var(--b);border-color:var(--b)}.cell.c3.on{color:var(--o);border-color:var(--o)}
+.cell.c3.on{color:#c4510a}
+.note{background:var(--bg);border-left:6px solid var(--p);padding:10px 14px;border-radius:8px;margin:12px 0}
+.pulse{font-weight:800;padding:0 4px;border-radius:6px;animation:pl 1.6s infinite}
+.pulse.o{background:var(--o);color:#fff}.pulse.b{background:var(--b);color:#fff}
+@keyframes pl{50%{transform:scale(1.12)}}
+textarea{width:100%;min-height:90px;border:3px solid var(--t);border-radius:14px;padding:12px;font:inherit}
+.hide{display:none}.wrong{color:var(--p);font-size:1.3rem;font-weight:800}
+.teacher{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.face{width:110px;height:110px;border-radius:50%;background:#ffd9b3;border:4px solid var(--t);position:relative;flex:none}
+.face:before,.face:after{content:"";position:absolute;top:38px;width:14px;height:6px;background:var(--t);border-radius:6px}.face:before{left:24px}.face:after{right:24px}
+.mouth{position:absolute;left:36px;top:70px;width:38px;height:14px;border:4px solid var(--t);border-top:0;border-radius:0 0 30px 30px}
+.hand{position:absolute;left:12px;top:30px;width:86px;height:52px;background:#f5b98a;border:4px solid var(--t);border-radius:20px}
+.q{border:2px solid #ddd;border-radius:16px;padding:14px;margin:14px 0}.q p{font-weight:600;margin:0 0 8px}
+.opt{display:block;width:100%;text-align:left;font:600 .95rem Montserrat,sans-serif;border:2px solid #bbb;background:#fff;border-radius:12px;padding:10px 14px;margin:6px 0;cursor:pointer}
+.opt.sel{border-color:var(--b);background:#eeedff}.opt.good{border-color:var(--ok);background:#d9f7e6}.opt.bad{border-color:var(--p);background:#ffe0e6}
+.exp{margin-top:8px;font-size:.9rem}
+#score{font-size:1.3rem;font-weight:800;margin-top:12px}
+.game{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}
+.wheelbox{position:relative;max-width:420px;margin:auto;width:100%}
+#wheel{width:100%;display:block;transition:transform 4.2s cubic-bezier(.12,.7,.1,1)}
+.ptr{position:absolute;left:50%;top:-6px;transform:translateX(-50%);width:0;height:0;border-left:16px solid transparent;border-right:16px solid transparent;border-top:34px solid var(--t);z-index:2}
+#spin{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:26%;aspect-ratio:1;border-radius:50%;padding:0;background:var(--p);font-size:clamp(.8rem,2.6vw,1.1rem)}
+#spin:disabled{opacity:.6;cursor:wait}
+#qcard{background:var(--t);color:#fff;border-radius:20px;padding:20px;min-height:150px}
+#qcard .qq{font-size:clamp(1.2rem,3.5vw,1.6rem);font-weight:800}#qcard .hp{margin-top:10px;color:var(--bg);font-weight:600}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.tag{font:800 .85rem Montserrat,sans-serif;border:3px solid var(--t);border-radius:999px;padding:6px 14px;cursor:pointer;background:#fff;transition:.15s}
+.tag:nth-child(3n+1){border-color:var(--o)}.tag:nth-child(3n+2){border-color:var(--b)}.tag:nth-child(3n){border-color:var(--p)}
+.tag.on{background:var(--p);color:#fff;border-color:var(--t);transform:rotate(-3deg) scale(1.06)}
+#done{text-align:center;background:var(--bg);border:3px solid var(--p);border-radius:20px;padding:20px;margin-top:16px}
+.prog{font-weight:800;margin:10px 0}
+@media(max-width:760px){.two,.game{grid-template-columns:1fr}section{padding:18px}th{font-size:.7rem;padding:6px 2px}td{padding:4px}.cell{font-size:.75rem;min-height:40px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<div id="bar"></div>
+<main>
+
+<section id="s1">
+<div class="brand">¡HABLEMOS! ARVA by Kat</div>
+<h1><span class="o">PASADO PISADO</span> vs. <span class="b">PASADO CHISTOSO</span></h1>
+<p><strong>GOAL:</strong> Understand the difference between the <span class="o"><b>Simple Past</b></span> and the <span class="b"><b>Present Perfect</b></span>.</p>
+<div class="two">
+<div class="card o big">🧡 Frank and I <b>were</b> together for 4 years.</div>
+<div class="card b big">💙 Frank and I <b>have been</b> together for 4 years.</div></div>
+<div class="row"><a href="#s2"><button class="btn">LET'S GET STARTED!</button></a></div>
+</section>
+
+<section id="s2">
+<h2>Test your conjugation knowledge! 🐍</h2>
+<p>Click each box to reveal the conjugation. Test your memory before looking at the answer!</p>
+<div class="row"><button class="btn blue" id="revAll">REVEAL ALL</button><button class="btn ghost" id="hideAll">HIDE ALL</button></div>
+<table><thead><tr><th>VERB</th><th>PRESENT</th><th>PASADO PISADO</th><th>PASADO CHISTOSO</th></tr></thead><tbody id="vt"></tbody></table>
+<div class="note"><b>Present Perfect = HAVE/HAS + past participle (V3).</b><br>In American English, both GOT and GOTTEN are used in different contexts.</div>
+</section>
+
+<section id="s3">
+<h2>Turning 30 Was Not What I Expected!</h2>
+<div class="two">
+<div class="card o"><h3>🧡 TEXT A — PASADO PISADO</h3><p><b>Turning 30 Was Not What I Expected</b></p>
+<p>When I <b>was</b> a child, I <b>admired</b> my mom. She <b>was</b> always beautiful and elegant. She <b>had</b> a job as a secretary at a school. When I <b>was</b> seven, my mom <b>was</b> 30. I <b>imagined</b> that by 30, I would have a husband, kids, a house, a car, and a steady job.</p>
+<p>Joke's on me! I <b>turned</b> 30 this year and <b>broke up</b> with my boyfriend of seven years. I <b>had to</b> move back in with my parents because rent <b>was</b> extremely expensive. I <b>took</b> public transportation every single day last year. When I <b>blew out</b> the candles on my 30th birthday cake, I <b>felt</b> like I had failed at adulthood.</p>
+<p>Is this what being 30 looks like in 2026?</p></div>
+<div class="card b"><h3>💙 TEXT B — PASADO CHISTOSO</h3><p><b>Turning 30 Has Not Been What I Expected</b></p>
+<p>I <b>have always admired</b> my mom. She <b>has always been</b> beautiful and elegant. She <b>has worked</b> as a secretary at a school for most of her life. When I was seven, my mom was 30. I <b>have always imagined</b> that by 30, I would have a husband, kids, a house, a car, and a steady job.</p>
+<p>Joke's on me! I <b>have just turned</b> 30, and I <b>have recently broken up</b> with my boyfriend of seven years. I <b>have had to</b> max out my credit card because everything <b>has become</b> extremely expensive. I <b>have taken</b> public transportation every day for the last four years, and, to be completely honest, I <b>have cried</b> in bed more nights than I would like to admit because I feel like I am failing at adulthood.</p>
+<p>Is this what being 30 has become in 2026?</p></div>
+</div></section>
+
+<section id="s4">
+<h2>Can you spot the difference?</h2>
+<div class="two">
+<div class="card o"><h3>🧡 TEXT A — PASADO PISADO</h3><ul><li>I <b>turned</b> 30 this year.</li><li>I <b>broke up</b> with my boyfriend.</li><li>I <b>took</b> public transportation every day last year.</li><li>I <b>felt</b> like I had failed at adulthood.</li></ul></div>
+<div class="card b"><h3>💙 TEXT B — PASADO CHISTOSO</h3><ul><li>I <b>have just turned</b> 30.</li><li>I <b>have recently broken up</b> with my boyfriend.</li><li>I <b>have taken</b> public transportation every day for the last four years.</li><li>I <b>have cried</b> in bed more nights than I would like to admit.</li></ul></div></div>
+<p class="big">If the story is essentially the same, what difference do you perceive between the two texts?</p>
+<textarea id="disc" placeholder="Write or say your idea first…"></textarea>
+<div class="row"><button class="btn pink" id="discBtn">👀 SEE TEACHER'S NOTE</button></div>
+<div class="note hide" id="discNote">Texto A cuenta cosas <b>terminadas</b> en un tiempo pasado (this year, last year). Texto B conecta el pasado con el <b>presente</b>: resultados, situaciones que siguen y cosas que acaban de pasar.</div>
+</section>
+
+<section id="s5">
+<h2>La guía para sobrevivir al inglés</h2>
+<div class="two">
+<div class="card o"><h3>🧡 PASADO PISADO — SIMPLE PAST</h3>
+<p>Usamos el Pasado Pisado para contar acciones o situaciones terminadas en el pasado, especialmente cuando mencionamos cuándo sucedieron o usamos un periodo pasado que ya terminó. Si me preguntan WHEN? y puedo responder con bastante precisión entonces es pasado pisado.</p>
+<ul><li>I went to the party.</li><li>I <span class="pulse o">didn't</span> go to the party.</li><li><span class="pulse o">Did</span> you go to the party?</li></ul>
+<div class="note"><b>DID takes responsibility for showing the past. The main verb returns to V1.</b></div></div>
+<div class="card b"><h3>💙 PASADO CHISTOSO — PRESENT PERFECT</h3>
+<p>Usamos el Pasado Chistoso para hablar de experiencias, resultados o situaciones pasadas que tienen una conexión con el presente. También se usa para situaciones que empezaron en el pasado y continúan hasta ahora. Es la versión españoleta del pasado Oleee! yo HE pensado en volver con mi ex! El pasado chistoso es chistoso porque aunque está en el pasado si me preguntan WHEN no puedo responder con mucha exactitud.</p>
+<ul><li>I <span class="pulse b">have</span> dyed my hair blond many times. (she <span class="pulse b">has</span>…)</li><li>I <span class="pulse b">haven't</span> dyed my hair yet. (she <span class="pulse b">hasn't</span>…)</li><li><span class="pulse b">Have</span> you ever dyed your hair? (<span class="pulse b">Has</span> she…?)</li></ul></div>
+</div></section>
+
+<section id="s7">
+<div class="teacher"><div class="face"><div class="hand"></div><div class="mouth"></div></div>
+<div><h2>ONE ENGLISH TEACHER DIES EVERY TIME YOU SAY THIS 💀</h2><p>Este es el horror más común en A1–A2.</p></div></div>
+<p class="wrong">❌ <b>Marcela hasn't shift in the hospital this Thursday.</b></p>
+<h3>CAN YOU SPOT THE MISTAKE?</h3>
+<button class="btn pink" id="mistBtn">👀 CLICK TO REVEAL THE MISTAKE</button>
+<div class="hide" id="mist"><h3 style="color:var(--ok)">✅ Marcela DOESN'T have a shift at the hospital this Thursday.</h3>
+<p>Esta oración está en Present. Estamos hablando del horario de Marcela para <b>este</b> jueves, no de una experiencia o pasado chistoso.</p>
+<div class="note"><b class="o">PRESENT SIMPLE NEGATIVE: DON'T / DOESN'T + V1</b><br><b class="b">PRESENT PERFECT NEGATIVE: HAVEN'T / HASN'T + V3</b></div></div>
+</section>
+
+<section id="s8">
+<h2>The Conjugation Boss Fight 🔥</h2>
+<p>Choose the correct verb forms. Pay attention to the time expressions, meaning, and verb conjugation. These questions are intentionally challenging!</p>
+<div id="quiz"></div>
+<div class="row"><button class="btn" id="chk">CHECK MY ANSWERS</button><button class="btn ghost" id="again">TRY AGAIN</button></div>
+<div id="score"></div>
+</section>
+
+<section id="s9">
+<h2>QUESTION BOMBING! 🎡</h2>
+<p class="big">Spin the wheel, get a question, and start talking!</p>
+<p>Spin the wheel and answer the question. Use the help phrase if you need inspiration, but try to tell a complete story. Ask follow-up questions and keep the conversation going!</p>
+<div class="game">
+<div><div class="wheelbox"><div class="ptr"></div><svg id="wheel" viewBox="0 0 400 400" aria-hidden="true"></svg><button class="btn" id="spin">SPIN</button></div></div>
+<div>
+<div id="qcard"><div class="qq">Press SPIN to get your first question.</div></div>
+<div class="prog" id="prog">0 / 20 questions used</div>
+<h3>Keyword bank</h3><div class="tags" id="tags"></div>
+<div class="note"><b>Conversation rules</b><ol style="margin:6px 0 0;padding-left:20px"><li>Answer with a complete idea, not just “yes” or “no.”</li><li>Use the help phrase if you get stuck.</li><li>Add details to your story.</li><li>Ask your teacher or partner a follow-up question.</li><li>No repeating a question until the game restarts.</li></ol></div>
+</div></div>
+<div id="done" class="hide"><h2>YOU SURVIVED ALL 20 QUESTIONS! 👑</h2><p>Real questions. Real stories. No grammar labels. Just spill the tea!</p><button class="btn pink" id="restart">RESTART GAME</button></div>
+</section>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+// progress
+const bar=$('#bar');const upd=()=>{const h=document.documentElement;bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight||1)*100)+'%'};addEventListener('scroll',upd);upd();
+// verbs
+const V=[["BE","am / is / are 🐍","was / were","been"],["HAVE","have / has 🐍","had","had"],["GO","go / goes 🐍","went","gone"],["TAKE","take / takes 🐍","took","taken"],["BUY","buy / buys 🐍","bought","bought"],["THINK","think / thinks 🐍","thought","thought"],["COME","come / comes 🐍","came","come"],["DO","do / does 🐍","did","done"],["SAY","say / says 🐍","said","said"],["GET","get / gets 🐍","got","got / gotten (US)"]];
+$('#vt').innerHTML=V.map(r=>`<tr><td>${r[0]}</td>`+[1,2,3].map(i=>`<td><button class="cell c${i+0===1?2:i===2?3:2}" data-a="${r[i]}" aria-pressed="false">👁️‍🗨️ REVEAL</button></td>`).join('')+'</tr>').join('');
+const setCell=(c,on)=>{c.classList.toggle('on',on);c.setAttribute('aria-pressed',on);c.textContent=on?c.dataset.a:'👁️‍🗨️ REVEAL'};
+document.querySelectorAll('.cell').forEach(c=>c.onclick=()=>setCell(c,!c.classList.contains('on')));
+$('#revAll').onclick=()=>document.querySelectorAll('.cell').forEach(c=>setCell(c,true));
+$('#hideAll').onclick=()=>document.querySelectorAll('.cell').forEach(c=>setCell(c,false));
+// reveals
+$('#discBtn').onclick=()=>$('#discNote').classList.remove('hide');
+$('#mistBtn').onclick=()=>{$('#mist').classList.remove('hide');$('#mistBtn').classList.add('hide')};
+// quiz
+const Q=[
+["I ______ from my master's program in wildlife conservation yet, but I am defending my thesis next month.",["didn't graduate","haven't graduated","hasn't graduated","don't graduated"],1,"“Yet” is commonly used with the Present Perfect for an unfinished expectation. “I” takes HAVE."],
+["On my last birthday, I ______ to get a look change, so I ______ my hair blond.",["have decided / have dyed","decided / dyed","decided / have dyed","have decided / dyed"],1,"“On my last birthday” identifies a finished past occasion. Use Simple Past for both events."],
+["My sister ______ three different jobs since she ______ university, and she still hasn't found the right career.",["had / has finished","has had / finished","has had / has finished","had / finished"],1,"“Since” links a past starting point to the present. She finished university (finished moment), and since then she has had three jobs."],
+["______ you ever ______ a job because your boss was mean to you?",["Did / quit","Have / quit","Have / quitted","Did / quitted"],1,"“Have you ever quit?” asks about life experience."],
+["I ______ my credit card to the max last month, and I ______ most of the debt yet.",["have used / haven't paid off","used / haven't paid off","used / didn't paid off","have used / haven't pay off"],1,"“Last month” is finished, so use “used.” “Yet” with an outstanding result now supports “haven't paid off.”"],
+["She ______ in the same hospital for ten years, but she ______ there in 2022 after a disagreement with her manager.",["worked / has left","has worked / left","has worked / has left","worked / left"],1,"“For ten years” presents a period continuing to now, so use “has worked.” “In 2022” is a finished past time, so use “left.” The context assumes she still works there."]];
+const sel=Array(6).fill(null);let checked=false;
+function drawQuiz(){$('#quiz').innerHTML=Q.map((q,i)=>`<div class="q"><p>${i+1}. ${q[0].replace(/______/g,'_____')}</p>`+q[1].map((o,j)=>`<button class="opt" data-q="${i}" data-o="${j}">${'ABCD'[j]}. ${o}</button>`).join('')+`<div class="exp hide" id="e${i}"></div></div>`).join('');
+document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(checked)return;const i=+b.dataset.q;sel[i]=+b.dataset.o;document.querySelectorAll(`.opt[data-q="${i}"]`).forEach(x=>x.classList.toggle('sel',x===b))})}
+drawQuiz();
+$('#chk').onclick=()=>{if(checked)return;checked=true;let s=0;Q.forEach((q,i)=>{const ok=sel[i]===q[2];if(ok)s++;document.querySelectorAll(`.opt[data-q="${i}"]`).forEach((b,j)=>{b.classList.remove('sel');if(j===q[2])b.classList.add('good');else if(j===sel[i])b.classList.add('bad')});const e=$('#e'+i);e.classList.remove('hide');e.innerHTML=(sel[i]===null?'⚠️ No answer selected. ':ok?'✅ ':'❌ ')+`<b>Correct: ${'ABCD'[q[2]]} — ${q[1][q[2]]}.</b> ${q[3]}`});
+const m=s===6?'GRAMMAR QUEEN! You survived the boss fight. 👑':s>=4?'SO CLOSE! Review your mistakes and try again.':'THE GRAMMAR IS GRAMMARING… or is it? 😭 Go back to Simple Grammar and try again.';
+$('#score').innerHTML=`Score: ${s} / 6<br><span style="font-size:1rem">${m}</span>`};
+$('#again').onclick=()=>{checked=false;sel.fill(null);$('#score').textContent='';drawQuiz()};
+// wheel
+const QB=[["Did you turn 30 already?","Yes, I turned 30 in… and… / Not yet, but I have already…"],["Have you ever been catcalled in the street?","Yes, I have. One time, a man… / No, I haven't, but…"],["What's the most embarrassing thing that happened to you on a date?","The most embarrassing thing that happened was…"],["Have you ever stayed in a relationship longer than you should have?","Yes, I have. I stayed because… / No, I haven't because…"],["What did you think your life would look like at 30?","When I was younger, I thought I would…"],["Have you ever regretted sending a text message?","Yes, I have. I sent a message to… and…"],["Did you have a crush on someone completely inappropriate?","Yes! When I was…, I had a crush on…"],["Have you ever quit a job because you were unhappy?","Yes, I have. I left because… / No, I haven't, but…"],["What's the most impulsive thing you've ever bought?","The most impulsive thing I've bought was…"],["Have you ever gone back to an ex?","Yes, I have. We got back together after… / No, I haven't because…"],["What did you do last year that you're proud of?","Last year, I… and it made me feel…"],["Have you ever pretended to like someone you couldn't stand?","Yes, I have. I pretended because…"],["What's something you've never done but really want to try?","I have never… but I've always wanted to…"],["Did you ever compare your life to someone else's on social media?","Yes, I did. I compared myself to… because…"],["Have you ever had a friendship breakup?","Yes, I have. We stopped being friends when…"],["Have you already achieved something you once thought was impossible?","Yes, I have already… / Not yet, but I have…"],["What's the worst date you've ever been on?","The worst date I've ever been on was when…"],["Did you ever spend money you really needed for something else?","Yes, I did. I spent money on… instead of…"],["Have you changed your mind about marriage or having children?","Yes, I have. I used to think…, but now… / No, I haven't because…"],["What's something you've learned about yourself recently?","Recently, I've learned that…"]];
+const N=20,STEP=18,cols=['#ff751f','#4f46e5','#ff2d55','#feffd2'],tc=['#fff','#fff','#fff','#252525'];
+const pt=(a,r)=>[200+r*Math.sin(a*Math.PI/180),200-r*Math.cos(a*Math.PI/180)];
+let g='';for(let i=0;i<N;i++){const a1=i*STEP-9,a2=i*STEP+9,p1=pt(a1,196),p2=pt(a2,196),t=pt(i*STEP,160);const k=i%4;
+g+=`<path d="M200 200L${p1}A196 196 0 0 1 ${p2}Z" fill="${cols[k]}" stroke="#252525" stroke-width="3"/><text x="${t[0]}" y="${t[1]}" fill="${tc[k]}" font-weight="800" font-size="20" text-anchor="middle" dominant-baseline="middle" transform="rotate(${i*STEP} ${t[0]} ${t[1]})">${i+1}</text>`}
+$('#wheel').innerHTML=g+'<circle cx="200" cy="200" r="196" fill="none" stroke="#252525" stroke-width="6"/>';
+let used=[],rot=0,busy=false;
+const prog=()=>$('#prog').textContent=used.length+' / 20 questions used';
+function show(i){$('#qcard').innerHTML=`<div class="qq">${QB[i][0]}</div><div class="hp">💬 ${QB[i][1]}</div>`}
+$('#spin').onclick=()=>{if(busy)return;const left=[...Array(N).keys()].filter(i=>!used.includes(i));if(!left.length)return;
+const i=left[Math.floor(Math.random()*left.length)];busy=true;$('#spin').disabled=true;
+const cur=((rot%360)+360)%360,need=(((-i*STEP-cur)%360)+360)%360;rot+=1800+need;
+const w=$('#wheel');w.style.transform=`rotate(${rot}deg)`;
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+let fin=false;const end=()=>{if(fin)return;fin=true;used.push(i);show(i);prog();busy=false;$('#spin').disabled=false;if(used.length===N){$('#done').classList.remove('hide');$('#spin').disabled=true}};
+w.addEventListener('transitionend',end,{once:true});setTimeout(end,reduce?50:4500)};
+$('#restart').onclick=()=>{used=[];busy=false;$('#done').classList.add('hide');$('#spin').disabled=false;$('#qcard').innerHTML='<div class="qq">Press SPIN to get your first question.</div>';prog()};
+['Last year','I have never','Since','Yet','Already','This morning','Last night','Yesterday'].forEach(k=>{const b=document.createElement('button');b.className='tag';b.textContent=k;b.setAttribute('aria-pressed','false');b.onclick=()=>{b.classList.toggle('on');b.setAttribute('aria-pressed',b.classList.contains('on'))};$('#tags').appendChild(b)});
+</script></body></html>
