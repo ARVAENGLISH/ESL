@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spanish to English · 40 Flashcards | ARVA by Kat</title>
+<style>
+:root{--blue:#4f46e5;--pink:#ff2d55;--orange:#ff751f;--cream:#feffd2;--ink:#242424;--muted:#6b7280;--line:#e7e7ed;--bg:#f7f7fb}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Montserrat,Arial,sans-serif}
+header{background:var(--orange);color:white;padding:22px 18px}
+.header-inner{max-width:1000px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-size:clamp(1.15rem,3vw,1.7rem);font-weight:900;letter-spacing:.04em}
+.brand span{color:var(--cream)}
+.tag{font-size:.8rem;font-weight:700;border:1px solid #ffffff90;border-radius:99px;padding:8px 12px}
+main{max-width:900px;margin:28px auto;padding:0 16px 40px}
+.intro{text-align:center;margin-bottom:22px}
+h1{font-size:clamp(1.5rem,4vw,2.2rem);margin:8px 0}
+.intro p{color:var(--muted);line-height:1.6;margin:8px auto;max-width:620px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}
+.stat{background:white;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center}
+.stat strong{display:block;font-size:1.35rem;color:var(--blue)}
+.stat span{font-size:.78rem;color:var(--muted)}
+.progress{height:8px;background:#e5e7eb;border-radius:99px;overflow:hidden;margin:12px 0 22px}
+.progress div{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--pink));transition:width .25s}
+.card{background:white;border:1px solid var(--line);border-radius:24px;padding:clamp(20px,5vw,38px);box-shadow:0 12px 36px #27274a0c}
+.card-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:22px}
+.pill{display:inline-flex;align-items:center;border-radius:99px;padding:7px 11px;font-size:.78rem;font-weight:800;background:#eeedff;color:var(--blue)}
+.pill.past{background:#fff0e7;color:#c64e00}.pill.perfect{background:#ffe8ee;color:#c91843}
+.counter{color:var(--muted);font-size:.9rem;font-weight:700}
+.prompt-label{font-size:.76rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:800;margin-bottom:12px}
+.prompt{font-size:clamp(1.25rem,3vw,1.8rem);font-weight:750;line-height:1.5;margin:0 0 24px}
+textarea{display:block;width:100%;min-height:112px;resize:vertical;border:2px solid #dcdce8;border-radius:14px;padding:15px;font:inherit;font-size:1rem;line-height:1.5;outline:none;transition:border .2s}
+textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px #4f46e51a}
+textarea:disabled{background:#fafafa;color:#555}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+button{font:inherit;font-weight:800;border:0;border-radius:12px;padding:13px 18px;cursor:pointer;transition:transform .12s,opacity .12s}
+button:active{transform:scale(.98)}button:disabled{opacity:.45;cursor:not-allowed}
+.primary{background:var(--blue);color:white;flex:1}.secondary{background:#f0efff;color:var(--blue)}.next{background:var(--pink);color:white;flex:1}.quiet{background:#f2f2f5;color:#444}
+.feedback{display:none;margin-top:20px;border-radius:16px;padding:18px;background:#f8f7ff;border:1px solid #e4e1ff}
+.feedback.show{display:block}
+.scoreline{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.score{width:66px;height:66px;flex:0 0 66px;border-radius:50%;display:grid;place-items:center;background:white;border:5px solid var(--blue);color:var(--blue);font-size:1rem;font-weight:900}
+.feedback h3{margin:0 0 5px;font-size:1rem}.feedback p{margin:7px 0;line-height:1.55}
+.answer{background:white;border-left:4px solid var(--orange);padding:12px 14px;border-radius:8px;font-weight:750;line-height:1.5}
+.note{color:var(--muted);font-size:.83rem}
+.bottom{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:16px}
+.bottom small{color:var(--muted)}
+.results{display:none;background:white;border:1px solid var(--line);border-radius:24px;padding:28px;text-align:center;margin-top:18px}
+.results.show{display:block}.results h2{margin-top:0}.bigscore{font-size:3rem;font-weight:900;color:var(--blue);margin:8px}
+.review{margin-top:22px;text-align:left}.review details{border-top:1px solid var(--line);padding:12px 0}.review summary{cursor:pointer;font-weight:800}.review p{line-height:1.5;margin:8px 0}
+footer{text-align:center;color:var(--muted);font-size:.78rem;padding:24px}
+@media(max-width:540px){.header-inner{align-items:flex-start;flex-direction:column}.stats{gap:6px}.stat{padding:10px 5px}.stat strong{font-size:1.1rem}.card{border-radius:18px}.actions button{width:100%;flex:auto}.bottom{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<header><div class="header-inner"><div class="brand">ARVA <span>by Kat</span></div><div class="tag">SPANISH → ENGLISH · 40 FLASHCARDS</div></div></header>
+<main>
+<section class="intro">
+<h1>Think it. Write it. Check it.</h1>
+<p>Lee la frase en español y tradúcela al inglés. Escribe una oración completa y presiona <b>CHECK</b> para ver una respuesta modelo y tu porcentaje de precisión.</p>
+</section>
+<div class="stats">
+<div class="stat"><strong id="doneStat">0/40</strong><span>Revisadas</span></div>
+<div class="stat"><strong id="averageStat">—</strong><span>Precisión promedio</span></div>
+<div class="stat"><strong id="timeStat">3</strong><span>Tiempos verbales</span></div>
+</div>
+<div class="progress"><div id="progressFill"></div></div>
+<section class="card" id="flashcard">
+<div class="card-top"><span class="pill" id="tensePill">PRESENT SIMPLE</span><span class="counter" id="counter">CARD 01 / 40</span></div>
+<div class="prompt-label">Translate into English</div>
+<p class="prompt" id="prompt"></p>
+<textarea id="response" placeholder="Write your English translation here..." aria-label="Escribe tu traducción en inglés"></textarea>
+<div class="actions">
+<button class="primary" id="checkBtn">✓ CHECK MY ANSWER</button>
+<button class="secondary" id="clearBtn" type="button">Clear</button>
+</div>
+<div class="feedback" id="feedback" aria-live="polite">
+<div class="scoreline"><div class="score" id="scoreCircle">—%</div><div><h3 id="feedbackTitle">Your result</h3><p class="note" id="feedbackMessage"></p></div></div>
+<p><b>Respuesta modelo:</b></p><div class="answer" id="correctAnswer"></div>
+<p class="note" id="feedbackNote">El porcentaje es una estimación basada en palabras clave, orden y estructura; revisa también la respuesta modelo.</p>
+<div class="actions"><button class="next" id="nextBtn">NEXT CARD →</button></div>
+</div>
+</section>
+<section class="results" id="results">
+<h2>¡Terminaste las 40 flashcards!</h2>
+<div class="bigscore" id="finalScore">0%</div>
+<p id="finalMessage"></p>
+<p><b id="finalCount"></b></p>
+<div class="actions" style="justify-content:center"><button class="primary" id="restartBtn">↻ Try again</button><button class="secondary" id="reviewBtn">Review answers</button></div>
+<div class="review" id="review"></div>
+</section>
+<div class="bottom"><small>Tip: fíjate en los auxiliares, los tiempos verbales y el orden de las preguntas.</small><button class="quiet" id="restartSmall">Restart set</button></div>
+</main>
+<footer>ARVA by Kat · Real-life English for real-life situations ♥</footer>
+<script>
+const cards = [
+{t:"Present Simple",type:"+",es:"Trabajo desde casa tres días a la semana, pero los lunes tengo que ir a la oficina.",en:"I work from home three days a week, but I have to go to the office on Mondays.",keys:["i work from home","three days a week","have to go","office","mondays"]},
+{t:"Present Simple",type:"−",es:"No suelo contestar mensajes de trabajo después de las seis de la tarde.",en:"I don't usually answer work messages after six p.m.",keys:["i don't usually answer","work messages","after six","don't usually reply"]},
+{t:"Present Simple",type:"?",es:"¿Tienes que trabajar este sábado o estás libre?",en:"Do you have to work this Saturday, or are you free?",keys:["do you have to work","this saturday","are you free"]},
+{t:"Present Simple",type:"+",es:"Mi mejor amiga siempre llega tarde, incluso cuando ella es la que organiza el plan.",en:"My best friend is always late, even when she's the one organizing the plan.",keys:["my best friend","always late","even when","organizing the plan"]},
+{t:"Present Simple",type:"−",es:"No entiendo nada de lo que explica ese manager cuando habla tan rápido.",en:"I don't understand anything that manager explains when he speaks so fast.",keys:["i don't understand","that manager","explains","so fast"]},
+{t:"Present Simple",type:"?",es:"¿Cuánto dinero gastas al mes en domicilios y cafés?",en:"How much money do you spend on food delivery and coffee each month?",keys:["how much money","do you spend","each month","per month"]},
+{t:"Present Simple",type:"+",es:"Mi novio cocina entre semana porque yo casi nunca tengo energía después del trabajo.",en:"My boyfriend cooks during the week because I hardly ever have energy after work.",keys:["my boyfriend cooks","during the week","i hardly ever","after work"]},
+{t:"Present Simple",type:"−",es:"No me gusta salir de fiesta cuando tengo una reunión importante al día siguiente.",en:"I don't like going out partying when I have an important meeting the next day.",keys:["i don't like","going out","important meeting","next day"]},
+{t:"Present Simple",type:"?",es:"¿Tus compañeros de trabajo saben que estás buscando otro empleo?",en:"Do your coworkers know that you're looking for another job?",keys:["do your coworkers","do your colleagues","know","looking for another job"]},
+{t:"Present Simple",type:"+",es:"Normalmente ahorro una parte de mi salario, pero siempre termino gastándola en viajes.",en:"I usually save part of my salary, but I always end up spending it on trips.",keys:["i usually save","part of my salary","end up spending","on trips"]},
+{t:"Present Simple",type:"−",es:"Mi hermana no vive sola porque todavía comparte apartamento con una amiga.",en:"My sister doesn't live alone because she still shares an apartment with a friend.",keys:["my sister doesn't live alone","still shares","apartment","with a friend"]},
+{t:"Present Simple",type:"?",es:"¿Con qué frecuencia vas al gimnasio cuando tienes mucho trabajo?",en:"How often do you go to the gym when you have a lot of work?",keys:["how often","do you go","gym","a lot of work"]},
+{t:"Present Simple",type:"+",es:"Tengo dos entradas para una película esta noche, pero no sé a quién invitar.",en:"I have two tickets for a movie tonight, but I don't know whom to invite.",keys:["i have two tickets","movie tonight","don't know","who to invite","whom to invite"]},
+{t:"Present Simple",type:"−",es:"No necesito comprar más ropa; necesito aprender a combinar la que ya tengo.",en:"I don't need to buy more clothes; I need to learn how to style the clothes I already have.",keys:["i don't need to buy","more clothes","i need to learn","already have"]},
+{t:"Past Simple",type:"+",es:"Ayer llegué tarde a la reunión porque el tráfico estaba horrible.",en:"I arrived late to the meeting yesterday because the traffic was terrible.",keys:["arrived late","meeting yesterday","traffic","terrible","horrible"]},
+{t:"Past Simple",type:"−",es:"No entendí nada de la explicación que dio el manager. ¿Tú entendiste?",en:"I didn't understand anything in the explanation the manager gave. Did you understand?",keys:["i didn't understand","manager gave","did you understand"]},
+{t:"Past Simple",type:"?",es:"¿Le contaste a tu mejor amiga lo que pasó en la cita?",en:"Did you tell your best friend what happened on the date?",keys:["did you tell","best friend","what happened","on the date"]},
+{t:"Past Simple",type:"+",es:"El sábado pasado salí con mis amigos y terminé conociendo a alguien muy interesante.",en:"Last Saturday, I went out with my friends and ended up meeting someone really interesting.",keys:["last saturday","went out","with my friends","ended up meeting","someone"]},
+{t:"Past Simple",type:"−",es:"No compré los tiquetes porque estaban demasiado caros cuando revisé los precios.",en:"I didn't buy the tickets because they were too expensive when I checked the prices.",keys:["i didn't buy","tickets","too expensive","checked the prices"]},
+{t:"Past Simple",type:"?",es:"¿Por qué renunciaste a tu último trabajo si ganabas bien?",en:"Why did you quit your last job if you earned good money?",keys:["why did you quit","last job","earned","good money","earn well"]},
+{t:"Past Simple",type:"+",es:"Mi ex me escribió anoche como si no hubiera pasado absolutamente nada entre nosotros.",en:"My ex texted me last night as if absolutely nothing had happened between us.",keys:["my ex texted","last night","nothing had happened","between us"]},
+{t:"Past Simple",type:"−",es:"No fui al gimnasio ayer porque tuve que terminar una presentación para hoy.",en:"I didn't go to the gym yesterday because I had to finish a presentation for today.",keys:["i didn't go","gym yesterday","had to finish","presentation"]},
+{t:"Past Simple",type:"?",es:"¿Cuánto pagaste por ese apartamento y qué servicios estaban incluidos?",en:"How much did you pay for that apartment, and which utilities were included?",keys:["how much did you pay","apartment","utilities","were included"]},
+{t:"Past Simple",type:"+",es:"El mes pasado gasté demasiado dinero en restaurantes y ahora tengo que organizar mis finanzas.",en:"Last month, I spent too much money on restaurants, and now I have to organize my finances.",keys:["last month","spent too much money","restaurants","organize my finances"]},
+{t:"Past Simple",type:"−",es:"No le dije a nadie que estaba pensando en terminar la relación.",en:"I didn't tell anyone that I was thinking about ending the relationship.",keys:["i didn't tell anyone","was thinking about","ending the relationship"]},
+{t:"Past Simple",type:"?",es:"¿Viste el mensaje que te envié después de la entrevista?",en:"Did you see the message I sent you after the interview?",keys:["did you see","message","sent you","after the interview"]},
+{t:"Past Simple",type:"+",es:"Fuimos a ese restaurante por recomendación de una amiga, pero la comida nos decepcionó muchísimo.",en:"We went to that restaurant on a friend's recommendation, but the food really disappointed us.",keys:["we went","restaurant","recommendation","food","disappointed us"]},
+{t:"Present Perfect",type:"+",es:"Estoy un poco frustrada; he ido al gimnasio durante ocho meses y solo he perdido dos kilos.",en:"I'm a little frustrated; I've been going to the gym for eight months and I've only lost two kilos.",keys:["i'm a little frustrated","i have been going","for eight months","i've only lost","two kilos"]},
+{t:"Present Perfect",type:"−",es:"Todavía no he encontrado un trabajo que me permita ganar más y tener tiempo para mí.",en:"I haven't found a job that allows me to earn more and have time for myself yet.",keys:["i haven't found","a job","earn more","time for myself","yet"]},
+{t:"Present Perfect",type:"?",es:"¿Alguna vez has salido con alguien que conociste por una aplicación?",en:"Have you ever dated someone you met on an app?",keys:["have you ever","dated someone","met on an app","gone out with someone"]},
+{t:"Present Perfect",type:"+",es:"He aprendido a decir que no sin sentirme culpable por decepcionar a los demás.",en:"I've learned to say no without feeling guilty about disappointing other people.",keys:["i've learned","to say no","without feeling guilty","disappointing"]},
+{t:"Present Perfect",type:"−",es:"No he hablado con mi mejor amiga desde que tuvimos esa discusión.",en:"I haven't spoken to my best friend since we had that argument.",keys:["i haven't spoken","best friend","since","had that argument"]},
+{t:"Present Perfect",type:"?",es:"¿Has terminado el informe que tu jefe te pidió esta mañana?",en:"Have you finished the report your boss asked you for this morning?",keys:["have you finished","report","boss asked","this morning"]},
+{t:"Present Perfect",type:"+",es:"Este año he gastado más dinero en experiencias que en cosas materiales.",en:"This year, I've spent more money on experiences than on material things.",keys:["this year","i've spent","more money","experiences","material things"]},
+{t:"Present Perfect",type:"−",es:"Nunca he entendido por qué algunas personas siguen con alguien en quien no confían.",en:"I've never understood why some people stay with someone they don't trust.",keys:["i've never understood","some people","stay with someone","don't trust"]},
+{t:"Present Perfect",type:"?",es:"¿Cuántas veces has cambiado de trabajo desde que te graduaste?",en:"How many times have you changed jobs since you graduated?",keys:["how many times","have you changed","jobs","since you graduated"]},
+{t:"Present Perfect",type:"+",es:"Mi hermano ha vivido en tres países diferentes y ahora quiere mudarse a Canadá.",en:"My brother has lived in three different countries, and now he wants to move to Canada.",keys:["my brother has lived","three different countries","wants to move","canada"]},
+{t:"Present Perfect",type:"−",es:"Todavía no hemos reservado el hotel porque no nos hemos puesto de acuerdo con el presupuesto.",en:"We haven't booked the hotel yet because we haven't agreed on the budget.",keys:["we haven't booked","hotel yet","haven't agreed","on the budget"]},
+{t:"Present Perfect",type:"?",es:"¿Has visto la serie de la que todo el mundo está hablando últimamente?",en:"Have you seen the series everyone has been talking about lately?",keys:["have you seen","series","everyone","talking about lately"]},
+{t:"Present Perfect",type:"+",es:"Últimamente he dormido muy poco porque he estado trabajando en varios proyectos al mismo tiempo.",en:"Lately, I've been sleeping very little because I've been working on several projects at the same time.",keys:["lately","i've been sleeping","very little","i've been working","at the same time"]}
+];
+let index=0, reviewed={}, results={};
+const $=id=>document.getElementById(id);
+function normalize(s){return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[’‘]/g,"'").replace(/[^a-z0-9'\s]/g," ").replace(/\s+/g," ").trim()}
+function levenshtein(a,b){const row=Array.from({length:b.length+1},(_,i)=>i);for(let i=1;i<=a.length;i++){let prev=row[0];row[0]=i;for(let j=1;j<=b.length;j++){const old=row[j];row[j]=Math.min(row[j]+1,row[j-1]+1,prev+(a[i-1]===b[j-1]?0:1));prev=old}}return row[b.length]}
+function evaluate(user,card){
+ const u=normalize(user), target=normalize(card.en);
+ if(!u)return 0;
+ const uw=u.split(" "), tw=target.split(" ");
+ const targetSet=new Set(tw), userSet=new Set(uw);
+ let matched=0; for(const w of userSet) if(targetSet.has(w))matched++;
+ const overlap=matched/Math.max(targetSet.size,1);
+ const similarity=1-levenshtein(u,target)/Math.max(u.length,target.length,1);
+ const keys=card.keys.map(normalize);
+ let keyHits=0; keys.forEach(k=>{if(u.includes(k))keyHits++});
+ const keyScore=keyHits/keys.length;
+ let score=Math.round((overlap*.55+Math.max(0,similarity)*.20+keyScore*.25)*100);
+ // Reward clear meaning overlap, but penalize answers missing much of the sentence.
+ if(uw.length<Math.max(3,Math.floor(tw.length*.45))) score=Math.min(score,49);
+ // Core tense/structure markers are important to the task.
+ const tense=card.t;
+ let marker=1;
+ if(tense==="Present Simple" && card.type==="?" && !/^(do|does|how|what|where|when|why|who|how often|how much|how many)\b/.test(u)) marker=.82;
+ if(tense==="Past Simple" && card.type==="?" && !/^(did|was|were|why|how|what|where|when|who)\b/.test(u)) marker=.82;
+ if(tense==="Present Perfect" && card.type==="?" && !/^(have|has|how many|how much|how often)\b/.test(u)) marker=.8;
+ if(tense==="Present Perfect" && card.type!=="?" && !/\b(have|has|haven't|hasn't|i've|we've|they've|he's|she's|it's)\b/.test(u)) marker=.78;
+ if(tense==="Past Simple" && card.type==="−" && !/\bdidn't\b/.test(u)) marker=.85;
+ if(tense==="Present Simple" && card.type==="−" && !/\b(don't|doesn't)\b/.test(u)) marker=.85;
+ score=Math.round(score*marker);
+ return Math.max(0,Math.min(100,score));
+}
+function render(){
+ const c=cards[index];$("prompt").textContent=c.es;$("counter").textContent=`CARD ${String(index+1).padStart(2,"0")} / ${cards.length}`;
+ $("tensePill").textContent=c.t.toUpperCase();$("tensePill").className="pill"+(c.t==="Past Simple"?" past":c.t==="Present Perfect"?" perfect":"");
+ $("response").value=results[index]?.response||"";$("feedback").classList.toggle("show",!!reviewed[index]);
+ $("checkBtn").disabled=!!reviewed[index];$("response").disabled=!!reviewed[index];
+ if(reviewed[index]) showFeedback(results[index].score,c);
+ $("progressFill").style.width=(Object.keys(reviewed).length/cards.length*100)+"%";
+ $("doneStat").textContent=Object.keys(reviewed).length+"/"+cards.length;
+ const scores=Object.values(results).map(x=>x.score);$("averageStat").textContent=scores.length?Math.round(scores.reduce((a,b)=>a+b,0)/scores.length)+"%":"—";
+ $("nextBtn").textContent=index===cards.length-1?"SEE MY RESULTS →":"NEXT CARD →";
+}
+function showFeedback(score,c){
+ $("scoreCircle").textContent=score+"%";$("scoreCircle").style.borderColor=score>=85?"#16a34a":score>=60?"#ff751f":"#ff2d55";$("scoreCircle").style.color=score>=85?"#15803d":score>=60?"#c64e00":"#c91843";
+ $("feedbackTitle").textContent=score>=90?"Excellent! ✨":score>=75?"Good job! ♥":score>=50?"Nice try — keep going!":"Keep practicing — you can do it!";
+ $("feedbackMessage").textContent=score>=85?"Your translation is close to the model answer.":score>=60?"You got part of the meaning. Compare your sentence with the model.":"Check the sentence structure, verb tense, and key words.";
+ $("correctAnswer").textContent=c.en;
+}
+function check(){
+ if(reviewed[index])return;
+ const response=$("response").value.trim();if(!response){$("response").focus();$("feedbackMessage").textContent="Write your translation first, then check it.";return}
+ const score=evaluate(response,cards[index]);reviewed[index]=true;results[index]={response,score,answer:cards[index].en,es:cards[index].es,tense:cards[index].t};
+ $("feedback").classList.add("show");showFeedback(score,cards[index]);$("response").disabled=true;$("checkBtn").disabled=true;
+ renderStats();
+}
+function renderStats(){const scores=Object.values(results).map(x=>x.score);$("doneStat").textContent=Object.keys(reviewed).length+"/"+cards.length;$("averageStat").textContent=scores.length?Math.round(scores.reduce((a,b)=>a+b,0)/scores.length)+"%":"—";$("progressFill").style.width=(Object.keys(reviewed).length/cards.length*100)+"%"}
+function next(){if(index<cards.length-1){index++;render()}else finish()}
+function finish(){
+ $("flashcard").style.display="none";$("results").classList.add("show");
+ const scores=Object.values(results).map(x=>x.score),avg=scores.length?Math.round(scores.reduce((a,b)=>a+b,0)/cards.length):0;
+ $("finalScore").textContent=avg+"%";$("finalCount").textContent=`You checked ${Object.keys(reviewed).length} out of ${cards.length} cards.`;
+ $("finalMessage").textContent=avg>=85?"¡Excelente trabajo! Tienes una base sólida. Sigue puliendo los detalles.":avg>=65?"¡Buen trabajo! Repasa las estructuras que te costaron más y vuelve a intentarlo.":"¡La práctica hace al maestro! Revisa las respuestas modelo y vuelve a intentarlo.";
+}
+function restart(){index=0;reviewed={};results={};$("flashcard").style.display="block";$("results").classList.remove("show");$("review").innerHTML="";render();renderStats();window.scrollTo({top:0,behavior:"smooth"})}
+function showReview(){
+ const r=$("review");r.innerHTML="<h3>Answer review</h3>";
+ cards.forEach((c,i)=>{const d=document.createElement("details");const s=document.createElement("summary");s.textContent=`${String(i+1).padStart(2,"0")}. ${results[i]?results[i].score+"%":"Not answered"} · ${c.t}`;d.appendChild(s);const p1=document.createElement("p");p1.textContent="Español: "+c.es;const p2=document.createElement("p");p2.textContent="Your answer: "+(results[i]?.response||"—");const p3=document.createElement("p");p3.textContent="Model answer: "+c.en;d.append(p1,p2,p3);r.appendChild(d)});
+}
+$("checkBtn").addEventListener("click",check);$("nextBtn").addEventListener("click",next);$("clearBtn").addEventListener("click",()=>{if(!reviewed[index])$("response").value=""});$("restartBtn").addEventListener("click",restart);$("restartSmall").addEventListener("click",restart);$("reviewBtn").addEventListener("click",showReview);
+$("response").addEventListener("keydown",e=>{if((e.ctrlKey||e.metaKey)&&e.key==="Enter")check()});
+render();
+</script>
+</body>
+</html>
