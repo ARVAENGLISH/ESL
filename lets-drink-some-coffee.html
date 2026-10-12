@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Let's Drink Some Coffee! | ARVA by Kat</title>
+<style>
+:root{--esp:#4B2418;--cof:#6F3E2A;--car:#C98243;--lat:#EAD4B5;--cre:#FFF8EE;--wh:#fff;--txt:#30221D}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cre);color:var(--txt);font:17px/1.55 Georgia,"Palatino Linotype",serif}
+h1,h2,h3,button,select,.nav a{font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif}
+header{background:var(--esp);color:var(--cre);text-align:center;padding:22px 16px 14px}
+header small{color:var(--lat);letter-spacing:.08em}
+header h1{margin:4px 0 10px;font-size:clamp(1.6rem,5vw,2.6rem)}
+nav{position:sticky;top:0;z-index:5;background:var(--esp);padding:0 8px 8px;box-shadow:0 4px 12px #0003}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:4px 0 8px}
+.tabs button{flex:0 0 auto;background:var(--cof);color:var(--cre);border:0;border-radius:20px;padding:8px 14px;cursor:pointer;font-size:.9rem}
+.tabs button[aria-current=true]{background:var(--car);color:var(--esp);font-weight:700}
+.tabs button.done::after{content:" ✓"}
+.bar{height:8px;background:#0004;border-radius:8px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--car);transition:width .5s}
+.pl{color:var(--lat);font-size:.8rem;margin:4px 0 0;text-align:center}
+main{max-width:980px;margin:0 auto;padding:20px 14px 60px}
+section{display:none}section.on{display:block;animation:in .4s}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+h2{color:var(--esp);font-size:clamp(1.4rem,4vw,2rem);margin:.2em 0}
+.card{background:var(--wh);border-radius:20px;padding:20px;box-shadow:0 6px 20px #4B241822;margin:14px 0}
+.chip{display:inline-block;background:var(--lat);color:var(--esp);border-radius:16px;padding:3px 12px;font:700 .85rem "Trebuchet MS",sans-serif}
+.btn{background:var(--cof);color:var(--cre);border:0;border-radius:28px;padding:12px 24px;font-size:1rem;font-weight:700;cursor:pointer;margin:4px 6px 4px 0;transition:transform .15s,background .2s}
+.btn:hover{background:var(--esp);transform:translateY(-2px)}
+.btn.alt{background:var(--car);color:var(--esp)}.btn.alt:hover{background:var(--lat)}
+.btn:disabled{opacity:.4;cursor:default;transform:none}
+:focus-visible{outline:4px solid var(--car);outline-offset:2px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:14px 0}
+.goal{font-size:1.15rem;font-style:italic;text-align:center}
+.cup{font-size:4rem;text-align:center;animation:fl 3s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-8px)}}
+.q{font-size:1.3rem;margin:10px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.vc{background:var(--wh);border:2px solid var(--lat);border-radius:18px;padding:16px;text-align:left;cursor:pointer;font:inherit;color:inherit;box-shadow:0 4px 14px #4B241818}
+.vc:hover{border-color:var(--car)}
+.vc[aria-expanded=true]{background:var(--lat);border-color:var(--car)}
+.vc b{display:block;font:700 1.25rem "Trebuchet MS",sans-serif;color:var(--esp)}
+.vc .hint{font-size:.85rem;color:var(--cof)}
+.vc .det{display:none;margin-top:10px}.vc[aria-expanded=true] .det{display:block}
+.det p{margin:6px 0}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cmp div{background:var(--cre);border-radius:14px;padding:12px}
+@media(max-width:600px){.cmp{grid-template-columns:1fr}}
+.match{display:grid;grid-template-columns:3fr 2fr;gap:20px}
+@media(max-width:760px){.match{grid-template-columns:1fr}}
+.mi{margin:0 0 12px;padding:12px;border-radius:14px;background:var(--cre);border:2px solid var(--lat)}
+.mi.ok{border-color:#2E7D32;background:#E8F5E9}.mi.no{border-color:#B3261E;background:#FDECEA}
+.mi select{display:block;width:100%;margin-top:8px;padding:10px;font-size:.95rem;border-radius:10px;border:2px solid var(--car);background:var(--wh);color:var(--txt)}
+.fb{font:700 .9rem "Trebuchet MS",sans-serif;margin-top:6px}
+.eb{padding:8px 12px;margin:0 0 8px;background:var(--lat);border-radius:12px}
+.eb b{color:var(--cof)}
+.score{font:700 1.5rem "Trebuchet MS",sans-serif;color:var(--esp)}
+.done-s{background:#E8F5E9;border-radius:12px;padding:8px 12px;margin:6px 0}
+.sc{text-align:center;border-top:8px solid var(--car)}
+.sc .big{font-size:3rem}.sc h3{margin:.2em 0;color:var(--esp)}
+.sit{font-size:1.3rem}
+.sc ul{text-align:left;max-width:560px;margin:10px auto}
+.ch{display:none;background:var(--esp);color:var(--cre);border-radius:14px;padding:14px;margin:12px auto;max-width:620px;text-align:left}
+.ch.show{display:block;animation:in .4s}
+.wheelbox{position:relative;width:min(92vw,440px);margin:10px auto}
+.wheelbox svg{width:100%;height:auto;display:block}
+#wg{transition:transform 4.2s cubic-bezier(.12,.7,.1,1);transform-origin:200px 200px}
+.ptr{position:absolute;left:50%;top:-6px;transform:translateX(-50%);font-size:2rem;color:var(--esp);filter:drop-shadow(0 2px 2px #0005);line-height:1}
+.spin{display:block;margin:12px auto;font-size:1.3rem;padding:16px 34px}
+.pr{font-size:clamp(1.4rem,4vw,2rem);color:var(--esp);font-weight:700;text-align:center;margin:8px 0}
+.fq{display:grid;gap:8px}
+.fq li{list-style:none;background:var(--cre);border-radius:12px;padding:10px 14px;border-left:6px solid var(--car)}
+.fin{background:var(--esp);color:var(--cre);text-align:center;border-radius:24px;padding:30px 18px}
+.fin h2{color:var(--car)}
+.sr{position:absolute;left:-9999px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+<small>ARVA by Kat</small>
+<h1>LET'S DRINK SOME COFFEE! ☕</h1>
+</header>
+<nav aria-label="Lesson sections">
+<div class="tabs" id="tabs"></div>
+<div class="bar" role="progressbar" aria-label="Lesson progress" aria-valuemin="0" aria-valuemax="7" aria-valuenow="0" id="pb"><i id="pf"></i></div>
+<p class="pl" id="pl">Sections visited: 0 of 7</p>
+</nav>
+<main>
+
+<section id="s0">
+<div class="cup" aria-hidden="true">☕</div>
+<h2 style="text-align:center">Welcome to ARVA by Kat</h2>
+<div class="card">
+<p class="goal">"Discuss different life scenarios in a natural way using all the grammar we have learnt in this course."</p>
+<div class="facts"><span class="chip">⏱ 50 minutes</span><span class="chip">📘 Level B1</span><span class="chip">👥 One-to-one conversation</span></div>
+<p>Grab a coffee, relax, and let's talk. Move between sections in any order using the menu above.</p>
+<button class="btn alt" data-go="1">☕ Start the lesson</button>
+</div>
+</section>
+
+<section id="s1">
+<h2>Warm-up: Let's catch up!</h2>
+<span class="chip">☕ Let's talk!</span>
+<div class="card">
+<p>Let's start with a relaxed chat. Answer out loud, and tell me more whenever you want to.</p>
+<p class="chip" id="wc"></p>
+<div class="q" id="wq" aria-live="polite"></div>
+<button class="btn" id="wn">Next question ➜</button>
+<button class="btn alt" id="wr">↺ Start over</button>
+</div>
+</section>
+
+<section id="s2">
+<h2>Vocabulary: Spill the tea!</h2>
+<p>Click a card to reveal its meaning, an example, and a question to discuss.</p>
+<button class="btn alt" id="vcol">Collapse all cards</button>
+<div class="grid" id="vg" style="margin-top:12px"></div>
+<div class="card">
+<h3>FIND OUT vs. REALIZE</h3>
+<div class="cmp">
+<div><b>Find out:</b> discover information or learn a fact.<p><i>"When did you find out the truth?"</i></p></div>
+<div><b>Realize:</b> become aware of or understand something.<p><i>"When did you realize you had made a mistake?"</i></p></div>
+</div>
+</div>
+</section>
+
+<section id="s3">
+<h2>Quick grammar check: Match the sentences</h2>
+<div class="card">
+<p>Match the beginnings in Column A with the correct endings in Column B. Then read the complete sentences out loud.</p>
+<div class="match">
+<div><h3>Column A: Beginnings</h3><div id="ca"></div></div>
+<div><h3>Column B: Endings</h3><div id="cb"></div></div>
+</div>
+<button class="btn" id="mc">CHECK ANSWERS</button>
+<button class="btn alt" id="ms">SHOW ANSWERS</button>
+<button class="btn alt" id="mr">TRY AGAIN</button>
+<p class="score" id="msc" aria-live="polite"></p>
+<div id="mdone"></div>
+</div>
+</section>
+
+<section id="s4">
+<h2>Defend your opinion: No neutral answers!</h2>
+<p>Choose a side and explain why.</p>
+<div id="sc"></div>
+<div style="text-align:center">
+<button class="btn alt" id="sp">⬅ Previous</button>
+<span class="chip" id="sn" aria-live="polite"></span>
+<button class="btn alt" id="sx">Next ➡</button>
+</div>
+</section>
+
+<section id="s5">
+<h2>Tell a story: Spin the wheel!</h2>
+<div class="card" style="text-align:center">
+<p><b>Speak for 1–2 minutes. Include details, explain how you felt, and describe what happened next.</b></p>
+<div class="wheelbox"><div class="ptr" aria-hidden="true">▼</div>
+<svg viewBox="0 0 400 400" role="img" aria-label="Wheel with 20 numbered segments"><g id="wg"></g><circle cx="200" cy="200" r="26" fill="#4B2418" stroke="#EAD4B5" stroke-width="4"/><text x="200" y="208" text-anchor="middle" font-size="24">☕</text></svg></div>
+<button class="btn spin" id="spin">☕ SPIN THE WHEEL</button>
+<p class="chip" id="wcount">Prompts used: 0 of 20</p>
+</div>
+<div class="card" id="pcard" style="display:none">
+<p class="chip" id="pnum"></p>
+<div class="pr" id="ptxt" aria-live="polite"></div>
+<p id="penc" style="text-align:center"></p>
+<h3>Optional follow-up questions</h3>
+<ul class="fq" style="padding:0">
+<li>What had happened before that?</li>
+<li>How did you end up in that situation?</li>
+<li>What have you learned from the experience?</li>
+<li>What would you do differently now?</li>
+<li>Was anything decided or changed because of what happened?</li>
+</ul>
+<div style="text-align:center"><button class="btn alt" id="again">SPIN AGAIN</button></div>
+</div>
+</section>
+
+<section id="s6">
+<h2>Feedback and wrap-up</h2>
+<div class="card">
+<ul class="fq" style="padding:0">
+<li>What was the most interesting question today?</li>
+<li>Which part was hardest to explain in English?</li>
+<li>What's one expression you want to remember?</li>
+</ul>
+</div>
+<div class="fin">
+<h2>☕ YOU DID AMAZING! ☕</h2>
+<p>Good coffee. Great conversations.<br>Keep speaking English with ARVA by Kat!</p>
+<button class="btn alt" data-go="0">↺ Back to the beginning</button>
+</div>
+</section>
+
+</main>
+<script>
+(function(){
+var names=["Welcome","Warm-up","Vocabulary","Match","Opinions","Wheel","Wrap-up"];
+var seen={},cur=0,$=function(i){return document.getElementById(i)};
+var tabs=$("tabs");
+names.forEach(function(n,i){var b=document.createElement("button");b.textContent=n;b.id="t"+i;b.addEventListener("click",function(){go(i)});tabs.appendChild(b)});
+function go(i){
+cur=i;seen[i]=1;
+for(var k=0;k<7;k++){
+$("s"+k).classList.toggle("on",k===i);
+var t=$("t"+k);t.setAttribute("aria-current",k===i);t.classList.toggle("done",!!seen[k]&&k!==i);
+}
+var c=Object.keys(seen).length;
+$("pf").style.width=(c/7*100)+"%";$("pb").setAttribute("aria-valuenow",c);
+$("pl").textContent="Sections visited: "+c+" of 7";
+window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll("[data-go]").forEach(function(b){b.addEventListener("click",function(){go(+b.getAttribute("data-go"))})});
+
+/* Warm-up */
+var wq=["What's something that's been keeping your mind busy lately? Is it because of something positive or negative?","Are you excited about any upcoming projects?","How has your year felt so far?"],wi=0;
+function wShow(){$("wq").textContent=wq[wi];$("wc").textContent="Question "+(wi+1)+" of 3";$("wn").disabled=wi>=2}
+$("wn").addEventListener("click",function(){if(wi<2){wi++;wShow()}});
+$("wr").addEventListener("click",function(){wi=0;wShow()});
+wShow();
+
+/* Vocabulary */
+var V=[
+["Spill the tea","contar el chisme","Come on, spill the tea! What happened on your date?","Have you ever had some gossip that you couldn't wait to share?"],
+["Find out","descubrir o enterarse de información","When did you find out the truth?","Have you ever found out something that completely changed your opinion of someone?"],
+["Bring up","sacar o mencionar un tema","Would you bring up a difficult subject with a friend?","What topics do you find difficult to bring up?"],
+["Put up with","tolerar algo desagradable","I won't put up with that kind of behavior anymore.","What kind of behavior can't you put up with?"],
+["Figure out","entender o resolver algo","Have you figured out what you want to do next?","What's something you've been trying to figure out lately?"],
+["End up","terminar en una situación o resultado","We planned a quiet evening but ended up partying until sunrise.","Have you ever ended up somewhere you never expected to be?"],
+["Make up","inventar una historia o excusa; también reconciliarse después de una discusión","She made up an excuse to avoid the date.","Have you ever made up an excuse to avoid doing something?"]];
+var vg=$("vg");
+V.forEach(function(v,i){
+var b=document.createElement("button");b.className="vc";b.setAttribute("aria-expanded","false");
+b.innerHTML='<b>☕ '+v[0]+'</b><span class="hint">Click to reveal</span><div class="det"><p><b>Meaning:</b> '+v[1]+'.</p><p><b>Example:</b> <i>"'+v[2]+'"</i></p><p><b>Talk about it:</b> '+v[3]+'</p></div>';
+b.addEventListener("click",function(){var o=b.getAttribute("aria-expanded")==="true";b.setAttribute("aria-expanded",!o);b.querySelector(".hint").textContent=o?"Click to reveal":"Click to hide"});
+vg.appendChild(b);
+});
+$("vcol").addEventListener("click",function(){vg.querySelectorAll(".vc").forEach(function(b){b.setAttribute("aria-expanded","false");b.querySelector(".hint").textContent="Click to reveal"})});
+
+/* Matching: A..H in original order; owner = index of the beginning it completes */
+var BEG=["I've been feeling dizzy and extremely thirsty for months. When I finally went to the doctor,","I can't imagine","After she had lost her job,","Last year, I decided","By the time we arrived at the airport,","He apologized for","I've never regretted","When I found out what had happened,"];
+var END=[["she started looking for a job that would make her happier.",2],["moving to another city to start a new life.",6],["the plane had already taken off.",4],["the doctor told me that I might have diabetes and ordered some tests.",0],["I decided to bring it up with the people involved.",7],["not telling me the truth from the beginning.",5],["living in a place where I don't feel safe.",1],["to learn how to manage my money better.",3]];
+var order=[0,1,2,3,4,5,6,7],L="ABCDEFGH",checked=false;
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function buildMatch(){
+var ca=$("ca"),cb=$("cb");ca.innerHTML="";cb.innerHTML="";
+BEG.forEach(function(t,i){
+var d=document.createElement("div");d.className="mi";d.id="mi"+i;
+var s='<label for="sel'+i+'"><b>'+(i+1)+'.</b> '+t+'</label><select id="sel'+i+'"><option value="">Choose an ending…</option>';
+order.forEach(function(e,p){s+='<option value="'+e+'">'+L[p]+'. '+END[e][0]+'</option>'});
+d.innerHTML=s+'</select><div class="fb" id="fb'+i+'"></div>';
+ca.appendChild(d);
+d.querySelector("select").addEventListener("change",function(){clearFb()});
+});
+order.forEach(function(e,p){var d=document.createElement("div");d.className="eb";d.innerHTML="<b>"+L[p]+".</b> "+END[e][0];cb.appendChild(d)});
+$("msc").textContent="";$("mdone").innerHTML="";checked=false;
+}
+function clearFb(){if(!checked)return;for(var i=0;i<8;i++){$("mi"+i).className="mi";$("fb"+i).textContent=""}$("msc").textContent="";$("mdone").innerHTML="";checked=false}
+function check(){
+var sc=0,html="<h3>Read these sentences out loud 🗣️</h3>",empty=0;
+for(var i=0;i<8;i++){
+var v=$("sel"+i).value,m=$("mi"+i),f=$("fb"+i);
+if(v===""){m.className="mi no";f.textContent="✗ Choose an ending";f.style.color="#B3261E";empty++;continue}
+var ok=END[+v][1]===i;
+if(ok){sc++;m.className="mi ok";f.textContent="✓ Correct";f.style.color="#2E7D32";html+='<p class="done-s">'+(i+1)+'. '+BEG[i]+' '+END[+v][0]+'</p>'}
+else{m.className="mi no";f.textContent="✗ Not quite. Try another ending.";f.style.color="#B3261E"}
+}
+checked=true;
+$("msc").textContent="Score: "+sc+" / 8"+(sc===8?" 🎉":"");
+$("mdone").innerHTML=sc>0?html:"";
+}
+function show(){
+for(var i=0;i<8;i++){var e=0;END.forEach(function(x,k){if(x[1]===i)e=k});$("sel"+i).value=e}
+checked=false;check();
+$("mdone").innerHTML=$("mdone").innerHTML;
+}
+$("mc").addEventListener("click",check);
+$("ms").addEventListener("click",show);
+$("mr").addEventListener("click",function(){shuffle(order);buildMatch()});
+buildMatch();
+
+/* Scenarios */
+var S=[
+["💔","The Relationship","If your best friend were cheating on her partner, would you tell the partner, even if it ruined your friendship?",["Is keeping a secret always a form of loyalty?","Would you expect your friend to tell you?"],"Your best friend has always supported you, and telling the truth could destroy her relationship and your friendship. Don't you owe her some loyalty?"],
+["✈️","The Dream Job","You've been offered your dream job abroad, but accepting it means leaving your partner behind.",["Would you go?","Is it selfish to prioritize your career?","Have people become too afraid of commitment?"],"If you really loved your partner, wouldn't you try to find a solution together before leaving?"],
+["🫖","The Uncomfortable Truth","Your friend asks for your honest opinion about her new boyfriend. You think he's a terrible match for her.",["Would you tell her what you really think?","Is it better to be honest or to avoid hurting someone's feelings?"],"Your friend is happy, and your opinion could damage her confidence. Is your honesty really necessary?"],
+["🌱","Starting Over","A 30-year-old woman quits her stable job to start a business, despite having very little savings.",["Is she brave or irresponsible?","Should people take risks before they have everything figured out?"],"She has financial responsibilities, and a dream doesn't pay the bills. Isn't she being irresponsible?"],
+["🧳","The Invitation","Your friends organize an expensive trip. Everyone expects you to go, but you can't comfortably afford it.",["Would you make up an excuse or tell them the truth?","Should people stop pretending they can afford lifestyles they can't maintain?"],"Your friends have organized everything already. Isn't it unfair to disappoint them at the last minute?"]];
+var si=0;
+function showSc(){
+var s=S[si];
+$("sc").innerHTML='<div class="card sc"><div class="big" aria-hidden="true">'+s[0]+'</div><h3>Scenario '+(si+1)+': '+s[1]+'</h3><p class="sit">"'+s[2]+'"</p><p><b>Choose a side and tell me why.</b></p><ul>'+s[3].map(function(q){return"<li>"+q+"</li>"}).join("")+'</ul><button class="btn alt" id="chb" aria-expanded="false">CHALLENGE ME!</button><div class="ch" id="chd"><b>Counterargument:</b><br>"'+s[4]+'"</div></div>';
+$("chb").addEventListener("click",function(){var d=$("chd");var o=d.classList.toggle("show");this.setAttribute("aria-expanded",o)});
+$("sn").textContent="Scenario "+(si+1)+" of 5";
+$("sp").disabled=si===0;$("sx").disabled=si===4;
+}
+$("sp").addEventListener("click",function(){if(si>0){si--;showSc()}});
+$("sx").addEventListener("click",function(){if(si<4){si++;showSc()}});
+showSc();
+
+/* Wheel */
+var P=["If I had…, I would…","When I found out about…","Moving abroad has been…","I decided to… because…","By the time I realized…","I've never understood why…","I ended up… even though…","I can't stand people who…","One thing I regret doing is…","I had been planning to… but…","The truth was finally revealed when…","If I could go back in time,…","I used to believe that… but now…","I was told that…","It took me a long time to…","I will never put up with… again because…","I wish I had…","I found myself… when…","What had happened before… was…","I never expected to end up…"];
+var NS="http://www.w3.org/2000/svg",cols=["#6F3E2A","#EAD4B5","#C98243","#FFF8EE"],g=$("wg"),seg=18;
+function pt(a,r){var t=a*Math.PI/180;return[200+r*Math.sin(t),200-r*Math.cos(t)]}
+for(var i=0;i<20;i++){
+var a0=i*seg,a1=(i+1)*seg,p0=pt(a0,190),p1=pt(a1,190);
+var path=document.createElementNS(NS,"path");
+path.setAttribute("d","M200 200L"+p0[0]+" "+p0[1]+"A190 190 0 0 1 "+p1[0]+" "+p1[1]+"Z");
+path.setAttribute("fill",i%2?(i%4===1?cols[1]:cols[3]):(i%4===0?cols[0]:cols[2]));
+path.setAttribute("stroke","#4B2418");path.setAttribute("stroke-width","2");
+g.appendChild(path);
+var tp=pt(a0+seg/2,158),tx=document.createElementNS(NS,"text");
+tx.setAttribute("x",tp[0]);tx.setAttribute("y",tp[1]);tx.setAttribute("text-anchor","middle");tx.setAttribute("dominant-baseline","central");
+tx.setAttribute("font-size","20");tx.setAttribute("font-weight","700");tx.setAttribute("font-family","Trebuchet MS,sans-serif");
+tx.setAttribute("transform","rotate("+(a0+seg/2)+" "+tp[0]+" "+tp[1]+")");
+tx.setAttribute("fill",(i%4===0||i%4===2)?"#FFF8EE":"#4B2418");
+if(i%4===2)tx.setAttribute("fill","#30221D");
+tx.textContent=i+1;g.appendChild(tx);
+}
+var pool=[],used=0,rot=0,busy=false;
+function refill(){pool=[];for(var i=0;i<20;i++)pool.push(i);used=0;$("wcount").textContent="Prompts used: 0 of 20"}
+refill();
+var enc=["Take your time. Details make a story come alive!","Great start! Tell me how you felt.","Go on, I want to hear everything!","Nice one! What happened next?","Take a breath and enjoy the story."];
+function spin(){
+if(busy)return;
+if(pool.length===0)refill();
+busy=true;$("spin").disabled=true;$("again").disabled=true;
+var k=Math.floor(Math.random()*pool.length),idx=pool.splice(k,1)[0];
+var target=360-(idx+0.5)*seg;
+var base=Math.ceil(rot/360)*360;
+rot=base+360*5+target;
+g.style.transform="rotate("+rot+"deg)";
+setTimeout(function(){
+used++;
+$("pcard").style.display="block";
+$("pnum").textContent="Prompt "+(idx+1)+" of 20";
+$("ptxt").textContent=P[idx];
+$("penc").textContent=enc[Math.floor(Math.random()*enc.length)]+" Speak for 1–2 minutes.";
+$("wcount").textContent="Prompts used: "+used+" of 20"+(pool.length===0?" (new round next spin)":"");
+busy=false;$("spin").disabled=false;$("again").disabled=false;
+$("pcard").scrollIntoView({behavior:"smooth",block:"nearest"});
+},4300);
+}
+$("spin").addEventListener("click",spin);
+$("again").addEventListener("click",spin);
+
+go(0);
+})();
+</script>
+</body>
+</html>
