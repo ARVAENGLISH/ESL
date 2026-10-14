@@ -1,0 +1,146 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>A Day in My Life – ARVA</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFF3D1;--card:#FFFBF2;--ink:#1c1c28;--y:#FFDD57;--b:#A9B9FF;--o:#F58A33;--p:#FF6FB5;--g:#6FCF7F;--r:#ff5a5a;--line:#1c1c28;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2a2540;--card:#38325a;--ink:#FFF7E0;--line:#FFF7E0}}
+:root[data-theme="dark"]{--bg:#2a2540;--card:#38325a;--ink:#FFF7E0;--line:#FFF7E0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Fredoka',system-ui,sans-serif;color:var(--ink);background:var(--bg);background-image:repeating-linear-gradient(0deg,#f58a3322 0 14px,transparent 14px 60px),repeating-linear-gradient(90deg,#f58a3322 0 14px,transparent 14px 60px);min-height:100vh}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:6px;overflow-x:auto;padding:10px;background:var(--y);border-bottom:3px solid var(--line)}
+nav button{flex:none;font:600 14px 'Fredoka',sans-serif;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:20px;padding:6px 12px;cursor:pointer}
+nav button.on{background:var(--b);box-shadow:2px 2px 0 var(--line)}
+main{max-width:860px;margin:0 auto;padding:16px}
+.sec{display:none;animation:pop .35s}.sec.act{display:block}
+@keyframes pop{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.card{background:var(--card);border:3px solid var(--line);border-radius:22px;padding:20px;margin-bottom:16px;box-shadow:5px 5px 0 var(--line)}
+h1{font-size:clamp(38px,9vw,70px);line-height:1;margin:6px 0;text-align:center;color:var(--y);-webkit-text-stroke:3px #1c1c28;paint-order:stroke fill;text-shadow:4px 4px 0 #1c1c28}
+h1 span{color:var(--b)}
+h2{margin:0 0 12px;font-size:26px}
+h2 em{font-style:normal;background:var(--o);color:#fff;border-radius:12px;padding:0 10px;margin-right:6px}
+.sub{text-align:center;font-weight:600}
+.big{font-size:60px;text-align:center}
+.btn{font:700 16px 'Fredoka',sans-serif;border:3px solid var(--line);background:var(--o);color:#fff;border-radius:16px;padding:10px 18px;cursor:pointer;box-shadow:3px 3px 0 var(--line)}
+.btn:active{transform:translate(2px,2px);box-shadow:none}.btn.alt{background:var(--b);color:#1c1c28}
+.row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+.q{background:var(--y);color:#1c1c28;border:3px solid var(--line);border-radius:18px;padding:14px;font-size:20px;text-align:center;margin:10px 0;font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.fc{height:150px;perspective:600px;cursor:pointer}
+.fc div{position:absolute;inset:0;border:3px solid var(--line);border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px;text-align:center;backface-visibility:hidden;transition:transform .5s;font-weight:600}
+.fc{position:relative}.fc .f{background:var(--b);color:#1c1c28;font-size:17px}.fc .f b{font-size:36px}
+.fc .k{background:var(--y);color:#1c1c28;transform:rotateY(180deg);font-size:14px}
+.fc.flip .f{transform:rotateY(180deg)}.fc.flip .k{transform:none}
+.txt{font-size:19px;line-height:1.7}
+.txt.c .in{background:#F58A3355}.txt.c .on{background:#6FCF7F66}.txt.c .at{background:#A9B9FF99}.txt.c .ft{background:#FF6FB566}.txt.c .un{background:#ff5a5a55}.txt.c .ba{background:#FFDD5799}
+.txt span{border-radius:8px;padding:0 3px;transition:.3s}
+.tf{display:flex;gap:8px;align-items:center;margin:8px 0;flex-wrap:wrap}
+.tiles,.bk{display:flex;gap:8px;flex-wrap:wrap}
+.tile{font:600 16px 'Fredoka',sans-serif;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:14px;padding:8px 12px;cursor:pointer}
+.tile.s{background:var(--y);color:#1c1c28;transform:scale(1.08)}.tile.ok{background:var(--g);color:#1c1c28;cursor:default}
+.bucket{flex:1;min-width:200px;border:3px dashed var(--line);border-radius:18px;padding:10px;min-height:120px;text-align:center}
+.bucket button{margin-bottom:8px}
+.shake{animation:sh .3s}@keyframes sh{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.g{border-left:8px solid var(--o);padding:8px 14px;margin:10px 0;border-radius:12px;background:#f58a3315;font-size:18px}
+.g b{font-size:21px}.g small{display:block;opacity:.8}
+.ex{font-size:19px;line-height:2.3;padding:6px 0;border-bottom:2px dotted #8884}
+select{font:600 16px 'Fredoka',sans-serif;border:2px solid var(--line);border-radius:10px;padding:2px 4px;background:var(--card);color:var(--ink)}
+select.ok{background:var(--g);color:#1c1c28}select.no{background:var(--r);color:#fff}
+.n{display:inline-block;width:30px;height:30px;line-height:30px;text-align:center;border-radius:50%;background:var(--p);color:#fff;font-weight:700;margin-right:6px;font-size:16px}
+textarea{width:100%;min-height:170px;font:18px 'Fredoka',sans-serif;border:3px solid var(--line);border-radius:16px;padding:12px;background:var(--card);color:var(--ink)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.chip{border:2px solid var(--line);border-radius:14px;padding:4px 10px;font-weight:600;opacity:.45}.chip.on{opacity:1;background:var(--g);color:#1c1c28}
+.foot{display:flex;justify-content:space-between;margin-top:6px}
+.txt.c .el{background:#4dd0e155}
+.lg{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.lg span{border:2px solid var(--line);border-radius:12px;padding:2px 8px;font-size:14px;font-weight:600}
+.pn{border:3px solid var(--line);border-radius:18px;padding:14px;margin-top:12px;background:var(--card);font-size:18px;line-height:1.6;min-height:90px}
+.pn h3{margin:0 0 6px;font-size:24px}.pn .tip{background:var(--y);color:#1c1c28;border-radius:12px;padding:8px 12px;margin:8px 0;font-weight:600}.pn li{margin:4px 0}
+#gm .btn{font-size:15px;padding:8px 12px}
+input{font:600 16px 'Fredoka',sans-serif;border:2px solid var(--line);border-bottom-width:4px;border-radius:10px;padding:2px 6px;background:var(--card);color:var(--ink);text-align:center;max-width:100%}
+input.ok{background:var(--g);color:#1c1c28}input.no{background:var(--r);color:#fff}
+</style></head><body>
+<nav id="nav"></nav>
+<main>
+
+<section class="sec act card" id="s0"><div class="big">☀️🏗️📐</div><h1>A DAY IN<br><span>MY LIFE</span></h1><p class="sub">⏰ Time expressions &amp; routine — Architect edition 🏠</p><p class="sub">💙 ARVA</p><div class="row"><button class="btn" onclick="go(1)">Let's start! 🚀</button></div></section>
+
+<section class="sec" id="s1"><div class="card"><h2><em>🎯</em>Goal</h2><p class="txt">By the end of this class, you can talk about your <b>daily routine</b> and your <b>work schedule</b> using:</p><div class="chips"><span class="chip on">🟠 IN the morning</span><span class="chip on">🟢 ON Mondays</span><span class="chip on">🔵 AT 7:00</span><span class="chip on">🩷 FROM … TO</span><span class="chip on">🔴 UNTIL</span><span class="chip on">🟡 BEFORE / AFTER</span></div><p class="txt">🏗️ Today we use the life of an <b>architect</b>: site visits, blueprints, clients and deadlines!</p></div></section>
+
+<section class="sec" id="s2"><div class="card"><h2><em>🔥</em>Warm up: Let's talk!</h2><p class="txt">Tap the dice 🎲 and answer with a full sentence.</p><div class="q" id="wq">What days do you get up early or late? 🌅</div><div class="row"><button class="btn" onclick="rq()">🎲 Random question</button></div></div></section>
+
+<section class="sec" id="s3"><div class="card"><h2><em>🧰</em>Vocab: my daily routine</h2><p class="txt">Tap each card 👆 to see it in a sentence.</p><div class="grid" id="vg"></div></div></section>
+
+<section class="sec" id="s4"><div class="card"><h2><em>👀</em>Look</h2><p class="txt c" id="lk">Hi, my name is Kat. I’m an English and Spanish teacher. I’m 29 years old, and I live in Cali.<br><br>My day starts <span class="el">early</span> <span class="in">in the morning</span> <span class="at">at 4:20 a.m.</span>, when I wake up. Then, I get dress and drive to the gym, I work out <span class="un">until</span> <span class="el">around</span> <span class="at">6:10 a.m.</span> Once I go back home I always eat the same thing: three eggs, one arepa, and a cup of black coffee, no sugar<br><br><span class="on">On Mondays and Thursdays</span>, I teach Spanish <span class="in">in the morning</span>, but <span class="on">on Tuesdays and Wednesdays</span>, I don’t teach Spanish; I only teach English.<br><br><span class="in">In the afternoon</span>, I take a break <span class="ft">from 1:30 p.m. to 3:00 p.m.</span> every day. I like to eat a snack <span class="ba">after</span> lunch usually something sweet like yogurt and fruit, and sometimes I take a nap.<br><br>I have two classes <span class="at">at night</span>, and I love my classes and my students. I finish my day <span class="at">at 8:00 p.m.</span> <span class="ba">After</span> my last class, I have dinner and walk my dog. I usually go to bed <span class="el">early</span>, <span class="el">around</span> <span class="at">9:30 p.m.</span> I like to take a shower <span class="ba">before</span> bed.</p><div class="lg txt c"><span class="in">🧱 IN</span><span class="on">⭕ ON</span><span class="at">🕐 AT</span><span class="ft">🪟 FROM–TO</span><span class="un">🪦 UNTIL</span><span class="ba">👶 BEFORE / 👴 AFTER</span><span class="el">☀️ EARLY · 🌙 LATE · 🪐 AROUND</span></div><div class="row"><button class="btn alt" onclick="document.getElementById('lk').classList.toggle('c')">🌈 Colors on/off</button></div></div>
+<div class="card"><h2>✅ True or False?</h2><div id="tf"></div></div></section>
+
+<section class="sec" id="s5"><div class="card"><h2><em>🔍</em>Discovery</h2><p class="txt">1️⃣ Tap an expression. 2️⃣ Tap the right box: <b>IN</b>, <b>ON</b> or <b>AT</b>.</p><div class="tiles" id="tl"></div><div class="bk" style="margin-top:14px"><div class="bucket"><button class="btn" onclick="bk('in')">IN 🟠</button><div id="b-in"></div></div><div class="bucket"><button class="btn" style="background:var(--g);color:#1c1c28" onclick="bk('on')">ON 🟢</button><div id="b-on"></div></div><div class="bucket"><button class="btn alt" onclick="bk('at')">AT 🔵</button><div id="b-at"></div></div></div><div class="q" id="dm" style="display:none"></div></div><div class="card"><h2>🧠 Think about the text</h2><div id="mq"></div></div></section>
+
+<section class="sec" id="s6"><div class="card"><h2><em>📚</em>Grammar explanation</h2><p class="txt">👆 Tap each time marker to discover how it works!</p><div class="row" id="gm"></div><div class="pn" id="gp">Choose a marker ⭕🧱🕐🪟🪦👶👴☀️🌙🪐</div></div></section>
+
+<section class="sec" id="s7"><div class="card"><h2><em>✏️</em>Practice: an architect's week</h2><p class="txt">Write the missing words ✍️ Use the routine phrases 🧰 and the time expressions (in, on, at, from, to, until, before, after, around).</p><div class="chips" id="wb"></div><div id="ex"></div><div class="row"><button class="btn" onclick="chk()">Check ✅</button><button class="btn alt" onclick="rst()">Try again 🔄</button><button class="btn alt" id="sh" style="display:none" onclick="showAns()">💡 Show answers</button></div><div class="q" id="sc" style="display:none"></div></div></section>
+
+<section class="sec" id="s8"><div class="card"><h2><em>🎤</em>Production: Your ideal day</h2><p class="txt">🎰 You won the lottery! You're a famous architect with <b>NO deadlines</b>. Describe your ideal day. Use as many time expressions as you can:</p><div class="chips" id="ch"></div><textarea id="ta" placeholder="My ideal day starts at…"></textarea>
+<p class="txt">🗣️ <b>Pair work:</b> What time do you usually get up? What do you do <u>before</u> work? What do you do <u>on</u> weekends? What does your teacher do <u>in the</u> morning?</p><div class="q" id="fin" style="display:none">🎉 Amazing work! See you in the next class! 💙</div></div></section>
+
+<div class="foot"><button class="btn alt" onclick="go(cur-1)">⬅️ Back</button><button class="btn" onclick="go(cur+1)">Next ➡️</button></div>
+</main>
+<script>
+const N=['⭐ Title','🎯 Goal','🔥 Warm up','🧰 Vocab','👀 Look','🔍 Discovery','📚 Grammar','✏️ Practice','🎤 Production'];let cur=0;
+const nav=document.getElementById('nav');
+N.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>go(i);nav.appendChild(b)});
+function go(i){if(i<0||i>8)return;cur=i;document.querySelectorAll('.sec').forEach((s,k)=>s.classList.toggle('act',k==i));[...nav.children].forEach((b,k)=>b.classList.toggle('on',k==i));window.scrollTo({top:0,behavior:'smooth'})}go(0);
+const Q=['What days do you get up early or late? 🌅','What\'s something you always do before bed? 🛏️','How many times do you take showers in a day? 🚿','What do you usually do on your days off from work? 🏖️','What time do you usually get to the office or the site? 🏗️','What do you do after your last meeting or class? 🌙','Do you work on weekends? When do you rest? 😴'];
+function rq(){document.getElementById('wq').textContent=Q[Math.floor(Math.random()*Q.length)]}
+const V=[['⏰','wake up','I wake up at 5:30 a.m. on site days.'],['🍳','prepare breakfast','I prepare breakfast before my kid wakes up.'],['🥞','have breakfast','I have breakfast in the morning.'],['🚿','take a shower','I take a shower before I go to work.'],['🎒','take my kid to school','I take my kid to school at 7:30 a.m.'],['🚗','drive to the office','I drive to the office around 8:15 a.m.'],['🚌','take the bus','On Mondays I take the bus to the site.'],['💼','work','I work from 9:00 a.m. to 5:00 p.m.'],['🤝','meet with clients','I meet with clients on Fridays.'],['🥗','have lunch','I have lunch at noon.'],['🚸','pick my kid up from school','I pick my kid up from school at 3:30 p.m.'],['🍽️','have dinner','I have dinner after work.'],['🛏️','go to bed','I go to bed around 10:00 p.m.']];
+document.getElementById('vg').innerHTML=V.map(v=>`<div class="fc" onclick="this.classList.toggle('flip')"><div class="f"><b>${v[0]}</b>${v[1]}</div><div class="k">${v[2]}</div></div>`).join('');
+const T=[['Kat wakes up at 4:20 a.m.',1],['She works out until 6:10 p.m.',0],['She teaches Spanish on Tuesdays and Wednesdays.',0],['Her break is from 1:30 p.m. to 3:00 p.m. every day.',1],['She has her two classes in the morning.',0],['She usually goes to bed late.',0],['She takes a shower before bed.',1]];
+document.getElementById('tf').innerHTML=T.map((t,i)=>`<div class="tf"><span class="txt">${t[0]}</span><button class="btn alt" onclick="tfc(this,${t[1]},1)">True 👍</button><button class="btn alt" onclick="tfc(this,${t[1]},0)">False 👎</button><b></b></div>`).join('');
+function tfc(b,a,v){b.parentNode.querySelector('b').textContent=a==v?'🎉 Yes!':'❌ Try again'}
+const D=[['the morning','in'],['Mondays','on'],['7:00 am','at'],['October','in'],['weekends','on'],['midnight','at'],['summer','in'],['the 12th','on'],['night','at'],['2026','in'],['Christmas','on'],['noon','at']];
+let sel=null,done=0;const tl=document.getElementById('tl');
+D.sort(()=>Math.random()-.5).forEach(d=>{const b=document.createElement('button');b.className='tile';b.textContent=d[0];b.dataset.a=d[1];b.onclick=()=>{if(b.classList.contains('ok'))return;if(sel)sel.classList.remove('s');sel=b;b.classList.add('s')};tl.appendChild(b)});
+function bk(k){if(!sel)return;if(sel.dataset.a==k){sel.classList.remove('s');sel.classList.add('ok');document.getElementById('b-'+k).appendChild(sel);sel=null;if(++done==D.length){const m=document.getElementById('dm');m.style.display='block';m.innerHTML='🔎 What do you notice? <br>IN = blocks of time · ON = days &amp; dates · AT = exact time (and <b>at night</b>!)'}}else{sel.classList.add('shake');const s=sel;setTimeout(()=>s.classList.remove('shake'),300)}}
+const E=[
+'I {wake up|⏰} {at|…} 5:30 a.m. on site days.',
+'I {prepare breakfast|🍳} {before|…} my kid wakes up.',
+'I {take my kid to school|🎒} {at|…} 7:30 a.m., then I drive to the office.',
+'I {drive to the office|🚗} {around|…} 8:15 a.m.',
+'{On|…} Mondays and Wednesdays I {take the bus|🚌} to the construction site.',
+'I {meet with clients|🤝} {on|…} Fridays at 10:00 a.m.',
+'I {work|💼} {from|…} 9:00 a.m. {to|…} 5:00 p.m. at the studio.',
+'I {have lunch|🥗} {at|…} noon with my team.',
+'I {pick my kid up from school|🚸} {at|…} 3:30 p.m.',
+'{After|…} work, I {have dinner|🍽️} with my family.',
+'I {take a shower|🚿} {before|…} I {go to bed|🛏️}.',
+'I {have breakfast|🥞} {in|…} the morning, but I don\'t {go to bed|🛏️} {until|…} I finish my renders.'];
+document.getElementById('wb').innerHTML=V.map(v=>`<span class="chip on" style="background:var(--y);color:#1c1c28">${v[0]} ${v[1]}</span>`).join('');
+function build(){document.getElementById('ex').innerHTML=E.map((e,i)=>`<div class="ex"><span class="n">${i+1}</span>${e.replace(/\{([^|}]+)\|([^}]+)\}/g,(m,a,h)=>`<input data-a="${a}" placeholder="${h}" size="${Math.max(a.length,4)}" autocomplete="off" autocapitalize="off" spellcheck="false">`)}</div>`).join('');document.getElementById('sc').style.display='none';document.getElementById('sh').style.display='none'}build();
+const nz=x=>x.toLowerCase().replace(/[.,!]/g,'').replace(/\s+/g,' ').trim();
+function chk(){let ok=0,t=0;document.querySelectorAll('#ex input').forEach(s=>{t++;const r=nz(s.value)==s.dataset.a.toLowerCase();s.className=r?'ok':'no';if(r)ok++});const c=document.getElementById('sc');c.style.display='block';c.textContent=ok==t?`🏆 ${ok}/${t} — Perfect, architect! 🎉`:`⭐ ${ok}/${t} — Fix the red ones and check again! 💪`;document.getElementById('sh').style.display=ok==t?'none':'inline-block'}
+function showAns(){document.querySelectorAll('#ex input.no').forEach(s=>{s.value=s.dataset.a;s.className='ok'})}
+function rst(){build()}
+const C=[['in the','in the'],['on','on'],['at','at'],['from','from'],['to','to'],['until','until'],['before','before'],['after','after'],['around','around']];
+document.getElementById('ch').innerHTML=C.map(c=>`<span class="chip" id="c-${c[0].replace(' ','')}">${c[0]}</span>`).join('');
+document.getElementById('ta').oninput=e=>{const v=' '+e.target.value.toLowerCase().replace(/[^a-z' ]/g,' ')+' ';let n=0;C.forEach(c=>{const h=v.includes(' '+c[1]+' ');document.getElementById('c-'+c[0].replace(' ','')).classList.toggle('on',h);if(h)n++});document.getElementById('fin').style.display=n>=6?'block':'none'};
+
+const MQ=[['In the text, when do we use <u>IN</u> vs <u>ON</u>? 🧱⭕',['IN = days · ON = parts of the day','IN = parts of the day (in the morning) · ON = days (on Mondays)','They mean the same'],1],
+['What\'s the difference between <u>AT</u> and <u>FROM</u>? 🕐🪟',['AT = one exact time (at 8:00 p.m.) · FROM = starts a time window (from 1:30 to 3:00)','AT = a window · FROM = one exact time','There is no difference'],0],
+['What\'s the opposite of <u>AFTER</u>? 👴',['until','around','before'],2],
+['Which one is the odd one out? 🤔',['in the morning','in the afternoon','at night'],2],
+['What\'s the opposite of <u>EARLY</u>? ☀️',['late','around','after'],0],
+['Which word means "approximately"? 🪐',['until','around','from'],1]];
+document.getElementById('mq').innerHTML=MQ.map((m,i)=>`<div class="g"><b>${i+1}. ${m[0]}</b><div class="row" style="justify-content:flex-start">${m[1].map((o,j)=>`<button class="btn alt" onclick="mc(this,${j==m[2]})">${o}</button>`).join('')}</div></div>`).join('');
+function mc(b,r){b.style.background=r?'var(--g)':'var(--r)';b.style.color=r?'#1c1c28':'#fff'}
+const G=[
+['on','⭕','ON','#6FCF7F','<h3>⭕ ON = a circle in your calendar</h3><div class="tip">We use ON for very, very, veryyyy specific days. 💡 Si lo puedes encerrar en un círculo en tu calendario, es ON.</div><ul><li>🎂 My birthday is <b>on</b> October 14th, but this year it\'s <b>on</b> a Wednesday. I will probably celebrate it <b>on</b> Saturday.</li><li>🎄 <b>On</b> Christmas Eve I usually don\'t work, maybe only in the morning.</li><li>📅 I teach <b>on</b> Mondays and Thursdays. / <b>On</b> weekends I rest.</li></ul>'],
+['in','🧱','IN','#F58A33','<h3>🧱 IN = a block of time</h3><div class="tip">A block is a big piece of time. You can\'t point to one exact spot inside it. Parts of the day, months, seasons, years.</div><ul><li>🌅 I teach Spanish <b>in</b> the morning.</li><li>🍂 My birthday is <b>in</b> October.</li><li>🏖️ I love the beach <b>in</b> summer. / I was born <b>in</b> 1996.</li></ul>⚠️ But we say <b>at</b> night!'],
+['at','🕐','AT','#A9B9FF','<h3>🕐 AT = a clock</h3><div class="tip">If you can read it on a clock, use AT: one exact time. Also: at noon, at midnight and at night.</div><ul><li>⏰ I wake up <b>at</b> 4:20 a.m.</li><li>🌙 I finish my day <b>at</b> 8:00 p.m.</li><li>🌃 I have two classes <b>at</b> night.</li></ul>'],
+['ft','🪟','FROM–TO','#FF6FB5','<h3>🪟 FROM … TO = a window</h3><div class="tip">Look through a window: you see where the time starts (FROM) and where it ends (TO).</div><ul><li>☕ I take a break <b>from</b> 1:30 p.m. <b>to</b> 3:00 p.m.</li><li>🏢 The office is open <b>from</b> 8 am <b>to</b> 4 pm.</li></ul>'],
+['un','🪦','UNTIL','#ff5a5a','<h3>🪦 UNTIL = a tombstone</h3><div class="tip">The action goes on... and goes on... and at that moment it dies. R.I.P. 🪦 Only the END of the action matters.</div><ul><li>🏋️ I work out <b>until</b> 6:10 a.m.</li><li>🌙 I stay up <b>until</b> midnight.</li><li>💻 I don\'t sleep <b>until</b> I finish my project.</li></ul>'],
+['be','👶','BEFORE','#FFDD57','<h3>👶 BEFORE = the baby</h3><div class="tip">The baby comes first: BEFORE = earlier. You can use it with a noun or an action.</div><ul><li>🚿 I take a shower <b>before</b> bed.</li><li>👭 I always wake up <b>before</b> my sister.</li><li>🍳 I eat breakfast <b>before</b> I go to work.</li></ul>'],
+['af','👴','AFTER','#FFDD57','<h3>👴 AFTER = the elder</h3><div class="tip">The elder comes later: AFTER = later. It\'s the opposite of BEFORE!</div><ul><li>🍓 I eat a snack <b>after</b> lunch.</li><li>🐶 <b>After</b> my last class, I have dinner and walk my dog.</li><li>☕ I don\'t drink coffee <b>after</b> 5 pm.</li></ul>'],
+['ea','☀️','EARLY','#4dd0e1','<h3>☀️ EARLY = the sun</h3><div class="tip">Early = before the normal or expected time. The sun is up! 🌅</div><ul><li>🛏️ I usually go to bed <b>early</b>.</li><li>⏰ My day starts <b>early</b> in the morning.</li><li>😴 I don\'t like to wake up <b>early</b> on Sundays.</li></ul>'],
+['la','🌙','LATE','#4dd0e1','<h3>🌙 LATE = the moon</h3><div class="tip">Late = after the normal or expected time. The moon is out! Opposite of EARLY.</div><ul><li>🏠 I go back home <b>late</b> at night.</li><li>🏃 My sister is always <b>late</b> for work.</li></ul>'],
+['ar','🪐','AROUND','#4dd0e1','<h3>🪐 AROUND = a planet</h3><div class="tip">A planet goes around… and around: not an exact point. AROUND = approximately.</div><ul><li>🛌 I go to bed <b>around</b> 9:30 p.m.</li><li>🏋️ I work out until <b>around</b> 6:10 a.m.</li></ul>']];
+document.getElementById('gm').innerHTML=G.map(g=>`<button class="btn" style="background:${g[3]};color:#1c1c28" onclick="gx('${g[0]}')">${g[1]} ${g[2]}</button>`).join('');
+function gx(k){const g=G.find(x=>x[0]==k);const p=document.getElementById('gp');p.innerHTML=g[4];p.style.borderColor=g[3]}
+</script></body></html>
