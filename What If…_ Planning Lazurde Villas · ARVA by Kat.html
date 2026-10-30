@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What If…? Planning Lazurde Villas · ARVA by Kat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --indigo:#4F46E5; --pink:#FF2D55; --orange:#FF751F; --cream:#FEFFD2;
+    --white:#FFFFFF; --ink:#252525; --muted:#5d5d6b; --line:#e7e6f5;
+    --ok:#12a150; --bad:#FF2D55;
+    --title:"Chloe","Playfair Display",Georgia,serif;
+    --body:"Helvetica World","Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--body);color:var(--ink);background:var(--cream);line-height:1.55;font-size:17px}
+  h1,h2,h3{font-family:var(--title);line-height:1.15;margin:0 0 .4em}
+  a{color:var(--indigo)}
+  .wrap{max-width:980px;margin:0 auto;padding:0 20px}
+
+  /* top bar */
+  .topbar{position:sticky;top:0;z-index:20;background:var(--white);border-bottom:3px solid var(--indigo)}
+  .topbar .wrap{display:flex;align-items:center;gap:14px;padding-top:10px;padding-bottom:10px}
+  .brand{font-weight:800;color:var(--indigo);white-space:nowrap}
+  .brand span{color:var(--pink)}
+  .nav{display:flex;gap:6px;overflow-x:auto;flex:1;scrollbar-width:none}
+  .nav::-webkit-scrollbar{display:none}
+  .nav a{font-size:13px;text-decoration:none;color:var(--ink);background:var(--cream);padding:5px 10px;border-radius:999px;white-space:nowrap;border:1px solid var(--line)}
+  .nav a:hover{background:var(--orange);color:var(--white)}
+  .timer{display:flex;align-items:center;gap:6px;font-variant-numeric:tabular-nums;font-weight:700}
+  .timer button{border:0;background:var(--orange);color:#fff;border-radius:999px;padding:5px 12px;font-weight:700;cursor:pointer}
+
+  /* hero */
+  .hero{background:var(--indigo);color:var(--white);padding:56px 0 48px;position:relative;overflow:hidden}
+  .hero:after{content:"";position:absolute;right:-80px;top:-80px;width:280px;height:280px;border-radius:50%;background:var(--orange);opacity:.9}
+  .hero:before{content:"";position:absolute;right:120px;bottom:-60px;width:140px;height:140px;border-radius:50%;background:var(--pink)}
+  .hero .wrap{position:relative;z-index:1}
+  .tag{display:inline-block;background:var(--cream);color:var(--ink);font-weight:700;font-size:13px;padding:4px 12px;border-radius:999px;margin-right:6px;margin-bottom:12px}
+  .hero h1{font-size:clamp(36px,6vw,62px);font-weight:800}
+  .hero h1 em{color:var(--cream);font-style:normal}
+  .hero p{max-width:640px;font-size:18px;opacity:.95}
+  .slogan{margin-top:18px;font-weight:700;color:var(--cream)}
+
+  /* sections */
+  section{padding:44px 0;border-bottom:1px dashed #d9d8a8}
+  section:nth-of-type(even){background:var(--white)}
+  .step{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+  .step .num{background:var(--pink);color:#fff;font-weight:800;border-radius:999px;padding:3px 12px;font-size:13px;letter-spacing:.04em}
+  .step .min{background:var(--ink);color:var(--cream);border-radius:999px;padding:3px 10px;font-size:13px}
+  h2{font-size:clamp(28px,4vw,40px);color:var(--indigo)}
+  .lead{color:var(--muted);margin-top:0}
+  .card{background:var(--white);border:2px solid var(--line);border-radius:18px;padding:20px 22px;margin:16px 0}
+  section:nth-of-type(even) .card{background:#fcfcff}
+  .grid{display:grid;gap:14px}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+
+  .goal{font-size:20px;font-weight:700;border-left:6px solid var(--orange);padding-left:16px}
+  .goal-list{margin:12px 0 0;padding-left:22px}
+  .goal-list li{margin:6px 0}
+
+  /* buttons */
+  .btn{border:2px solid var(--indigo);background:var(--white);color:var(--indigo);font-weight:700;border-radius:12px;padding:8px 14px;cursor:pointer;font-size:15px;font-family:var(--body)}
+  .btn:hover{background:var(--indigo);color:var(--white)}
+  .btn.solid{background:var(--indigo);color:#fff}
+  .btn.orange{border-color:var(--orange);background:var(--orange);color:#fff}
+  .btn.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+  .btn.bad{background:var(--bad);border-color:var(--bad);color:#fff}
+  .btn[disabled]{opacity:.55;cursor:default}
+
+  textarea,input[type=text]{width:100%;border:2px dashed #c9c7f2;border-radius:12px;padding:10px 12px;font-family:var(--body);font-size:16px;background:#fff;resize:vertical;min-height:46px}
+  textarea:focus,input:focus,select:focus{outline:none;border-color:var(--orange);border-style:solid}
+  select{font-family:var(--body);font-size:15px;border:2px solid var(--line);border-radius:10px;padding:7px 8px;background:#fff;max-width:100%}
+
+  /* warm up numbers */
+  .guess{text-align:center}
+  .guess .q{font-weight:700;min-height:52px}
+  .guess .a{font-family:var(--title);font-size:40px;color:var(--orange);font-weight:800;visibility:hidden}
+  .guess.show .a{visibility:visible}
+  .guess small{display:block;color:var(--muted)}
+
+  /* flip cards */
+  .flip{perspective:900px;height:170px;cursor:pointer}
+  .flip-in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+  .flip.on .flip-in{transform:rotateY(180deg)}
+  .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;padding:14px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+  .front{background:var(--indigo);color:#fff}
+  .front b{font-size:22px}
+  .front span{font-size:30px}
+  .back{background:var(--cream);border:2px solid var(--orange);transform:rotateY(180deg);font-size:14.5px}
+  .back i{display:block;margin-top:6px;color:var(--muted)}
+
+  /* match */
+  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:10px 0;border-bottom:1px solid var(--line)}
+  .row:last-child{border-bottom:0}
+  .row .txt{flex:1;min-width:220px}
+  .row.right{background:#eafaf0;border-radius:10px;padding-left:8px}
+  .row.wrong{background:#ffe9ee;border-radius:10px;padding-left:8px}
+
+  /* reading */
+  .memo{background:#fff;border-radius:18px;border:2px solid var(--ink);box-shadow:8px 8px 0 var(--orange);padding:26px 28px;margin:20px 0}
+  .memo .head{font-size:14px;color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:14px}
+  .memo h3{color:var(--indigo);font-size:20px;margin-top:18px}
+  .memo p{margin:.5em 0}
+  .if.hl{background:linear-gradient(transparent 55%, #ffd2dc 55%);font-weight:700}
+  .tf{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .fb{font-size:14px;font-weight:700;margin-left:4px}
+  .fb.ok{color:var(--ok)} .fb.bad{color:var(--bad)}
+
+  /* tables */
+  table{width:100%;border-collapse:collapse;font-size:15px;background:#fff;border-radius:12px;overflow:hidden}
+  th{background:var(--indigo);color:#fff;text-align:left;padding:9px 10px}
+  td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+
+  /* grammar */
+  .gcard{border-radius:18px;padding:20px;color:var(--ink)}
+  .gcard.zero{background:#eceafe;border:2px solid var(--indigo)}
+  .gcard.first{background:#fff1e8;border:2px solid var(--orange)}
+  .formula{font-family:ui-monospace,Menlo,Consolas,monospace;background:#fff;border-radius:10px;padding:10px 12px;margin:10px 0;font-size:15px;font-weight:700}
+  .ex{margin:6px 0;padding-left:14px;border-left:3px solid var(--pink)}
+  .mistake{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .mistake div{padding:10px 12px;border-radius:10px;font-size:15px}
+  .no{background:#ffe9ee}
+  .yes{background:#eafaf0}
+
+  .answer{display:none;margin-top:8px;background:var(--cream);border-radius:10px;padding:10px 12px;font-size:15px}
+  .answer.show{display:block}
+
+  /* risk cards */
+  .risk{background:var(--ink);color:var(--cream);border-radius:20px;padding:26px;text-align:center;min-height:170px;display:flex;flex-direction:column;justify-content:center}
+  .risk .emoji{font-size:44px}
+  .risk .r{font-family:var(--title);font-size:24px;margin-top:6px}
+  .risk .hint{font-size:14px;opacity:.8;margin-top:8px}
+
+  details.teacher{margin-top:18px;background:#fff;border:2px dashed var(--pink);border-radius:14px;padding:10px 16px;font-size:14.5px}
+  details.teacher summary{cursor:pointer;font-weight:700;color:var(--pink)}
+  details.teacher ul{margin:8px 0;padding-left:20px}
+
+  footer{background:var(--ink);color:var(--cream);padding:34px 0;text-align:center;font-size:15px}
+  footer b{color:var(--orange)}
+  footer a{color:var(--cream)}
+
+  @media (max-width:640px){
+    body{font-size:16px}
+    .memo{padding:18px}
+    .mistake{grid-template-columns:1fr}
+    .brand{display:none}
+    .hero:after{width:160px;height:160px;right:-90px;top:-90px}
+    .hero:before{width:90px;height:90px;right:-30px;bottom:-40px}
+  }
+  @media print{.topbar,details.teacher,.btn{display:none}}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand">ARVA <span>by Kat</span></div>
+    <nav class="nav">
+      <a href="#goal">Goal</a><a href="#warm">Warm up</a><a href="#vocab">Vocabulary</a><a href="#input">Input</a>
+      <a href="#discovery">Discovery</a><a href="#grammar">Grammar</a><a href="#practice">Practice</a><a href="#speaking">Speaking</a>
+    </nav>
+    <div class="timer"><span id="clock">50:00</span><button id="clockBtn" type="button">▶</button></div>
+  </div>
+</header>
+
+<!-- TITLE -->
+<div class="hero">
+  <div class="wrap">
+    <span class="tag">ESL · A2+</span><span class="tag">50 min</span><span class="tag">Construction planning 👷‍♀️</span>
+    <h1>What happens <em>IF</em>…?<br>Planning Lazurde Villas</h1>
+    <p>Zero &amp; First Conditional to talk about site rules, risks and scenarios, using the Temporary Facilities &amp; Formwork Yard Plan.</p>
+    <div class="slogan">Making Fluency Fun! ✨</div>
+  </div>
+</div>
+
+<!-- GOAL -->
+<section id="goal">
+  <div class="wrap">
+    <div class="step"><span class="num">GOAL</span></div>
+    <h2>Today's goal 🎯</h2>
+    <div class="card">
+      <div class="goal">By the end of this class, you can explain the rules, risks and possible scenarios of your project using <b>IF</b>.</div>
+      <ul class="goal-list">
+        <li>✅ Use the <b>zero conditional</b> for site rules and procedures: <i>If it is 12:00, nobody works outside.</i></li>
+        <li>✅ Use the <b>first conditional</b> for possible future situations: <i>If it rains on Tuesday, the pour will move to Wednesday.</i></li>
+        <li>✅ Use <b>if</b> vs <b>when</b> correctly in a planning meeting.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- WARM UP -->
+<section id="warm">
+  <div class="wrap">
+    <div class="step"><span class="num">STEP 1 · WARM UP</span><span class="min">⏱ 5 min</span></div>
+    <h2>Guess the number 👀</h2>
+    <p class="lead">These numbers are from the Lazurde Villas plan. Guess first, then click to check.</p>
+    <div class="grid g3">
+      <div class="card guess"><div class="q">How many m² of temporary facilities are 100% TBG scope?</div><div class="a">5,368 m²</div><small>of 8,988 m² in total</small><br><button class="btn reveal" type="button">Reveal</button></div>
+      <div class="card guess"><div class="q">How many TBG workers are on site at the peak?</div><div class="a">693</div><small>peak workforce</small><br><button class="btn reveal" type="button">Reveal</button></div>
+      <div class="card guess"><div class="q">A concrete mixer arrives every… how many minutes?</div><div class="a">15 min</div><small>10–12 t per mixer</small><br><button class="btn reveal" type="button">Reveal</button></div>
+    </div>
+    <div class="card">
+      <h3>Talk about it 🗣️</h3>
+      <ol>
+        <li>What is your role in this project? What do you plan every day?</li>
+        <li>What is the <b>biggest risk</b> for your schedule this month?</li>
+        <li>Do you always have a <b>Plan B</b>? Give an example.</li>
+      </ol>
+      <textarea placeholder="Notes…"></textarea>
+    </div>
+    <details class="teacher"><summary>👩‍🏫 Notas para la profe</summary>
+      <ul>
+        <li>Rápido y personal: que adivine los números en voz alta ("I think it's about…").</li>
+        <li>En la pregunta 3, si ya produce un "if" de forma natural, anótalo: lo usamos en Discovery.</li>
+        <li>No corregir gramática todavía; solo recoger frases.</li>
+      </ul>
+    </details>
+  </div>
+</section>
+
+<!-- VOCAB -->
+<section id="vocab">
+  <div class="wrap">
+    <div class="step"><span class="num">STEP 2 · VOCABULARY</span><span class="min">⏱ 7 min</span></div>
+    <h2>Site words 🦺</h2>
+    <p class="lead">Click each card to see the meaning and an example from the plan.</p>
+    <div class="grid g3" id="flips"></div>
+
+    <div class="card">
+      <h3>Match the word ✌️</h3>
+      <p class="lead">Choose the correct word for each definition.</p>
+      <div id="vmatch"></div>
+      <button class="btn solid" id="vcheck" type="button">Check</button> <span class="fb" id="vscore"></span>
+    </div>
+    <details class="teacher"><summary>👩‍🏫 Notas para la profe</summary>
+      <ul>
+        <li>Ella conoce los conceptos: el foco es la <b>pronunciación</b> y las colocaciones: <i>pour concrete, strip formwork, hand over to, keep pace with</i>.</li>
+        <li>Pronunciación: <i>pour</i> /pɔːr/ (no "pur"), <i>schedule</i>, <i>crew</i> /kruː/.</li>
+        <li>Pregunta rápida: "Which of these words do you use every day?"</li>
+      </ul>
+    </details>
+  </div>
+</section>
+
+<!-- INPUT -->
+<section id="input">
+  <div class="wrap">
+    <div class="step"><span class="num">STEP 3 · INPUT</span><span class="min">⏱ 8 min</span></div>
+    <h2>Site briefing 📋</h2>
+    <p class="lead">Read the planning engineer's briefing about the yard plan and the pouring cycles. Then answer True or False.</p>
+
+    <div class="memo" id="memo">
+      <div class="head"><b>From:</b> Planning Engineer, TBG – Techno Build Group<br><b>To:</b> Site team · Lazurde Villas, Al Khobar<br><b>Subject:</b> Yard plan &amp; pouring cycles: what you need to know</div>
+      <p>Good morning, team! Here is a short summary of our Temporary Facilities &amp; Formwork Yard Plan.</p>
+
+      <h3>🏗️ Our yard</h3>
+      <p>Our TBG facilities cover 5,368 m². The biggest area is the rebar yard (1,500 m²), and the second is the main warehouse (1,400 m²). The formwork yard is 1,200 m², and the washing bay is right next to it. <span class="if">If panels have concrete residue, we wash them before storage.</span> <span class="if">If a forklift moves between the washing bay and the yard, the trip is very short.</span></p>
+
+      <h3>☀️ Hot season</h3>
+      <p>From 15 June to 15 September there is a legal rule: <span class="if">if the time is between 12:00 and 15:00, nobody works outside.</span> <span class="if">If workers need a break, they go to one of our 6 shaded shelters</span> with water and cooling. We pour concrete at night because <span class="if">if we pour after 20:00, there is less thermal stress</span> on the concrete and on the workers.</p>
+
+      <h3>🌧️ Cold season</h3>
+      <p>Be careful with the weather. <span class="if">If it rains heavily on a pour day, the pour will move one or more days.</span> We use self-leveling concrete, and one mixer arrives every 15 minutes.</p>
+
+      <h3>🌙 Ramadan</h3>
+      <p>During Ramadan, the main trades work at night. <span class="if">If it is between 08:00 and 20:00, the contractor shift is closed</span>, so all trades must hand over before 08:00.</p>
+
+      <h3>🚜 Logistics</h3>
+      <p>The trade order is fixed: Formwork → Rebar → Electrical. <span class="if">If formwork doesn't hand over, rebar doesn't start.</span> Next month we may increase the rhythm. <span class="if">If we stay at one cycle per day, we will need 5–6 telehandlers.</span> <span class="if">If we move to two cycles per day, we will need 8–10.</span> And remember: <span class="if">if material movement doesn't keep pace with the crews, the line will stop.</span> <span class="if">If the on-site concrete plant has a problem, we won't meet the schedule.</span></p>
+      <p>Production starts on 16 May 2027. Let's be ready! 💪</p>
+    </div>
+    <button class="btn orange" id="hlBtn" type="button">✨ Highlight the IF sentences</button>
+
+    <div class="card" style="margin-top:18px">
+      <h3>True or False?</h3>
+      <div id="tfList"></div>
+    </div>
+    <details class="teacher"><summary>👩‍🏫 Notas para la profe</summary>
+      <ul>
+        <li>Primera lectura: comprensión general (1 min). Segunda lectura: True/False.</li>
+        <li>Pide que corrija las falsas con sus palabras: "It's false because…".</li>
+        <li>Pregunta extra de conexión: "Is your real site similar? What's different?"</li>
+        <li>Al final, botón ✨ para resaltar las frases con IF y pasar a Discovery.</li>
+      </ul>
+    </details>
+  </div>
+</section>
+
+<!-- DISCOVERY -->
+<section id="discovery">
+  <div class="wrap">
+    <div class="step"><span class="num">STEP 4 · DISCOVERY</span><span class="min">⏱ 5 min</span></div>
+    <h2>Find the pattern 🔍</h2>
+    <p class="lead">Look at these sentences from the briefing. Is it a <b>rule / procedure</b> (always true) or a <b>possible future situation</b>?</p>
+    <div class="card" id="sortList"></div>
+
+    <div class="card">
+      <h3>Now, you're the detective 🕵️‍♀️</h3>
+      <p><b>1.</b> In the <b>rules</b>, which tense comes after <b>if</b>? And in the other part of the sentence?</p>
+      <textarea placeholder="After if: … / Other part: …"></textarea>
+      <p><b>2.</b> In the <b>possible future</b> sentences, which tense comes after <b>if</b>? And in the other part?</p>
+      <textarea placeholder="After if: … / Other part: …"></textarea>
+      <p><b>3.</b> Do we ever see <b>will</b> right after <b>if</b>?</p>
+      <textarea placeholder="Yes / No…"></textarea>
+      <p><b>4.</b> Look at the comma (,). When do we use it?</p>
+      <textarea placeholder="We use a comma when…"></textarea>
+      <button class="btn" type="button" data-toggle="discAns">Show answers</button>
+      <div class="answer" id="discAns">
+        1. Rules: <b>if + present simple → present simple</b>.<br>
+        2. Possible future: <b>if + present simple → will / won't + verb</b>.<br>
+        3. <b>No!</b> We don't use <i>will</i> after <i>if</i>. ✗ <s>If it will rain</s> → ✓ If it rains.<br>
+        4. We use a comma when the <b>if</b>-part comes first: <i>If it rains, the pour will move.</i> / <i>The pour will move if it rains.</i>
+      </div>
+    </div>
+    <details class="teacher"><summary>👩‍🏫 Notas para la profe</summary>
+      <ul>
+        <li>Deja que ella llegue sola a la regla; tú solo haces preguntas guía.</li>
+        <li>Clave: rule = "every time / always" · future = "maybe, one specific situation".</li>
+      </ul>
+    </details>
+  </div>
+</section>
+
+<!-- GRAMMAR -->
+<section id="grammar">
+  <div class="wrap">
+    <div class="step"><span class="num">STEP 5 · GRAMMAR</span><span class="min">⏱ 7 min</span></div>
+    <h2>Zero vs First Conditional 🐍</h2>
+    <div class="grid g2">
+      <div class="gcard zero">
+        <h3>0️⃣ Zero conditional</h3>
+        <p><b>Use it for:</b> rules, procedures, facts. It's always true.</p>
+        <div class="formula">If + present, present</div>
+        <div class="ex">If the time is 12:00–15:00 in summer, nobody <b>works</b> outside.</div>
+        <div class="ex">If panels have residue, we <b>wash</b> them.</div>
+        <div class="ex">If formwork doesn't hand over, rebar <b>doesn't</b> start.</div>
+      </div>
+      <div class="gcard first">
+        <h3>1️⃣ First conditional</h3>
+        <p><b>Use it for:</b> a real, possible future situation: risks, scenarios, Plan B.</p>
+        <div class="formula">If + present, will / won't + verb</div>
+        <div class="ex">If it rains on Thursday, the pour <b>will move</b> to Friday.</div>
+        <div class="ex">If we move to 2 cycles a day, we <b>will need</b> 8–10 telehandlers.</div>
+        <div class="ex">If the plant stops, we <b>won't meet</b> the schedule.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>💡 IF or WHEN?</h3>
+      <table>
+        <tr><th>IF = maybe 🤔</th><th>WHEN = sure, it's in the schedule 📅</th></tr>
+        <tr><td>If it rains on Thursday, we will delay the pour.</td><td>When the formwork crew finishes at 03:00, the rebar crew will start.</td></tr>
+        <tr><td>If the consultant rejects the rebar, we will fix it before 09:00.</td><td>When production starts in May 2027, the yard will be ready.</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>🚩 Common mistakes</h3>
+      <div class="mistake">
+        <div class="no">✗ If it <s>will rain</s>, we will delay the pour.</div><div class="yes">✓ If it <b>rains</b>, we will delay the pour.</div>
+        <div class="no">✗ If we need a faster pour, we <s>use</s> 2 pumps tomorrow.</div><div class="yes">✓ If we need a faster pour tomorrow, we <b>will use</b> 2 pumps.</div>
+        <div class="no">✗ If the plant <s>don't</s> work…</div><div class="yes">✓ If the plant <b>doesn't</b> work…</div>
+      </div>
+      <p style="margin-top:14px"><b>Contractions in meetings:</b> we will → <b>we'll</b> · will not → <b>won't</b> · it will → <b>it'll</b></p>
+    </div>
+    <details class="teacher"><summary>👩‍🏫 Notas para la profe</summary>
+      <ul>
+        <li>Contraste con español: "Si llueve, se retrasará": igual que en inglés, presente después de "si". Ayuda a evitar <i>if it will</i>.</li>
+        <li>IF vs WHEN es clave para una planeadora: lo programado va con <i>when</i>; los riesgos, con <i>if</i>.</li>
+        <li>Practica la pronunciación de <i>we'll</i> / <i>won't</i> (want ≠ won't).</li>
+      </ul>
+    </details>
+  </div>
+</section>
+
+<!-- PRACTICE -->
+<section id="practice">
+  <div class="wrap">
+    <div class="step"><span class="num">STEP 6 · PRACTICE</span><span class="min">⏱ 10 min</span></div>
+    <h2>Your turn ✈️</h2>
+
+    <div class="card">
+      <h3>A. Choose the correct option</h3>
+      <div id="mcList"></div>
+    </div>
+
+    <div class="card">
+      <h3>B. Match the two halves 🦜</h3>
+      <div id="halves"></div>
+      <button class="btn solid" id="hcheck" type="button">Check</button> <span class="fb" id="hscore"></span>
+    </div>
+
+    <div class="card">
+      <h3>C. The domino effect 🁢</h3>
+      <p class="lead">In planning, one problem causes the next one. Complete the chain with first conditional sentences.</p>
+      <p><b>If it rains heavily on Tuesday, the pour will move to Wednesday.</b></p>
+      <p>If the pour moves to Wednesday, …</p><input type="text" placeholder="…the curing will…">
+      <p style="margin-top:12px">If the curing starts late, …</p><input type="text" placeholder="…">
+      <p style="margin-top:12px">If …, …</p><input type="text" placeholder="Continue the chain!">
+      <p style="margin-top:12px">If …, …</p><input type="text" placeholder="One more!">
+      <button class="btn" type="button" data-toggle="domAns" style="margin-top:12px">Example answer</button>
+      <div class="answer" id="domAns">If the pour moves to Wednesday, the curing <b>will start</b> one day late. → If the curing starts late, we <b>won't strip</b> the formwork on time. → If we don't strip the formwork on time, the next villa <b>won't start</b> its assembly. → If the next villa doesn't start, we <b>will need</b> to recover the day with two cycles.</div>
+    </div>
+    <details class="teacher"><summary>👩‍🏫 Notas para la profe</summary>
+      <ul>
+        <li>A y B se autocorrigen; pide que lea cada frase en voz alta con contracciones.</li>
+        <li>C es la parte más productiva: déjala usar su experiencia real; corrige solo la estructura.</li>
+      </ul>
+    </details>
+  </div>
+</section>
+
+<!-- SPEAKING -->
+<section id="speaking">
+  <div class="wrap">
+    <div class="step"><span class="num">STEP 7 · SPEAKING</span><span class="min">⏱ 8 min</span></div>
+    <h2>Risk meeting 🎲</h2>
+    <p class="lead">Role play: you are the TBG planning engineer. Your teacher is the Main Contractor's project manager (Al-Rawaf). Pick a risk card and explain:</p>
+    <ol>
+      <li><b>What will happen?</b> → <i>If this happens, …will…</i></li>
+      <li><b>What is your Plan B?</b> → <i>If that happens, we'll…</i></li>
+      <li>Answer the manager's <b>"What if…?"</b> question.</li>
+    </ol>
+    <div class="risk" id="risk">
+      <div class="emoji">🎲</div>
+      <div class="r">Click "New risk" to start the meeting</div>
+      <div class="hint"></div>
+    </div>
+    <p style="text-align:center;margin-top:14px"><button class="btn orange" id="riskBtn" type="button">New risk</button></p>
+    <textarea placeholder="Notes for your answers…"></textarea>
+
+    <div class="card">
+      <h3>Your real project 💼</h3>
+      <p>Finish these sentences about your work next week:</p>
+      <input type="text" placeholder="If everything goes well next week, …"><br><br>
+      <input type="text" placeholder="If … is late, …"><br><br>
+      <input type="text" placeholder="When …, …">
+    </div>
+    <details class="teacher"><summary>👩‍🏫 Notas para la profe</summary>
+      <ul>
+        <li>Como gerente del MC, presiona con repreguntas: "What if the pumps aren't available either?", "How many days will we lose?", "Who will pay for that?"</li>
+        <li>Haz 3–4 tarjetas. Anota errores en silencio y corrige al final (2 min de feedback).</li>
+        <li>Cierre: 3 frases reales sobre su semana = exit ticket.</li>
+      </ul>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div style="font-family:var(--title);font-size:26px;color:#fff">ARVA <span style="color:var(--pink)">by Kat</span></div>
+    <p><b>Making Fluency Fun!</b> ✨</p>
+    <p>✉️ <a href="mailto:clases@arvaenglish.com">clases@arvaenglish.com</a> · 📸 <a href="https://instagram.com/soykatcastano" target="_blank" rel="noopener">@soykatcastano</a> · 💬 <a href="https://wa.me/573154273579" target="_blank" rel="noopener">WhatsApp</a></p>
+    <p style="font-size:13px;opacity:.7">Content adapted from "Temporary Facilities &amp; Formwork Yard Plan – Lazurde Villas Project" (10-Oct-2026), for teaching purposes.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const $ = (s,c=document)=>c.querySelector(s);
+  const $$ = (s,c=document)=>[...c.querySelectorAll(s)];
+  const shuffle = a => a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(x=>x[1]);
+
+  /* Timer */
+  let left = 50*60, run=false, tid=null;
+  const clock=$('#clock'), cbtn=$('#clockBtn');
+  const paint=()=>{const m=Math.floor(left/60), s=left%60; clock.textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0'); clock.style.color = left<=300?'var(--pink)':'inherit';};
+  cbtn.addEventListener('click',()=>{
+    run=!run; cbtn.textContent=run?'❚❚':'▶';
+    if(run){tid=setInterval(()=>{if(left>0){left--;paint();}else{clearInterval(tid);run=false;cbtn.textContent='▶';}},1000);}
+    else clearInterval(tid);
+  });
+  clock.addEventListener('dblclick',()=>{left=50*60;paint();});
+
+  /* Warm up reveal */
+  $$('.reveal').forEach(b=>b.addEventListener('click',()=>{b.closest('.guess').classList.add('show');b.disabled=true;}));
+
+  /* Toggles */
+  $$('[data-toggle]').forEach(b=>b.addEventListener('click',()=>$('#'+b.dataset.toggle).classList.toggle('show')));
+
+  /* Vocabulary */
+  const vocab = [
+    ['🧱','formwork','Temporary moulds (here, aluminium panels) that give concrete its shape.','"Mount the aluminium formwork: 4-hour window."'],
+    ['🔩','rebar','Steel bars that reinforce concrete.','"The rebar yard is the largest item: 1,500 m²."'],
+    ['🚛','pour (v/n)','To put liquid concrete into the formwork.','"Pour at night, at lower temperatures."'],
+    ['⏳','curing','The time the concrete needs to get hard and strong.','"Fast-set concrete cures 23 h."'],
+    ['🪛','strip (formwork)','To remove the formwork after the concrete is hard.','"Strip formwork, cycle 2 at 22:00."'],
+    ['🤝','hand over (to)','To give the work area to the next team.','"A trade starts only after the previous one hands over."'],
+    ['🏗️','telehandler','A machine with a long arm that lifts and moves materials.','"2 cycles per day needs 8–10 telehandlers."'],
+    ['👷','crew','A team of workers doing the same job.','"Formwork crews travel to site."'],
+    ['🍾','bottleneck','A point where work slows down and everything waits.','"No bottleneck: stripping never delays the next assembly."'],
+    ['🏃','keep pace (with)','To move at the same speed as someone or something.','"Material movement must keep pace with the crews."'],
+    ['📐','scope','The work that is your responsibility in a contract.','"8 facilities 100% under TBG scope."'],
+    ['⛔','delay (v/n)','To make something happen later than planned.','"Heavy rain can delay the pour 1 or more days."']
+  ];
+  const flips=$('#flips');
+  vocab.forEach(([e,w,d,x])=>{
+    const el=document.createElement('div'); el.className='flip';
+    el.innerHTML=`<div class="flip-in"><div class="face front"><span>${e}</span><b>${w}</b></div><div class="face back"><div>${d}<i>${x}</i></div></div></div>`;
+    el.addEventListener('click',()=>el.classList.toggle('on'));
+    flips.appendChild(el);
+  });
+  const vm = [['To give the work area to the next team.','hand over'],['A team of workers doing the same job.','crew'],['To put liquid concrete into the formwork.','pour'],['A point where work slows down and everything waits.','bottleneck'],['To remove the formwork after the concrete is hard.','strip'],['A machine with a long arm that lifts and moves materials.','telehandler']];
+  const vOpts = shuffle(vm.map(x=>x[1]));
+  const vbox=$('#vmatch');
+  vm.forEach(([d,a],i)=>{
+    const r=document.createElement('div'); r.className='row';
+    r.innerHTML=`<div class="txt">${i+1}. ${d}</div><select data-a="${a}"><option value="">— choose —</option>${vOpts.map(o=>`<option>${o}</option>`).join('')}</select>`;
+    vbox.appendChild(r);
+  });
+  const checkSelects=(box,score)=>{let ok=0,rows=$$('.row',box);rows.forEach(r=>{const s=$('select',r);const good=s.value===s.dataset.a;r.classList.toggle('right',good);r.classList.toggle('wrong',!good);if(good)ok++;});score.textContent=`${ok}/${rows.length} ${ok===rows.length?'🎉':''}`;score.className='fb '+(ok===rows.length?'ok':'bad');};
+  $('#vcheck').addEventListener('click',()=>checkSelects(vbox,$('#vscore')));
+
+  /* Highlight */
+  $('#hlBtn').addEventListener('click',()=>$$('#memo .if').forEach(s=>s.classList.toggle('hl')));
+
+  /* Generic button question builder */
+  function buttonQ(container, items){
+    items.forEach((it,i)=>{
+      const r=document.createElement('div'); r.className='row';
+      r.innerHTML=`<div class="txt">${i+1}. ${it.q}</div><div class="tf">${it.opts.map(o=>`<button class="btn" type="button">${o}</button>`).join('')}<span class="fb"></span></div>`;
+      const fb=$('.fb',r);
+      $$('button',r).forEach(b=>b.addEventListener('click',()=>{
+        $$('button',r).forEach(x=>x.classList.remove('ok','bad'));
+        const good=b.textContent===it.a;
+        b.classList.add(good?'ok':'bad');
+        fb.textContent=good?'✓ '+(it.why||'Correct!'):'✗ Try again';
+        fb.className='fb '+(good?'ok':'bad');
+        r.classList.toggle('right',good); r.classList.toggle('wrong',!good);
+      }));
+      container.appendChild(r);
+    });
+  }
+
+  buttonQ($('#tfList'),[
+    {q:'The rebar yard is the largest TBG facility.',opts:['True','False'],a:'True',why:'1,500 m².'},
+    {q:'In summer, workers can work outside at 13:00 if they drink water.',opts:['True','False'],a:'False',why:'Nobody works outside 12:00–15:00. It\'s the law.'},
+    {q:'In the hot season, the team pours concrete at night.',opts:['True','False'],a:'True',why:'After 20:00.'},
+    {q:'Heavy rain can delay the pour for one or more days.',opts:['True','False'],a:'True',why:'Cold season risk.'},
+    {q:'With two cycles per day, the team needs fewer telehandlers.',opts:['True','False'],a:'False',why:'They need more: 8–10.'},
+    {q:'The rebar crew can start before the formwork crew hands over.',opts:['True','False'],a:'False',why:'Formwork → Rebar → Electrical.'}
+  ]);
+
+  buttonQ($('#sortList'),[
+    {q:'If the time is between 12:00 and 15:00, nobody works outside.',opts:['Rule','Possible future'],a:'Rule'},
+    {q:'If it rains heavily on a pour day, the pour will move one or more days.',opts:['Rule','Possible future'],a:'Possible future'},
+    {q:'If panels have concrete residue, we wash them before storage.',opts:['Rule','Possible future'],a:'Rule'},
+    {q:'If we move to two cycles per day, we will need 8–10 telehandlers.',opts:['Rule','Possible future'],a:'Possible future'},
+    {q:'If formwork doesn\'t hand over, rebar doesn\'t start.',opts:['Rule','Possible future'],a:'Rule'},
+    {q:'If the on-site concrete plant has a problem, we won\'t meet the schedule.',opts:['Rule','Possible future'],a:'Possible future'}
+  ]);
+
+  buttonQ($('#mcList'),[
+    {q:'If the consultant ___ the rebar at 06:00, we\'ll get clearance by 09:00.',opts:['approves','will approve'],a:'approves',why:'No will after if.'},
+    {q:'If we move to two cycles per day next month, we ___ 8–10 telehandlers.',opts:['need','will need'],a:'will need',why:'Possible future → will.'},
+    {q:'In summer, if it ___ 12:00, nobody works outside.',opts:['is','will be'],a:'is',why:'A rule → zero conditional.'},
+    {q:'If panels have concrete residue, we ___ them in the washing bay.',opts:['wash','will wash'],a:'wash',why:'A procedure → zero conditional.'},
+    {q:'If FORSA doesn\'t send the panels on time, the assembly ___ late.',opts:['starts','will start'],a:'will start',why:'A specific risk → first conditional.'},
+    {q:'If the concrete plant ___ down tomorrow, we won\'t pour Villa B.',opts:['breaks','will break','break'],a:'breaks',why:'If + present simple (he/she/it → -s).'},
+    {q:'___ it rains heavily on Thursday, the pour will move to Friday.',opts:['If','When'],a:'If',why:'Maybe → if.'},
+    {q:'___ the formwork crew finishes at 03:00, the rebar crew will start.',opts:['If','When'],a:'When',why:'It\'s in the schedule → when.'}
+  ]);
+
+  /* Halves */
+  const hv=[
+    ['If a trade doesn\'t hand over,','the next trade can\'t start.'],
+    ['If we need a faster pour tomorrow,','we\'ll use 2 pumps.'],
+    ['If material movement doesn\'t keep pace with the crews,','the line will stop.'],
+    ['If it is Ramadan,','the main trades work at night.'],
+    ['If we pour Villa A today,','we\'ll need about 10 mixers.'],
+    ['If workers need a break in summer,','they use the shaded shelters.']
+  ];
+  const hOpts=shuffle(hv.map(x=>x[1])); const hb=$('#halves');
+  hv.forEach(([a,b])=>{
+    const r=document.createElement('div'); r.className='row';
+    r.innerHTML=`<div class="txt">${a}</div><select data-a="${b.replace(/"/g,'&quot;')}"><option value="">— choose —</option>${hOpts.map(o=>`<option>${o}</option>`).join('')}</select>`;
+    hb.appendChild(r);
+  });
+  $('#hcheck').addEventListener('click',()=>checkSelects(hb,$('#hscore')));
+
+  /* Risk cards */
+  const risks=[
+    ['🌧️','Heavy rain is forecast for Thursday, a pour day for Villa C+.','What if it rains on Friday too?'],
+    ['🏭','The on-site concrete plant has a mechanical problem.','What if the repair takes 3 days?'],
+    ['🚜','Only 4 telehandlers are available next week.','What if the client asks for 2 cycles per day?'],
+    ['🔍','The consultant rejects the rebar inspection at 06:00.','What if you don\'t get clearance by 09:00?'],
+    ['🌙','Ramadan starts in two weeks.','What if the crews are tired at night?'],
+    ['🌡️','A heatwave of 50 °C is coming.','What if the night is also very hot?'],
+    ['📦','FORSA delivers the Type D additional pieces late.','What if the C+ set is needed at the same time?'],
+    ['💧','The water tanks of the washing bay are empty.','What if dirty panels go back to the yard?'],
+    ['⚡','The pump breaks in the middle of a pour.','What if the second pump is on another villa?'],
+    ['👷','The rebar crew arrives 2 hours late.','What if the electrical crew is already on site?']
+  ];
+  let pool=[];
+  $('#riskBtn').addEventListener('click',()=>{
+    if(!pool.length) pool=shuffle(risks.slice());
+    const [e,r,h]=pool.pop(); const box=$('#risk');
+    box.innerHTML=`<div class="emoji">${e}</div><div class="r">${r}</div><div class="hint">Manager: "${h}"</div>`;
+  });
+})();
+</script>
+</body>
+</html>
